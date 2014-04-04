@@ -1,27 +1,16 @@
 Model {
-  Name			  "test_senddq"
-  Version		  7.9
+  Name			  "utils"
+  Version		  7.7
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.28"
+    ComputedModelVersion    "1.3"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
-  SavedCharacterEncoding  "UTF-8"
-  slprops.hdlmdlprops {
-    $PropName		    "HDLParams"
-    $ObjectID		    1
-    Array {
-      Type		      "Cell"
-      Dimension		      2
-      Cell		      "HDLSubsystem"
-      Cell		      "test_senddq"
-      PropName		      "mdlProps"
-    }
-  }
+  SavedCharacterEncoding  "US-ASCII"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -30,25 +19,23 @@ Model {
   DataTypeOverrideAppliesTo "AllNumericTypes"
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
-  FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  Created		  "Thu Jan 16 12:27:58 2014"
-  Creator		  "jorhabib"
+  Created		  "Mon Mar 10 10:55:59 2014"
+  Creator		  "iron"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "root"
+  LastModifiedBy	  "iron"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sat Mar 01 17:00:45 2014"
-  RTWModifiedTimeStamp	  315591853
-  ModelVersionFormat	  "1.%<AutoIncrement:28>"
+  LastModifiedDate	  "Mon Mar 10 11:09:06 2014"
+  RTWModifiedTimeStamp	  316350011
+  ModelVersionFormat	  "1.%<AutoIncrement:3>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
-  LibraryLinkDisplay	  "disabled"
+  LibraryLinkDisplay	  "none"
   WideLines		  off
   ShowLineDimensions	  off
   ShowPortDataTypes	  off
-  ShowDesignRanges	  off
   ShowLoopsOnError	  on
   IgnoreBidirectionalLines off
   ShowStorageClass	  off
@@ -75,22 +62,15 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    2
+    $ObjectID		    1
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "test_senddq"
-    signals_		    []
+    model_		    "utils"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "test_senddq"
+      Cell		      "utils"
       PropName		      "logAsSpecifiedByModels_"
-    }
-    Array {
-      Type		      "Cell"
-      Dimension		      1
-      Cell		      []
-      PropName		      "logAsSpecifiedByModelsSSIDs_"
     }
   }
   RecordCoverage	  off
@@ -135,16 +115,16 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      3
-      Version		      "1.12.0"
+      $ObjectID		      2
+      Version		      "1.11.0"
       Array {
 	Type			"Handle"
-	Dimension		9
+	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  4
-	  Version		  "1.12.0"
+	  $ObjectID		  3
+	  Version		  "1.11.0"
 	  StartTime		  "0.0"
-	  StopTime		  "inf"
+	  StopTime		  "10.0"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -160,7 +140,6 @@ Model {
 	  MaxConsecutiveMinStep	  "1"
 	  RelTol		  "1e-3"
 	  SolverMode		  "Auto"
-	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
 	  Solver		  "ode45"
 	  SolverName		  "ode45"
@@ -176,8 +155,8 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  5
-	  Version		  "1.12.0"
+	  $ObjectID		  4
+	  Version		  "1.11.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -208,8 +187,8 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  6
-	  Version		  "1.12.0"
+	  $ObjectID		  5
+	  Version		  "1.11.0"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -228,7 +207,6 @@ Model {
 	  ConditionallyExecuteInputs on
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
-	  UseFloatMulNetSlope	  off
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
@@ -261,11 +239,11 @@ Model {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
-	  ParallelExecutionInRapidAccelerator on
+	  AccelParallelForEachSubsystem	on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  7
-	  Version		  "1.12.0"
+	  $ObjectID		  6
+	  Version		  "1.11.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -314,13 +292,12 @@ Model {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "Enable All"
+	  FcnCallInpInsideContextMsg "Use local settings"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
-	  FrameProcessingCompatibilityMsg "warning"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
@@ -349,11 +326,10 @@ Model {
 	  SFInvalidInputDataAccessInChartInitDiag "warning"
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
-	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  8
-	  Version		  "1.12.0"
+	  $ObjectID		  7
+	  Version		  "1.11.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -389,8 +365,8 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  9
-	  Version		  "1.12.0"
+	  $ObjectID		  8
+	  Version		  "1.11.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -404,8 +380,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  10
-	  Version		  "1.12.0"
+	  $ObjectID		  9
+	  Version		  "1.11.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -419,20 +395,19 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  11
-	  Version		  "1.12.0"
+	  $ObjectID		  10
+	  Version		  "1.11.0"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    9
+	    Dimension		    8
 	    Cell		    "IncludeHyperlinkInReport"
 	    Cell		    "GenerateTraceInfo"
 	    Cell		    "GenerateTraceReport"
 	    Cell		    "GenerateTraceReportSl"
 	    Cell		    "GenerateTraceReportSf"
 	    Cell		    "GenerateTraceReportEml"
-	    Cell		    "GenerateWebview"
+	    Cell		    "GenerateSLWebview"
 	    Cell		    "GenerateCodeMetricsReport"
-	    Cell		    "GenerateCodeReplacementReport"
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
@@ -464,9 +439,8 @@ Model {
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
 	  GenerateCodeInfo	  off
-	  GenerateWebview	  off
+	  GenerateSLWebview	  off
 	  GenerateCodeMetricsReport off
-	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
@@ -474,8 +448,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      12
-	      Version		      "1.12.0"
+	      $ObjectID		      11
+	      Version		      "1.11.0"
 	      Array {
 		Type			"Cell"
 		Dimension		21
@@ -539,8 +513,8 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      13
-	      Version		      "1.12.0"
+	      $ObjectID		      12
+	      Version		      "1.11.0"
 	      Array {
 		Type			"Cell"
 		Dimension		16
@@ -565,10 +539,12 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
-	      CodeReplacementLibrary  "ANSI_C"
+	      TargetFunctionLibrary   "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
+	      FunctionExecutionProfile off
 	      CodeExecutionProfiling  off
+	      ERTCodeCoverageTool     "None"
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -578,10 +554,9 @@ Model {
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
-	      ConcurrentExecutionCompliant on
 	      IncludeMdlTerminateFcn  on
 	      GeneratePreprocessorConditionals "Disable all"
-	      CombineOutputUpdateFcns on
+	      CombineOutputUpdateFcns off
 	      CombineSignalStateStructs	off
 	      SuppressErrorStatus     off
 	      ERTFirstTimeCompliant   off
@@ -603,7 +578,6 @@ Model {
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
 	      AutosarCompliant	      off
-	      GRTInterface	      off
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -621,32 +595,18 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
-	hdlcoderui.hdlcc {
-	  $ObjectID		  14
-	  Version		  "1.12.0"
-	  Description		  "HDL Coder custom configuration component"
-	  Name			  "HDL Coder"
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    1
-	    Cell		    ""
-	    PropName		    "HDLConfigFile"
-	  }
-	  HDLCActiveTab		  "0"
-	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 538, 52, 1438, 732 ] 
+      ConfigPrmDlgPosition     [ 200, 74, 1080, 704 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    3
+    $ObjectID		    2
   }
-  ExplicitPartitioning	  off
   BlockDefaults {
     ForegroundColor	    "black"
     BackgroundColor	    "white"
@@ -680,23 +640,43 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Concatenate
-      NumInputs		      "2"
-      Mode		      "Vector"
-      ConcatenateDimension    "1"
+      BlockType		      Clock
+      DisplayTime	      off
     }
     Block {
-      BlockType		      Constant
-      Value		      "1"
-      VectorParams1D	      on
-      SamplingMode	      "Sample based"
+      BlockType		      Inport
+      Port		      "1"
+      OutputFunctionCall      off
       OutMin		      "[]"
       OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      OutDataTypeStr	      "Inherit: auto"
       LockScale		      off
-      SampleTime	      "inf"
-      FramePeriod	      "inf"
-      PreserveConstantTs      off
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      VarSizeSig	      "Inherit"
+      SampleTime	      "-1"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchInputForFeedbackSignals off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
+      BlockType		      Mux
+      Inputs		      "4"
+      DisplayOption	      "none"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      NonVirtualBus	      off
     }
     Block {
       BlockType		      Outport
@@ -716,21 +696,25 @@ Model {
       InitialOutput	      "[]"
     }
     Block {
-      BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      DataFormat	      "Array"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
-      Decimation	      "1"
-      SampleInput	      off
+      BlockType		      Product
+      Inputs		      "2"
+      Multiplication	      "Element-wise(.*)"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Zero"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Selector
+      NumberOfDimensions      "1"
+      IndexMode		      "One-based"
+      InputPortWidth	      "-1"
       SampleTime	      "-1"
     }
     Block {
@@ -752,14 +736,44 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
-      SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
     }
+    Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Switch
+      Criteria		      "u2 >= Threshold"
+      Threshold		      "0"
+      InputSameDT	      on
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      ZeroCross		      on
+      SampleTime	      "-1"
+      AllowDiffInputSizes     off
+    }
   }
   System {
-    Name		    "test_senddq"
-    Location		    [606, 459, 1316, 670]
+    Name		    "utils"
+    Location		    [71, 223, 651, 483]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -773,13 +787,14 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "69"
+    SIDHighWatermark	    "37"
     Block {
       BlockType		      SubSystem
-      Name		      "Body Parts Mask"
-      SID		      "60"
-      Ports		      [0, 1]
-      Position		      [195, 75, 235, 135]
+      Name		      "WBI to yarp"
+      SID		      "18"
+      Ports		      [1, 5]
+      Position		      [310, 28, 410, 112]
+      BackgroundColor	      "[0.180000, 0.348000, 0.600000]"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -788,9 +803,9 @@ Model {
       RequestExecContextInheritance off
       MaskHideContents	      off
       System {
-	Name			"Body Parts Mask"
-	Location		[495, 233, 870, 534]
-	Open			on
+	Name			"WBI to yarp"
+	Location		[1006, 421, 1335, 810]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -803,241 +818,619 @@ Model {
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
-	  BlockType		  Reference
-	  Name			  "Degrees to\nRadians1"
-	  SID			  "57"
+	  BlockType		  Inport
+	  Name			  "WBI ordered"
+	  SID			  "19"
+	  Position		  [25, 145, 40, 175]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Selector
+	  Name			  "Selector"
+	  SID			  "20"
 	  Ports			  [1, 1]
-	  Position		  [210, 120, 240, 150]
-	  ShowName		  off
-	  LibraryVersion	  "1.44"
-	  SourceBlock		  "simulink_extras/Transformations/Degrees to\nRadians"
-	  SourceType		  "DegreesToRadians"
+	  Position		  [85, 26, 125, 64]
+	  InputPortWidth	  "25"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[1 2 3]"
+	  OutputSizes		  "1"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Left Arm"
-	  SID			  "49"
-	  Position		  [25, 73, 115, 97]
-	  ZOrder		  -4
-	  Value			  "0*ones(1,5)"
-	  VectorParams1D	  off
+	  BlockType		  Selector
+	  Name			  "Selector1"
+	  SID			  "21"
+	  Ports			  [1, 1]
+	  Position		  [110, 86, 150, 124]
+	  InputPortWidth	  "25"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[4 5 6 7 8]"
+	  OutputSizes		  "1"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Left Leg"
-	  SID			  "58"
-	  Position		  [25, 178, 115, 202]
-	  ZOrder		  -4
-	  Value			  "0*ones(1,6)"
-	  VectorParams1D	  off
+	  BlockType		  Selector
+	  Name			  "Selector2"
+	  SID			  "22"
+	  Ports			  [1, 1]
+	  Position		  [110, 151, 150, 189]
+	  InputPortWidth	  "25"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[9 10 11 12 13]"
+	  OutputSizes		  "1"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Right Arm1"
-	  SID			  "67"
-	  Position		  [250, 196, 340, 224]
-	  ZOrder		  -4
-	  Value			  "[-48 54 61 102 -70]"
-	  VectorParams1D	  off
+	  BlockType		  Selector
+	  Name			  "Selector3"
+	  SID			  "23"
+	  Ports			  [1, 1]
+	  Position		  [110, 216, 150, 254]
+	  InputPortWidth	  "25"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[14 15 16 17 18 19]"
+	  OutputSizes		  "1"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Right Arm2"
-	  SID			  "66"
-	  Position		  [25, 123, 115, 147]
-	  ZOrder		  -4
-	  Value			  "0*ones(1,5)"
-	  VectorParams1D	  off
+	  BlockType		  Selector
+	  Name			  "Selector4"
+	  SID			  "24"
+	  Ports			  [1, 1]
+	  Position		  [110, 286, 150, 324]
+	  InputPortWidth	  "25"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[20 21 22 23 24 25]"
+	  OutputSizes		  "1"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "Right Leg"
-	  SID			  "59"
-	  Position		  [25, 228, 115, 252]
-	  ZOrder		  -4
-	  Value			  "0*ones(1,6)"
-	  VectorParams1D	  off
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Torso"
-	  SID			  "50"
-	  Position		  [25, 28, 115, 52]
-	  ZOrder		  -4
-	  Value			  "[0 0 5]"
-	  VectorParams1D	  off
-	}
-	Block {
-	  BlockType		  Concatenate
-	  Name			  "Vector\nConcatenate"
-	  SID			  "55"
-	  Ports			  [5, 1]
-	  Position		  [175, 42, 185, 228]
-	  ZOrder		  -22
-	  ShowName		  off
-	  NumInputs		  "5"
+	  BlockType		  Selector
+	  Name			  "Selector5"
+	  SID			  "25"
+	  Ports			  [1, 1]
+	  Position		  [145, 29, 200, 61]
+	  InputPortWidth	  "3"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[3 2 1]"
+	  OutputSizes		  "1"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "mask"
-	  SID			  "61"
-	  Position		  [270, 128, 300, 142]
+	  Name			  "torso"
+	  SID			  "26"
+	  Position		  [215, 38, 245, 52]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "leftArm"
+	  SID			  "27"
+	  Position		  [175, 98, 205, 112]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "rightArm"
+	  SID			  "28"
+	  Position		  [175, 163, 205, 177]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "leftLeg"
+	  SID			  "29"
+	  Position		  [175, 228, 205, 242]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "rightLeg"
+	  SID			  "30"
+	  Position		  [175, 298, 205, 312]
+	  Port			  "5"
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  SrcBlock		  "Torso"
+	  SrcBlock		  "Selector5"
 	  SrcPort		  1
-	  Points		  [20, 0; 0, 25]
-	  DstBlock		  "Vector\nConcatenate"
+	  DstBlock		  "torso"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Left Arm"
+	  SrcBlock		  "Selector"
 	  SrcPort		  1
-	  Points		  [40, 0]
-	  DstBlock		  "Vector\nConcatenate"
-	  DstPort		  2
+	  DstBlock		  "Selector5"
+	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Right Arm2"
+	  SrcBlock		  "WBI ordered"
 	  SrcPort		  1
-	  DstBlock		  "Vector\nConcatenate"
+	  Points		  [25, 0]
+	  Branch {
+	    Points		    [0, 10]
+	    Branch {
+	      Points		      [0, 65]
+	      Branch {
+		DstBlock		"Selector3"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 70]
+		DstBlock		"Selector4"
+		DstPort			1
+	      }
+	    }
+	    Branch {
+	      DstBlock		      "Selector2"
+	      DstPort		      1
+	    }
+	  }
+	  Branch {
+	    Points		    [0, -60]
+	    Branch {
+	      Points		      [0, 5]
+	      DstBlock		      "Selector1"
+	      DstPort		      1
+	    }
+	    Branch {
+	      DstBlock		      "Selector"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Selector4"
+	  SrcPort		  1
+	  DstBlock		  "rightLeg"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Selector3"
+	  SrcPort		  1
+	  DstBlock		  "leftLeg"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Selector2"
+	  SrcPort		  1
+	  DstBlock		  "rightArm"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Selector1"
+	  SrcPort		  1
+	  DstBlock		  "leftArm"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "errors"
+      SID		      "31"
+      Ports		      [2, 2]
+      Position		      [50, 70, 100, 110]
+      BackgroundColor	      "[0.300000, 0.580000, 1.000000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"errors"
+	Location		[650, 256, 925, 398]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "x"
+	  SID			  "32"
+	  Position		  [30, 28, 60, 42]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "y"
+	  SID			  "33"
+	  Position		  [25, 103, 55, 117]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Add"
+	  SID			  "34"
+	  Ports			  [2, 1]
+	  Position		  [95, 27, 125, 58]
+	  Inputs		  "+-"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Product
+	  Name			  "Divide"
+	  SID			  "35"
+	  Ports			  [2, 1]
+	  Position		  [165, 37, 195, 68]
+	  Inputs		  "*/"
+	  InputSameDT		  off
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  RndMeth		  "Floor"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "x-y"
+	  SID			  "36"
+	  Position		  [225, 13, 255, 27]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "(x-y)./y"
+	  SID			  "37"
+	  Position		  [220, 48, 250, 62]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Divide"
+	  SrcPort		  1
+	  DstBlock		  "(x-y)./y"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "y"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    Points		    [60, 0; 0, -50]
+	    DstBlock		    "Divide"
+	    DstPort		    2
+	  }
+	  Branch {
+	    Points		    [0, -60]
+	    DstBlock		    "Add"
+	    DstPort		    2
+	  }
+	}
+	Line {
+	  SrcBlock		  "x"
+	  SrcPort		  1
+	  DstBlock		  "Add"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Add"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  Branch {
+	    Points		    [0, -25]
+	    DstBlock		    "x-y"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Divide"
+	    DstPort		    1
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "holder"
+      SID		      "1"
+      Ports		      [1, 1]
+      Position		      [55, 27, 95, 53]
+      BackgroundColor	      "[0.270000, 0.522000, 0.900000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"holder"
+	Location		[371, 331, 909, 542]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "s"
+	  SID			  "2"
+	  Position		  [80, 128, 110, 142]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Clock
+	  Name			  "Clock"
+	  SID			  "3"
+	  Position		  [165, 45, 185, 65]
+	  Decimation		  "10"
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Compare\nTo Constant"
+	  SID			  "4"
+	  Ports			  [1, 1]
+	  Position		  [210, 40, 240, 70]
+	  LibraryVersion	  "1.236"
+	  SourceBlock		  "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	  SourceType		  "Compare To Constant"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+	  relop			  "=="
+	  const			  "0"
+	  LogicOutDataTypeMode	  "boolean"
+	  ZeroCross		  on
+	}
+	Block {
+	  BlockType		  Memory
+	  Name			  "Memory"
+	  SID			  "5"
+	  Position		  [165, 120, 195, 150]
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Sample\nand Hold"
+	  SID			  "6"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [230, 114, 305, 156]
+	  LibraryVersion	  "1.716"
+	  SourceBlock		  "dspsigops/Sample\nand Hold"
+	  SourceType		  "Sample and Hold"
+	  ShowPortLabels	  "FromPortIcon"
+	  SystemSampleTime	  "-1"
+	  FunctionWithSeparateData off
+	  RTWMemSecFuncInitTerm	  "Inherit from model"
+	  RTWMemSecFuncExecute	  "Inherit from model"
+	  RTWMemSecDataConstants  "Inherit from model"
+	  RTWMemSecDataInternal	  "Inherit from model"
+	  RTWMemSecDataParameters "Inherit from model"
+	  GeneratePreprocessorConditionals off
+	  trig			  "Falling edge"
+	  initCond		  "0"
+	  latchinput		  off
+	}
+	Block {
+	  BlockType		  Switch
+	  Name			  "Switch"
+	  SID			  "7"
+	  Position		  [405, 100, 455, 140]
+	  Criteria		  "u2 > Threshold"
+	  InputSameDT		  off
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "s(0)"
+	  SID			  "8"
+	  Position		  [480, 113, 510, 127]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "Memory"
+	  SrcPort		  1
+	  DstBlock		  "Sample\nand Hold"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Switch"
+	  SrcPort		  1
+	  DstBlock		  "s(0)"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sample\nand Hold"
+	  SrcPort		  1
+	  DstBlock		  "Switch"
 	  DstPort		  3
 	}
 	Line {
-	  SrcBlock		  "Left Leg"
+	  SrcBlock		  "Compare\nTo Constant"
 	  SrcPort		  1
-	  Points		  [20, 0; 0, -20]
-	  DstBlock		  "Vector\nConcatenate"
-	  DstPort		  4
+	  Points		  [20, 0; 0, 20]
+	  Branch {
+	    Points		    [75, 0; 0, 45]
+	    DstBlock		    "Switch"
+	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "Sample\nand Hold"
+	    DstPort		    trigger
+	  }
 	}
 	Line {
-	  SrcBlock		  "Right Leg"
+	  SrcBlock		  "Clock"
 	  SrcPort		  1
-	  Points		  [20, 0; 0, -35]
-	  DstBlock		  "Vector\nConcatenate"
+	  DstBlock		  "Compare\nTo Constant"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "s"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  Branch {
+	    DstBlock		    "Memory"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -105; 260, 0]
+	    DstBlock		    "Switch"
+	    DstPort		    1
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "yarp to WBI"
+      SID		      "9"
+      Ports		      [5, 1]
+      Position		      [155, 27, 270, 113]
+      BackgroundColor	      "[0.240000, 0.464000, 0.800000]"
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
+      RequestExecContextInheritance off
+      MaskHideContents	      off
+      System {
+	Name			"yarp to WBI"
+	Location		[160, 689, 425, 877]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "torso"
+	  SID			  "10"
+	  Position		  [25, 23, 55, 37]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "leftArm"
+	  SID			  "11"
+	  Position		  [25, 53, 55, 67]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "rightArm"
+	  SID			  "12"
+	  Position		  [25, 83, 55, 97]
+	  Port			  "3"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "leftLeg"
+	  SID			  "13"
+	  Position		  [25, 113, 55, 127]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "rightLeg"
+	  SID			  "14"
+	  Position		  [25, 143, 55, 157]
+	  Port			  "5"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux3"
+	  SID			  "15"
+	  Ports			  [5, 1]
+	  Position		  [180, 13, 185, 167]
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Selector
+	  Name			  "Selector"
+	  SID			  "16"
+	  Ports			  [1, 1]
+	  Position		  [85, 14, 140, 46]
+	  InputPortWidth	  "3"
+	  IndexOptions		  "Index vector (dialog)"
+	  Indices		  "[3 2 1]"
+	  OutputSizes		  "1"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "WBI ordered"
+	  SID			  "17"
+	  Position		  [210, 83, 240, 97]
+	  IconDisplay		  "Port number"
+	}
+	Line {
+	  SrcBlock		  "rightLeg"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
 	  DstPort		  5
 	}
 	Line {
-	  SrcBlock		  "Vector\nConcatenate"
+	  SrcBlock		  "leftLeg"
 	  SrcPort		  1
-	  DstBlock		  "Degrees to\nRadians1"
+	  DstBlock		  "Mux3"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Mux3"
+	  SrcPort		  1
+	  DstBlock		  "WBI ordered"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Degrees to\nRadians1"
+	  SrcBlock		  "rightArm"
 	  SrcPort		  1
-	  DstBlock		  "mask"
+	  DstBlock		  "Mux3"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "leftArm"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "torso"
+	  SrcPort		  1
+	  DstBlock		  "Selector"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Selector"
+	  SrcPort		  1
+	  DstBlock		  "Mux3"
 	  DstPort		  1
 	}
       }
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Joint Angles"
-      SID		      "69"
-      Ports		      [0, 1]
-      Position		      [390, 83, 455, 127]
-      ZOrder		      -1
-      BackgroundColor	      "orange"
-      LibraryVersion	      "1.162"
-      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
-      SourceType	      ""
-      robotName		      "robotName"
-      localName		      "localName"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Radians\nto Degrees"
-      SID		      "45"
-      Ports		      [1, 1]
-      Position		      [495, 90, 525, 120]
-      LibraryVersion	      "1.44"
-      SourceBlock	      "simulink_extras/Transformations/Radians\nto Degrees"
-      SourceType	      "RadiansToDegrees"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope1"
-      SID		      "46"
-      Ports		      [1]
-      Position		      [575, 89, 605, 121]
-      ZOrder		      -16
-      Floating		      off
-      Location		      [798, 54, 1361, 762]
-      Open		      on
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      YMin		      "-50"
-      YMax		      "50"
-      SaveName		      "ScopeData1"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Set Velocities"
-      SID		      "68"
-      Ports		      [1]
-      Position		      [290, 83, 365, 127]
-      ZOrder		      -18
-      BackgroundColor	      "[0.976000, 0.635000, 0.140000]"
-      LibraryVersion	      "1.162"
-      SourceBlock	      "WBCLibrary/wholeBodyActuators/Set Velocities"
-      SourceType	      ""
-      val		      "1"
-      robotName		      "robotName"
-      localName		      "localName"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "Soft Real Time"
-      SID		      "30"
-      Ports		      []
-      Position		      [35, 50, 127, 147]
-      DropShadow	      on
-      ShowName		      off
-      LibraryVersion	      "1.7"
-      SourceBlock	      "utility/Soft Real Time"
-      SourceType	      ""
-      x			      "0.050"
-    }
-    Line {
-      SrcBlock		      "Joint Angles"
-      SrcPort		      1
-      DstBlock		      "Radians\nto Degrees"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Radians\nto Degrees"
-      SrcPort		      1
-      DstBlock		      "Scope1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Body Parts Mask"
-      SrcPort		      1
-      DstBlock		      "Set Velocities"
-      DstPort		      1
-    }
-    Annotation {
-      SID		      "52"
-      Name		      "[3 DOF TORSO] [5 DOF LEFT ARM] [5 DOF RIGHT ARM] [6 LEFT LEG] [6 RIGHT LEG]"
-      Position		      [398, 41]
     }
   }
 }
