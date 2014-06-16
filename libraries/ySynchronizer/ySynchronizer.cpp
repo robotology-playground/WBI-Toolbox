@@ -16,6 +16,7 @@
  */
 #include <time.h>
 #include <yarp/os/Time.h>
+#include <yarp/os/Network.h>
 
 static void mdlInitializeSizes(SimStruct *S)
 {
@@ -54,9 +55,18 @@ static void mdlInitializeSampleTimes(SimStruct *S)
 #define MDL_START
 static void mdlStart(SimStruct *S)
 {
-    ssSetRWorkValue(S,0,ssGetTStart(S));    	// Get initial simulation time.
+    yarp::os::Network::init();
+    printf("YARP Network initialized\n");
+
+    if (!yarp::os::Network::checkNetwork() || !yarp::os::Network::initialized()) {
+        ssSetErrorStatus(S,"mdlStart >> YARP server wasn't found active!! \n");
+        return;
+    }
+
+    ssSetRWorkValue(S,0,ssGetTStart(S));         // Get initial simulation time.
     ssSetRWorkValue(S,1,yarp::os::Time::now());  // Initial real time
-    ssSetRWorkValue(S,2,-1);		    	// Real initial time of Matlab step.
+    ssSetRWorkValue(S,2,-1);                     // Real initial time of Matlab step.
+    yarp::os::Time::useNetworkClock("/clock");
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
@@ -107,6 +117,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
 static void mdlTerminate(SimStruct *S)
 {
     UNUSED_ARG(S); /* unused input argument */
+// I should use yarp::os::Network::fini() to terminate network connection but it currently hangs. Waiting for bug fix.
 }
 
 /*
