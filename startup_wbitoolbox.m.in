@@ -5,7 +5,7 @@ if exist(wbclibroot,'dir')
     controllersDir = [wbclibroot filesep 'controllers'];
     addpath(controllersDir);
     cd(controllersDir);
-    cd /home/jorhabib/Software/codyco-superbuild/build/install/mex; 
+    cd @CMAKE_INSTALL_PREFIX@/mex; 
     libDir = pwd; 
     imgDir = [controllersDir filesep 'img'];
     addpath(libDir);        %Path where mex libs are compiled
