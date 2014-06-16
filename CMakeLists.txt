@@ -1,3 +1,8 @@
+option(CODYCO_USES_URDFDOM "Compile WBI-Toolbox with URDF support" TRUE)
+
+if(CODYCO_USES_URDFDOM)
+    add_definitions(-DCODYCO_USES_URDFDOM)
+endif()
 
 #On new versions of Clang, MATLAB requires C++11.
 #I enable it on all Clangs
