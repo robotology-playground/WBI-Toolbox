@@ -71,7 +71,7 @@ WBI-Toolbox is discrete in principle and your simulation should be discrete as w
 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19   matlab`
 
 ###### Using the Simulink Library
-Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you first pull this repository you will download some default .ini files for each robot for which we have used the Toolbox (i.e. iCubGenova01, iCubGenova03, icubGazeboSim). These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit`. If you want to use this toolbox with a different robot, you can create a new .ini file in which you set the following parameters:
+Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit`. These .ini files contain the following parameters that are later used by the underlying Whole Body Interface:
 
 - **robot**:     robot name (i.e. icubGazeboSim, iCubGenova01, etc).
 - **local**:     prefix of the YARP ports that the WBI will open.
@@ -79,9 +79,9 @@ Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When 
 - **legsV**:     [int] legs version of your robot.
 - **feetFT**:    [bool] Is the robot endowed with force/torque sensors for its feet?
 - **uses_urdf**: [bool] Is your robot fixed to root or standing on the floor? (for icubGazeboSim this would mean whether you are using the `iCub (fixed)` or `iCub` models)
-- **urdf**:      When using the icubGazeboSim you need to specify the exact location of the urdf model of the robot as found in `/icub-model-generator/generated/`. These models can be downloaded from the repository https://github.com/robotology-playground/icub-model-generator. This step is still succeptible to changes in the near future.
+- **urdf**:      location of the urdf model of the robot to be used.
 
-You will find a few controllers and models that have already been used with the iCub simulator and the real robot as found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers`. 
+If you wish to change any of the default values you should do it in `${CODYCO_SUPERBUILD_ROOT}/codyco/build/install/share/codyco/contexts/wbit/` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). To generate default .ini files for a different robot, head to `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit/CMakeTmp` and add your new .ini.in file.
 
 ###### Current Controllers
 Our most recent controllers and other Simulink diagrams can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers`. In there you can find:
