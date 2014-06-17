@@ -1,4 +1,4 @@
-WBI Toolbox (WBI-T) - Simulink Wrapper for Whole Body Control
+Whole Body Interface Toolbox (WBI-Toolbox) - Simulink Wrapper for Whole Body Control
 -------------------------------------------------------------
 
 This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
@@ -40,7 +40,7 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
    cd build
    ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
-When compiling the Toolbox to be used with the real robot set the flag -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type make.
+When compiling the Toolbox to be used with the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type make.
 
 
 ###### Installing the WBI-Toolbox
