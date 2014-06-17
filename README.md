@@ -31,9 +31,10 @@ In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/buil
 
 - **Check the matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. 
 
-- **Compiling the WBI Toolbox.** Before compiling, you need to configure the project via CMake. A few flags are need to be taken into account when doing this. When using the Gazebo simulator do:
+- **Compiling the WBI Toolbox.** Before compiling, you need to configure the project via CMake. A few flags need to be taken into account when doing this. When using the Gazebo simulator do:
 
-```cd $CODYCO_SUPERBUILD_DIR
+```bash
+   cd $CODYCO_SUPERBUILD_DIR
    cd build
    ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
@@ -56,7 +57,7 @@ You can also create a .m file with these two lines and launch MATLAB from termin
 
 WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to Simulation > Configuration Parameters > Solver you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
 
-- **Test the Library.** In `$CODYCO_SUPERBUILD_ROOT/src/simulink/controllers` you can find some models for testing (more on this in the readme of the aforementioned directory). In order to test that the library is working correctly and properly linking YARP you can try launching a `yarpserver`, after which you can go to the controllers directory in MATLAB and open yarpwrite.mdl. Before starting the simulation, give a name to the YARP port where you want to write by double clicking the block and editing the mask that pops up. 
+- **Test the Library.** In `$CODYCO_SUPERBUILD_ROOT/src/simulink/controllers` you can find some models for testing (more on this in the README of the aforementioned directory). In order to test that the library is working correctly and properly linking YARP you can try launching a `yarpserver`, after which you can go to the controllers directory in MATLAB and open yarpwrite.mdl. Before starting the simulation, give a name to the YARP port where you want to write by double clicking the block and editing the mask that pops up. 
 
 - **For MAC OS X Users.** It has been reported that on MAC OS you need to define the place where you want MATLAB to find at runtime dynamic libraries for YARP, in case you have compiled YARP in a directory different from the default one. This can be added in `${MATLAB_ROOT}/bin/.matlab7rc.sh`. 
 ```bash
@@ -86,7 +87,7 @@ Our most recent controllers and other Simulink diagrams can be found in `${CODYC
 
 - **torqueBalancing/controllerWithHandControl.slx**  This is the latest iCub's COM controller. The one used for the video in the beginning of this document.
 
-- **wholeBodyImpedance/impedanceControl.mdl** This is a wholeBodyImpedance controller which sets all joints in impedance where the equilibrium pose is the initial one before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal an enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
+- **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which sets all joints in impedance where the equilibrium pose is the initial one before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
 
 ###### Tested OS
 Linux, Windows, MAC OS X
