@@ -1,15 +1,13 @@
 WBI Toolbox (WBI-T) - Simulink Wrapper for Whole Body Control
 -------------------------------------------------------------
 
-**NEWS: The WBI Toolbox will be presented in the workshop MATLAB/Simulink for Robotics Education and Research during ICRA 2014 with a live demo on the Gazebo simulator!! Check out the whole program of the workshop here: http://goo.gl/L76DbM**
-
-This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows a quick introduction to the way it works. For further information read the sections below.
+This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
 
 
 <p align="center">
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=h2T4BtuDiJg
-" target="_blank"><img src="http://img.youtube.com/vi/h2T4BtuDiJg/0.jpg" 
-alt="Overview of the Simulink library for Whole Body Control" width="480" height="360" border="10" /></a>
+<a href="https://www.youtube.com/watch?v=jaTEbCsFp_M
+" target="_blank"><img src="http://img.youtube.com/vi/jaTEbCsFp_M/0.jpg" 
+alt="iCub balancing via external force control" width="480" height="360" border="10" /></a>
 </p>
 
 
@@ -19,7 +17,7 @@ alt="Overview of the Simulink library for Whole Body Control" width="480" height
 
 
 ###### Requirements
-* Matlab V. 7.1+ and Simulink (Tested with Matlab R2013a, 7.14 R2012a/b, 7.12 R2011a).
+* Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a, R2013a, R2012a/b, R2011a).
 * YARP (-IMPORTANT- compiled as shared library, currently a default yarp configuration option).
 * CoDyCo. 
 * iCub.
@@ -28,37 +26,37 @@ alt="Overview of the Simulink library for Whole Body Control" width="480" height
 
 **Note: The following instructions are for Linux distributions, but it works similarly on the other operating systems.**
 
-###### Installation
-In the following steps assume that `$CODYCO_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_ROOT` to the corresponding `/src` directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver`, then Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
+###### Compiling the Toolbox MEX Files
+In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory of your installation. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
 - **Check the matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. 
 
-- **Compiling the WBI Toolbox.** When configuring the CMakeLists for CoDyCo make sure to enable the `CODYCO_USES_WBI_TOOLBOX` flag by doing
-```bash
-    cd $CODYCO_DIR
-    ccmake ../
+- **Compiling the WBI Toolbox.** Before compiling, you need to configure the project via CMake. A few flags are need to be taken into account when doing this. When using the Gazebo simulator do:
+
+```cd $CODYCO_SUPERBUILD_DIR
+   cd build
+   ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
-In the UI look for *CODYCO_USES_WBI_TOOLBOX* and press enter to turn it ON/OFF. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
-
-~~**Soft Real Time.** For the time being, this block has been taken from the Matlab File Exchange [http://goo.gl/8LMWGD] and it has to be compiled from within MATLAB by changing its current directory to `${CODYCO_ROOT}/simulink/controllers/RealTimeSlower` and typing `mex sfun_time.c`. This will create a mex file according to your operating system and architecture, e.g. for a 32bits Linux-based OS you will get sfun_time.mexglx. This mex file will be used by the example models included in `b${CODYCO_ROOT}/simulink/controllers/` to slow down the simulation for a user-specified rate. It is recommended to define the rate in this block with a variable such as **Ts** and mask your final model where the user can later define the rate.~~ This block will be soon deprecated and replaced by the ySynchronizer block. It is still present in the library and the user does not need to compile it manually.
+When compiling the Toolbox to be used with the real robot set the flag -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type make.
 
 
-###### Before Using the Simulink Library
-- **Prepare the MATLAB Environment.** When starting MATLAB it is recommended to add to its path the location of our mex files, i.e. `${CODYCO_DIR}/lib` as well as that for the controllers and the toolbox itself, i.e. `${CODYCO_ROOT}/src/simulink/controllers` by doing
+###### Installing the WBI-Toolbox
+- **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/codyco/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. It will also give you further instructions if you desire to permanently install it as to not run the script every time you want to use the Toolbox.
+
+If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/build/install/mex` (assuming the default CMake installation directory) and that for the controllers, models and Toolbox itself, i.e. `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers` by doing
+
 ```bash
-    addpath([getenv(CODYCO_DIR) /lib])
-    addpath([getenv(CODYCO_ROOT) /src/simulink/controllers])
+    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /build/install/mex])
+    addpath([getenv(CODYCO_SUPERBUILD_ROOT) /codyco/WBIToolbox/controllers])
 ```
-You can also create a .m file with these two lines and launch MATLAB from terminal:
+You can also create a .m file with these two lines and launch MATLAB from terminal as:
 ```bash
     matlab -r yourStartupFile
 ```
 
-As an alternative you can also run the MATLAB script `startup_wbitoolbox.m` in `${CODYCO_ROOT}/simulink` which will try to add the previous directories automatically.
+WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to Simulation > Configuration Parameters > Solver you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
 
-Depending on what you would like to do, remember that you can change the Simulink simulation settings by going to Simulation > Configuration Parameters > Solver and changing the `Stop time` to your desired value, or `inf` if you want the simulation to run 'forever'. Also, since this toolbox is very oriented to real implementation, the `Solver Options` in the very same window should be changed to `Fixed Step` Type and `discrete(no continuous states)` as the Solver.
-
-- **Test the Library.** In `$CODYCO_ROOT/src/simulink/controllers` you can find some models for testing (more on this in the readme of the aforementioned directory). In order to test that the library is working correctly and properly linking YARP you can try running a `yarpserver`, after which you can go to the controllers directory in MATLAB and open yarpwrite.mdl. Before starting the simulation, give a name to the YARP port where you want to write by double clicking the block and editing the mask that pops up. 
+- **Test the Library.** In `$CODYCO_SUPERBUILD_ROOT/src/simulink/controllers` you can find some models for testing (more on this in the readme of the aforementioned directory). In order to test that the library is working correctly and properly linking YARP you can try launching a `yarpserver`, after which you can go to the controllers directory in MATLAB and open yarpwrite.mdl. Before starting the simulation, give a name to the YARP port where you want to write by double clicking the block and editing the mask that pops up. 
 
 - **For MAC OS X Users.** It has been reported that on MAC OS you need to define the place where you want MATLAB to find at runtime dynamic libraries for YARP, in case you have compiled YARP in a directory different from the default one. This can be added in `${MATLAB_ROOT}/bin/.matlab7rc.sh`. 
 ```bash
@@ -66,10 +64,12 @@ Depending on what you would like to do, remember that you can change the Simulin
     LDPATH_SUFFIX = 'YOUR_ENV_DYLD_LIBRARY_PATH'
     chmod -w .matlab7rc.sh
 ```
-- **Additional notes.** In case Matlab has trouble finding a specific library, a workaround is to launch it preloading the variable `LD_PRELOAD` (or `DYLD_INSERT_LIBRARIES` on Mac OS X) with the location of the missing library.
+- **Additional notes.** In case Matlab has trouble finding a specific library, a workaround is to launch it preloading the variable `LD_PRELOAD` (or `DYLD_INSERT_LIBRARIES` on Mac OS X) with the location of the missing library. On Linux you might also have trouble with libstdc++.so since Matlab comes with its own. To use your system's libstdc++ you would need to launch Matlab as:
+
+`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19   matlab`
 
 ###### Using the Simulink Library
-Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you first pull this repository you will download some default .ini files for each robot for which we have used the Toolbox (i.e. iCubGenova01, iCubGenova03, icubGazeboSim). These .ini files can be found in `${CODYCO_ROOT}/src/simulink/libraries/wbInterface/conf/wbit`. If you want to use this toolbox with a different robot, you can create a new .ini file in which you set the following parameters:
+Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you first pull this repository you will download some default .ini files for each robot for which we have used the Toolbox (i.e. iCubGenova01, iCubGenova03, icubGazeboSim). These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit`. If you want to use this toolbox with a different robot, you can create a new .ini file in which you set the following parameters:
 
 - **robot**:     robot name (i.e. icubGazeboSim, iCubGenova01, etc).
 - **local**:     prefix of the YARP ports that the WBI will open.
@@ -79,21 +79,28 @@ Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When 
 - **uses_urdf**: [bool] Is your robot fixed to root or standing on the floor? (for icubGazeboSim this would mean whether you are using the `iCub (fixed)` or `iCub` models)
 - **urdf**:      When using the icubGazeboSim you need to specify the exact location of the urdf model of the robot as found in `/icub-model-generator/generated/`. These models can be downloaded from the repository https://github.com/robotology-playground/icub-model-generator. This step is still succeptible to changes in the near future.
 
-You will find a few controllers and models that have already been used with the iCub simulator and the real robot as found in `${CODYCO_ROOT}/src/simulink/controllers`. The latest whole-body torque controller for iCub's center of mass can be found in `${CODYCO_ROOT}/src/simulink/controllers/torqueBalancing/controller.mdl`
+You will find a few controllers and models that have already been used with the iCub simulator and the real robot as found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers`. 
+
+###### Current Controllers
+Our most recent controllers and other Simulink diagrams can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers`. In there you can find:
+
+- **torqueBalancing/controllerWithHandControl.slx**  This is the latest iCub's COM controller. The one used for the video in the beginning of this document.
+
+- **wholeBodyImpedance/impedanceControl.mdl** This is a wholeBodyImpedance controller which sets all joints in impedance where the equilibrium pose is the initial one before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal an enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
 
 ###### Tested OS
 Linux, Windows, MAC OS X
 
 ###### To Do List
 - [ ] Yarp read should read bottles!
+- [ ] Documentation (Functions, etc)
+- [ ] ZMP block.
 - [x] ~~Debug incompatibilities with Gazebo (at the c++ whole body interface level)~~ - with Francesco Romano
 - [x] ~~Compile the Soft Real Time mex as another module of the library. Possibly make our own.~~
 - [x] ~~Modify YarpRead module so that you can specify the port you wanna read from and where you want it to connect. Connection should be done inside the block.~~
 - [x] ~~Restructure code for wbInterface~~
 - [x] ~~Expose computeMass() and generalizedBiasForces()~~
 - [x] ~~Debug computeMass() and generalizedBiasForces()~~
-- [ ] Documentation (Functions, etc)
-- [ ] ZMP block.
 - [x] ~~Check minimum jerk generator.~~
 - [x] ~~Reproduce COM Controller as a Force Controlled version.~~
 - [x] ~~Documentation (Installation)~~
