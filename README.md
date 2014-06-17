@@ -18,7 +18,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 ###### Requirements
 * Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a, R2013a, R2012a/b, R2011a)
-* YARP (-IMPORTANT- compiled as shared library, currently a default yarp configuration option)
+* YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
 * CoDyCo (https://github.com/robotology-playground/codyco-superbuild)
 * iCub (https://github.com/robotology/icub-main)
 * Gazebo Simulator (http://gazebosim.org/)
