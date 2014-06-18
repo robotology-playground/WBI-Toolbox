@@ -1,4 +1,5 @@
-Whole Body Interface Toolbox (WBI-Toolbox) - Simulink Wrapper for Whole Body Control
+![](http://drive.google.com/uc?export=view&id=0B6zDGh11iY6oc0gtM0lMdDNweWM)
+Whole Body Interface Toolbox (WBI-Toolbox) - A Simulink Wrapper for Whole Body Control
 -------------------------------------------------------------
 
 This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
@@ -92,21 +93,3 @@ Our most recent controllers and other Simulink diagrams can be found in `${CODYC
 
 ###### Tested OS
 Linux, Windows, MAC OS X
-
-###### To Do List
-- [ ] Yarp read should read bottles!
-- [ ] Documentation (Functions, etc)
-- [ ] ZMP block.
-- [x] ~~Debug incompatibilities with Gazebo (at the c++ whole body interface level)~~ - with Francesco Romano
-- [x] ~~Compile the Soft Real Time mex as another module of the library. Possibly make our own.~~
-- [x] ~~Modify YarpRead module so that you can specify the port you wanna read from and where you want it to connect. Connection should be done inside the block.~~
-- [x] ~~Restructure code for wbInterface~~
-- [x] ~~Expose computeMass() and generalizedBiasForces()~~
-- [x] ~~Debug computeMass() and generalizedBiasForces()~~
-- [x] ~~Check minimum jerk generator.~~
-- [x] ~~Reproduce COM Controller as a Force Controlled version.~~
-- [x] ~~Documentation (Installation)~~
-- [x] ~~How to properly get dynamic libraries linked at runtime on MAC OS X.~~
-- [x] ~~Divide blocks into subgroups (actuators, estimators, etc) and put them all together as a real Simulink Library :D~~
-- [x] ~~Create icons for each block in the library.~~
- 
