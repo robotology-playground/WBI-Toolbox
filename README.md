@@ -72,7 +72,7 @@ WBI-Toolbox is discrete in principle and your simulation should be discrete as w
 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19   matlab`
 
 ###### Using the Simulink Library
-Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit`. These .ini files contain the following parameters that are later used by the underlying Whole Body Interface:
+Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit` and contain the following parameters later used by the underlying Whole Body Interface:
 
 - **robot**:     robot name (i.e. icubGazeboSim, iCubGenova01, etc).
 - **local**:     prefix of the YARP ports that the WBI will open.
