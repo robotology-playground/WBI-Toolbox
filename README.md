@@ -40,7 +40,7 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
    cd $CODYCO_SUPERBUILD_DIR
    ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
-When compiling the Toolbox to be used with the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type make.
+When compiling the Toolbox to be used with the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
 
 
 ###### Installing the WBI-Toolbox
@@ -61,15 +61,19 @@ WBI-Toolbox is discrete in principle and your simulation should be discrete as w
 
 - **Test the Library.** In `$CODYCO_SUPERBUILD_ROOT/src/simulink/controllers` you can find some models for testing (more on this in the README of the aforementioned directory). In order to test that the library is working correctly and properly linking YARP you can try launching a `yarpserver`, after which you can go to the controllers directory in MATLAB and open yarpwrite.mdl. Before starting the simulation, give a name to the YARP port where you want to write by double clicking the block and editing the mask that pops up. 
 
-- **For MAC OS X Users.** It has been reported that on MAC OS you need to define the place where you want MATLAB to find at runtime dynamic libraries for YARP, in case you have compiled YARP in a directory different from the default one. This can be added in `${MATLAB_ROOT}/bin/.matlab7rc.sh`. 
+- **For MAC OS X Users.** It has been reported that on MAC OS you need to define the place where you want MATLAB to find at runtime dynamic libraries for YARP, in case you have compiled YARP in a directory different from the default one. This can be added in `${MATLAB_ROOT}/bin/.matlab7rc.sh` by first doing
 ```bash
     chmod +w .matlab7rc.sh
-    LDPATH_SUFFIX = 'YOUR_ENV_DYLD_LIBRARY_PATH'
+```
+Then looking for the variable `LDPATH_SUFFIX` and assign to it the contents of your `DYLD_LIBRARY_PATH`. Finally do:
+```bash
     chmod -w .matlab7rc.sh
 ```
 - **Additional notes.** In case Matlab has trouble finding a specific library, a workaround is to launch it preloading the variable `LD_PRELOAD` (or `DYLD_INSERT_LIBRARIES` on Mac OS X) with the location of the missing library. On Linux you might also have trouble with libstdc++.so since Matlab comes with its own. To use your system's libstdc++ you would need to launch Matlab as:
 
 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19   matlab`
+
+You could additionally create an alias to launch Matlab this way.
 
 ###### Using the Simulink Library
 Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit` and contain the following parameters later used by the underlying Whole Body Interface:
@@ -83,6 +87,9 @@ Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When 
 - **urdf**:      location of the urdf model of the robot to be used.
 
 If you wish to change any of the default values you should do it in `${CODYCO_SUPERBUILD_ROOT}/codyco/build/install/share/codyco/contexts/wbit/` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). To generate default .ini files for a different robot, head to `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit/CMakeTmp` and add your new .ini.in file.
+
+What's important to remember is that your `YARP_DATA_DIRS` environmental variable **should include your CoDyCo `/share` directory** where CoDyCo contexts can be found. If you locally installed CoDyCo, it should be enough to append the following location:
+`$CODYCO_SUPERBUILD_DIR/install/share/codyco` to `YARP_DATA_DIRS`.
 
 ###### Current Controllers
 Our most recent controllers and other Simulink diagrams can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers`. In there you can find:
