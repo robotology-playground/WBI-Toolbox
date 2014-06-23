@@ -118,7 +118,9 @@ IF(NOT MATLAB_ROOT)
             /opt/matlab-7sp1/
             $ENV{HOME}/matlab-7sp1/
             $ENV{HOME}/redhat-matlab/
+            /usr/local/MATLAB/R2014b/
             /usr/local/MATLAB/R2014a/
+            /usr/local/MATLAB/R2013b/
             /usr/local/MATLAB/R2013a/
             /usr/local/MATLAB/R2012b/
             /usr/local/MATLAB/R2012a/
@@ -132,7 +134,9 @@ IF(NOT MATLAB_ROOT)
             /usr/local/MATLAB/R2009a/
             /usr/local/MATLAB/R2008b/
             /usr/local/MATLAB/R2008a/
+            /Applications/MATLAB_R2014b.app/
             /Applications/MATLAB_R2014a.app/
+            /Applications/MATLAB_R2013b.app/
             /Applications/MATLAB_R2013a.app/
             /Applications/MATLAB_R2012b.app/
             /Applications/MATLAB_R2012a.app/
