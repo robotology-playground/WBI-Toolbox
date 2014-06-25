@@ -1,8 +1,9 @@
-robot 	icub
-local	simulink
-headV	2
-legsV	1
-feetFT  true
-uses_urdf false
-icub_fixed true
-urdf     @LOCAL_CONTEXT@/urdf/iCubGenova03/icub.urdf
+robot 	      icub
+local	      simulink
+headV	      2
+legsV	      1
+feetFT        true
+uses_urdf     false
+icub_fixed    true
+worldRefFrame l_sole
+urdf          @LOCAL_CONTEXT@/urdf/iCubGenova03/icub.urdf

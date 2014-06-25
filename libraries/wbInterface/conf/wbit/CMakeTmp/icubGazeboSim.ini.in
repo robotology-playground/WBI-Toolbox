@@ -1,8 +1,9 @@
-robot 	icubGazeboSim
-local	simulink
-headV	2
-legsV	1
-feetFT  true
-uses_urdf true
-icub_fixed true
-urdf    @LOCAL_CONTEXT@/gazebo_models/iCubGenova03/icub_simulation.urdf
+robot         icubGazeboSim
+local         simulink
+headV         2
+legsV         1
+feetFT        true
+uses_urdf     true
+icub_fixed    true
+worldRefFrame l_sole
+urdf          @LOCAL_CONTEXT@/gazebo_models/iCubGenova03/icub_simulation.urdf
