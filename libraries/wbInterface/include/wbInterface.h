@@ -63,8 +63,8 @@ typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMat
 // N+6 x N+6 mass matrix
 typedef Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
 
-static const Vector7d              DEFAULT_XDES_FOOT = Vector7d::Constant (0.0);
-static const Eigen::Vector2d       DEFAULT_XDES_COM  = Eigen::Vector2d::Constant (0.0);
+static const Vector7d              DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
+static const Eigen::Vector2d       DEFAULT_X_COM_SIZE  = Eigen::Vector2d::Constant (0.0);
 
 class robotStatus {
 private:
@@ -91,6 +91,9 @@ private:
     // This variable map an Eigen vector to a yarp vector. //
     // Eigen::Map<Eigen::VectorXd>  dqDesMap; //
 
+    /** Link name used for parametric blocks, such as Link Forward Kinematics, Link Jacobian, etc */
+    std::string             linkName;
+    
     static yarp::os::ConstString   worldRefFrame;
 
     /** Joint velocities (size of vectors: n+6, n, 6). */
@@ -166,6 +169,8 @@ public:
     ~robotStatus();
     void                setmoduleName (std::string mn);
     void                setRobotName (std::string rn); //checked
+    void                setParamLink (std::string lk);
+    std::string         getParamLink ();
     int                 decreaseCounter();
     static void         resetCounter();
     bool                robotConfig();

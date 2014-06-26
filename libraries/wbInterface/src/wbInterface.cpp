@@ -23,11 +23,12 @@
 #include "wbInterface.h"
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 // MASK PARAMETERS --------------------------------------
-#define NPARAMS 3                                       // Number of input parameters
+#define NPARAMS 4                                       // Number of input parameters
 #define BLOCK_TYPE_IDX 0                                    // Index number for first input parameter
 #define BLOCK_TYPE_PARAM ssGetSFcnParam(S,BLOCK_TYPE_IDX)   // Get first input parameter from mask
 #define STRING_PARAM_IDX 1
 #define LOCAL_PARAM_IDX 2
+#define LINKNAME_PARAM_IDX 3
 // END MASK PARAMETERS -----------------------------------
 
 #define VERBOSE   0
@@ -90,6 +91,14 @@ void robotStatus::setRobotName (string rn) {
 //=========================================================================================================================
 void robotStatus::setmoduleName (string mn) {
     moduleName = mn;
+}
+//=========================================================================================================================
+void robotStatus::setParamLink (string lk) {
+    linkName = lk;
+}
+//=========================================================================================================================
+std::string robotStatus::getParamLink () {
+    return linkName; 
 }
 //=========================================================================================================================
 int robotStatus::decreaseCounter() {
@@ -166,9 +175,9 @@ bool robotStatus::robotConfig() {
 #ifdef DEBUG
         fprintf (stderr, "robotStatus::robotConfig >> new wbInterface created ...\n");
 #endif
-        
+
         tmpContainer = (int*) wbInterface;
-        
+
 #ifdef DEBUG
         fprintf (stderr, "robotStatus::robotConfig >> icubWholeBodyInterface has been created %p \n", wbInterface);
 #endif
@@ -225,23 +234,23 @@ bool robotStatus::robotInit (int btype, int link) {
         switch (link) {
         case 0:
             linkName = "r_sole";
-            default_size = DEFAULT_XDES_FOOT.size();
+            default_size = DEFAULT_X_LINK_SIZE.size();
             break;
         case 1:
             linkName = "l_sole";
-            default_size = DEFAULT_XDES_FOOT.size();
+            default_size = DEFAULT_X_LINK_SIZE.size();
             break;
         case 2:
             linkName = "com";
-            default_size = DEFAULT_XDES_COM.size();
+            default_size = DEFAULT_X_COM_SIZE.size();
             break;
         case 3:
             linkName = "r_gripper";
-            default_size = DEFAULT_XDES_FOOT.size();
+            default_size = DEFAULT_X_LINK_SIZE.size();
             break;
         case 4:
             linkName = "l_gripper";
-            default_size = DEFAULT_XDES_FOOT.size();
+            default_size = DEFAULT_X_LINK_SIZE.size();
             break;
         default:
             fprintf (stderr, "ERROR: No link has been specified for this block\n");
@@ -250,6 +259,10 @@ bool robotStatus::robotInit (int btype, int link) {
         getLinkId (linkName, linkID);
         // Output of forward kinematics and jacobian
         x_pose.resize (default_size, 0.0);
+    }
+    
+    if(btype == 17) {
+        x_pose.resize (DEFAULT_X_LINK_SIZE.size());
     }
 
     // This variable JfootR must be changed with a more appropriate name
@@ -288,6 +301,7 @@ bool robotStatus::robotInit (int btype, int link) {
 void robotStatus::getLinkId (const char* linkName, int& lid) {
     char comlink[] = "com";
     if (strcmp (linkName, comlink) != 0) { // !=0 means that they're different
+        printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
         wbInterface->getLinkId (linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
@@ -324,9 +338,8 @@ bool robotStatus::world2baseRototranslation (double* q) {
 //=========================================================================================================================
 void robotStatus::setWorldReferenceFrame (const char* wrf) {
     worldRefFrame = wrf;
-    
-}
 
+}
 //=========================================================================================================================
 bool robotStatus::robotJntAngles (bool blockingRead) {
 #ifdef DEBUG
@@ -768,7 +781,7 @@ int counterClass::getCount() {
 static void mdlCheckParameters (SimStruct* S) {
     {
         if (!IS_PARAM_DOUBLE (BLOCK_TYPE_PARAM)) {
-            ssSetErrorStatus (S, "mdlCheckParameters: 1st parameter to S-function ");
+            ssSetErrorStatus (S, "mdlCheckParameters: 1st parameter to S-function should be a number indicating the type of block");
             return;
         }
     }
@@ -786,7 +799,7 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     ssSetNumSFcnParams (S, NPARAMS);
 #if defined(MATLAB_MEX_FILE)
-    if (ssGetNumSFcnParams (S) == ssGetSFcnParamsCount (S)) {
+    if (ssGetSFcnParamsCount (S) == ssGetNumSFcnParams (S)) {                        // Then we have the usual case of val, robotName, localName
         mdlCheckParameters (S);
         if (ssGetErrorStatus (S) != NULL) {
             return;
@@ -794,14 +807,11 @@ static void mdlInitializeSizes (SimStruct* S) {
             fprintf (stderr, "mdlInitializeSize >> BLOCK TYPE IS: %d\n", static_cast<int> (mxGetScalar (ssGetSFcnParam (S, BLOCK_TYPE_IDX))));
         }
     } else {
-        return; // Parameter mismatch reported by Simulink
+        printf ("There was an error assessing number of parameters\n");
+        return;
     }
 #endif
 
-    // Parameter mismatch will be reported by Simulink
-    if (ssGetNumSFcnParams (S) != ssGetSFcnParamsCount (S)) {
-        return;
-    }
 
     // Specify I/O
     if (!ssSetNumInputPorts (S, 5)) return;
@@ -929,6 +939,16 @@ static void mdlStart (SimStruct* S) {
 
     real_T block_type = mxGetScalar (ssGetSFcnParam (S, BLOCK_TYPE_IDX));
     fprintf (stderr, "mdlStart >> BLOCK TYPE MASK PARAMETER: %f\n", block_type);
+    
+    cString = mxArrayToString (ssGetSFcnParam (S, LINKNAME_PARAM_IDX));
+    if (!cString) {
+        ssSetErrorStatus (S, "mdlStart >> Cannot retrieve string from parameter 4.\n");
+        return;
+    }
+    printf("The link passed for parametric blocks is: %s\n", cString);
+    std::string param_link_name (cString);
+    mxFree (cString);
+    cString = 0;
 
     // This will help determining the kind of block we'll be using
     real_T* x = (real_T*) ssGetDWork (S, 0);
@@ -941,55 +961,58 @@ static void mdlStart (SimStruct* S) {
 
     switch (static_cast<int> (block_type)) {
     case 0:
-        printf (  "mdlOutputs: This block will retrieve joints angles\n");
+        printf ("mdlOutputs: This block will retrieve joints angles\n");
         break;
     case 1:
-        printf (  "mdlOutputs: This block will retrieve joints velocities\n");
+        printf ("mdlOutputs: This block will retrieve joints velocities\n");
         break;
     case 2:
-        printf (  "mdlOutputs: This block will retrieve parametric forward kinematics\n");
+        printf ("mdlOutputs: This block will retrieve parametric forward kinematics\n");
         break;
     case 3:
-        printf (  "mdlOutputs: This block will retrieve parametric Jacobians\n");
+        printf ("mdlOutputs: This block will retrieve parametric Jacobians\n");
         break;
     case 4:
-        printf (  "mdlOutputs: This block will set velocities\n");
+        printf ("mdlOutputs: This block will set velocities\n");
         break;
     case 5:
-        printf (  "mdlOutputs: This block will set positions\n");
+        printf ("mdlOutputs: This block will set positions\n");
         break;
     case 6:
-        printf (  "mdlOutputs: This block will set torques\n");
+        printf ("mdlOutputs: This block will set torques\n");
         break;
     case 7:
-        printf (  "mdlOutputs: This block will compute generalized bias forces from dynamics\n");
+        printf ("mdlOutputs: This block will compute generalized bias forces from dynamics\n");
         break;
     case 8:
-        printf (  "mdlOutputs: This block will compute mass matrix from dynamics\n");
+        printf ("mdlOutputs: This block will compute mass matrix from dynamics\n");
         break;
     case 9:
-        printf (  "mdlOutputs: This block will compute dJdq\n");
+        printf ("mdlOutputs: This block will compute dJdq\n");
         break;
     case 10:
-        printf (  "mdlOutputs: This block will retrieve joint accelerations\n");
+        printf ("mdlOutputs: This block will retrieve joint accelerations\n");
         break;
     case 11:
-        printf (  "mdlOutputs: This block will retrieve joint torques\n");
+        printf ("mdlOutputs: This block will retrieve joint torques\n");
         break;
     case 12:
-        printf (  "mdlOutputs: This block will compute inverse dynamics\n");
+        printf ("mdlOutputs: This block will compute inverse dynamics\n");
         break;
     case 13:
-        printf (  "mdlOutputs: This block will retrieve joint limits\n");
+        printf ("mdlOutputs: This block will retrieve joint limits\n");
         break;
     case 14:
-        printf (  "mdlOutputs: This block will retrieve the centroidal momentum\n");
+        printf ("mdlOutputs: This block will retrieve the centroidal momentum\n");
         break;
     case 15:
-        printf (  "mdlOutputs: This block will retrieve end-effector wrenches for legs or arms\n");
+        printf ("mdlOutputs: This block will retrieve end-effector wrenches for legs or arms\n");
         break;
     case 16:
-        printf (  "mldOutputs: This block will attach the world reference frame to the specified link\n");
+        printf ("mldOutputs: This block will attach the world reference frame to the specified link\n");
+        break;
+    case 17:
+        printf ("mdlOutputs: This block will compute forward kinematics for the specified link\n");
         break;
     default:
         ssSetErrorStatus (S, "ERROR: [mdlOutputs] The type of this block has not been defined yet\n");
@@ -1014,6 +1037,7 @@ static void mdlStart (SimStruct* S) {
     fprintf (stderr, "mdlStart >> About to configure robot \n");
     robot->setmoduleName (local_name);
     robot->setRobotName (robot_name);
+    robot->setParamLink (param_link_name);
 
     bool res = robot->robotConfig();
     if (res)
@@ -1039,7 +1063,7 @@ static void mdlStart (SimStruct* S) {
     }
 
 #ifdef DEBUG
-    printf ("got limits right");
+    printf ("got limits right\n");
 #endif
 
     ssGetPWork (S) [0] = robot;
@@ -1058,12 +1082,14 @@ static void mdlStart (SimStruct* S) {
 static void mdlOutputs (SimStruct* S, int_T tid) {
     double tinit, tend;
     if (TIMING) tinit = Time::now();
+    
     //Getting type of block
     real_T* block_type = (real_T*) ssGetDWork (S, 0);
     int btype = (int) block_type[0];
-
     int_T* flag = (int_T*) ssGetDWork (S, 1);
     int Flag = (int) flag[0];
+    const char* linkName;
+    int lid = 0;
 
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
     bool blockingRead = false;
@@ -1071,7 +1097,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     fprintf (stderr, "mdlOutputs: wbInterface pointers: %p %p \n", robot->tmpContainer, robot->wbInterface);
 #endif
 
-    const char* linkName;
 
     // INPUT PARAMETER FOR FORWARD KINEMATICS
     InputPtrsType           u = ssGetInputPortSignalPtrs (S, 0);
@@ -1099,7 +1124,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             fprintf (stderr, "ERROR: [mdlOutputs] Robot Joint Angles could not be computed\n");
         }
     }
-// 
+//
     // This block will compute robot joint velocities
     if (btype == 1) {
 #ifdef DEBUG
@@ -1119,8 +1144,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             fprintf (stderr, "ERROR: [mdlOutputs] Robot joint velocities could not be computed\n");
         }
     }
-
-    int lid = 0;
 
     // This block will compute forward kinematics of the specified link
     if (btype == 2) {
@@ -1513,23 +1536,40 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 6); j++)
             pY15[j] = tmp (j);
     }
-    
+
     if (btype == 16) {
         InputRealPtrsType uPtrs0   = ssGetInputPortRealSignalPtrs (S, 0); //Get the input link
         InputInt8PtrsType uPtrsInt = (InputInt8PtrsType) uPtrs0;
-        int extLink = static_cast<int>(*uPtrsInt[0]);
+        int extLink = static_cast<int> (*uPtrsInt[0]);
         const char* charLink = NULL;
-        switch(extLink) {
-            case 0:
-                charLink = "l_sole";
-                break;
-            case 1:
-                charLink = "r_sole";
-                break;
-            default:
-                charLink = "l_sole";
+        switch (extLink) {
+        case 0:
+            charLink = "l_sole";
+            break;
+        case 1:
+            charLink = "r_sole";
+            break;
+        default:
+            charLink = "l_sole";
         }
-        robot->setWorldReferenceFrame(charLink);
+        robot->setWorldReferenceFrame (charLink);
+    }
+    
+    
+    // Parametric forward kinematics
+    if (btype == 17) {
+        Vector xpose;
+        std::string tmpStr (robot->getParamLink());
+        linkName = tmpStr.c_str();
+        printf("Parametric forward kinematics will be computed for linkName: %s\n", linkName);
+        robot->getLinkId (linkName, lid);
+        printf("Parametric forward kinematics will be computed for link %s number %i\n",linkName, lid);
+        xpose = robot->forwardKinematics (lid);
+
+        real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
+        for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
+            pY3[j] = xpose ( (int) j);
+        }        
     }
 
     if (TIMING) tend = Time::now();
