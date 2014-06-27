@@ -1014,6 +1014,9 @@ static void mdlStart (SimStruct* S) {
     case 17:
         printf ("mdlOutputs: This block will compute forward kinematics for the specified link\n");
         break;
+    case 18:
+        printf ("mdlOutputs: This  block will compute the Jacobian matrix for the specified link\n ");
+        break;
     default:
         ssSetErrorStatus (S, "ERROR: [mdlOutputs] The type of this block has not been defined yet\n");
     }
@@ -1561,14 +1564,30 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         Vector xpose;
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
-        printf("Parametric forward kinematics will be computed for linkName: %s\n", linkName);
         robot->getLinkId (linkName, lid);
-        printf("Parametric forward kinematics will be computed for link %s number %i\n",linkName, lid);
         xpose = robot->forwardKinematics (lid);
 
         real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
             pY3[j] = xpose ( (int) j);
+        }        
+    }
+    
+    if (btype == 18) {
+        JacobianMatrix jacob;
+        std::string tmpStr (robot->getParamLink());
+        linkName = tmpStr.c_str();
+        printf("Parametric Jacobian will be computed for linkName: %s\n", linkName);
+        robot->getLinkId (linkName, lid);
+
+        jacob = robot->jacobian (lid);
+#ifdef DEBUG
+        fprintf (stderr, "mdlOutputs: Jacobians Computed Succesfully. Jacobian is: \n");
+#endif
+
+        real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
+        for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
+            pY4[j] = jacob (j);
         }        
     }
 
