@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [55.0, 78.0, 1044.0, 712.0]
+      Location		      [1628.0, 264.0, 1019.0, 598.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -47,9 +47,9 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"209"
-	Extents			[986.0, 522.0]
-	ZoomFactor		[1.7499999999999993]
+	LoadSaveID		"202"
+	Extents			[961.0, 408.0]
+	ZoomFactor		[1.25]
 	Offset			[0.0, 0.0]
       }
     }
@@ -60,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jun 27 13:01:35 2014"
-  RTWModifiedTimeStamp	  325774892
-  ModelVersionFormat	  "1.%<AutoIncrement:117>"
+  LastModifiedDate	  "Fri Jun 27 16:14:27 2014"
+  RTWModifiedTimeStamp	  325786465
+  ModelVersionFormat	  "1.%<AutoIncrement:124>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -938,7 +938,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [1663, 179, 2747, 811]
+    Location		    [1628, 264, 2647, 862]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -971,7 +971,7 @@ Library {
       }
       System {
 	Name			"Utilities"
-	Location		[1626, 208, 2645, 806]
+	Location		[1628, 264, 2647, 862]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1661,7 +1661,7 @@ Library {
 	  }
 	  System {
 	    Name		    "baseVelocity"
-	    Location		    [-11, -14, 1377, 779]
+	    Location		    [1628, 264, 2647, 862]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1728,7 +1728,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1245"
+		SIDHighWatermark	"1257"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -1836,16 +1836,6 @@ Library {
 	      Position		      [110, 54, 165, 96]
 	      ZOrder		      2
 	      Mode		      "Multidimensional array"
-	    }
-	    Block {
-	      BlockType		      Concatenate
-	      Name		      "Matrix\nConcatenate1"
-	      SID		      "1263"
-	      Ports		      [2, 1]
-	      Position		      [515, 39, 570, 81]
-	      ZOrder		      1
-	      Mode		      "Multidimensional array"
-	      ConcatenateDimension    "2"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3815,8 +3805,8 @@ Library {
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[55, 78, 1099, 790]
-	Open			on
+	Location		[1628, 264, 2647, 862]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -8746,8 +8736,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Jacobians"
-	    Location		    [1733, 121, 2777, 833]
-	    Open		    off
+	    Location		    [1628, 264, 2647, 862]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -8801,7 +8791,7 @@ Library {
 	      }
 	      System {
 		Name			"Center of Mass Jacobian"
-		Location		[95, 181, 1139, 779]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9153,6 +9143,7 @@ Library {
 		  Position		  [155, 25, 225, 55]
 		  ZOrder		  2
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -9238,7 +9229,7 @@ Library {
 	      }
 	      System {
 		Name			"Left Foot Jacobian"
-		Location		[95, 181, 1139, 779]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9620,6 +9611,7 @@ Library {
 		  Position		  [155, 25, 225, 55]
 		  ZOrder		  1
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -9705,7 +9697,7 @@ Library {
 	      }
 	      System {
 		Name			"Left Hand Jacobian"
-		Location		[94, 153, 1138, 751]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10052,6 +10044,7 @@ Library {
 		  Position		  [145, 25, 215, 55]
 		  ZOrder		  2
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -10250,7 +10243,7 @@ Library {
 	      }
 	      System {
 		Name			"Link Jacobian"
-		Location		[95, 67, 1139, 779]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10632,6 +10625,7 @@ Library {
 		  Position		  [155, 25, 225, 55]
 		  ZOrder		  1
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -10717,7 +10711,7 @@ Library {
 	      }
 	      System {
 		Name			"Right Foot Jacobian"
-		Location		[95, 181, 1139, 779]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11109,6 +11103,7 @@ Library {
 		  Position		  [165, 25, 235, 55]
 		  ZOrder		  2
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -11194,7 +11189,7 @@ Library {
 	      }
 	      System {
 		Name			"Right Hand Jacobian"
-		Location		[94, 153, 1138, 751]
+		Location		[1628, 264, 2647, 862]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11548,6 +11543,7 @@ Library {
 		  Position		  [165, 25, 235, 55]
 		  ZOrder		  2
 		  MATLABFcn		  "u'"
+		  Output1D		  off
 		}
 		Block {
 		  BlockType		  Reshape
@@ -15054,8 +15050,11 @@ Stateflow {
     firstTransition	    8
     firstJunction	    7
     viewObj		    2
+    visible		    1
     machine		    1
     toolbarMode		    LIBRARY_TOOLBAR
+    subviewS {
+    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
