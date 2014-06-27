@@ -60,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jun 26 17:55:13 2014"
-  RTWModifiedTimeStamp	  325706110
-  ModelVersionFormat	  "1.%<AutoIncrement:113>"
+  LastModifiedDate	  "Thu Jun 26 18:16:17 2014"
+  RTWModifiedTimeStamp	  325706667
+  ModelVersionFormat	  "1.%<AutoIncrement:114>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -7681,7 +7681,7 @@ Library {
 		    }
 		    Name		    "link"
 		    Prompt		    ""
-		    Value		    "l_sole"
+		    Value		    "head"
 		    Callback		    "LinkName = get_param(gcb, 'MaskValues')\nLinkName = LinkName{3}"
 		  }
 		  PropName		  "Parameters"
