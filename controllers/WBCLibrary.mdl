@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [1761.0, 172.0, 1044.0, 712.0]
+      Location		      [55.0, 78.0, 1044.0, 712.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[9]
+	Filter			[8]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -41,28 +41,16 @@ Library {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Array {
-	Type			"Simulink.EditorInfo"
-	Dimension		2
-	Object {
-	  $ObjectID		  5
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "209"
-	  Extents		  [986.0, 521.0]
-	  ZoomFactor		  [1.7499999999999993]
-	  Offset		  [0.0, 0.0]
-	}
-	Object {
-	  $ObjectID		  6
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "1272"
-	  Extents		  [986.0, 521.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [0.0, 0.0]
-	}
-	PropName		"EditorsInfo"
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkSubsys"
+	LoadSaveID		"209"
+	Extents			[986.0, 522.0]
+	ZoomFactor		[1.7499999999999993]
+	Offset			[0.0, 0.0]
       }
     }
   }
@@ -72,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jun 27 10:37:08 2014"
-  RTWModifiedTimeStamp	  325766112
-  ModelVersionFormat	  "1.%<AutoIncrement:116>"
+  LastModifiedDate	  "Fri Jun 27 13:01:35 2014"
+  RTWModifiedTimeStamp	  325774892
+  ModelVersionFormat	  "1.%<AutoIncrement:117>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -151,13 +139,13 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      6
       Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  7
 	  Version		  "1.14.2"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
@@ -192,7 +180,7 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  8
 	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -225,7 +213,7 @@ Library {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  9
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -285,7 +273,7 @@ Library {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  10
 	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -375,7 +363,7 @@ Library {
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  11
 	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -416,7 +404,7 @@ Library {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  12
 	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -431,7 +419,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  13
 	  Version		  "1.14.2"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -447,7 +435,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  14
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -528,7 +516,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      15
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -597,7 +585,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      16
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -683,7 +671,7 @@ Library {
 	  }
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  18
+	  $ObjectID		  17
 	  Version		  "1.14.2"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -977,7 +965,7 @@ Library {
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		19
+	$ObjectID		18
 	$ClassName		"Simulink.Mask"
 	Display			"image(imread('utilities.png'))"
       }
@@ -1007,11 +995,11 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    20
+	    $ObjectID		    19
 	    $ClassName		    "Simulink.Mask"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      21
+	      $ObjectID		      20
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "tol"
@@ -1221,11 +1209,11 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    22
+	    $ObjectID		    21
 	    $ClassName		    "Simulink.Mask"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      23
+	      $ObjectID		      22
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "tol"
@@ -1435,7 +1423,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    24
+	    $ObjectID		    23
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "WBI to YARP"
 	    Description		    "Swaps first and third joints of the torso from a WBI whole body state reading."
@@ -1666,7 +1654,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    25
+	    $ObjectID		    24
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "baseVelocity"
 	    Description		    "This block computes the velocity of the floating base of a bipedal robot"
@@ -1918,7 +1906,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    26
+	    $ObjectID		    25
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Errors"
 	    Description		    "Computes two kinds of errors. The first is just the difference between x\nand y while the secon"
@@ -2060,7 +2048,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    27
+	    $ObjectID		    26
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Holder"
 	    Description		    "Holds the first value read by the block at the beginning of the simulation."
@@ -2226,7 +2214,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    28
+	    $ObjectID		    27
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "minJerkTrajGen  "
 	    Description		    "This block wraps the minJerkTrajGen class from iCub::ctrl::minJerkTrajGen.\n\nThe min jerk traj"
@@ -2237,21 +2225,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		29
+		$ObjectID		28
 		Type			"edit"
 		Name			"dim"
 		Prompt			"Trajectory dimension (int)"
 		Value			"3"
 	      }
 	      Object {
-		$ObjectID		30
+		$ObjectID		29
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Simulation rate (int) [sec]"
 		Value			"Ts"
 	      }
 	      Object {
-		$ObjectID		31
+		$ObjectID		30
 		Type			"edit"
 		Name			"Tt"
 		Prompt			"Trajectory time (double) [sec]"
@@ -2305,27 +2293,27 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		32
+		$ObjectID		31
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    33
+		    $ObjectID		    32
 		    Type		    "edit"
 		    Name		    "dim"
 		    Prompt		    "Trajectory dimension (int)"
 		    Value		    "dim"
 		  }
 		  Object {
-		    $ObjectID		    34
+		    $ObjectID		    33
 		    Type		    "edit"
 		    Name		    "rate"
 		    Prompt		    "Simulation rate (int) [ms]"
 		    Value		    "Ts"
 		  }
 		  Object {
-		    $ObjectID		    35
+		    $ObjectID		    34
 		    Type		    "edit"
 		    Name		    "tt"
 		    Prompt		    "Trajectory time [s]"
@@ -2413,7 +2401,7 @@ Library {
 	  EnableBusSupport	  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    36
+	    $ObjectID		    35
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "ySynchronizer"
 	    Description		    "Slows down the simulation and synchronizes all blocks with Yarp time.\nThis block takes two inp"
@@ -2425,14 +2413,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		37
+		$ObjectID		36
 		Type			"edit"
 		Name			"rate"
 		Prompt			"Period "
 		Value			"0.010"
 	      }
 	      Object {
-		$ObjectID		38
+		$ObjectID		37
 		Type			"edit"
 		Name			"scaleFactor"
 		Prompt			"Scale factor"
@@ -2455,27 +2443,27 @@ Library {
 	  EnableBusSupport	  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    39
+	    $ObjectID		    38
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		40
+		$ObjectID		39
 		Type			"edit"
 		Name			"from"
 		Prompt			"From"
 		Value			"['/' robotName '/torso/state:o']"
 	      }
 	      Object {
-		$ObjectID		41
+		$ObjectID		40
 		Type			"edit"
 		Name			"to"
 		Prompt			"to"
 		Value			"'...'"
 	      }
 	      Object {
-		$ObjectID		42
+		$ObjectID		41
 		Type			"edit"
 		Name			"num"
 		Prompt			"num"
@@ -2496,7 +2484,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    43
+	    $ObjectID		    42
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "YARP to wbi"
 	    Description		    "This is an iCub specific block which swaps the readings of the first and \nthird joint of the t"
@@ -2653,11 +2641,11 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    44
+	    $ObjectID		    43
 	    $ClassName		    "Simulink.Mask"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      45
+	      $ObjectID		      44
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "edit"
 	      Name		      "port_name"
@@ -2722,7 +2710,7 @@ Library {
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		46
+	$ObjectID		45
 	$ClassName		"Simulink.Mask"
 	Display			"image(imread('wholeBodyActuators.png'),'center')"
       }
@@ -2752,7 +2740,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    47
+	    $ObjectID		    46
 	    $ClassName		    "Simulink.Mask"
 	    Initialization	    "switch ctrlMode\n    case 'Velocity'\n%         display('Velocity Mode selected')\n        cu"
 	    "rrent = gcb;\n        block = find_system(current,...\n            'LookUnderMasks','on',...\n            'Follow"
@@ -2765,7 +2753,7 @@ Library {
 	    SelfModifiable	    "on"
 	    Object {
 	      $PropName		      "Parameters"
-	      $ObjectID		      48
+	      $ObjectID		      47
 	      $ClassName	      "Simulink.MaskParameter"
 	      Type		      "popup"
 	      Array {
@@ -2820,7 +2808,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    49
+	    $ObjectID		    48
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Set Joint Angles"
 	    Description		    "This block sets all join ts in position control mode and sets the input angular position refere"
@@ -2831,21 +2819,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		50
+		$ObjectID		49
 		Type			"edit"
 		Name			"val"
 		Prompt			"Block type"
 		Value			"5"
 	      }
 	      Object {
-		$ObjectID		51
+		$ObjectID		50
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		52
+		$ObjectID		51
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -3140,7 +3128,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    53
+	    $ObjectID		    52
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Set Joint Torques   "
 	    Description		    "This block sets all joints in torque control mode and sets the input joint reference torques ve"
@@ -3151,21 +3139,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		54
+		$ObjectID		53
 		Type			"edit"
 		Name			"val"
 		Prompt			"Block type"
 		Value			"6"
 	      }
 	      Object {
-		$ObjectID		55
+		$ObjectID		54
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		56
+		$ObjectID		55
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -3450,7 +3438,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    57
+	    $ObjectID		    56
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Set Velocities"
 	    Description		    "This block sets all the robot joints to velocity control mode and sets the input velocity refer"
@@ -3461,21 +3449,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		58
+		$ObjectID		57
 		Type			"edit"
 		Name			"val"
 		Prompt			"Block type"
 		Value			"4"
 	      }
 	      Object {
-		$ObjectID		59
+		$ObjectID		58
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		60
+		$ObjectID		59
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -3562,34 +3550,34 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		61
+		$ObjectID		60
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    62
+		    $ObjectID		    61
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "val"
 		  }
 		  Object {
-		    $ObjectID		    63
+		    $ObjectID		    62
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    64
+		    $ObjectID		    63
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		  }
 		  Object {
-		    $ObjectID		    65
+		    $ObjectID		    64
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -3821,13 +3809,13 @@ Library {
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		66
+	$ObjectID		65
 	$ClassName		"Simulink.Mask"
 	Display			"image(imread('wholeBodyModel.png'),'center')"
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[1761, 172, 2805, 884]
+	Location		[55, 78, 1099, 790]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3851,7 +3839,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    67
+	    $ObjectID		    66
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "image(imread('Dynamics.png'))"
 	  }
@@ -3881,7 +3869,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		68
+		$ObjectID		67
 		$ClassName		"Simulink.Mask"
 		Type			"Centroidal Momentum"
 		Description		"This block retrieves the robot 6-element centroidal momentum (3 values for linear momentum and 3 for a"
@@ -3892,14 +3880,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    69
+		    $ObjectID		    68
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    70
+		    $ObjectID		    69
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -4226,7 +4214,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		71
+		$ObjectID		70
 		$ClassName		"Simulink.Mask"
 		Type			"Inverse Dynamics"
 		Description		"This block retrieves the robot joint torques based on kinematic information using the dynamical model "
@@ -4237,14 +4225,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    72
+		    $ObjectID		    71
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    73
+		    $ObjectID		    72
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -4535,7 +4523,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		74
+		$ObjectID		73
 		$ClassName		"Simulink.Mask"
 		Type			"Generalized Bias Forces"
 		Description		"This block retrieves the generalied bias forces of the robot.\n\nInputs:  \nqb, the robot joint angles"
@@ -4549,21 +4537,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    75
+		    $ObjectID		    74
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "7"
 		  }
 		  Object {
-		    $ObjectID		    76
+		    $ObjectID		    75
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    77
+		    $ObjectID		    76
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module name"
@@ -4854,7 +4842,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		78
+		$ObjectID		77
 		$ClassName		"Simulink.Mask"
 		Type			"dJ*dq Left Arm"
 		Description		"This block retrieves the product dJ*dq for the left arm.\n\nOutput: dJdqLA, a vector of size 6 x 6. \n"
@@ -4864,21 +4852,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    79
+		    $ObjectID		    78
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "9"
 		  }
 		  Object {
-		    $ObjectID		    80
+		    $ObjectID		    79
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    81
+		    $ObjectID		    80
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -5170,7 +5158,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		82
+		$ObjectID		81
 		$ClassName		"Simulink.Mask"
 		Type			"dJ*dq Left Foot"
 		Description		"This block retrieves the product dJ*dq for the left foot.\n\nOutput: dJdq, a vector of size 6 x 6. \n\n"
@@ -5180,21 +5168,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    83
+		    $ObjectID		    82
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "9"
 		  }
 		  Object {
-		    $ObjectID		    84
+		    $ObjectID		    83
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    85
+		    $ObjectID		    84
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -5485,7 +5473,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		86
+		$ObjectID		85
 		$ClassName		"Simulink.Mask"
 		Type			"dJ*dq Right Arm"
 		Description		"This block retrieves the product dJ*dq for the right arm.\n\nOutput: dJdqRA, a vector of size 6 x 6. \n"
@@ -5495,21 +5483,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    87
+		    $ObjectID		    86
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "9"
 		  }
 		  Object {
-		    $ObjectID		    88
+		    $ObjectID		    87
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    89
+		    $ObjectID		    88
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -5802,7 +5790,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		90
+		$ObjectID		89
 		$ClassName		"Simulink.Mask"
 		Type			"dJ*dq Right Foot"
 		Description		"This block retrieves the product dJ*dq for the right foot.\n\nOutput: dJdq, a vector of size 6 x 6. \n"
@@ -5812,21 +5800,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    91
+		    $ObjectID		    90
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "9"
 		  }
 		  Object {
-		    $ObjectID		    92
+		    $ObjectID		    91
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    93
+		    $ObjectID		    92
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "Local name"
@@ -6119,7 +6107,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		94
+		$ObjectID		93
 		$ClassName		"Simulink.Mask"
 		Type			"Mass Matrix"
 		Description		"This block retrieves the full robot mass matrix.\n\nInput:  qb, the robot joint angles including the f"
@@ -6132,21 +6120,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    95
+		    $ObjectID		    94
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "8"
 		  }
 		  Object {
-		    $ObjectID		    96
+		    $ObjectID		    95
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    97
+		    $ObjectID		    96
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module name"
@@ -6512,7 +6500,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    98
+	    $ObjectID		    97
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "image(imread('forwardKinematics.png'))"
 	  }
@@ -6542,7 +6530,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		99
+		$ObjectID		98
 		$ClassName		"Simulink.Mask"
 		Type			"Center of Mass Forward Kinematics"
 		Description		"This block retrieves the position of the robot Center of Mass (CoM) with respect to the specified worl"
@@ -6553,14 +6541,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    100
+		    $ObjectID		    99
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    101
+		    $ObjectID		    100
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -6659,34 +6647,34 @@ Library {
 		  EnableBusSupport	  off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    102
+		    $ObjectID		    101
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    103
+		    $ObjectID		    102
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "2"
 		    }
 		    Object {
-		    $ObjectID		    104
+		    $ObjectID		    103
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    105
+		    $ObjectID		    104
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    106
+		    $ObjectID		    105
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -6898,7 +6886,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		107
+		$ObjectID		106
 		$ClassName		"Simulink.Mask"
 		Type			"Left Foot Forward Kinematics"
 		Description		"This block retrieves the position of the robot's left foot (its reference frame) with respect to the s"
@@ -6909,14 +6897,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    108
+		    $ObjectID		    107
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    109
+		    $ObjectID		    108
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -7014,34 +7002,34 @@ Library {
 		  EnableBusSupport	  off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    110
+		    $ObjectID		    109
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    111
+		    $ObjectID		    110
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "2"
 		    }
 		    Object {
-		    $ObjectID		    112
+		    $ObjectID		    111
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    113
+		    $ObjectID		    112
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    114
+		    $ObjectID		    113
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -7253,7 +7241,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		115
+		$ObjectID		114
 		$ClassName		"Simulink.Mask"
 		Type			"Left Hand Forward Kinematics"
 		Description		"This block retrieves the position of the robot's left hand (its reference frame) with respect to the s"
@@ -7264,14 +7252,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    116
+		    $ObjectID		    115
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    117
+		    $ObjectID		    116
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -7371,34 +7359,34 @@ Library {
 		  EnableBusSupport	  off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    118
+		    $ObjectID		    117
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    119
+		    $ObjectID		    118
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "2"
 		    }
 		    Object {
-		    $ObjectID		    120
+		    $ObjectID		    119
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    121
+		    $ObjectID		    120
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    122
+		    $ObjectID		    121
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -7609,7 +7597,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		123
+		$ObjectID		122
 		$ClassName		"Simulink.Mask"
 		Type			"Link's Forward Kinematics"
 		Description		"This block retrieves the cartesian position of the specified link with respect to the specified world "
@@ -7620,21 +7608,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    124
+		    $ObjectID		    123
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    125
+		    $ObjectID		    124
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "local name"
 		    Value		    "localName"
 		  }
 		  Object {
-		    $ObjectID		    126
+		    $ObjectID		    125
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -7703,11 +7691,11 @@ Library {
 		  Type			  "Simulink.dialog.Group"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    127
+		    $ObjectID		    126
 		    Prompt		    "%<MaskType>"
 		    Object {
 		    $PropName		    "DialogControls"
-		    $ObjectID		    128
+		    $ObjectID		    127
 		    $ClassName		    "Simulink.dialog.Text"
 		    Prompt		    "%<MaskDescription>"
 		    Name		    "DescTextVar"
@@ -7715,28 +7703,28 @@ Library {
 		    Name		    "DescGroupVar"
 		  }
 		  Object {
-		    $ObjectID		    129
+		    $ObjectID		    128
 		    Prompt		    "Simulink:studio:ToolBarParametersMenu"
 		    Array {
 		    Type		    "Simulink.dialog.Control"
 		    Dimension		    3
 		    Object {
-		    $ObjectID		    130
+		    $ObjectID		    129
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "robotname"
 		    }
 		    Object {
-		    $ObjectID		    131
+		    $ObjectID		    130
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "localname"
 		    }
 		    Object {
-		    $ObjectID		    132
+		    $ObjectID		    131
 		    $ClassName		    "Simulink.dialog.Group"
 		    Prompt		    "Choose your link"
 		    Object {
 		    $PropName		    "DialogControls"
-		    $ObjectID		    133
+		    $ObjectID		    132
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "link"
 		    }
@@ -8038,7 +8026,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		134
+		$ObjectID		133
 		$ClassName		"Simulink.Mask"
 		Type			"Right Foot Forward Kinematics"
 		Description		"This block retrieves the position of the robot's right foot (its reference frame) with respect to the "
@@ -8049,14 +8037,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    135
+		    $ObjectID		    134
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    136
+		    $ObjectID		    135
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -8156,34 +8144,34 @@ Library {
 		  EnableBusSupport	  off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    137
+		    $ObjectID		    136
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    138
+		    $ObjectID		    137
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "2"
 		    }
 		    Object {
-		    $ObjectID		    139
+		    $ObjectID		    138
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    140
+		    $ObjectID		    139
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    141
+		    $ObjectID		    140
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -8395,7 +8383,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		142
+		$ObjectID		141
 		$ClassName		"Simulink.Mask"
 		Type			"Right Hand Forward Kinematics"
 		Description		"This block retrieves the position of the robot's right hand (its reference frame) with respect to the "
@@ -8406,14 +8394,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    143
+		    $ObjectID		    142
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    144
+		    $ObjectID		    143
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -8513,34 +8501,34 @@ Library {
 		  EnableBusSupport	  off
 		  Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    145
+		    $ObjectID		    144
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    146
+		    $ObjectID		    145
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "2"
 		    }
 		    Object {
-		    $ObjectID		    147
+		    $ObjectID		    146
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    148
+		    $ObjectID		    147
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    149
+		    $ObjectID		    148
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -8752,7 +8740,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    150
+	    $ObjectID		    149
 	    $ClassName		    "Simulink.Mask"
 	    Display		    "image(imread('jacobian.png'))"
 	  }
@@ -8782,7 +8770,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		151
+		$ObjectID		150
 		$ClassName		"Simulink.Mask"
 		Type			"Center of Mass Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the Center of Mass (CoM) of the robot and takes into acco"
@@ -8795,14 +8783,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    152
+		    $ObjectID		    151
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    153
+		    $ObjectID		    152
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -8917,34 +8905,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    154
+		    $ObjectID		    153
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    155
+		    $ObjectID		    154
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    156
+		    $ObjectID		    155
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    157
+		    $ObjectID		    156
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    158
+		    $ObjectID		    157
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -9219,7 +9207,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		159
+		$ObjectID		158
 		$ClassName		"Simulink.Mask"
 		Type			"Left Foot Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the left foot of the robot and takes into account the flo"
@@ -9232,14 +9220,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    160
+		    $ObjectID		    159
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    161
+		    $ObjectID		    160
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -9352,34 +9340,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    162
+		    $ObjectID		    161
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    163
+		    $ObjectID		    162
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    164
+		    $ObjectID		    163
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    165
+		    $ObjectID		    164
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    166
+		    $ObjectID		    165
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -9686,7 +9674,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		167
+		$ObjectID		166
 		$ClassName		"Simulink.Mask"
 		Type			"Left Hand Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the left hand of the robot and takes into account the flo"
@@ -9699,14 +9687,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    168
+		    $ObjectID		    167
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    169
+		    $ObjectID		    168
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -9820,34 +9808,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    170
+		    $ObjectID		    169
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    171
+		    $ObjectID		    170
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    172
+		    $ObjectID		    171
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    173
+		    $ObjectID		    172
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    174
+		    $ObjectID		    173
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -10119,7 +10107,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		175
+		$ObjectID		174
 		$ClassName		"Simulink.Mask"
 		Type			"Left Foot Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the specified link of the robot taking into account its f"
@@ -10132,21 +10120,21 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    176
+		    $ObjectID		    175
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    177
+		    $ObjectID		    176
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
 		    Value		    "localName"
 		  }
 		  Object {
-		    $ObjectID		    178
+		    $ObjectID		    177
 		    Type		    "popup"
 		    Array {
 		    Type		    "Cell"
@@ -10215,11 +10203,11 @@ Library {
 		  Type			  "Simulink.dialog.Group"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    179
+		    $ObjectID		    178
 		    Prompt		    "%<MaskType>"
 		    Object {
 		    $PropName		    "DialogControls"
-		    $ObjectID		    180
+		    $ObjectID		    179
 		    $ClassName		    "Simulink.dialog.Text"
 		    Prompt		    "%<MaskDescription>"
 		    Name		    "DescTextVar"
@@ -10227,27 +10215,27 @@ Library {
 		    Name		    "DescGroupVar"
 		  }
 		  Object {
-		    $ObjectID		    181
+		    $ObjectID		    180
 		    Prompt		    "Simulink:studio:ToolBarParametersMenu"
 		    Array {
 		    Type		    "Simulink.dialog.Control"
 		    Dimension		    3
 		    Object {
-		    $ObjectID		    182
+		    $ObjectID		    181
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    183
+		    $ObjectID		    182
 		    $ClassName		    "Simulink.dialog.parameter.Edit"
 		    Name		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    184
+		    $ObjectID		    183
 		    $ClassName		    "Simulink.dialog.Group"
 		    Object {
 		    $PropName		    "DialogControls"
-		    $ObjectID		    185
+		    $ObjectID		    184
 		    $ClassName		    "Simulink.dialog.parameter.Popup"
 		    Name		    "link"
 		    }
@@ -10263,7 +10251,7 @@ Library {
 	      System {
 		Name			"Link Jacobian"
 		Location		[95, 67, 1139, 779]
-		Open			on
+		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -10364,34 +10352,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    186
+		    $ObjectID		    185
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    187
+		    $ObjectID		    186
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "18"
 		    }
 		    Object {
-		    $ObjectID		    188
+		    $ObjectID		    187
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    189
+		    $ObjectID		    188
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    190
+		    $ObjectID		    189
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -10698,7 +10686,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		191
+		$ObjectID		190
 		$ClassName		"Simulink.Mask"
 		Type			"Right Foot Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the right foot of the robot and takes into account the fl"
@@ -10711,14 +10699,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    192
+		    $ObjectID		    191
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    193
+		    $ObjectID		    192
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -10833,34 +10821,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    194
+		    $ObjectID		    193
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    195
+		    $ObjectID		    194
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    196
+		    $ObjectID		    195
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    197
+		    $ObjectID		    196
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    198
+		    $ObjectID		    197
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -11175,7 +11163,7 @@ Library {
 	      RequestExecContextInheritance off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		199
+		$ObjectID		198
 		$ClassName		"Simulink.Mask"
 		Type			"Right Hand Jacobian"
 		Description		"This block retrieves the Jacobian matrix for the right hand of the robot and takes into account the fl"
@@ -11188,14 +11176,14 @@ Library {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  2
 		  Object {
-		    $ObjectID		    200
+		    $ObjectID		    199
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    201
+		    $ObjectID		    200
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "local name"
@@ -11310,34 +11298,34 @@ Library {
 		    EnableBusSupport	    off
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    202
+		    $ObjectID		    201
 		    $ClassName		    "Simulink.Mask"
 		    Array {
 		    Type		    "Simulink.MaskParameter"
 		    Dimension		    4
 		    Object {
-		    $ObjectID		    203
+		    $ObjectID		    202
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "3"
 		    }
 		    Object {
-		    $ObjectID		    204
+		    $ObjectID		    203
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		    }
 		    Object {
-		    $ObjectID		    205
+		    $ObjectID		    204
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		    }
 		    Object {
-		    $ObjectID		    206
+		    $ObjectID		    205
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -11616,7 +11604,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    207
+	    $ObjectID		    206
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Joint Limits"
 	    Description		    "Retrieves the upper and lower limits of all joint angles.\n\nOutput: qMin [ROBOT_DOFx1], qMax ["
@@ -11627,14 +11615,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		208
+		$ObjectID		207
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		209
+		$ObjectID		208
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -11964,7 +11952,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    210
+	    $ObjectID		    209
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Change World Reference Frame    "
 	    Description		    "The world reference frame used in simulation is attached to a robot link specified by the user."
@@ -11978,14 +11966,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		211
+		$ObjectID		210
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		212
+		$ObjectID		211
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -11996,7 +11984,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Set World Ref Frame"
-	    Location		    [364, 45, 1402, 836]
+	    Location		    [55, 78, 1099, 790]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12069,7 +12057,7 @@ Library {
 	      Position		      [100, 26, 245, 384]
 	      ZOrder		      -5
 	      FunctionName	      "robotState"
-	      Parameters	      "16,robotName,localName"
+	      Parameters	      "16,robotName,localName,'na'"
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -12314,7 +12302,7 @@ Library {
       RequestExecContextInheritance off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		213
+	$ObjectID		212
 	$ClassName		"Simulink.Mask"
 	Display			"image(imread('wholeBodyStates.png'),'center');"
       }
@@ -12344,7 +12332,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    214
+	    $ObjectID		    213
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Dummy Joint Torques"
 	    Description		    "[Only with the Gazebo simulator] This block retrieves the robot joint torques as published by G"
@@ -12356,14 +12344,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		215
+		$ObjectID		214
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		216
+		$ObjectID		215
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -13002,7 +12990,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    217
+	    $ObjectID		    216
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Joint Accelerations"
 	    Description		    "This block retrieves the robot joint angular accelerations in rad/s^2 as a vector of dimensions"
@@ -13014,14 +13002,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		218
+		$ObjectID		217
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		219
+		$ObjectID		218
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -13318,7 +13306,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    220
+	    $ObjectID		    219
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Joint Angles"
 	    Description		    "This block retrieves the vector of robot joint angles in radians of dimensions ROBOT_DOFx1 (doe"
@@ -13330,14 +13318,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		221
+		$ObjectID		220
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robotName"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		222
+		$ObjectID		221
 		Type			"edit"
 		Name			"localName"
 		Prompt			"localName"
@@ -13456,34 +13444,34 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		223
+		$ObjectID		222
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    224
+		    $ObjectID		    223
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "0"
 		  }
 		  Object {
-		    $ObjectID		    225
+		    $ObjectID		    224
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    226
+		    $ObjectID		    225
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		  }
 		  Object {
-		    $ObjectID		    227
+		    $ObjectID		    226
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -13666,7 +13654,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    228
+	    $ObjectID		    227
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Joint Torques"
 	    Description		    "This block retrieves the robot joint torques in N/m as a vector of dimensions ROBOT_DOFx1. Thes"
@@ -13679,14 +13667,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		229
+		$ObjectID		228
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		230
+		$ObjectID		229
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
@@ -13983,7 +13971,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    231
+	    $ObjectID		    230
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Joint Velocities"
 	    Description		    "This block retrieves the robot joint angular velocities in rad/s as a vector of dimensions ROBO"
@@ -13995,14 +13983,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		232
+		$ObjectID		231
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robotName"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		233
+		$ObjectID		232
 		Type			"edit"
 		Name			"localName"
 		Prompt			"localName"
@@ -14099,34 +14087,34 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		234
+		$ObjectID		233
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  4
 		  Object {
-		    $ObjectID		    235
+		    $ObjectID		    234
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "1"
 		  }
 		  Object {
-		    $ObjectID		    236
+		    $ObjectID		    235
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    237
+		    $ObjectID		    236
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
 		  }
 		  Object {
-		    $ObjectID		    238
+		    $ObjectID		    237
 		    Type		    "edit"
 		    Name		    "linkname"
 		    Prompt		    "Link Name"
@@ -14339,7 +14327,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    239
+	    $ObjectID		    238
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Left Leg End Effector Wrench"
 	    Description		    "This block retrieves an estimate of the wrench at the end-effector of the left leg of the robot"
@@ -14350,14 +14338,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		240
+		$ObjectID		239
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robotName"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		241
+		$ObjectID		240
 		Type			"edit"
 		Name			"localName"
 		Prompt			"localName"
@@ -14475,27 +14463,27 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		242
+		$ObjectID		241
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    243
+		    $ObjectID		    242
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "15"
 		  }
 		  Object {
-		    $ObjectID		    244
+		    $ObjectID		    243
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    245
+		    $ObjectID		    244
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
@@ -14676,7 +14664,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    246
+	    $ObjectID		    245
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Right Leg End Effector Wrench"
 	    Description		    "This block retrieves an estimate of the wrench at the end-effector of the right leg of the robo"
@@ -14687,14 +14675,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		247
+		$ObjectID		246
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robotName"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		248
+		$ObjectID		247
 		Type			"edit"
 		Name			"localName"
 		Prompt			"localName"
@@ -14791,27 +14779,27 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		249
+		$ObjectID		248
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    250
+		    $ObjectID		    249
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "15"
 		  }
 		  Object {
-		    $ObjectID		    251
+		    $ObjectID		    250
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    252
+		    $ObjectID		    251
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
