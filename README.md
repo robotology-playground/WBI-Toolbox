@@ -46,10 +46,10 @@ When compiling the Toolbox to be used with the real robot set the flag `-DICUBWB
 ###### Installing the WBI-Toolbox
 - **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/codyco/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. It will also give you further instructions if you desire to permanently install it as to not run the script every time you want to use the Toolbox.
 
-If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/build/install/mex` (assuming the default CMake installation directory) and that for the controllers, models and Toolbox itself, i.e. `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers` by doing
+If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and that for the controllers, models and Toolbox itself, i.e. `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/controllers` by doing
 
 ```bash
-    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /build/install/mex])
+    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/mex])
     addpath([getenv(CODYCO_SUPERBUILD_ROOT) /codyco/WBIToolbox/controllers])
 ```
 You can also create a .m file with these two lines and launch MATLAB from terminal as:
