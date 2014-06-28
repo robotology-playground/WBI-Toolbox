@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.114"
+    ComputedModelVersion    "1.117"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jun 25 16:01:46 2014"
-  RTWModifiedTimeStamp	  325612906
-  ModelVersionFormat	  "1.%<AutoIncrement:114>"
+  LastModifiedDate	  "Sat Jun 28 13:59:08 2014"
+  RTWModifiedTimeStamp	  325864748
+  ModelVersionFormat	  "1.%<AutoIncrement:117>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -134,7 +134,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "0.01"
+	  FixedStep		  "Ts"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -150,8 +150,8 @@ Model {
 	  SolverMode		  "Auto"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -630,7 +630,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ 279, -40, 1199, 690 ]  
+      ConfigPrmDlgPosition    [ 218, 118, 1150, 679 ]  
     }
     PropName		    "ConfigurationSets"
   }
@@ -853,7 +853,7 @@ Model {
   }
   System {
     Name		    "impedanceControl"
-    Location		    [-11, -14, 1377, 779]
+    Location		    [12, 61, 1356, 756]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -865,12 +865,12 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "150"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "120"
     Block {
       BlockType		      SubSystem
-      Name		      "Subsystem"
+      Name		      "wholeBodyImpedanceController"
       SID		      "1"
       Ports		      []
       Position		      [220, 110, 260, 170]
@@ -890,10 +890,10 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "'icubGazeboSim'|0.01|'dynamicBalancing'"
+      MaskValueString	      "robotName|Ts|localName"
       System {
-	Name			"Subsystem"
-	Location		[-11, -14, 1377, 779]
+	Name			"wholeBodyImpedanceController"
+	Location		[12, 61, 1356, 756]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -972,9 +972,10 @@ Model {
 	  Ports			  [0, 1]
 	  Position		  [375, 504, 425, 536]
 	  ZOrder		  39
-	  BackgroundColor	  "orange"
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
 	  ShowName		  off
-	  LibraryVersion	  "1.92"
+	  LibraryVersion	  "1.157"
 	  SourceBlock		  "WBCLibrary/wholeBodyStates/Joint Angles"
 	  SourceType		  "Joint Angles"
 	  robotName		  "robotName"
@@ -1040,8 +1041,9 @@ Model {
 	  Ports			  [1]
 	  Position		  [1205, 523, 1275, 567]
 	  ZOrder		  141
-	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
-	  LibraryVersion	  "1.92"
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
+	  LibraryVersion	  "1.157"
 	  SourceBlock		  "WBCLibrary/wholeBodyActuators/Set Torques"
 	  SourceType		  "Set Joint Torques   "
 	  val			  "6"
@@ -1086,7 +1088,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "base + dq'"
-	    Location		    [12, 45, 1660, 1453]
+	    Location		    [11, 62, 1355, 757]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1106,9 +1108,10 @@ Model {
 	      Ports		      [0, 1]
 	      Position		      [260, 139, 310, 171]
 	      ZOrder		      41
-	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
+	      ForegroundColor	      "red"
+	      BackgroundColor	      "yellow"
 	      ShowName		      off
-	      LibraryVersion	      "1.92"
+	      LibraryVersion	      "1.157"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -1122,7 +1125,7 @@ Model {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.92"
+	      LibraryVersion	      "1.157"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -1146,8 +1149,9 @@ Model {
 	      Ports		      [0, 1]
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
-	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.92"
+	      ForegroundColor	      "red"
+	      BackgroundColor	      "yellow"
+	      LibraryVersion	      "1.157"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -1161,7 +1165,7 @@ Model {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.92"
+	      LibraryVersion	      "1.157"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -1233,7 +1237,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "base + q"
-	    Location		    [105, 69, 381, 665]
+	    Location		    [71, 45, 395, 876]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1319,9 +1323,10 @@ Model {
 	  Ports			  [2, 1]
 	  Position		  [765, 746, 815, 779]
 	  ZOrder		  29
-	  BackgroundColor	  "[1.000000, 0.258824, 0.819608]"
+	  ForegroundColor	  "red"
+	  BackgroundColor	  "yellow"
 	  ShowName		  off
-	  LibraryVersion	  "1.92"
+	  LibraryVersion	  "1.157"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Dynamics/computeh"
 	  SourceType		  "Generalized Bias Forces"
 	  val			  "7"
@@ -1339,7 +1344,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "holder"
-	    Location		    [1531, 45, 3106, 1781]
+	    Location		    [1497, 45, 3120, 2016]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
