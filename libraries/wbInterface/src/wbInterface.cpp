@@ -1015,7 +1015,10 @@ static void mdlStart (SimStruct* S) {
         printf ("mdlOutputs: This block will compute forward kinematics for the specified link\n");
         break;
     case 18:
-        printf ("mdlOutputs: This  block will compute the Jacobian matrix for the specified link\n ");
+        printf ("mdlOutputs: This  block will compute the Jacobian matrix for the specified link\n");
+        break;
+    case 19:
+        printf ("mdlOutputs: This block will compute the product dJdq for the specified link\n");
         break;
     default:
         ssSetErrorStatus (S, "ERROR: [mdlOutputs] The type of this block has not been defined yet\n");
@@ -1093,6 +1096,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     int Flag = (int) flag[0];
     const char* linkName;
     int lid = 0;
+    Vector dJdq; dJdq.resize (6, 0.0);
 
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
     bool blockingRead = false;
@@ -1292,8 +1296,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
-    Vector dJdq;
-    dJdq.resize (6, 0.0);
     // This block will compute dJdq from the dynamics equation for the specified link
     if (btype == 9) {
 #ifdef DEBUG
@@ -1573,11 +1575,14 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }        
     }
     
+    // Parametric Jacobians
     if (btype == 18) {
         JacobianMatrix jacob;
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
+#ifdef DEBUG
         printf("Parametric Jacobian will be computed for linkName: %s\n", linkName);
+#endif
         robot->getLinkId (linkName, lid);
 
         jacob = robot->jacobian (lid);
@@ -1589,6 +1594,50 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
             pY4[j] = jacob (j);
         }        
+    }
+    
+    // Parametric dJdq
+    if (btype == 19) {
+        std::string tmpStr (robot->getParamLink());
+        linkName = tmpStr.c_str();
+#ifdef DEBUG
+        printf("Parametric Jacobian will be computed for linkName: %s\n", linkName);
+#endif
+        robot->getLinkId(linkName, lid);
+
+        int nu;
+        //READ INPUT ANGLES
+        InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
+        nu = ssGetInputPortWidth (S, 2);                                //Getting the amount of elements of the input vector/matrix
+        Vector qrad_in;
+        qrad_in.resize (nu, 0.0);
+        for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
+            qrad_in (j) = (*uPtrs2[j]);
+        }
+
+        //READ INPUT JOINT VELOCITIES
+        InputRealPtrsType uPtrs3 = ssGetInputPortRealSignalPtrs (S, 3); //Get the corresponding pointer to "input joint angles port"
+        nu = ssGetInputPortWidth (S, 3);                                //Getting the amount of elements of the input vector/matrix
+        Vector dqrad_in;
+        dqrad_in.resize (nu, 0.0);
+        for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
+            dqrad_in (j) = (*uPtrs3[j]);
+        }
+
+        robot->getLinkId (linkName, lid);
+        if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
+            fprintf (stderr, "ERROR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
+        } else {
+            dJdq = robot->getDJdq();
+        }
+
+        real_T* pY7 = (real_T*) ssGetOutputPortSignal (S, 6);
+#ifdef DEBUG
+        fprintf (stderr, "mdlOutputs: djdq computed is: %s \n", dJdq.toString().c_str());
+#endif
+        for (int_T j = 0; j < ssGetOutputPortWidth (S, 6); j++) {
+            pY7[j] = dJdq (j);
+        }
     }
 
     if (TIMING) tend = Time::now();
