@@ -1599,9 +1599,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     if (btype == 19) {
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
-// #ifdef DEBUG
+#ifdef DEBUG
         printf("Parametric dJdq will be computed for linkName: %s\n", linkName);
-// #endif
+#endif
         robot->getLinkId(linkName, lid);
 
         int nu;
