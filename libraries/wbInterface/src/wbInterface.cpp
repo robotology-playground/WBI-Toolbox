@@ -23,19 +23,16 @@
 #include "wbInterface.h"
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 // MASK PARAMETERS --------------------------------------
-#define NPARAMS 4                                       // Number of input parameters
-#define BLOCK_TYPE_IDX 0                                    // Index number for first input parameter
+#define NPARAMS            4                                // Number of input parameters
+#define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
 #define BLOCK_TYPE_PARAM ssGetSFcnParam(S,BLOCK_TYPE_IDX)   // Get first input parameter from mask
-#define STRING_PARAM_IDX 1
-#define LOCAL_PARAM_IDX 2
+#define STRING_PARAM_IDX   1
+#define LOCAL_PARAM_IDX    2
 #define LINKNAME_PARAM_IDX 3
 // END MASK PARAMETERS -----------------------------------
 
 #define VERBOSE   0
-#define DEBUGGING 0
 #define TIMING    0
-
-#define DEBUG     0
 
 YARP_DECLARE_DEVICES (icubmod)
 
@@ -301,7 +298,9 @@ bool robotStatus::robotInit (int btype, int link) {
 void robotStatus::getLinkId (const char* linkName, int& lid) {
     char comlink[] = "com";
     if (strcmp (linkName, comlink) != 0) { // !=0 means that they're different
+#ifdef DEBUG
         printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
+#endif 
         wbInterface->getLinkId (linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
@@ -1600,9 +1599,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     if (btype == 19) {
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
-#ifdef DEBUG
-        printf("Parametric Jacobian will be computed for linkName: %s\n", linkName);
-#endif
+// #ifdef DEBUG
+        printf("Parametric dJdq will be computed for linkName: %s\n", linkName);
+// #endif
         robot->getLinkId(linkName, lid);
 
         int nu;
@@ -1624,7 +1623,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             dqrad_in (j) = (*uPtrs3[j]);
         }
 
-        robot->getLinkId (linkName, lid);
         if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
             fprintf (stderr, "ERROR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
         } else {
@@ -1685,7 +1683,7 @@ static void mdlTerminate (SimStruct* S) {
             ssSetPWorkValue (S, 2, NULL);
         }
     }
-//         Network::fini();
+        Network::fini();
 }
 
 // Required S-function trailer

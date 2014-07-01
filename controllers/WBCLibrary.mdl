@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [292.0, 146.0, 1084.0, 632.0]
+      Location		      [59.0, 66.0, 1084.0, 633.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -48,7 +48,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
 	LoadSaveID		"369"
-	Extents			[1026.0, 442.0]
+	Extents			[1026.0, 443.0]
 	ZoomFactor		[1.25]
 	Offset			[0.0, 0.0]
       }
@@ -60,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jun 30 23:19:41 2014"
-  RTWModifiedTimeStamp	  326071180
-  ModelVersionFormat	  "1.%<AutoIncrement:166>"
+  LastModifiedDate	  "Tue Jul 01 12:15:59 2014"
+  RTWModifiedTimeStamp	  326117757
+  ModelVersionFormat	  "1.%<AutoIncrement:169>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1704,7 +1704,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1269"
+		SIDHighWatermark	"1275"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -3990,7 +3990,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Dynamics"
-	    Location		    [292, 146, 1376, 778]
+	    Location		    [59, 66, 1143, 699]
 	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -5107,7 +5107,7 @@ Library {
 	      }
 	      System {
 		Name			"dJ*dq LeftArm"
-		Location		[195, 74, 1279, 706]
+		Location		[58, 38, 1142, 671]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5808,8 +5808,6 @@ Library {
 		    Name		    "val"
 		    Prompt		    "Block type"
 		    Value		    "19"
-		    Internal		    "on"
-		    Visible		    "off"
 		  }
 		  Object {
 		    $ObjectID		    87
@@ -5887,7 +5885,7 @@ Library {
 		    Name		    "link"
 		    Prompt		    ""
 		    Value		    "l_sole"
-		    Callback		    "LinkName = get_param(gcb, 'MaskValues');\nLinkName = LinkName{3};"
+		    Callback		    "LinkName = get_param(gcb, 'MaskValues');\nLinkName = LinkName{4};"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -5947,7 +5945,7 @@ Library {
 	      }
 	      System {
 		Name			"dJ*dq Link"
-		Location		[377, 208, 1461, 840]
+		Location		[58, 38, 1142, 671]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200

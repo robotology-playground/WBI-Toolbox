@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.3"
+    ComputedModelVersion    "1.6"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-11.0, -14.0, 1388.0, 793.0]
+      Location		      [1368.0, 51.0, 1434.0, 1147.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -55,9 +55,9 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1330.0, 596.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [149.50267614424229, 80.000000000000028]
+	  Extents		  [1398.0, 999.0]
+	  ZoomFactor		  [4.0]
+	  Offset		  [203.08600947757563, 88.483333333333363]
 	}
 	Object {
 	  $ObjectID		  6
@@ -66,7 +66,7 @@ Model {
 	  LoadSaveID		  "10"
 	  Extents		  [1330.0, 596.0]
 	  ZoomFactor		  [3.0]
-	  Offset		  [-42.416220963001265, -16.117845058441173]
+	  Offset		  [-42.416220963001223, -16.117845058441176]
 	}
 	PropName		"EditorsInfo"
       }
@@ -78,9 +78,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jun 30 23:16:00 2014"
-  RTWModifiedTimeStamp	  326070935
-  ModelVersionFormat	  "1.%<AutoIncrement:3>"
+  LastModifiedDate	  "Tue Jul 01 12:20:07 2014"
+  RTWModifiedTimeStamp	  326113091
+  ModelVersionFormat	  "1.%<AutoIncrement:6>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -123,7 +123,7 @@ Model {
     $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "paramdJdq"
-    overrideMode_	    [0U]
+    overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
@@ -808,14 +808,6 @@ Model {
       PreserveConstantTs      off
     }
     Block {
-      BlockType		      Display
-      Format		      "short"
-      Decimation	      "10"
-      Floating		      off
-      Lockdown		      off
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -839,6 +831,24 @@ Model {
       SourceOfInitialOutputValue "Dialog"
       OutputWhenDisabled      "held"
       InitialOutput	      "[]"
+    }
+    Block {
+      BlockType		      Scope
+      ModelBased	      off
+      TickLabels	      "OneTimeTick"
+      ZoomMode		      "on"
+      Grid		      "on"
+      TimeRange		      "auto"
+      YMin		      "-5"
+      YMax		      "5"
+      SaveToWorkspace	      off
+      SaveName		      "ScopeData"
+      DataFormat	      "Array"
+      LimitDataPoints	      on
+      MaxDataPoints	      "5000"
+      Decimation	      "1"
+      SampleInput	      off
+      SampleTime	      "-1"
     }
     Block {
       BlockType		      SubSystem
@@ -874,7 +884,7 @@ Model {
   }
   System {
     Name		    "paramdJdq"
-    Location		    [-11, -14, 1377, 779]
+    Location		    [1368, 51, 2802, 1198]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -886,26 +896,40 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "200"
+    ZoomFactor		    "400"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "18"
+    SIDHighWatermark	    "22"
     Block {
-      BlockType		      Display
-      Name		      "Display"
-      SID		      "15"
-      Ports		      [1]
-      Position		      [465, 157, 755, 213]
-      ZOrder		      6
-      Decimation	      "1"
-    }
-    Block {
-      BlockType		      Display
-      Name		      "Display1"
-      SID		      "18"
-      Ports		      [1]
-      Position		      [455, 237, 745, 293]
-      ZOrder		      8
-      Decimation	      "1"
+      BlockType		      Scope
+      Name		      "Scope"
+      SID		      "19"
+      Ports		      [2]
+      Position		      [455, 161, 485, 194]
+      ZOrder		      9
+      Floating		      off
+      Location		      [1367, 53, 3287, 1199]
+      Open		      off
+      NumInputPorts	      "2"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+      }
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      ShowLegends	      on
+      YMin		      "-5~-5"
+      YMax		      "5~5"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Block {
       BlockType		      SubSystem
@@ -917,7 +941,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"base + dq'"
-	Location		[-11, -14, 1377, 779]
+	Location		[1368, 51, 2326, 1198]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -939,7 +963,7 @@ Model {
 	  ZOrder		  41
 	  BackgroundColor	  "[0.732000, 0.463600, 0.000000]"
 	  ShowName		  off
-	  LibraryVersion	  "1.163"
+	  LibraryVersion	  "1.169"
 	  SourceBlock		  "WBCLibrary/wholeBodyStates/Joint Velocities"
 	  SourceType		  "Joint Velocities"
 	  ContentPreviewEnabled	  off
@@ -954,7 +978,7 @@ Model {
 	  Position		  [65, 93, 140, 137]
 	  ZOrder		  -1
 	  BackgroundColor	  "[0.047000, 0.909000, 0.803000]"
-	  LibraryVersion	  "1.163"
+	  LibraryVersion	  "1.169"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	  SourceType		  "Left Foot Jacobian"
 	  ContentPreviewEnabled	  off
@@ -980,7 +1004,7 @@ Model {
 	  Position		  [70, 28, 140, 72]
 	  ZOrder		  -2
 	  BackgroundColor	  "[0.000000, 1.000000, 0.533000]"
-	  LibraryVersion	  "1.163"
+	  LibraryVersion	  "1.169"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	  SourceType		  "Right Foot Jacobian"
 	  ContentPreviewEnabled	  off
@@ -995,7 +1019,7 @@ Model {
 	  Position		  [180, 68, 290, 112]
 	  ZOrder		  -14
 	  BackgroundColor	  "[0.753334, 1.000000, 0.112472]"
-	  LibraryVersion	  "1.163"
+	  LibraryVersion	  "1.169"
 	  SourceBlock		  "WBCLibrary/Utilities/baseVelocity"
 	  SourceType		  "baseVelocity"
 	  ContentPreviewEnabled	  off
@@ -1069,7 +1093,7 @@ Model {
       RequestExecContextInheritance off
       System {
 	Name			"base + q"
-	Location		[-11, -14, 1377, 779]
+	Location		[1367, 52, 2325, 1199]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1099,7 +1123,7 @@ Model {
 	  Position		  [20, 63, 90, 107]
 	  ZOrder		  1
 	  BackgroundColor	  "[0.375000, 0.187500, 0.000000]"
-	  LibraryVersion	  "1.163"
+	  LibraryVersion	  "1.169"
 	  SourceBlock		  "WBCLibrary/wholeBodyStates/Joint Angles"
 	  SourceType		  "Joint Angles"
 	  ContentPreviewEnabled	  off
@@ -1152,15 +1176,15 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "dJ*dq LeftFoot"
-      SID		      "17"
+      Name		      "dJ*dq LeftArm"
+      SID		      "21"
       Ports		      [2, 1]
-      Position		      [335, 238, 405, 282]
-      ZOrder		      7
+      Position		      [335, 128, 405, 172]
+      ZOrder		      11
       BackgroundColor	      "[0.662196, 0.000000, 1.000000]"
-      LibraryVersion	      "1.163"
-      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/dJ*dq LeftFoot"
-      SourceType	      "dJ*dq Left Foot"
+      LibraryVersion	      "1.169"
+      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/dJ*dq LeftArm"
+      SourceType	      "dJ*dq Left Arm"
       ContentPreviewEnabled   off
       val		      "9"
       robotName		      "robotName"
@@ -1169,20 +1193,20 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "dJ*dq Link"
-      SID		      "1"
+      SID		      "22"
       Ports		      [2, 1]
-      Position		      [340, 148, 405, 192]
-      ZOrder		      2
+      Position		      [340, 233, 405, 277]
+      ZOrder		      12
       ForegroundColor	      "[1.000000, 0.011765, 0.917647]"
       BackgroundColor	      "[0.705882, 0.537255, 0.996078]"
-      LibraryVersion	      "1.163"
+      LibraryVersion	      "1.169"
       SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/dJ*dq Link"
       SourceType	      "dJ*dq Right Foot"
       ContentPreviewEnabled   off
       val		      "19"
       robotName		      "robotName"
       localName		      "localName"
-      link		      "head"
+      link		      "l_gripper"
     }
     Line {
       ZOrder		      1
@@ -1190,15 +1214,14 @@ Model {
       SrcPort		      1
       Points		      [10, 0]
       Branch {
-	ZOrder			5
-	Points			[0, 110]
-	DstBlock		"dJ*dq LeftFoot"
+	ZOrder			20
+	Points			[0, 105]
+	DstBlock		"dJ*dq Link"
 	DstPort			1
       }
       Branch {
-	ZOrder			4
-	Points			[10, 0; 0, 20]
-	DstBlock		"dJ*dq Link"
+	ZOrder			17
+	DstBlock		"dJ*dq LeftArm"
 	DstPort			1
       }
     }
@@ -1208,33 +1231,33 @@ Model {
       SrcPort		      1
       Points		      [18, 0]
       Branch {
-	ZOrder			7
-	Points			[0, 75]
-	DstBlock		"dJ*dq LeftFoot"
-	DstPort			2
-      }
-      Branch {
-	ZOrder			6
-	Points			[2, 0; 0, -15]
+	ZOrder			21
+	Points			[0, 70]
 	DstBlock		"dJ*dq Link"
 	DstPort			2
       }
+      Branch {
+	ZOrder			18
+	Points			[2, 0; 0, -35]
+	DstBlock		"dJ*dq LeftArm"
+	DstPort			2
+      }
     }
     Line {
-      ZOrder		      3
+      ZOrder		      16
+      SrcBlock		      "dJ*dq LeftArm"
+      SrcPort		      1
+      Points		      [20, 0; 0, 20]
+      DstBlock		      "Scope"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      19
       SrcBlock		      "dJ*dq Link"
       SrcPort		      1
-      Points		      [25, 0; 0, 15]
-      DstBlock		      "Display"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      8
-      SrcBlock		      "dJ*dq LeftFoot"
-      SrcPort		      1
-      Points		      [30, 0]
-      DstBlock		      "Display1"
-      DstPort		      1
+      Points		      [20, 0; 0, -70]
+      DstBlock		      "Scope"
+      DstPort		      2
     }
   }
 }
