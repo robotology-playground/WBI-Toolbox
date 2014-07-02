@@ -40,7 +40,7 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
 
 ```bash
    cd $CODYCO_SUPERBUILD_DIR
-   ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
+   cmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
 When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
 
