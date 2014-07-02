@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.929"
+    ComputedModelVersion    "1.930"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -31,7 +31,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [57.0, -4.0, 1871.0, 1092.0]
+      Location		      [65.0, 24.0, 1855.0, 1056.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -48,46 +48,16 @@ Model {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Array {
-	Type			"Simulink.EditorInfo"
-	Dimension		4
-	Object {
-	  $ObjectID		  5
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
-	  Extents		  [1624.0, 908.0]
-	  ZoomFactor		  [4.0]
-	  Offset		  [100.34999999999994, 58.89999999999992]
-	}
-	Object {
-	  $ObjectID		  6
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "520"
-	  Extents		  [1624.0, 908.0]
-	  ZoomFactor		  [2.5]
-	  Offset		  [-138.47981903076473, -32.800000000000011]
-	}
-	Object {
-	  $ObjectID		  7
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "508"
-	  Extents		  [1624.0, 908.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [0.0, 0.0]
-	}
-	Object {
-	  $ObjectID		  8
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "61"
-	  Extents		  [1624.0, 908.0]
-	  ZoomFactor		  [2.0]
-	  Offset		  [409.04811807676009, 261.1523985205846]
-	}
-	PropName		"EditorsInfo"
+      Object {
+	$PropName		"EditorsInfo"
+	$ObjectID		5
+	$ClassName		"Simulink.EditorInfo"
+	IsActive		[1]
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
+	Extents			[1624.0, 908.0]
+	ZoomFactor		[4.0]
+	Offset			[100.34999999999994, 58.89999999999992]
       }
     }
   }
@@ -97,9 +67,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "icub"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 02 16:39:09 2014"
+  LastModifiedDate	  "Wed Jul 02 16:49:28 2014"
   RTWModifiedTimeStamp	  326212694
-  ModelVersionFormat	  "1.%<AutoIncrement:929>"
+  ModelVersionFormat	  "1.%<AutoIncrement:930>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -134,7 +104,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    9
+    $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "neckVel"
     signals_		    []
@@ -194,13 +164,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      10
+      $ObjectID		      7
       Version		      "1.12.1"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  11
+	  $ObjectID		  8
 	  Version		  "1.12.1"
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
@@ -235,7 +205,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  12
+	  $ObjectID		  9
 	  Version		  "1.12.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -267,7 +237,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  13
+	  $ObjectID		  10
 	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
@@ -323,7 +293,7 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  14
+	  $ObjectID		  11
 	  Version		  "1.12.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -413,7 +383,7 @@ Model {
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  15
+	  $ObjectID		  12
 	  Version		  "1.12.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -450,7 +420,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  16
+	  $ObjectID		  13
 	  Version		  "1.12.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -465,7 +435,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  17
+	  $ObjectID		  14
 	  Version		  "1.12.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -480,7 +450,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  18
+	  $ObjectID		  15
 	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
@@ -549,7 +519,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      19
+	      $ObjectID		      16
 	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
@@ -617,7 +587,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      20
+	      $ObjectID		      17
 	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
@@ -706,11 +676,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    10
+    $ObjectID		    7
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    21
+    $ObjectID		    18
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -1026,7 +996,7 @@ Model {
   }
   System {
     Name		    "neckVel"
-    Location		    [57, -4, 1928, 1088]
+    Location		    [65, 24, 1920, 1080]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1091,27 +1061,27 @@ Model {
       MaskHideContents	      off
       Object {
 	$PropName		"MaskObject"
-	$ObjectID		22
+	$ObjectID		19
 	$ClassName		"Simulink.Mask"
 	Array {
 	  Type			  "Simulink.MaskParameter"
 	  Dimension		  3
 	  Object {
-	    $ObjectID		    23
+	    $ObjectID		    20
 	    Type		    "edit"
 	    Name		    "robotName"
 	    Prompt		    "Robot name"
 	    Value		    "'icubGazeboSim'"
 	  }
 	  Object {
-	    $ObjectID		    24
+	    $ObjectID		    21
 	    Type		    "edit"
 	    Name		    "localName"
 	    Prompt		    "Local name"
 	    Value		    "'simulink'"
 	  }
 	  Object {
-	    $ObjectID		    25
+	    $ObjectID		    22
 	    Type		    "edit"
 	    Name		    "Ts"
 	    Prompt		    "Ts"
@@ -1122,8 +1092,8 @@ Model {
       }
       System {
 	Name			"neck velocity"
-	Location		[57, -4, 1928, 1088]
-	Open			on
+	Location		[65, 24, 1920, 1080]
+	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1207,27 +1177,27 @@ Model {
 	  MaskHideContents	  off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    26
+	    $ObjectID		    23
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		27
+		$ObjectID		24
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		28
+		$ObjectID		25
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
 		Value			"localName"
 	      }
 	      Object {
-		$ObjectID		29
+		$ObjectID		26
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -1238,8 +1208,8 @@ Model {
 	  }
 	  System {
 	    Name		    "neck acceleration"
-	    Location		    [57, -4, 1928, 1088]
-	    Open		    on
+	    Location		    [65, 24, 1920, 1080]
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1329,27 +1299,27 @@ Model {
 	      MaskHideContents	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		30
+		$ObjectID		27
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
 		  Dimension		  3
 		  Object {
-		    $ObjectID		    31
+		    $ObjectID		    28
 		    Type		    "edit"
 		    Name		    "robotName"
 		    Prompt		    "robot name"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    32
+		    $ObjectID		    29
 		    Type		    "edit"
 		    Name		    "Ts"
 		    Prompt		    "Ts"
 		    Value		    "Ts"
 		  }
 		  Object {
-		    $ObjectID		    33
+		    $ObjectID		    30
 		    Type		    "edit"
 		    Name		    "localName"
 		    Prompt		    "module name"
@@ -1360,8 +1330,8 @@ Model {
 	      }
 	      System {
 		Name			"neckAcc"
-		Location		[57, -4, 1928, 1088]
-		Open			on
+		Location		[65, 24, 1920, 1080]
+		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
 		ScreenColor		"white"
@@ -1416,7 +1386,7 @@ Model {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "COMController"
-		    Location		    [57, -4, 1928, 1088]
+		    Location		    [65, 24, 1920, 1080]
 		    Open		    off
 		    ModelBrowserVisibility  on
 		    ModelBrowserWidth	    200
@@ -1428,7 +1398,7 @@ Model {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "100"
+		    ZoomFactor		    "80"
 		    Block {
 		    BlockType		    Constant
 		    Name		    "\n\n  "
@@ -1779,7 +1749,7 @@ Model {
 		    SFBlockType		    "MATLAB Function"
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    34
+		    $ObjectID		    31
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Stateflow"
 		    Description		    "Embedded MATLAB block"
@@ -2087,7 +2057,7 @@ Model {
 		    SFBlockType		    "MATLAB Function"
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    35
+		    $ObjectID		    32
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Stateflow"
 		    Description		    "Embedded MATLAB block"
@@ -2649,7 +2619,7 @@ Model {
 		    SFBlockType		    "MATLAB Function"
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    36
+		    $ObjectID		    33
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Stateflow"
 		    Description		    "Embedded MATLAB block"
@@ -3230,7 +3200,7 @@ Model {
 		    SFBlockType		    "MATLAB Function"
 		    Object {
 		    $PropName		    "MaskObject"
-		    $ObjectID		    37
+		    $ObjectID		    34
 		    $ClassName		    "Simulink.Mask"
 		    Type		    "Stateflow"
 		    Description		    "Embedded MATLAB block"
@@ -4511,7 +4481,7 @@ Model {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "Intetrated"
+	  Name			  "Integrated"
 	  SID			  "521"
 	  Position		  [270, 98, 300, 112]
 	  ZOrder		  103
@@ -4557,7 +4527,7 @@ Model {
 	Line {
 	  SrcBlock		  "Discrete-Time Integrator"
 	  SrcPort		  1
-	  DstBlock		  "Intetrated"
+	  DstBlock		  "Integrated"
 	  DstPort		  1
 	}
       }
@@ -4791,7 +4761,10 @@ Stateflow {
     firstTransition	    39
     firstJunction	    38
     viewObj		    12
+    visible		    1
     machine		    1
+    subviewS {
+    }
     ssIdHighWaterMark	    61
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
