@@ -19,11 +19,13 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 ###### Requirements
 * Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a, R2013a, R2012a/b, R2011a)
+* Simulink Toolboxes: Simulink Coder.
 * YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
 * CoDyCo (https://github.com/robotology-playground/codyco-superbuild)
 * iCub (https://github.com/robotology/icub-main)
 * Gazebo Simulator (http://gazebosim.org/)
 * gazebo_yarp_plugins (https://github.com/robotology/gazebo_yarp_plugins).
+
 
 **Operating Systems supported: Linux, MAC OS X, Windows.**
 
@@ -34,13 +36,13 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
 
 - **Check the matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. 
 
-- **Compiling the WBI Toolbox.** Before compiling, you need to configure the project via CMake. A few flags need to be taken into account when doing this. When using the Gazebo simulator do:
+- **Compiling the WBI Toolbox.** To compile the WBI Toolbox via `codyco-superbuild`, you first need to configure the latter with CMake. A few flags need to be taken into account in order to do this. In particular if you want to use iCub on the Gazebo simulator please do:
 
 ```bash
    cd $CODYCO_SUPERBUILD_DIR
-   ccmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
+   cmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
-When compiling the Toolbox to be used with the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
+When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
 
 
 ###### Installing the WBI-Toolbox
