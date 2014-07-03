@@ -42,8 +42,15 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
    cd $CODYCO_SUPERBUILD_DIR
    cmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
-When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type c to configure until no stars (*) show up and g to generate. Finally, to compile type `make`.
+When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type `c` to configure until no stars (*) show up and `g` to generate. Finally, to compile type `make`.
+After this step all the subprojects will be installed inside the `build/install` directory. In order to use use it you will have to adjust some environment variables in your `~/.bashrc`
 
+```bash
+export PATH=$PATH:${PROJECT_SOURCE_DIR}/build/install/bin/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${PROJECT_SOURCE_DIR}/build/install/lib/
+```
+
+**Note: For more information on how to compile or update `codyco-superbuild` go to http://goo.gl/aU6EjH**
 
 ###### Installing the WBI-Toolbox
 - **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/codyco/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. It will also give you further instructions if you desire to permanently install it as to not run the script every time you want to use the Toolbox.
