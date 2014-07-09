@@ -1,7 +1,13 @@
 option(CODYCO_USES_URDFDOM "Compile WBI-Toolbox with URDF support" TRUE)
+option(ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL "Compile yarpwholebodyinterface to use JTC external torque control" FALSE)
+
 
 if(CODYCO_USES_URDFDOM)
     add_definitions(-DCODYCO_USES_URDFDOM)
+endif()
+
+if (ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL)
+    add_definitions(-DWBI_ICUB_COMPILE_PARAM_HELP)
 endif()
 
 #On new versions of Clang, MATLAB requires C++11.
