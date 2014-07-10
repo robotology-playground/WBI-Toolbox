@@ -1,13 +1,19 @@
-load('singleSupportFTSLeftAnkle.mat');
-load('singleSupportWBDTLeftLeg.mat')
+clear all;
 
-time     = singleSupportFTSLeftAnkle.Time;
-dataFTS  = singleSupportFTSLeftAnkle.Data;
-dataWBDT = singleSupportWBDTLeftLeg.Data;
+load('singleSupportFTSRightAnkle.mat')
+load('singleSupportWBDTRightLeg.mat')
+
+time     = singleSupportFTSRightAnkle.Time;
+dataFTS  = singleSupportFTSRightAnkle.Data;
+dataWBDT = singleSupportWBDTRightLeg.Data;
+
+% Removing sensor offset
+rot = [1 0 0; 0 -1 0; 0 0 -1];
+leftFootOffset = rot*[-0.734 -4.066 -3.9819]';
+rightFootOffset= rot*[86.670 -31.390 10.3837]';
 
 normsFTS  = arrayfun(@(idx) norm(dataFTS(idx,:)), 1:size(dataFTS,1))';
 normsWBDT = arrayfun(@(idx) norm(dataWBDT(idx,:)), 1:size(dataFTS,1))';
-
 
 figure(2);
 dataAxes = axes;
@@ -24,7 +30,7 @@ hAxS1 = axes('Position', posSmall{1});
 hAxS2 = axes('Position', posSmall{2});
 
 % Plot
-boxplot(hAxB,  [normsFTS, normsWBDT], 'labels', {'Measured Force from Torque Sensors' 'Estimated Force from WBDT'});
+boxplot(hAxB,  [normsFTS, normsWBDT], 'labels', {'Measured Force from Torque Sensors - Right Single Support' 'Estimated Force from WBDT - Right Single Support'});
 boxplot(hAxS1, normsFTS,  'notch', 'on', 'labels', '[zoomed] Norm of the measured force  (FTS)');
 boxplot(hAxS2, normsWBDT, 'notch', 'on', 'labels', '[zoomed] Norm of the estimated force (WBDT)');
 

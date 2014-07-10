@@ -1,3 +1,5 @@
+clear all;
+
 load doubleSupporttotalForceFTS;
 load doubleSupporttotalForceWBDT;
 
@@ -24,7 +26,7 @@ hAxS1 = axes('Position', posSmall{1});
 hAxS2 = axes('Position', posSmall{2});
 
 % Plot
-boxplot(hAxB,  [normsFTS, normsWBDT], 'labels', {'Measured Force from Torque Sensors' 'Estimated Force from WBDT'});
+boxplot(hAxB,  [normsFTS, normsWBDT], 'labels', {'Measured Force from Torque Sensors - Double Support' 'Estimated Force from WBDT - Double Support'});
 boxplot(hAxS1, normsFTS,  'notch', 'on', 'labels', '[zoomed] Norm of the measured force  (FTS)');
 boxplot(hAxS2, normsWBDT, 'notch', 'on', 'labels', '[zoomed] Norm of the estimated force (WBDT)');
 
