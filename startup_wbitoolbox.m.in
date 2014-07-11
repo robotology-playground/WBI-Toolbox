@@ -24,7 +24,3 @@ if exist(wbclibroot,'dir')
         disp('There was an error generating pathdef.m To proceed please manually add the contents of variables controllersDir, imgDir and libDir to your matlabpath')
     end
 end
-
-addpath(genpath('/home/daniele/MATLAB'))
-addpath(genpath('/home/daniele/src/codyco/build'))
-addpath(genpath('/home/daniele/src/codyco/src/simulink'))
