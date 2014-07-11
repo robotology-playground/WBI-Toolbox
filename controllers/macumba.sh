@@ -3,38 +3,29 @@
 list="4 5"
 
 for a in $list; do
-	echo "set adi $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set adi $a"  | yarp rpc /icub/left_leg/rpc:i
+	echo "set icmd cmod $a idl"  | yarp rpc /icub/right_leg/rpc:i
+	echo "set icmd cmod $a idl"  | yarp rpc /icub/left_leg/rpc:i
 done
 
 sleep 1
 
 for a in $list; do
-	echo "set aen $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set aen $a"  | yarp rpc /icub/left_leg/rpc:i
-done
-
-for a in $list; do
-	echo "set ena $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set ena $a"  | yarp rpc /icub/left_leg/rpc:i
+	echo "set icmd cmod $a pos"  | yarp rpc /icub/right_leg/rpc:i
+	echo "set icmd cmod $a pos"  | yarp rpc /icub/left_leg/rpc:i
 done
 
 list="1"
 
 for a in $list; do
-	echo "set adi $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set adi $a"  | yarp rpc /icub/left_leg/rpc:i
+	echo "set icmd cmod $a idl"  | yarp rpc /icub/right_leg/rpc:i
+	echo "set icmd cmod $a idl"  | yarp rpc /icub/left_leg/rpc:i
 done
 
 sleep 1
 
 for a in $list; do
-	echo "set aen $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set aen $a"  | yarp rpc /icub/left_leg/rpc:i
-done
-for a in $list; do
-	echo "set ena $a"  | yarp rpc /icub/right_leg/rpc:i
-	echo "set ena $a"  | yarp rpc /icub/left_leg/rpc:i
+	echo "set icmd cmod $a pos"  | yarp rpc /icub/right_leg/rpc:i
+	echo "set icmd cmod $a pos"  | yarp rpc /icub/left_leg/rpc:i
 done
 
 echo "!!Now I will calib the wholeBodyDynamics!!"
@@ -42,6 +33,5 @@ sleep 5
 echo "calibStanding all 600"  | yarp rpc /wholeBodyDynamicsTree/rpc:i
 sleep 2
 yarp clean --timeout 0.2
-
 
 
