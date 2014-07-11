@@ -120,5 +120,6 @@ set(LOCAL_CONTEXT ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/icubGazeboSim.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/icubGazeboSim.ini)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubGenova01.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubGenova01.ini)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubGenova03.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubGenova03.ini)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubDarmstadt01.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubDarmstadt01.ini)
 
 install(TARGETS ${PROJECTNAME} DESTINATION mex)

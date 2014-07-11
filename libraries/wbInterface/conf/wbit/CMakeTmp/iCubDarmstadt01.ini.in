@@ -1,0 +1,9 @@
+robot 	      icub
+local	      simulink
+headV	      2
+legsV	      2
+feetFT        true
+uses_urdf     false
+icub_fixed    true
+worldRefFrame l_sole
+urdf          @LOCAL_CONTEXT@/urdf/iCubGenova01/icub.urdf
