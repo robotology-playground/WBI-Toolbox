@@ -202,7 +202,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
         bot.addDouble(*uPtrs[j]);
 
     port->write(bot);
-    printf("Sent message: %s\n",bot.toString().c_str());
+//     printf("Sent message: %s\n",bot.toString().c_str());
 
 }
 
