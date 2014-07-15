@@ -22,6 +22,7 @@
 
 #include "wbInterface.h"
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <bits/basic_string.h>
 // MASK PARAMETERS --------------------------------------
 #define NPARAMS            4                                // Number of input parameters
 #define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
@@ -262,7 +263,7 @@ bool robotStatus::robotInit (int btype, int link) {
         x_pose.resize (DEFAULT_X_LINK_SIZE.size());
     }
 
-    // This variable JfootR must be changed with a more appropriate name
+    // TODO This variable JfootR must be changed with a more appropriate name
     JfootR.resize (NoChange, ICUB_DOFS + 6);
 
     // dot{J}dot{q}
@@ -1044,6 +1045,25 @@ static void mdlStart (SimStruct* S) {
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
 
+    if(robot_name == "icubGazeboSim"){
+        if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
+            printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
+        else{
+            ssSetErrorStatus (S, "ERROR [mdlStart] >> The simulator is not running... ");
+            return;
+        }
+    } else{
+        std::size_t pos = robot_name.find ("iCub");
+        if(pos != std::string::npos){ //iCubGenova0X is being used
+            if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
+                printf("You're using the real iCub platform. Proceeding with configuration of the interface...");
+            else{
+                ssSetErrorStatus (S, "ERROR [mdlStart] >> The real platform is not reachable... ");
+                return;
+            }
+        }
+    }
+    
     bool res = robot->robotConfig();
     if (res)
         fprintf (stderr, "mdlStart >> Succesfully exited robotConfig.\n");
