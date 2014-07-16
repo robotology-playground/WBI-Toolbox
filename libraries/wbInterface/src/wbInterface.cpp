@@ -185,6 +185,13 @@ bool robotStatus::robotConfig() {
         // Initializing whole body interface
 
 #ifdef WBI_ICUB_COMPILE_PARAM_HELP
+        if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+            printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
+        else{
+            ssSetErrorStatus (S, "ERROR [mdlStart] >> The jointTorqueControl module is not running... ");
+            return;
+        }
+
         yarp::os::Value trueValue;
         trueValue.fromString ("true");
         ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
