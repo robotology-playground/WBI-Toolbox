@@ -7,7 +7,7 @@ SET(PROJECTNAME sfun_time)
 PROJECT(${PROJECTNAME})
 
 message("COMPILING SFUN_TIME")
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include_directories("${MATLAB_ROOT}/simulink/include")
 include_directories("${MATLAB_ROOT}/extern/include")
@@ -56,7 +56,7 @@ endif(WIN32)
 # Linking Libraries
 target_link_libraries(${PROJECTNAME} ${MATLAB_LIBRARIES})
 install(TARGETS ${PROJECTNAME} DESTINATION mex)
-	
+
 
 
 
