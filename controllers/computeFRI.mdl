@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.103"
+    ComputedModelVersion    "1.153"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -48,16 +48,28 @@ Model {
 	$ClassName		"Simulink.ExplorerBarInfo"
 	Visible			[1]
       }
-      Object {
-	$PropName		"EditorsInfo"
-	$ObjectID		5
-	$ClassName		"Simulink.EditorInfo"
-	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"198"
-	Extents			[1330.0, 597.0]
-	ZoomFactor		[1.7499999999999998]
-	Offset			[-15.466666666666583, -35.009523809523813]
+      Array {
+	Type			"Simulink.EditorInfo"
+	Dimension		2
+	Object {
+	  $ObjectID		  5
+	  IsActive		  [0]
+	  ViewObjType		  "SimulinkTopLevel"
+	  LoadSaveID		  "0"
+	  Extents		  [1330.0, 596.0]
+	  ZoomFactor		  [3.0]
+	  Offset		  [732.71755342780875, 428.66666666666623]
+	}
+	Object {
+	  $ObjectID		  6
+	  IsActive		  [1]
+	  ViewObjType		  "SimulinkSubsys"
+	  LoadSaveID		  "198"
+	  Extents		  [1330.0, 596.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-37.147952947135764, -77.389686261158587]
+	}
+	PropName		"EditorsInfo"
       }
     }
   }
@@ -67,9 +79,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 17 16:18:21 2014"
-  RTWModifiedTimeStamp	  327514697
-  ModelVersionFormat	  "1.%<AutoIncrement:103>"
+  LastModifiedDate	  "Thu Jul 17 17:20:33 2014"
+  RTWModifiedTimeStamp	  327518352
+  ModelVersionFormat	  "1.%<AutoIncrement:153>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -109,7 +121,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    6
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "computeFRI"
     overrideMode_	    [0.0]
@@ -172,13 +184,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      8
       Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.14.2"
 	  StartTime		  "0.0"
 	  StopTime		  "20"
@@ -213,7 +225,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -246,7 +258,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -306,7 +318,7 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -396,7 +408,7 @@ Model {
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -437,7 +449,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -452,7 +464,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.14.2"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -468,7 +480,7 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  16
 	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
@@ -555,7 +567,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -626,7 +638,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      18
 	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
@@ -720,11 +732,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    7
+    $ObjectID		    8
   }
   Object {
     $PropName		    "DataTransfer"
-    $ObjectID		    18
+    $ObjectID		    19
     $ClassName		    "Simulink.GlobalDataTransfer"
     DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
     DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
@@ -802,14 +814,6 @@ Model {
       Outputs		      "4"
       DisplayOption	      "none"
       BusSelectionMode	      off
-    }
-    Block {
-      BlockType		      Display
-      Format		      "short"
-      Decimation	      "10"
-      Floating		      off
-      Lockdown		      off
-      SampleTime	      "-1"
     }
     Block {
       BlockType		      From
@@ -952,7 +956,7 @@ Model {
   System {
     Name		    "computeFRI"
     Location		    [0, 24, 1366, 768]
-    Open		    off
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -963,9 +967,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "217"
+    SIDHighWatermark	    "253"
     Block {
       BlockType		      SubSystem
       Name		      "Subsystem"
@@ -988,38 +992,38 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"125"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "COP from Model"
 	  SID			  "101"
-	  Ports			  [0, 2]
-	  Position		  [525, 45, 565, 105]
+	  Ports			  [2, 2]
+	  Position		  [430, 70, 515, 130]
 	  ZOrder		  50
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    19
+	    $ObjectID		    20
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		20
+		$ObjectID		21
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robot name"
 		Value			"'iCubGenova01'"
 	      }
 	      Object {
-		$ObjectID		21
+		$ObjectID		22
 		Type			"edit"
 		Name			"localName"
 		Prompt			"local name"
 		Value			"'simulink'"
 	      }
 	      Object {
-		$ObjectID		22
+		$ObjectID		23
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -1044,13 +1048,21 @@ Model {
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
 	    Block {
-	      BlockType		      Display
-	      Name		      "Display1"
-	      SID		      "102"
-	      Ports		      [1]
-	      Position		      [345, 730, 435, 810]
-	      ZOrder		      40
-	      Decimation	      "1"
+	      BlockType		      Inport
+	      Name		      "com_foot"
+	      SID		      "246"
+	      Position		      [390, 618, 420, 632]
+	      ZOrder		      47
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "ankle_coord"
+	      SID		      "247"
+	      Position		      [390, 678, 420, 692]
+	      ZOrder		      48
+	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -1105,23 +1117,6 @@ Model {
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "LinkFwdKin1"
-	      SID		      "107"
-	      Ports		      [0, 1]
-	      Position		      [15, 603, 90, 647]
-	      ZOrder		      36
-	      ForegroundColor	      "blue"
-	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
-	      LibraryVersion	      "1.182"
-	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
-	      SourceType	      "Link's Forward Kinematics"
-	      ContentPreviewEnabled   off
-	      robotname		      "robotName"
-	      localname		      "localName"
-	      link		      "l_ankle_1"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -1345,40 +1340,6 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector1"
-	      SID		      "111"
-	      Ports		      [1, 1]
-	      Position		      [140, 606, 180, 644]
-	      ZOrder		      35
-	      InputPortWidth	      "7"
-	      Indices		      "[1:3]"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum1"
-	      SID		      "112"
-	      Ports		      [2, 1]
-	      Position		      [250, 615, 270, 635]
-	      ZOrder		      32
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "comFromAnkle\n1"
-	      SID		      "113"
-	      Position		      [210, 695, 240, 725]
-	      ZOrder		      33
-	      Value		      "[0 0 -0.025]"
-	      SampleTime	      "Ts"
-	    }
-	    Block {
 	      BlockType		      Reference
 	      Name		      "left foot FT1"
 	      SID		      "114"
@@ -1455,60 +1416,11 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "LinkFwdKin1"
-	      SrcPort		      1
-	      DstBlock		      "Selector1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      7
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      Points		      [33, 0]
-	      Branch {
-		ZOrder			8
-		DstBlock		"MATLAB Function1"
-		DstPort			4
-	      }
-	      Branch {
-		ZOrder			9
-		Points			[0, 145]
-		DstBlock		"Display1"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "comFromAnkle\n1"
-	      SrcPort		      1
-	      Points		      [15, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      2
-	    }
-	    Line {
 	      ZOrder		      11
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      12
-	      SrcBlock		      "Selector1"
-	      SrcPort		      1
-	      Points		      [50, 0]
-	      Branch {
-		ZOrder			13
-		Points			[0, 60]
-		DstBlock		"MATLAB Function1"
-		DstPort			5
-	      }
-	      Branch {
-		ZOrder			14
-		DstBlock		"Sum1"
-		DstPort			1
-	      }
 	    }
 	    Line {
 	      ZOrder		      15
@@ -1573,31 +1485,19 @@ Model {
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
-	    Annotation {
-	      SID		      "120"
-	      Name		      "OO_1"
-	      Position		      [380, 692, 400, 712]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -1
+	    Line {
+	      ZOrder		      34
+	      SrcBlock		      "com_foot"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      4
 	    }
-	    Annotation {
-	      SID		      "119"
-	      Name		      "OG_1"
-	      Position		      [380, 630, 400, 650]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -2
+	    Line {
+	      ZOrder		      35
+	      SrcBlock		      "ankle_coord"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      5
 	    }
 	    Annotation {
 	      SID		      "118"
@@ -1619,33 +1519,33 @@ Model {
 	  BlockType		  SubSystem
 	  Name			  "COP from Sensors"
 	  SID			  "123"
-	  Ports			  [0, 2]
-	  Position		  [525, 155, 565, 215]
+	  Ports			  [2, 2]
+	  Position		  [430, 185, 515, 245]
 	  ZOrder		  54
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    23
+	    $ObjectID		    24
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		24
+		$ObjectID		25
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robot name"
 		Value			"'iCubGenova01'"
 	      }
 	      Object {
-		$ObjectID		25
+		$ObjectID		26
 		Type			"edit"
 		Name			"localName"
 		Prompt			"local name"
 		Value			"'simulink'"
 	      }
 	      Object {
-		$ObjectID		26
+		$ObjectID		27
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -1670,13 +1570,21 @@ Model {
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
 	    Block {
-	      BlockType		      Display
-	      Name		      "Display1"
-	      SID		      "124"
-	      Ports		      [1]
-	      Position		      [345, 730, 435, 810]
-	      ZOrder		      40
-	      Decimation	      "1"
+	      BlockType		      Inport
+	      Name		      "com_foot"
+	      SID		      "250"
+	      Position		      [395, 618, 425, 632]
+	      ZOrder		      47
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "ankle_coord"
+	      SID		      "251"
+	      Position		      [395, 678, 425, 692]
+	      ZOrder		      48
+	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -1731,23 +1639,6 @@ Model {
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "LinkFwdKin1"
-	      SID		      "129"
-	      Ports		      [0, 1]
-	      Position		      [15, 603, 90, 647]
-	      ZOrder		      36
-	      ForegroundColor	      "blue"
-	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
-	      LibraryVersion	      "1.182"
-	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
-	      SourceType	      "Link's Forward Kinematics"
-	      ContentPreviewEnabled   off
-	      robotname		      "robotName"
-	      localname		      "localName"
-	      link		      "l_ankle_1"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -1971,40 +1862,6 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector1"
-	      SID		      "133"
-	      Ports		      [1, 1]
-	      Position		      [140, 606, 180, 644]
-	      ZOrder		      35
-	      InputPortWidth	      "7"
-	      Indices		      "[1:3]"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum1"
-	      SID		      "134"
-	      Ports		      [2, 1]
-	      Position		      [250, 615, 270, 635]
-	      ZOrder		      32
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "comFromAnkle\n1"
-	      SID		      "135"
-	      Position		      [210, 695, 240, 725]
-	      ZOrder		      33
-	      Value		      "[0 0 -0.025]"
-	      SampleTime	      "Ts"
-	    }
-	    Block {
 	      BlockType		      Reference
 	      Name		      "left foot FT1"
 	      SID		      "136"
@@ -2109,59 +1966,10 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "Selector1"
-	      SrcPort		      1
-	      Points		      [50, 0]
-	      Branch {
-		ZOrder			11
-		DstBlock		"Sum1"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			12
-		Points			[0, 60]
-		DstBlock		"MATLAB Function1"
-		DstPort			5
-	      }
-	    }
-	    Line {
 	      ZOrder		      13
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      14
-	      SrcBlock		      "comFromAnkle\n1"
-	      SrcPort		      1
-	      Points		      [15, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      15
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      Points		      [33, 0]
-	      Branch {
-		ZOrder			16
-		Points			[0, 145]
-		DstBlock		"Display1"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			17
-		DstBlock		"MATLAB Function1"
-		DstPort			4
-	      }
-	    }
-	    Line {
-	      ZOrder		      18
-	      SrcBlock		      "LinkFwdKin1"
-	      SrcPort		      1
-	      DstBlock		      "Selector1"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2199,6 +2007,20 @@ Model {
 	      DstBlock		      "P_y"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "com_foot"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "ankle_coord"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      5
+	    }
 	    Annotation {
 	      SID		      "142"
 	      Name		      "FROM MODEL"
@@ -2213,73 +2035,47 @@ Model {
 	      FontSize		      18
 	      FontWeight	      "bold"
 	    }
-	    Annotation {
-	      SID		      "141"
-	      Name		      "OG_1"
-	      Position		      [380, 630, 400, 650]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -2
-	    }
-	    Annotation {
-	      SID		      "140"
-	      Name		      "OO_1"
-	      Position		      [380, 692, 400, 712]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -3
-	    }
 	  }
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  "199"
-	  Position		  [315, 205, 345, 235]
-	  ZOrder		  62
+	  Position		  [730, 275, 760, 305]
+	  ZOrder		  103
 	  Value			  "h"
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "FRI from Model"
 	  SID			  "19"
-	  Ports			  [0, 2]
-	  Position		  [100, 45, 140, 105]
+	  Ports			  [2, 2]
+	  Position		  [105, 70, 190, 130]
 	  ZOrder		  17
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    27
+	    $ObjectID		    28
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		28
+		$ObjectID		29
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robot name"
 		Value			"'iCubGenova01'"
 	      }
 	      Object {
-		$ObjectID		29
+		$ObjectID		30
 		Type			"edit"
 		Name			"localName"
 		Prompt			"local name"
 		Value			"'simulink'"
 	      }
 	      Object {
-		$ObjectID		30
+		$ObjectID		31
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -2304,13 +2100,21 @@ Model {
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
 	    Block {
-	      BlockType		      Display
-	      Name		      "Display1"
-	      SID		      "50"
-	      Ports		      [1]
-	      Position		      [345, 730, 435, 810]
-	      ZOrder		      40
-	      Decimation	      "1"
+	      BlockType		      Inport
+	      Name		      "com_foot"
+	      SID		      "236"
+	      Position		      [390, 618, 420, 632]
+	      ZOrder		      45
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "ankle_coord"
+	      SID		      "237"
+	      Position		      [390, 678, 420, 692]
+	      ZOrder		      46
+	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -2365,23 +2169,6 @@ Model {
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "LinkFwdKin1"
-	      SID		      "31"
-	      Ports		      [0, 1]
-	      Position		      [15, 603, 90, 647]
-	      ZOrder		      36
-	      ForegroundColor	      "blue"
-	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
-	      LibraryVersion	      "1.182"
-	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
-	      SourceType	      "Link's Forward Kinematics"
-	      ContentPreviewEnabled   off
-	      robotname		      "robotName"
-	      localname		      "localName"
-	      link		      "l_ankle_1"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -2605,40 +2392,6 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector1"
-	      SID		      "35"
-	      Ports		      [1, 1]
-	      Position		      [140, 606, 180, 644]
-	      ZOrder		      35
-	      InputPortWidth	      "7"
-	      Indices		      "[1:3]"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum1"
-	      SID		      "36"
-	      Ports		      [2, 1]
-	      Position		      [250, 615, 270, 635]
-	      ZOrder		      32
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "comFromAnkle\n1"
-	      SID		      "37"
-	      Position		      [210, 695, 240, 725]
-	      ZOrder		      33
-	      Value		      "[0 0 -0.025]"
-	      SampleTime	      "Ts"
-	    }
-	    Block {
 	      BlockType		      Reference
 	      Name		      "left foot FT1"
 	      SID		      "38"
@@ -2743,59 +2496,10 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      54
-	      SrcBlock		      "Selector1"
-	      SrcPort		      1
-	      Points		      [50, 0]
-	      Branch {
-		ZOrder			53
-		DstBlock		"Sum1"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			52
-		Points			[0, 60]
-		DstBlock		"MATLAB Function1"
-		DstPort			5
-	      }
-	    }
-	    Line {
 	      ZOrder		      55
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      56
-	      SrcBlock		      "comFromAnkle\n1"
-	      SrcPort		      1
-	      Points		      [15, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      2
-	    }
-	    Line {
-	      ZOrder		      57
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      Points		      [33, 0]
-	      Branch {
-		ZOrder			66
-		Points			[0, 145]
-		DstBlock		"Display1"
-		DstPort			1
-	      }
-	      Branch {
-		ZOrder			65
-		DstBlock		"MATLAB Function1"
-		DstPort			4
-	      }
-	    }
-	    Line {
-	      ZOrder		      58
-	      SrcBlock		      "LinkFwdKin1"
-	      SrcPort		      1
-	      DstBlock		      "Selector1"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2833,6 +2537,20 @@ Model {
 	      DstBlock		      "F_y"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      74
+	      SrcBlock		      "com_foot"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      75
+	      SrcBlock		      "ankle_coord"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      5
+	    }
 	    Annotation {
 	      SID		      "43"
 	      Name		      "FROM MODEL"
@@ -2847,65 +2565,39 @@ Model {
 	      FontSize		      18
 	      FontWeight	      "bold"
 	    }
-	    Annotation {
-	      SID		      "41"
-	      Name		      "OG_1"
-	      Position		      [380, 630, 400, 650]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -1
-	    }
-	    Annotation {
-	      SID		      "42"
-	      Name		      "OO_1"
-	      Position		      [380, 692, 400, 712]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
-	      HorizontalAlignment     "left"
-	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -2
-	    }
 	  }
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "FRI from Sensors"
 	  SID			  "59"
-	  Ports			  [0, 2]
-	  Position		  [100, 155, 140, 215]
+	  Ports			  [2, 2]
+	  Position		  [105, 180, 190, 240]
 	  ZOrder		  47
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    31
+	    $ObjectID		    32
 	    $ClassName		    "Simulink.Mask"
 	    Array {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		32
+		$ObjectID		33
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robot name"
 		Value			"'iCubGenova01'"
 	      }
 	      Object {
-		$ObjectID		33
+		$ObjectID		34
 		Type			"edit"
 		Name			"localName"
 		Prompt			"local name"
 		Value			"'simulink'"
 	      }
 	      Object {
-		$ObjectID		34
+		$ObjectID		35
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -2930,13 +2622,21 @@ Model {
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
 	    Block {
-	      BlockType		      Display
-	      Name		      "Display1"
-	      SID		      "60"
-	      Ports		      [1]
-	      Position		      [345, 730, 435, 810]
-	      ZOrder		      40
-	      Decimation	      "1"
+	      BlockType		      Inport
+	      Name		      "com_foot"
+	      SID		      "238"
+	      Position		      [325, 618, 355, 632]
+	      ZOrder		      47
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "ankle_coord"
+	      SID		      "239"
+	      Position		      [325, 678, 355, 692]
+	      ZOrder		      48
+	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Gain
@@ -2991,23 +2691,6 @@ Model {
 	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
 	      SaturateOnIntegerOverflow	off
 	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Reference
-	      Name		      "LinkFwdKin1"
-	      SID		      "65"
-	      Ports		      [0, 1]
-	      Position		      [15, 603, 90, 647]
-	      ZOrder		      36
-	      ForegroundColor	      "blue"
-	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
-	      LibraryVersion	      "1.182"
-	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
-	      SourceType	      "Link's Forward Kinematics"
-	      ContentPreviewEnabled   off
-	      robotname		      "robotName"
-	      localname		      "localName"
-	      link		      "l_ankle_1"
 	    }
 	    Block {
 	      BlockType		      SubSystem
@@ -3231,40 +2914,6 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector1"
-	      SID		      "69"
-	      Ports		      [1, 1]
-	      Position		      [140, 606, 180, 644]
-	      ZOrder		      35
-	      InputPortWidth	      "7"
-	      Indices		      "[1:3]"
-	    }
-	    Block {
-	      BlockType		      Sum
-	      Name		      "Sum1"
-	      SID		      "70"
-	      Ports		      [2, 1]
-	      Position		      [250, 615, 270, 635]
-	      ZOrder		      32
-	      ShowName		      off
-	      IconShape		      "round"
-	      Inputs		      "|++"
-	      InputSameDT	      off
-	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-	      SaturateOnIntegerOverflow	off
-	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Constant
-	      Name		      "comFromAnkle\n1"
-	      SID		      "71"
-	      Position		      [210, 695, 240, 725]
-	      ZOrder		      33
-	      Value		      "[0 0 -0.025]"
-	      SampleTime	      "Ts"
-	    }
-	    Block {
 	      BlockType		      Reference
 	      Name		      "left foot FT1"
 	      SID		      "72"
@@ -3341,60 +2990,11 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      6
-	      SrcBlock		      "LinkFwdKin1"
-	      SrcPort		      1
-	      DstBlock		      "Selector1"
-	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      7
-	      SrcBlock		      "Sum1"
-	      SrcPort		      1
-	      Points		      [33, 0]
-	      Branch {
-		ZOrder			8
-		DstBlock		"MATLAB Function1"
-		DstPort			4
-	      }
-	      Branch {
-		ZOrder			9
-		Points			[0, 145]
-		DstBlock		"Display1"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      ZOrder		      10
-	      SrcBlock		      "comFromAnkle\n1"
-	      SrcPort		      1
-	      Points		      [15, 0]
-	      DstBlock		      "Sum1"
-	      DstPort		      2
-	    }
-	    Line {
 	      ZOrder		      11
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
-	    }
-	    Line {
-	      ZOrder		      12
-	      SrcBlock		      "Selector1"
-	      SrcPort		      1
-	      Points		      [50, 0]
-	      Branch {
-		ZOrder			13
-		Points			[0, 60]
-		DstBlock		"MATLAB Function1"
-		DstPort			5
-	      }
-	      Branch {
-		ZOrder			14
-		DstBlock		"Sum1"
-		DstPort			1
-	      }
 	    }
 	    Line {
 	      ZOrder		      15
@@ -3459,6 +3059,20 @@ Model {
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
+	    Line {
+	      ZOrder		      26
+	      SrcBlock		      "com_foot"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      4
+	    }
+	    Line {
+	      ZOrder		      27
+	      SrcBlock		      "ankle_coord"
+	      SrcPort		      1
+	      DstBlock		      "MATLAB Function1"
+	      DstPort		      5
+	    }
 	    Annotation {
 	      SID		      "78"
 	      Name		      "OO_1"
@@ -3505,8 +3119,8 @@ Model {
 	  BlockType		  From
 	  Name			  "From"
 	  SID			  "205"
-	  Position		  [280, 101, 345, 119]
-	  ZOrder		  68
+	  Position		  [695, 171, 760, 189]
+	  ZOrder		  105
 	  ShowName		  off
 	  GotoTag		  "FModel_x"
 	}
@@ -3514,17 +3128,35 @@ Model {
 	  BlockType		  From
 	  Name			  "From1"
 	  SID			  "214"
-	  Position		  [280, 121, 345, 139]
-	  ZOrder		  77
+	  Position		  [695, 191, 760, 209]
+	  ZOrder		  107
 	  ShowName		  off
 	  GotoTag		  "COPModel_x"
 	}
 	Block {
 	  BlockType		  From
+	  Name			  "From10"
+	  SID			  "252"
+	  Position		  [335, 191, 400, 209]
+	  ZOrder		  101
+	  ShowName		  off
+	  GotoTag		  "com_foot"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From11"
+	  SID			  "253"
+	  Position		  [335, 221, 400, 239]
+	  ZOrder		  102
+	  ShowName		  off
+	  GotoTag		  "ankle_coord"
+	}
+	Block {
+	  BlockType		  From
 	  Name			  "From2"
 	  SID			  "215"
-	  Position		  [280, 151, 345, 169]
-	  ZOrder		  78
+	  Position		  [695, 221, 760, 239]
+	  ZOrder		  108
 	  ShowName		  off
 	  GotoTag		  "FModel_y"
 	}
@@ -3532,16 +3164,70 @@ Model {
 	  BlockType		  From
 	  Name			  "From3"
 	  SID			  "216"
-	  Position		  [280, 171, 345, 189]
-	  ZOrder		  80
+	  Position		  [695, 241, 760, 259]
+	  ZOrder		  110
 	  ShowName		  off
 	  GotoTag		  "COPModel_y"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From4"
+	  SID			  "242"
+	  Position		  [20, 76, 85, 94]
+	  ZOrder		  95
+	  ShowName		  off
+	  GotoTag		  "com_foot"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From5"
+	  SID			  "243"
+	  Position		  [20, 106, 85, 124]
+	  ZOrder		  96
+	  ShowName		  off
+	  GotoTag		  "ankle_coord"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From6"
+	  SID			  "244"
+	  Position		  [20, 186, 85, 204]
+	  ZOrder		  97
+	  ShowName		  off
+	  GotoTag		  "com_foot"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From7"
+	  SID			  "245"
+	  Position		  [20, 216, 85, 234]
+	  ZOrder		  98
+	  ShowName		  off
+	  GotoTag		  "ankle_coord"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From8"
+	  SID			  "248"
+	  Position		  [335, 76, 400, 94]
+	  ZOrder		  99
+	  ShowName		  off
+	  GotoTag		  "com_foot"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From9"
+	  SID			  "249"
+	  Position		  [335, 106, 400, 124]
+	  ZOrder		  100
+	  ShowName		  off
+	  GotoTag		  "ankle_coord"
 	}
 	Block {
 	  BlockType		  Goto
 	  Name			  "Goto"
 	  SID			  "204"
-	  Position		  [170, 50, 240, 70]
+	  Position		  [215, 75, 285, 95]
 	  ZOrder		  67
 	  ShowName		  off
 	  GotoTag		  "FModel_x"
@@ -3550,7 +3236,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto1"
 	  SID			  "206"
-	  Position		  [170, 80, 240, 100]
+	  Position		  [215, 105, 285, 125]
 	  ZOrder		  69
 	  ShowName		  off
 	  GotoTag		  "FModel_y"
@@ -3559,7 +3245,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto2"
 	  SID			  "207"
-	  Position		  [605, 50, 685, 70]
+	  Position		  [540, 75, 620, 95]
 	  ZOrder		  70
 	  ShowName		  off
 	  GotoTag		  "COPModel_x"
@@ -3568,7 +3254,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto3"
 	  SID			  "208"
-	  Position		  [605, 80, 685, 100]
+	  Position		  [540, 105, 620, 125]
 	  ZOrder		  71
 	  ShowName		  off
 	  GotoTag		  "COPModel_y"
@@ -3577,7 +3263,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto4"
 	  SID			  "209"
-	  Position		  [170, 160, 240, 180]
+	  Position		  [215, 185, 285, 205]
 	  ZOrder		  72
 	  ShowName		  off
 	  GotoTag		  "FSensor_x"
@@ -3586,7 +3272,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto5"
 	  SID			  "210"
-	  Position		  [170, 190, 240, 210]
+	  Position		  [215, 215, 285, 235]
 	  ZOrder		  73
 	  ShowName		  off
 	  GotoTag		  "FSensor_y"
@@ -3595,7 +3281,7 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto6"
 	  SID			  "211"
-	  Position		  [605, 160, 685, 180]
+	  Position		  [540, 190, 620, 210]
 	  ZOrder		  74
 	  ShowName		  off
 	  GotoTag		  "COPSensor_x"
@@ -3604,18 +3290,36 @@ Model {
 	  BlockType		  Goto
 	  Name			  "Goto7"
 	  SID			  "212"
-	  Position		  [605, 190, 685, 210]
+	  Position		  [540, 220, 620, 240]
 	  ZOrder		  75
 	  ShowName		  off
 	  GotoTag		  "COPSensor_y"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto8"
+	  SID			  "240"
+	  Position		  [815, 30, 885, 50]
+	  ZOrder		  93
+	  ShowName		  off
+	  GotoTag		  "com_foot"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto9"
+	  SID			  "241"
+	  Position		  [815, 60, 885, 80]
+	  ZOrder		  94
+	  ShowName		  off
+	  GotoTag		  "ankle_coord"
 	}
 	Block {
 	  BlockType		  Mux
 	  Name			  "Mux"
 	  SID			  "213"
 	  Ports			  [2, 1]
-	  Position		  [370, 101, 375, 139]
-	  ZOrder		  76
+	  Position		  [785, 171, 790, 209]
+	  ZOrder		  106
 	  ShowName		  off
 	  Inputs		  "2"
 	  DisplayOption		  "bar"
@@ -3625,8 +3329,8 @@ Model {
 	  Name			  "Mux1"
 	  SID			  "217"
 	  Ports			  [2, 1]
-	  Position		  [370, 151, 375, 189]
-	  ZOrder		  79
+	  Position		  [785, 221, 790, 259]
+	  ZOrder		  109
 	  ShowName		  off
 	  Inputs		  "2"
 	  DisplayOption		  "bar"
@@ -3636,8 +3340,8 @@ Model {
 	  Name			  "Plotting"
 	  SID			  "202"
 	  Ports			  [3]
-	  Position		  [400, 97, 470, 243]
-	  ZOrder		  65
+	  Position		  [815, 167, 885, 313]
+	  ZOrder		  104
 	  LibraryVersion	  "1.32"
 	  ErrorFcn		  "Stateflow.Translate.translate"
 	  PermitHierarchicalResolution "ExplicitOnly"
@@ -3752,12 +3456,195 @@ Model {
 	    }
 	  }
 	}
-	Line {
-	  ZOrder		  79
-	  SrcBlock		  "Constant"
-	  SrcPort		  1
-	  DstBlock		  "Plotting"
-	  DstPort		  3
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Subsystem"
+	  SID			  "233"
+	  Ports			  [0, 2]
+	  Position		  [715, 25, 795, 85]
+	  ZOrder		  92
+	  ShowName		  off
+	  RequestExecContextInheritance	off
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    36
+	    $ClassName		    "Simulink.Mask"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      3
+	      Object {
+		$ObjectID		37
+		Type			"edit"
+		Name			"robotName"
+		Prompt			"Robot name"
+		Value			"'iCubGenova01'"
+	      }
+	      Object {
+		$ObjectID		38
+		Type			"edit"
+		Name			"localName"
+		Prompt			"Local name"
+		Value			"'simulink'"
+	      }
+	      Object {
+		$ObjectID		39
+		Type			"edit"
+		Name			"Ts"
+		Prompt			"Ts"
+		Value			"0.010"
+	      }
+	      PropName		      "Parameters"
+	    }
+	  }
+	  System {
+	    Name		    "Subsystem"
+	    Location		    [0, 24, 1366, 768]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Reference
+	      Name		      "LinkFwdKin1"
+	      SID		      "227"
+	      Ports		      [0, 1]
+	      Position		      [20, 18, 95, 62]
+	      ZOrder		      90
+	      ForegroundColor	      "blue"
+	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
+	      LibraryVersion	      "1.182"
+	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
+	      SourceType	      "Link's Forward Kinematics"
+	      ContentPreviewEnabled   off
+	      robotname		      "robotName"
+	      localname		      "localName"
+	      link		      "l_ankle_1"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector1"
+	      SID		      "228"
+	      Ports		      [1, 1]
+	      Position		      [145, 21, 185, 59]
+	      ZOrder		      89
+	      InputPortWidth	      "7"
+	      Indices		      "[1:3]"
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum1"
+	      SID		      "229"
+	      Ports		      [2, 1]
+	      Position		      [255, 30, 275, 50]
+	      ZOrder		      87
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "comFromAnkle\n1"
+	      SID		      "230"
+	      Position		      [215, 110, 245, 140]
+	      ZOrder		      88
+	      Value		      "[0 0 -0.025]"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "com_foot"
+	      SID		      "234"
+	      Position		      [495, 33, 525, 47]
+	      ZOrder		      92
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "ankle_coord"
+	      SID		      "235"
+	      Position		      [495, 93, 525, 107]
+	      ZOrder		      93
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      112
+	      SrcBlock		      "Selector1"
+	      SrcPort		      1
+	      Points		      [50, 0]
+	      Branch {
+		ZOrder			119
+		Points			[0, 60]
+		DstBlock		"ankle_coord"
+		DstPort			1
+	      }
+	      Branch {
+		ZOrder			111
+		DstBlock		"Sum1"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      ZOrder		      113
+	      SrcBlock		      "comFromAnkle\n1"
+	      SrcPort		      1
+	      Points		      [15, 0]
+	      DstBlock		      "Sum1"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      116
+	      SrcBlock		      "Sum1"
+	      SrcPort		      1
+	      DstBlock		      "com_foot"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      117
+	      SrcBlock		      "LinkFwdKin1"
+	      SrcPort		      1
+	      DstBlock		      "Selector1"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "231"
+	      Name		      "OG_1"
+	      Position		      [385, 45, 405, 65]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	      Interpreter	      "tex"
+	      TeXMode		      on
+	      ZOrder		      -3
+	    }
+	    Annotation {
+	      SID		      "232"
+	      Name		      "OO_1"
+	      Position		      [385, 107, 405, 127]
+	      InternalMargins	      [0, 0, 0, 0]
+	      FixedHeight	      off
+	      FixedWidth	      off
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	      Interpreter	      "tex"
+	      TeXMode		      on
+	      ZOrder		      -4
+	    }
+	  }
 	}
 	Line {
 	  ZOrder		  88
@@ -3816,42 +3703,119 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  96
+	  ZOrder		  118
+	  SrcBlock		  "Subsystem"
+	  SrcPort		  1
+	  DstBlock		  "Goto8"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  119
+	  SrcBlock		  "Subsystem"
+	  SrcPort		  2
+	  DstBlock		  "Goto9"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  120
+	  SrcBlock		  "From4"
+	  SrcPort		  1
+	  DstBlock		  "FRI from Model"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  121
+	  SrcBlock		  "From5"
+	  SrcPort		  1
+	  DstBlock		  "FRI from Model"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  122
+	  SrcBlock		  "From6"
+	  SrcPort		  1
+	  DstBlock		  "FRI from Sensors"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  123
+	  SrcBlock		  "From7"
+	  SrcPort		  1
+	  DstBlock		  "FRI from Sensors"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  124
+	  SrcBlock		  "From9"
+	  SrcPort		  1
+	  DstBlock		  "COP from Model"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  125
+	  SrcBlock		  "From8"
+	  SrcPort		  1
+	  DstBlock		  "COP from Model"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  126
+	  SrcBlock		  "From11"
+	  SrcPort		  1
+	  DstBlock		  "COP from Sensors"
+	  DstPort		  2
+	}
+	Line {
+	  ZOrder		  127
+	  SrcBlock		  "From10"
+	  SrcPort		  1
+	  DstBlock		  "COP from Sensors"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  128
+	  SrcBlock		  "Constant"
+	  SrcPort		  1
+	  DstBlock		  "Plotting"
+	  DstPort		  3
+	}
+	Line {
+	  ZOrder		  129
 	  SrcBlock		  "From"
 	  SrcPort		  1
 	  DstBlock		  "Mux"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  97
+	  ZOrder		  130
 	  SrcBlock		  "From1"
 	  SrcPort		  1
 	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  98
+	  ZOrder		  131
 	  SrcBlock		  "Mux"
 	  SrcPort		  1
 	  DstBlock		  "Plotting"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  99
+	  ZOrder		  132
 	  SrcBlock		  "From2"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  100
+	  ZOrder		  133
 	  SrcBlock		  "From3"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  101
+	  ZOrder		  134
 	  SrcBlock		  "Mux1"
 	  SrcPort		  1
 	  DstBlock		  "Plotting"
@@ -3860,7 +3824,7 @@ Model {
 	Annotation {
 	  SID			  "147"
 	  Name			  "COP"
-	  Position		  [437, 28, 478, 51]
+	  Position		  [452, 18, 493, 41]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -3874,7 +3838,7 @@ Model {
 	Annotation {
 	  SID			  "146"
 	  Name			  "FRI"
-	  Position		  [22, 23, 52, 46]
+	  Position		  [132, 18, 162, 41]
 	  InternalMargins	  [0, 0, 0, 0]
 	  FixedHeight		  off
 	  FixedWidth		  off
@@ -3901,6 +3865,8 @@ Stateflow {
     created		    "09-Jul-2014 17:01:08"
     isLibrary		    0
     firstTarget		    58
+    debug {
+    }
     sfVersion		    76014001.002
   }
   chart {
@@ -4853,6 +4819,7 @@ Stateflow {
     firstTransition	    56
     firstJunction	    55
     viewObj		    50
+    visible		    1
     machine		    1
     subviewS {
     }
@@ -4880,8 +4847,10 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function fcn(u1, u2, h)\n%#codegen\n\nplot(h,u1(1),u2(1),'b.');\nhold on;\nplot(h,u1(2),u2(2),'r."
-      "');\naxis equal;"
+      script		      "function fcn(u1, u2, h)\n%#codegen\n\n% plot(h,u1(1),u2(1),'b.');\n% hold on;\n% plot(h,u1(2),u2("
+      "2),'r.');\n% axis equal;\n\nline([u1(1),u1(1)],[u2(1),u2(1)],'LineStyle','none','Marker','o','MarkerEdge','b','M"
+      "arkerSize',3);\nhold on;\nline([u1(2),u1(2)],[u2(2),u2(2)],'LineStyle','none','Marker','o','MarkerEdge','r','Mar"
+      "kerSize',3);\naxis equal;"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
