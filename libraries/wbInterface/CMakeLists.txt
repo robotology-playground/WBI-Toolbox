@@ -2,15 +2,16 @@
 # Author: Jorhabib Eljaik
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 SET(PROJECTNAME robotState)
 PROJECT(${PROJECTNAME})
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(YARP                   REQUIRED)
 find_package(ICUB                   REQUIRED)
 find_package(Eigen3                 REQUIRED)
+find_package(TinyXML                REQUIRED)
 find_package(iDynTree               REQUIRED)
 find_package(paramHelp              REQUIRED)
 find_package(wholeBodyInterface     REQUIRED)
@@ -49,7 +50,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include
                     ${skinDynLib_INCLUDE_DIRS}
                     ${ctrlLib_INCLUDE_DIRS}
                     ${EIGEN3_INCLUDE_DIR})
-                    
+
 include_directories("${MATLAB_ROOT}/simulink/include")
 include_directories("${MATLAB_ROOT}/extern/include")
 include_directories( ${MATLAB_INCLUDE_DIR})
@@ -96,12 +97,12 @@ elseif(WIN32)
         message("No particular flags have been passed to compiler for Matlab 64bits on a UNIX computer")
 endif(WIN32)
 
-target_link_libraries(${PROJECTNAME} 
+target_link_libraries(${PROJECTNAME}
 ${wholeBodyInterface_LIBRARIES}
 ${yarpWholeBodyInterface_LIBRARIES}
 ${paramHelp_LIBRARIES}
 ${iDynTree_LIBRARIES}
-${YARP_LIBRARIES} 
+${YARP_LIBRARIES}
 # ${ICUB_LIBRARIES}
 ${MATLAB_LIBRARIES}
 ${skinDynLib_LIBRARIES}
@@ -110,9 +111,9 @@ ${ctrlLib_LIBRARIES}
 
 set(simContext wbit)
 file(GLOB localContext ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/*.ini)
-yarp_install(FILES       ${localContext} 
-	     DESTINATION ${CODYCO_CONTEXTS_INSTALL_DIR}/${simContext}) 
-	     
+yarp_install(FILES       ${localContext}
+	     DESTINATION ${CODYCO_CONTEXTS_INSTALL_DIR}/${simContext})
+
 # Variable to be used when configuring the .ini files below
 set(LOCAL_CONTEXT ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit)
 

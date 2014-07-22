@@ -1,6 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+
 option(CODYCO_USES_URDFDOM "Compile WBI-Toolbox with URDF support" TRUE)
 option(CODYCO_ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL "Compile yarpwholebodyinterface to use JTC external torque control" FALSE)
-
 
 if(CODYCO_USES_URDFDOM)
     add_definitions(-DCODYCO_USES_URDFDOM)
@@ -17,7 +18,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         if (${CMAKE_GENERATOR} MATCHES "Xcode")
             #this should set explictly the option in xcode. Unfortunately it does not work.
-            set(XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "C++11")            
+            set(XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "C++11")
         endif(${CMAKE_GENERATOR} MATCHES "Xcode")
     endif(${CMAKE_CXX_COMPILER_ID} MATCHES "Clang")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")

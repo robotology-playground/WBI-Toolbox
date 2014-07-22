@@ -188,8 +188,8 @@ bool robotStatus::robotConfig() {
         if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
             printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
         else{
-            ssSetErrorStatus (S, "ERROR [mdlStart] >> The jointTorqueControl module is not running... ");
-            return;
+            printf ("ERROR [mdlStart] >> The jointTorqueControl module is not running... \n");
+            return true;
         }
 
         yarp::os::Value trueValue;
