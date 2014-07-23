@@ -115,7 +115,7 @@ Our most recent controllers and other Simulink diagrams can be found in `${CODYC
 
 - **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which puts all joints in impedance control mode where the equilibrium pose is the initial configuration before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
 
-- **torqueBalancing/controllerWithHandControl.slx**  This is the latest iCub's COM controller. The one used for the video in the beginning of this document.
+- **torqueBalancingV2/balancingController.mdl**  This is the latest torque based iCub's COM controller. The one used for the video in the beginning of this document.
 
 
 ###### Tested OS
