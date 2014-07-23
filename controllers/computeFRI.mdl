@@ -1,8 +1,7 @@
 Model {
   Name			  "computeFRI"
-  Version		  8.3
+  Version		  7.9
   MdlSubVersion		  0
-  SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
@@ -11,6 +10,7 @@ Model {
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
+  SavedCharacterEncoding  "UTF-8"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -22,64 +22,13 @@ Model {
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   InitFcn		  "h=axes;"
-  Object {
-    $PropName		    "BdWindowsInfo"
-    $ObjectID		    1
-    $ClassName		    "Simulink.BDWindowsInfo"
-    Object {
-      $PropName		      "WindowsInfo"
-      $ObjectID		      2
-      $ClassName	      "Simulink.WindowInfo"
-      IsActive		      [1]
-      Location		      [0.0, 24.0, 1366.0, 744.0]
-      Object {
-	$PropName		"ModelBrowserInfo"
-	$ObjectID		3
-	$ClassName		"Simulink.ModelBrowserInfo"
-	Visible			[0]
-	DockPosition		"Left"
-	Width			[50]
-	Height			[50]
-	Filter			[9]
-      }
-      Object {
-	$PropName		"ExplorerBarInfo"
-	$ObjectID		4
-	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[1]
-      }
-      Array {
-	Type			"Simulink.EditorInfo"
-	Dimension		2
-	Object {
-	  $ObjectID		  5
-	  IsActive		  [0]
-	  ViewObjType		  "SimulinkTopLevel"
-	  LoadSaveID		  "0"
-	  Extents		  [1330.0, 596.0]
-	  ZoomFactor		  [3.0]
-	  Offset		  [732.71755342780875, 428.66666666666623]
-	}
-	Object {
-	  $ObjectID		  6
-	  IsActive		  [1]
-	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "198"
-	  Extents		  [1330.0, 596.0]
-	  ZoomFactor		  [1.25]
-	  Offset		  [-37.147952947135764, -77.389686261158587]
-	}
-	PropName		"EditorsInfo"
-      }
-    }
-  }
   Created		  "Wed Jul 09 17:00:34 2014"
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jorhabib"
+  LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jul 17 17:20:33 2014"
+  LastModifiedDate	  "Wed Jul 23 18:02:11 2014"
   RTWModifiedTimeStamp	  327518352
   ModelVersionFormat	  "1.%<AutoIncrement:153>"
   ConfigurationManager	  "none"
@@ -107,11 +56,6 @@ Model {
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
-  PauseTimes		  "5"
-  NumberOfSteps		  1
-  SnapshotBufferSize	  10
-  SnapshotInterval	  10
-  NumberOfLastSnapshots	  0
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -145,7 +89,6 @@ Model {
   CovNameIncrementing	  off
   CovHtmlReporting	  on
   CovForceBlockReductionOff on
-  CovEnableCumulative	  on
   covSaveCumulativeToWorkspaceVar on
   CovSaveSingleToWorkspaceVar on
   CovCumulativeVarName	  "covCumulativeData"
@@ -153,9 +96,6 @@ Model {
   CovReportOnPause	  on
   CovModelRefEnable	  "Off"
   CovExternalEMLEnable	  off
-  CovSFcnEnable		  off
-  CovBoundaryAbsTol	  0.000010
-  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -185,13 +125,13 @@ Model {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      8
-      Version		      "1.14.2"
+      Version		      "1.12.1"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
 	  $ObjectID		  9
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  StartTime		  "0.0"
 	  StopTime		  "20"
 	  AbsTol		  "auto"
@@ -226,7 +166,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  10
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -244,7 +184,6 @@ Model {
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
-	  VisualizeSimOutput	  on
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -259,7 +198,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  11
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -279,14 +218,11 @@ Model {
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
-	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
 	  BufferReuse		  on
 	  EnhancedBackFolding	  off
-	  CachingGlobalReferences off
-	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
@@ -301,7 +237,6 @@ Model {
 	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
-	  ActiveStateOutputEnumStorageType "Native Integer"
 	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
@@ -319,7 +254,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  12
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -368,7 +303,7 @@ Model {
 	  UnnecessaryDatatypeConvMsg "none"
 	  VectorMatrixConversionMsg "none"
 	  InvalidFcnCallConnMsg	  "error"
-	  FcnCallInpInsideContextMsg "EnableAllAsError"
+	  FcnCallInpInsideContextMsg "Enable All"
 	  SignalLabelMismatchMsg  "none"
 	  UnconnectedInputMsg	  "warning"
 	  UnconnectedOutputMsg	  "warning"
@@ -409,12 +344,11 @@ Model {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  13
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
-	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -424,20 +358,17 @@ Model {
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "32-bit Generic"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
-	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
-	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -450,7 +381,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  14
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -465,7 +396,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  15
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -476,12 +407,11 @@ Model {
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
-	  SimGenImportedTypeDefs  off
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  16
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -503,15 +433,10 @@ Model {
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
-	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
-	  PackageGeneratedCodeAndArtifacts off
-	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
-	  PostCodeGenCommand	  ""
-	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -522,29 +447,11 @@ Model {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
-	  ProcessScript		  ""
-	  ConfigurationScript	  ""
 	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
-	  CustomSourceCode	  ""
-	  CustomHeaderCode	  ""
-	  CustomInclude		  ""
-	  CustomSource		  ""
-	  CustomLibrary		  ""
-	  CustomInitializer	  ""
-	  CustomTerminator	  ""
-	  Toolchain		  "Automatically locate an installed toolchain"
-	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
-	  PortableWordSizes	  off
-	  CreateSILPILBlock	  "None"
-	  CodeExecutionProfiling  off
-	  CodeExecutionProfileVariable "executionProfile"
-	  CodeProfilingSaveOptions "SummaryOnly"
-	  CodeProfilingInstrumentation off
-	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -558,17 +465,14 @@ Model {
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
-	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
-	  DataInitializer	  ""
-	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      17
-	      Version		      "1.14.2"
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		23
@@ -599,7 +503,6 @@ Model {
 	      }
 	      ForceParamTrailComments off
 	      GenerateComments	      on
-	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
 	      IncHierarchyInIds	      off
@@ -607,7 +510,6 @@ Model {
 	      PreserveName	      off
 	      PreserveNameWithParent  off
 	      ShowEliminatedStatement off
-	      OperatorAnnotations     off
 	      IncAutoGenComments      off
 	      SimulinkDataObjDesc     off
 	      SFDataObjDesc	      off
@@ -622,7 +524,6 @@ Model {
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
-	      CustomSymbolStrUtil     "$N$C"
 	      DefineNamingRule	      "None"
 	      ParamNamingRule	      "None"
 	      SignalNamingRule	      "None"
@@ -631,7 +532,6 @@ Model {
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
-	      InternalIdentifier      "Shortened"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
@@ -639,7 +539,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      18
-	      Version		      "1.14.2"
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		14
@@ -662,8 +562,6 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
-	      GenFloatMathFcnCalls    "NOT IN USE"
-	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
@@ -672,6 +570,7 @@ Model {
 	      GenerateFullHeader      on
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
@@ -688,7 +587,6 @@ Model {
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
-	      CodeInterfacePackaging  "Nonreusable function"
 	      SupportNonFinite	      on
 	      SupportComplex	      on
 	      PurelyIntegerCode	      off
@@ -697,12 +595,10 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      off
-	      GenerateAllocFcn	      off
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -716,7 +612,6 @@ Model {
 	      RTWCAPIStates	      off
 	      RTWCAPIRootIO	      off
 	      GenerateASAP2	      off
-	      MultiInstanceErrorCode  "Error"
 	    }
 	    PropName		    "Components"
 	  }
@@ -733,16 +628,6 @@ Model {
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
     $ObjectID		    8
-  }
-  Object {
-    $PropName		    "DataTransfer"
-    $ObjectID		    19
-    $ClassName		    "Simulink.GlobalDataTransfer"
-    DefaultTransitionBetweenSyncTasks "Ensure deterministic transfer (maximum delay)"
-    DefaultTransitionBetweenAsyncTasks "Ensure data integrity only"
-    DefaultTransitionBetweenContTasks "Ensure deterministic transfer (minimum delay)"
-    DefaultExtrapolationMethodBetweenContTasks "None"
-    AutoInsertRateTranBlk   [0]
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -775,25 +660,6 @@ Model {
     FontSize		    9
     FontWeight		    "normal"
     FontAngle		    "normal"
-  }
-  MaskDefaults {
-    SelfModifiable	    "off"
-    IconFrame		    "on"
-    IconOpaque		    "on"
-    RunInitForIconRedraw    "off"
-    IconRotate		    "none"
-    PortRotate		    "default"
-    IconUnits		    "autoscale"
-  }
-  MaskParameterDefaults {
-    Evaluate		    "on"
-    Tunable		    "on"
-    NeverSave		    "off"
-    Internal		    "off"
-    ReadOnly		    "off"
-    Enabled		    "on"
-    Visible		    "on"
-    ToolTip		    "on"
   }
   BlockParameterDefaults {
     Block {
@@ -838,7 +704,6 @@ Model {
     }
     Block {
       BlockType		      Goto
-      GotoTag		      "A"
       IconDisplay	      "Tag"
       TagVisibility	      "local"
     }
@@ -898,9 +763,6 @@ Model {
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
       SampleTime	      "-1"
-      IndexOptions	      "Index vector (dialog)"
-      Indices		      "1"
-      OutputSizes	      "1"
     }
     Block {
       BlockType		      SubSystem
@@ -908,15 +770,10 @@ Model {
       Permissions	      "ReadWrite"
       PermitHierarchicalResolution "All"
       TreatAsAtomicUnit	      off
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
       CheckFcnCallInpInsideContextMsg off
       SystemSampleTime	      "-1"
-      RTWSystemCode	      "Auto"
       RTWFcnNameOpts	      "Auto"
       RTWFileNameOpts	      "Auto"
-      FunctionInterfaceSpec   "void_void"
-      FunctionWithSeparateData off
       RTWMemSecFuncInitTerm   "Inherit from model"
       RTWMemSecFuncExecute    "Inherit from model"
       RTWMemSecDataConstants  "Inherit from model"
@@ -926,12 +783,9 @@ Model {
       DataTypeOverride	      "UseLocalSettings"
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
-      Opaque		      off
-      MaskHideContents	      off
       SFBlockType	      "NONE"
       Variant		      off
       GeneratePreprocessorConditionals off
-      ContentPreviewEnabled   off
     }
     Block {
       BlockType		      Sum
@@ -956,7 +810,7 @@ Model {
   System {
     Name		    "computeFRI"
     Location		    [0, 24, 1366, 768]
-    Open		    on
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -977,11 +831,17 @@ Model {
       Ports		      []
       Position		      [893, 459, 933, 519]
       ZOrder		      62
+      MinAlgLoopOccurrences   off
+      PropExecContextOutsideSubsystem off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      Opaque		      off
       RequestExecContextInheritance off
+      MaskHideContents	      off
       System {
 	Name			"Subsystem"
 	Location		[0, 24, 1366, 768]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1000,38 +860,27 @@ Model {
 	  Ports			  [2, 2]
 	  Position		  [430, 70, 515, 130]
 	  ZOrder		  50
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
-	  Object {
-	    $PropName		    "MaskObject"
-	    $ObjectID		    20
-	    $ClassName		    "Simulink.Mask"
-	    Array {
-	      Type		      "Simulink.MaskParameter"
-	      Dimension		      3
-	      Object {
-		$ObjectID		21
-		Type			"edit"
-		Name			"robotName"
-		Prompt			"robot name"
-		Value			"'iCubGenova01'"
-	      }
-	      Object {
-		$ObjectID		22
-		Type			"edit"
-		Name			"localName"
-		Prompt			"local name"
-		Value			"'simulink'"
-	      }
-	      Object {
-		$ObjectID		23
-		Type			"edit"
-		Name			"Ts"
-		Prompt			"Ts"
-		Value			"0.010"
-	      }
-	      PropName		      "Parameters"
-	    }
-	  }
+	  MaskHideContents	  off
+	  MaskPromptString	  "robot name|local name|Ts"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;Ts=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'iCubGenova01'|'simulink'|0.010"
 	  System {
 	    Name		    "COP from Model"
 	    Location		    [0, 24, 1366, 768]
@@ -1127,10 +976,24 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
 	      RequestExecContextInheritance off
+	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -1146,7 +1009,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -1249,14 +1112,12 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  1
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  2
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
@@ -1264,7 +1125,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_y"
-		  ZOrder		  3
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -1273,7 +1133,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_x"
-		  ZOrder		  4
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -1281,35 +1140,30 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  5
 		  SrcBlock		  "ankle_coord"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  5
 		}
 		Line {
-		  ZOrder		  6
 		  SrcBlock		  "com_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  7
 		  SrcBlock		  "torque_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  8
 		  SrcBlock		  "force_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  9
 		  SrcBlock		  "m_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -1347,7 +1201,7 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
-	      LibraryVersion	      "1.182"
+	      LibraryVersion	      "1.186"
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_foot_cartesian_wrench_from_model:o'"
@@ -1381,119 +1235,102 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      2
 	      DstBlock		      "P_y"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
 	      SrcBlock		      "Gain4"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      3
 	      SrcBlock		      "Gain1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      4
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      4
 	      DstBlock		      "Mux3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      5
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      1
 	      DstBlock		      "P_x"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      11
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      15
 	      SrcBlock		      "Mux3"
 	      SrcPort		      1
 	      DstBlock		      "Gain3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      16
 	      SrcBlock		      "Mux2"
 	      SrcPort		      1
 	      DstBlock		      "Gain2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      17
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      3
 	      DstBlock		      "Mux2"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      18
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      6
 	      DstBlock		      "Mux3"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      19
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      5
 	      DstBlock		      "Mux3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      20
 	      SrcBlock		      "Gain2"
 	      SrcPort		      1
 	      DstBlock		      "Gain1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      2
 	      DstBlock		      "Mux2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      22
 	      SrcBlock		      "Gain3"
 	      SrcPort		      1
 	      DstBlock		      "Gain4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
 	      SrcBlock		      "m_foot1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      34
 	      SrcBlock		      "com_foot"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      35
 	      SrcBlock		      "ankle_coord"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
@@ -1502,13 +1339,9 @@ Model {
 	    Annotation {
 	      SID		      "118"
 	      Name		      "FROM MODEL"
-	      Position		      [179, 408, 304, 431]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [241, 433]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      ZOrder		      -3
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
@@ -1522,38 +1355,27 @@ Model {
 	  Ports			  [2, 2]
 	  Position		  [430, 185, 515, 245]
 	  ZOrder		  54
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
-	  Object {
-	    $PropName		    "MaskObject"
-	    $ObjectID		    24
-	    $ClassName		    "Simulink.Mask"
-	    Array {
-	      Type		      "Simulink.MaskParameter"
-	      Dimension		      3
-	      Object {
-		$ObjectID		25
-		Type			"edit"
-		Name			"robotName"
-		Prompt			"robot name"
-		Value			"'iCubGenova01'"
-	      }
-	      Object {
-		$ObjectID		26
-		Type			"edit"
-		Name			"localName"
-		Prompt			"local name"
-		Value			"'simulink'"
-	      }
-	      Object {
-		$ObjectID		27
-		Type			"edit"
-		Name			"Ts"
-		Prompt			"Ts"
-		Value			"0.010"
-	      }
-	      PropName		      "Parameters"
-	    }
-	  }
+	  MaskHideContents	  off
+	  MaskPromptString	  "robot name|local name|Ts"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;Ts=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'iCubGenova01'|'simulink'|0.010"
 	  System {
 	    Name		    "COP from Sensors"
 	    Location		    [0, 24, 1366, 768]
@@ -1649,10 +1471,24 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
 	      RequestExecContextInheritance off
+	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -1668,7 +1504,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -1771,35 +1607,30 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  1
 		  SrcBlock		  "m_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  2
 		  SrcBlock		  "force_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  3
 		  SrcBlock		  "torque_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  4
 		  SrcBlock		  "com_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  5
 		  SrcBlock		  "ankle_coord"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -1807,7 +1638,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_x"
-		  ZOrder		  6
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -1816,7 +1646,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_y"
-		  ZOrder		  7
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -1824,14 +1653,12 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  8
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  9
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -1869,7 +1696,7 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
-	      LibraryVersion	      "1.182"
+	      LibraryVersion	      "1.186"
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_foot_cartesian_wrench:o'"
@@ -1903,119 +1730,102 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
 	      SrcBlock		      "m_foot1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
 	      SrcBlock		      "Gain3"
 	      SrcPort		      1
 	      DstBlock		      "Gain4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      3
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      2
 	      DstBlock		      "Mux2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      4
 	      SrcBlock		      "Gain2"
 	      SrcPort		      1
 	      DstBlock		      "Gain1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      5
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      5
 	      DstBlock		      "Mux3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      6
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      6
 	      DstBlock		      "Mux3"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      7
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      3
 	      DstBlock		      "Mux2"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      8
 	      SrcBlock		      "Mux2"
 	      SrcPort		      1
 	      DstBlock		      "Gain2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      9
 	      SrcBlock		      "Mux3"
 	      SrcPort		      1
 	      DstBlock		      "Gain3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      13
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      19
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      1
 	      DstBlock		      "P_x"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      20
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      4
 	      DstBlock		      "Mux3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
 	      SrcBlock		      "Gain1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      22
 	      SrcBlock		      "Gain4"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      23
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      2
 	      DstBlock		      "P_y"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      26
 	      SrcBlock		      "com_foot"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      27
 	      SrcBlock		      "ankle_coord"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
@@ -2024,13 +1834,9 @@ Model {
 	    Annotation {
 	      SID		      "142"
 	      Name		      "FROM MODEL"
-	      Position		      [179, 408, 304, 431]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [241, 433]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      ZOrder		      -1
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
@@ -2052,38 +1858,27 @@ Model {
 	  Ports			  [2, 2]
 	  Position		  [105, 70, 190, 130]
 	  ZOrder		  17
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
-	  Object {
-	    $PropName		    "MaskObject"
-	    $ObjectID		    28
-	    $ClassName		    "Simulink.Mask"
-	    Array {
-	      Type		      "Simulink.MaskParameter"
-	      Dimension		      3
-	      Object {
-		$ObjectID		29
-		Type			"edit"
-		Name			"robotName"
-		Prompt			"robot name"
-		Value			"'iCubGenova01'"
-	      }
-	      Object {
-		$ObjectID		30
-		Type			"edit"
-		Name			"localName"
-		Prompt			"local name"
-		Value			"'simulink'"
-	      }
-	      Object {
-		$ObjectID		31
-		Type			"edit"
-		Name			"Ts"
-		Prompt			"Ts"
-		Value			"0.010"
-	      }
-	      PropName		      "Parameters"
-	    }
-	  }
+	  MaskHideContents	  off
+	  MaskPromptString	  "robot name|local name|Ts"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;Ts=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'iCubGenova01'|'simulink'|0.010"
 	  System {
 	    Name		    "FRI from Model"
 	    Location		    [0, 24, 1366, 768]
@@ -2179,10 +1974,24 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
 	      RequestExecContextInheritance off
+	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -2198,7 +2007,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -2301,35 +2110,30 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  28
 		  SrcBlock		  "m_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  29
 		  SrcBlock		  "force_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  30
 		  SrcBlock		  "torque_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  31
 		  SrcBlock		  "com_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  32
 		  SrcBlock		  "ankle_coord"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2337,7 +2141,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_x"
-		  ZOrder		  33
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2346,7 +2149,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_y"
-		  ZOrder		  34
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2354,14 +2156,12 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  35
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  36
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2399,7 +2199,7 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
-	      LibraryVersion	      "1.182"
+	      LibraryVersion	      "1.186"
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_ankle_cartesian_wrench_from_model:o'"
@@ -2433,119 +2233,102 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      43
 	      SrcBlock		      "m_foot1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      44
 	      SrcBlock		      "Gain3"
 	      SrcPort		      1
 	      DstBlock		      "Gain4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      45
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      2
 	      DstBlock		      "Mux2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      46
 	      SrcBlock		      "Gain2"
 	      SrcPort		      1
 	      DstBlock		      "Gain1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      47
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      5
 	      DstBlock		      "Mux3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      48
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      6
 	      DstBlock		      "Mux3"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      49
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      3
 	      DstBlock		      "Mux2"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      50
 	      SrcBlock		      "Mux2"
 	      SrcPort		      1
 	      DstBlock		      "Gain2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      51
 	      SrcBlock		      "Mux3"
 	      SrcPort		      1
 	      DstBlock		      "Gain3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      55
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      59
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      1
 	      DstBlock		      "F_x"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      60
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      4
 	      DstBlock		      "Mux3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      67
 	      SrcBlock		      "Gain1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      68
 	      SrcBlock		      "Gain4"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      73
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      2
 	      DstBlock		      "F_y"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      74
 	      SrcBlock		      "com_foot"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      75
 	      SrcBlock		      "ankle_coord"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
@@ -2554,13 +2337,9 @@ Model {
 	    Annotation {
 	      SID		      "43"
 	      Name		      "FROM MODEL"
-	      Position		      [179, 408, 304, 431]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [241, 433]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      ZOrder		      -2
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
@@ -2574,38 +2353,27 @@ Model {
 	  Ports			  [2, 2]
 	  Position		  [105, 180, 190, 240]
 	  ZOrder		  47
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
-	  Object {
-	    $PropName		    "MaskObject"
-	    $ObjectID		    32
-	    $ClassName		    "Simulink.Mask"
-	    Array {
-	      Type		      "Simulink.MaskParameter"
-	      Dimension		      3
-	      Object {
-		$ObjectID		33
-		Type			"edit"
-		Name			"robotName"
-		Prompt			"robot name"
-		Value			"'iCubGenova01'"
-	      }
-	      Object {
-		$ObjectID		34
-		Type			"edit"
-		Name			"localName"
-		Prompt			"local name"
-		Value			"'simulink'"
-	      }
-	      Object {
-		$ObjectID		35
-		Type			"edit"
-		Name			"Ts"
-		Prompt			"Ts"
-		Value			"0.010"
-	      }
-	      PropName		      "Parameters"
-	    }
-	  }
+	  MaskHideContents	  off
+	  MaskPromptString	  "robot name|local name|Ts"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;Ts=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'iCubGenova01'|'simulink'|0.010"
 	  System {
 	    Name		    "FRI from Sensors"
 	    Location		    [0, 24, 1366, 768]
@@ -2701,10 +2469,24 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
+	      MinAlgLoopOccurrences   off
+	      PropExecContextOutsideSubsystem off
+	      RTWSystemCode	      "Auto"
+	      FunctionWithSeparateData off
+	      Opaque		      off
 	      RequestExecContextInheritance off
+	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -2720,7 +2502,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -2823,14 +2605,12 @@ Model {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  1
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  2
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
@@ -2838,7 +2618,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_y"
-		  ZOrder		  3
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  3
@@ -2847,7 +2626,6 @@ Model {
 		}
 		Line {
 		  Name			  "F_x"
-		  ZOrder		  4
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2855,35 +2633,30 @@ Model {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  5
 		  SrcBlock		  "ankle_coord"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  5
 		}
 		Line {
-		  ZOrder		  6
 		  SrcBlock		  "com_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  4
 		}
 		Line {
-		  ZOrder		  7
 		  SrcBlock		  "torque_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  3
 		}
 		Line {
-		  ZOrder		  8
 		  SrcBlock		  "force_ankle"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
 		}
 		Line {
-		  ZOrder		  9
 		  SrcBlock		  "m_foot"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2921,7 +2694,7 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
-	      LibraryVersion	      "1.182"
+	      LibraryVersion	      "1.186"
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_ankle_cartesian_wrench:o'"
@@ -2955,119 +2728,102 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      1
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      2
 	      DstBlock		      "F_y"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
 	      SrcBlock		      "Gain4"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      3
 	      SrcBlock		      "Gain1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      4
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      4
 	      DstBlock		      "Mux3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      5
 	      SrcBlock		      "MATLAB Function1"
 	      SrcPort		      1
 	      DstBlock		      "F_x"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      11
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      1
 	      DstBlock		      "Mux2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      15
 	      SrcBlock		      "Mux3"
 	      SrcPort		      1
 	      DstBlock		      "Gain3"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      16
 	      SrcBlock		      "Mux2"
 	      SrcPort		      1
 	      DstBlock		      "Gain2"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      17
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      3
 	      DstBlock		      "Mux2"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      18
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      6
 	      DstBlock		      "Mux3"
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      19
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      5
 	      DstBlock		      "Mux3"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      20
 	      SrcBlock		      "Gain2"
 	      SrcPort		      1
 	      DstBlock		      "Gain1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      21
 	      SrcBlock		      "left foot FT1"
 	      SrcPort		      2
 	      DstBlock		      "Mux2"
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      22
 	      SrcBlock		      "Gain3"
 	      SrcPort		      1
 	      DstBlock		      "Gain4"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      23
 	      SrcBlock		      "m_foot1"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      26
 	      SrcBlock		      "com_foot"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
 	      DstPort		      4
 	    }
 	    Line {
-	      ZOrder		      27
 	      SrcBlock		      "ankle_coord"
 	      SrcPort		      1
 	      DstBlock		      "MATLAB Function1"
@@ -3076,39 +2832,25 @@ Model {
 	    Annotation {
 	      SID		      "78"
 	      Name		      "OO_1"
-	      Position		      [380, 692, 400, 712]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [390, 714]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -1
+	      TexMode	      "on"
 	    }
 	    Annotation {
 	      SID		      "77"
 	      Name		      "OG_1"
-	      Position		      [380, 630, 400, 650]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [390, 652]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -2
+	      TexMode	      "on"
 	    }
 	    Annotation {
 	      SID		      "76"
 	      Name		      "FROM MODEL"
-	      Position		      [179, 408, 304, 431]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [241, 433]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      ZOrder		      -3
 	      FontName		      "Arial"
 	      FontSize		      18
 	      FontWeight	      "bold"
@@ -3344,10 +3086,24 @@ Model {
 	  ZOrder		  104
 	  LibraryVersion	  "1.32"
 	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
+	  PermitHierarchicalResolution "ParametersOnly"
 	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
 	  SFBlockType		  "MATLAB Function"
+	  MaskSelfModifiable	  on
+	  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private/"
+	  "eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'fcn']);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "Plotting"
 	    Location		    [219, 337, 814, 775]
@@ -3363,7 +3119,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "23"
+	    SIDHighWatermark	    "253"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u1"
@@ -3419,35 +3175,30 @@ Model {
 	      ZOrder		      6
 	    }
 	    Line {
-	      ZOrder		      1
 	      SrcBlock		      " SFunction "
 	      SrcPort		      1
 	      DstBlock		      " Demux "
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      2
 	      SrcBlock		      " Demux "
 	      SrcPort		      1
 	      DstBlock		      " Terminator "
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      3
 	      SrcBlock		      "h"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      3
 	    }
 	    Line {
-	      ZOrder		      4
 	      SrcBlock		      "u2"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      5
 	      SrcBlock		      "u1"
 	      SrcPort		      1
 	      Points		      [120, 0]
@@ -3464,38 +3215,27 @@ Model {
 	  Position		  [715, 25, 795, 85]
 	  ZOrder		  92
 	  ShowName		  off
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
 	  RequestExecContextInheritance	off
-	  Object {
-	    $PropName		    "MaskObject"
-	    $ObjectID		    36
-	    $ClassName		    "Simulink.Mask"
-	    Array {
-	      Type		      "Simulink.MaskParameter"
-	      Dimension		      3
-	      Object {
-		$ObjectID		37
-		Type			"edit"
-		Name			"robotName"
-		Prompt			"Robot name"
-		Value			"'iCubGenova01'"
-	      }
-	      Object {
-		$ObjectID		38
-		Type			"edit"
-		Name			"localName"
-		Prompt			"Local name"
-		Value			"'simulink'"
-	      }
-	      Object {
-		$ObjectID		39
-		Type			"edit"
-		Name			"Ts"
-		Prompt			"Ts"
-		Value			"0.010"
-	      }
-	      PropName		      "Parameters"
-	    }
-	  }
+	  MaskHideContents	  off
+	  MaskPromptString	  "Robot name|Local name|Ts"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;Ts=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'iCubGenova01'|'simulink'|0.010"
 	  System {
 	    Name		    "Subsystem"
 	    Location		    [0, 24, 1366, 768]
@@ -3520,10 +3260,9 @@ Model {
 	      ZOrder		      90
 	      ForegroundColor	      "blue"
 	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
-	      LibraryVersion	      "1.182"
+	      LibraryVersion	      "1.186"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
 	      SourceType	      "Link's Forward Kinematics"
-	      ContentPreviewEnabled   off
 	      robotname		      "robotName"
 	      localname		      "localName"
 	      link		      "l_ankle_1"
@@ -3536,7 +3275,9 @@ Model {
 	      Position		      [145, 21, 185, 59]
 	      ZOrder		      89
 	      InputPortWidth	      "7"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[1:3]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Sum
@@ -3580,24 +3321,20 @@ Model {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      ZOrder		      112
 	      SrcBlock		      "Selector1"
 	      SrcPort		      1
 	      Points		      [50, 0]
 	      Branch {
-		ZOrder			119
 		Points			[0, 60]
 		DstBlock		"ankle_coord"
 		DstPort			1
 	      }
 	      Branch {
-		ZOrder			111
 		DstBlock		"Sum1"
 		DstPort			1
 	      }
 	    }
 	    Line {
-	      ZOrder		      113
 	      SrcBlock		      "comFromAnkle\n1"
 	      SrcPort		      1
 	      Points		      [15, 0]
@@ -3605,14 +3342,12 @@ Model {
 	      DstPort		      2
 	    }
 	    Line {
-	      ZOrder		      116
 	      SrcBlock		      "Sum1"
 	      SrcPort		      1
 	      DstBlock		      "com_foot"
 	      DstPort		      1
 	    }
 	    Line {
-	      ZOrder		      117
 	      SrcBlock		      "LinkFwdKin1"
 	      SrcPort		      1
 	      DstBlock		      "Selector1"
@@ -3621,201 +3356,166 @@ Model {
 	    Annotation {
 	      SID		      "231"
 	      Name		      "OG_1"
-	      Position		      [385, 45, 405, 65]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [395, 67]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -3
+	      TexMode	      "on"
 	    }
 	    Annotation {
 	      SID		      "232"
 	      Name		      "OO_1"
-	      Position		      [385, 107, 405, 127]
-	      InternalMargins	      [0, 0, 0, 0]
-	      FixedHeight	      off
-	      FixedWidth	      off
+	      Position		      [395, 129]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
-	      Interpreter	      "tex"
-	      TeXMode		      on
-	      ZOrder		      -4
+	      TexMode	      "on"
 	    }
 	  }
 	}
 	Line {
-	  ZOrder		  88
 	  SrcBlock		  "FRI from Model"
 	  SrcPort		  1
 	  DstBlock		  "Goto"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  89
 	  SrcBlock		  "FRI from Model"
 	  SrcPort		  2
 	  DstBlock		  "Goto1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  90
 	  SrcBlock		  "COP from Model"
 	  SrcPort		  1
 	  DstBlock		  "Goto2"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  91
 	  SrcBlock		  "COP from Model"
 	  SrcPort		  2
 	  DstBlock		  "Goto3"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  92
 	  SrcBlock		  "FRI from Sensors"
 	  SrcPort		  1
 	  DstBlock		  "Goto4"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  93
 	  SrcBlock		  "FRI from Sensors"
 	  SrcPort		  2
 	  DstBlock		  "Goto5"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  94
 	  SrcBlock		  "COP from Sensors"
 	  SrcPort		  1
 	  DstBlock		  "Goto6"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  95
 	  SrcBlock		  "COP from Sensors"
 	  SrcPort		  2
 	  DstBlock		  "Goto7"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  118
 	  SrcBlock		  "Subsystem"
 	  SrcPort		  1
 	  DstBlock		  "Goto8"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  119
 	  SrcBlock		  "Subsystem"
 	  SrcPort		  2
 	  DstBlock		  "Goto9"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  120
 	  SrcBlock		  "From4"
 	  SrcPort		  1
 	  DstBlock		  "FRI from Model"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  121
 	  SrcBlock		  "From5"
 	  SrcPort		  1
 	  DstBlock		  "FRI from Model"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  122
 	  SrcBlock		  "From6"
 	  SrcPort		  1
 	  DstBlock		  "FRI from Sensors"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  123
 	  SrcBlock		  "From7"
 	  SrcPort		  1
 	  DstBlock		  "FRI from Sensors"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  124
 	  SrcBlock		  "From9"
 	  SrcPort		  1
 	  DstBlock		  "COP from Model"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  125
 	  SrcBlock		  "From8"
 	  SrcPort		  1
 	  DstBlock		  "COP from Model"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  126
 	  SrcBlock		  "From11"
 	  SrcPort		  1
 	  DstBlock		  "COP from Sensors"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  127
 	  SrcBlock		  "From10"
 	  SrcPort		  1
 	  DstBlock		  "COP from Sensors"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  128
 	  SrcBlock		  "Constant"
 	  SrcPort		  1
 	  DstBlock		  "Plotting"
 	  DstPort		  3
 	}
 	Line {
-	  ZOrder		  129
 	  SrcBlock		  "From"
 	  SrcPort		  1
 	  DstBlock		  "Mux"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  130
 	  SrcBlock		  "From1"
 	  SrcPort		  1
 	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  131
 	  SrcBlock		  "Mux"
 	  SrcPort		  1
 	  DstBlock		  "Plotting"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  132
 	  SrcBlock		  "From2"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  133
 	  SrcBlock		  "From3"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  2
 	}
 	Line {
-	  ZOrder		  134
 	  SrcBlock		  "Mux1"
 	  SrcPort		  1
 	  DstBlock		  "Plotting"
@@ -3824,13 +3524,9 @@ Model {
 	Annotation {
 	  SID			  "147"
 	  Name			  "COP"
-	  Position		  [452, 18, 493, 41]
-	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
+	  Position		  [472, 43]
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
-	  ZOrder		  -1
 	  FontName		  "Arial"
 	  FontSize		  18
 	  FontWeight		  "bold"
@@ -3838,13 +3534,9 @@ Model {
 	Annotation {
 	  SID			  "146"
 	  Name			  "FRI"
-	  Position		  [132, 18, 162, 41]
-	  InternalMargins	  [0, 0, 0, 0]
-	  FixedHeight		  off
-	  FixedWidth		  off
+	  Position		  [147, 43]
 	  HorizontalAlignment	  "left"
 	  VerticalAlignment	  "top"
-	  ZOrder		  -2
 	  FontName		  "Arial"
 	  FontSize		  18
 	  FontWeight		  "bold"
@@ -3853,21 +3545,14 @@ Model {
     }
   }
 }
-#Finite State Machines
-#
-#   Stateflow Version 8.1 (R2014a) dated Feb  7 2014, 22:23:55
-#
-#
 Stateflow {
   machine {
     id			    1
-    name		    "computeFRI"
+    name		    "tp4b0f0a6f_10f3_47ec_bc69_e30cab8da546_saveas"
     created		    "09-Jul-2014 17:01:08"
     isLibrary		    0
     firstTarget		    58
-    debug {
-    }
-    sfVersion		    76014001.002
+    sfVersion		    60014000.000006
   }
   chart {
     id			    2
@@ -4819,10 +4504,7 @@ Stateflow {
     firstTransition	    56
     firstJunction	    55
     viewObj		    50
-    visible		    1
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
