@@ -107,14 +107,13 @@ If you wish to change any of the default values you should do it in `${CODYCO_SU
 ###### Using the Toolbox and current controllers
 Before using or creating a new model keep in mind that WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to Simulation > Configuration Parameters > Solver you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
 
-The start dragging and dropping blocks from the Toolbox open Simulink and you should find it under `Whole Body Interface Toolbox` as in the picture bellow:
+To start dragging and dropping blocks from the Toolbox open Simulink and you should find it under `Whole Body Interface Toolbox` or you can open it from the `/controllers` directory typing `WBCLibrary`.
 
-
-All blocks need three basic parameters in order to start. These are: `robotName`, `localName` and `Ts`. These variables can be set in your Matlab command window. Otherwise you can drag and drop 
+All blocks need three basic parameters in order to start. These are: `robotName`, `localName` and `Ts`. These variables can be set in your Matlab command window or in your personal configuration script.
 
 Our most recent controllers and other Simulink diagrams can be found in `${CODYCO_SUPERBUILD_ROOT}/main/WBIToolbox/controllers`. In there you can find:
 
-- **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which sets all joints in impedance where the equilibrium pose is the initial one before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
+- **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which puts all joints in impedance control mode where the equilibrium pose is the initial configuration before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
 
 - **torqueBalancing/controllerWithHandControl.slx**  This is the latest iCub's COM controller. The one used for the video in the beginning of this document.
 
