@@ -35,6 +35,8 @@
 #define VERBOSE   0
 #define TIMING    0
 
+
+
 YARP_DECLARE_DEVICES (icubmod)
 
 using namespace yarp::dev;
@@ -247,7 +249,7 @@ bool robotStatus::robotInit (int btype, int link) {
             break;
         case 2:
             linkName = "com";
-            default_size = DEFAULT_X_COM_SIZE.size();
+            default_size = DEFAULT_X_LINK_SIZE.size();
             break;
         case 3:
             linkName = "r_gripper";
@@ -340,6 +342,9 @@ bool robotStatus::world2baseRototranslation (double* q) {
     fprintf (stderr, "robotStatus::world2baseRototranslation >> qRad           : %s \n", qRad.toString().c_str());
 #endif
     xBase.set4x4Matrix (H_w2b.data());
+#ifdef DEBUG
+    fprintf (stderr, "robotStatus::world2baseRototranslation >> xbase          : %s \n", xBase.toString().c_str());
+#endif    
     return true;
 }
 //=========================================================================================================================
@@ -376,7 +381,8 @@ Vector robotStatus::forwardKinematics (int& linkId) {
         if (world2baseRototranslation (qRad.data())) {
             footLinkId = linkId;
 #ifdef DEBUG
-            fprintf (stderr, "robotStatus::forwardKinematics >> Forward kinematics will be computed with footLinkId: %d and x_pose: %s \n", footLinkId, x_pose.toString().c_str());
+            fprintf (stderr, "robotStatus::forwardKinematics >> Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", footLinkId, x_pose.toString().c_str());
+            fprintf (stderr, "robotStatus::forwardKinematics >> and qRad: %s \n xBase: %s \n ",qRad.toString().c_str(), xBase.toString().c_str());
 #endif
 
             bool ans = wbInterface->forwardKinematics (qRad.data(), xBase, footLinkId, x_pose.data());
@@ -703,6 +709,9 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
             wbi::Frame qBaseFrame = wbi::Frame (qrad_base.data());
             ans = wbInterface->computeCentroidalMomentum (qrad_robot, qBaseFrame, dq_robot, dq_base.data(), h);
 #else
+            #ifdef DEBUG
+                fprintf (stderr, "robotStatus::centroidalMomentum >> Calling the main function \n");
+            #endif
             ans = wbInterface->computeCentroidalMomentum (qrad_robot, xBase, dq_robot, dq_base.data(), h);
 #endif
         }
@@ -1105,6 +1114,7 @@ static void mdlStart (SimStruct* S) {
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
     fprintf (stderr, "mdlStart >> FINISHED\n\n");
+    fprintf (stderr, "I AM GETTING UPDATED!!! \n");
 }
 
 // Function: mdlOutputs =======================================================
@@ -1112,6 +1122,9 @@ static void mdlStart (SimStruct* S) {
 //   In this function, you compute the outputs of your S-function
 //   block.
 static void mdlOutputs (SimStruct* S, int_T tid) {
+#ifdef DEBUG
+    fprintf(stderr,"mdlOutputs: Entering ... \n");
+#endif
     double tinit, tend;
     if (TIMING) tinit = Time::now();
     
@@ -1127,7 +1140,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
     bool blockingRead = false;
 #ifdef DEBUG
-    fprintf (stderr, "mdlOutputs: wbInterface pointers: %p %p \n", robot->tmpContainer, robot->wbInterface);
+    fprintf (stderr, "mdlOutputs: wbInterface pointers: %p %p for btype %d\n", robot->tmpContainer, robot->wbInterface, btype);
 #endif
 
 
@@ -1204,8 +1217,14 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
         }
         robot->getLinkId (linkName, lid);
-
+#ifdef DEBUG
+       fprintf(stderr,"mdlOutputs: RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
+#endif 
         xpose = robot->forwardKinematics (lid);
+
+#ifdef DEBUG
+       fprintf(stderr,"mdlOutputs: RIGHT AFTER CALLING FORWARDKINEMATICS\n");
+#endif 
 
         real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
@@ -1593,8 +1612,13 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
         robot->getLinkId (linkName, lid);
+#ifdef DEBUG
+       fprintf(stderr,"mdlOutputs: RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
+#endif         
         xpose = robot->forwardKinematics (lid);
-
+#ifdef DEBUG
+       fprintf(stderr,"mdlOutputs: RIGHT AFTER CALLING FORWARDKINEMATICS\n");
+#endif  
         real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
             pY3[j] = xpose ( (int) j);

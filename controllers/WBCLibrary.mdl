@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [2013.0, 219.0, 1084.0, 632.0]
+      Location		      [514.0, 177.0, 1084.0, 632.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -47,10 +47,10 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"206"
-	Extents			[1046.0, 462.0]
-	ZoomFactor		[1.5]
-	Offset			[41.791666666666686, -25.333333333333343]
+	LoadSaveID		"369"
+	Extents			[1028.0, 434.0]
+	ZoomFactor		[1.25]
+	Offset			[-63.699999999999989, -103.6]
       }
     }
   }
@@ -58,11 +58,11 @@ Library {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "icub"
+  LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 02 15:21:08 2014"
-  RTWModifiedTimeStamp	  326215265
-  ModelVersionFormat	  "1.%<AutoIncrement:182>"
+  LastModifiedDate	  "Mon Jul 21 18:01:05 2014"
+  RTWModifiedTimeStamp	  327866461
+  ModelVersionFormat	  "1.%<AutoIncrement:183>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1698,7 +1698,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1445"
+		SIDHighWatermark	"1451"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -3975,8 +3975,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Dynamics"
-	    Location		    [2014, 247, 3098, 879]
-	    Open		    off
+	    Location		    [514, 177, 1598, 809]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -4717,7 +4717,7 @@ Library {
 	      }
 	      System {
 		Name			"computeh"
-		Location		[2013, 219, 3097, 851]
+		Location		[829, 208, 1913, 840]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5406,7 +5406,7 @@ Library {
 	      }
 	      System {
 		Name			"dJ*dq LeftFoot"
-		Location		[2013, 219, 3097, 851]
+		Location		[829, 208, 1913, 840]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5454,7 +5454,7 @@ Library {
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "9,robotName,localName,'na'"
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -6505,7 +6505,7 @@ Library {
 	      }
 	      System {
 		Name			"dJ*dq RightFoot"
-		Location		[2013, 219, 3097, 851]
+		Location		[829, 208, 1913, 840]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6554,7 +6554,7 @@ Library {
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "9,robotName,localName,'na'"
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -6850,7 +6850,7 @@ Library {
 	      }
 	      System {
 		Name			"massMatrix"
-		Location		[2013, 219, 3097, 851]
+		Location		[829, 208, 1913, 840]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6897,7 +6897,7 @@ Library {
 		  MaskHideContents	  off
 		  System {
 		    Name		    "massMatrix"
-		    Location		    [2013, 219, 3097, 851]
+		    Location		    [829, 208, 1913, 840]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -13205,7 +13205,7 @@ Library {
       System {
 	Name			"wholeBodyStates"
 	Location		[2013, 219, 3097, 851]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
