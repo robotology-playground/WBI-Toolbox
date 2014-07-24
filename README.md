@@ -85,10 +85,15 @@ You could additionally create an alias to launch Matlab this way:
 ```bash
     chmod +w .matlab7rc.sh
 ```
-Then looking for the variable `LDPATH_SUFFIX` and assign to it the contents of your `DYLD_LIBRARY_PATH`. Finally do:
+Then looking for the variable `LDPATH_SUFFIX` and assign to every instance the contents of your `DYLD_LIBRARY_PATH`. Finally do:
 ```bash
     chmod -w .matlab7rc.sh
 ```
+
+The error message you get in this case might look something like:
+Library not loaded: libyarpwholeBodyinterface.0.0.1.dylib
+Referenced from:
+${CODYCO_SUPERBUILD_DIR}/install/mex/robotState.mexmaci64
 
 ###### Notes on configuration files
 Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03, iCubDarmstadt01 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit` and contain the following parameters later used by the underlying Whole Body Interface:
