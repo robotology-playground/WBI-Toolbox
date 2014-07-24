@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1376"
+    ComputedModelVersion    "1.1377"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -28,9 +28,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jul 23 17:55:06 2014"
-  RTWModifiedTimeStamp	  327864681
-  ModelVersionFormat	  "1.%<AutoIncrement:1376>"
+  LastModifiedDate	  "Thu Jul 24 12:07:13 2014"
+  RTWModifiedTimeStamp	  328103068
+  ModelVersionFormat	  "1.%<AutoIncrement:1377>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -65,7 +65,7 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    9
+    $ObjectID		    7
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "controller"
     signals_		    []
@@ -125,13 +125,13 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      10
+      $ObjectID		      8
       Version		      "1.12.1"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  11
+	  $ObjectID		  9
 	  Version		  "1.12.1"
 	  StartTime		  "0.0"
 	  StopTime		  "60"
@@ -166,7 +166,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  12
+	  $ObjectID		  10
 	  Version		  "1.12.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -198,7 +198,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  13
+	  $ObjectID		  11
 	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
@@ -254,7 +254,7 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  14
+	  $ObjectID		  12
 	  Version		  "1.12.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -344,7 +344,7 @@ Model {
 	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  15
+	  $ObjectID		  13
 	  Version		  "1.12.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -381,7 +381,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  16
+	  $ObjectID		  14
 	  Version		  "1.12.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -396,7 +396,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  17
+	  $ObjectID		  15
 	  Version		  "1.12.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -406,12 +406,12 @@ Model {
 	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
-	  SimParseCustomCode	  on
+	  SimParseCustomCode	  off
 	  SimBuildMode		  "sf_incremental_build"
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  18
+	  $ObjectID		  16
 	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
@@ -472,7 +472,7 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      19
+	      $ObjectID		      17
 	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
@@ -538,7 +538,7 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      20
+	      $ObjectID		      18
 	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
@@ -627,7 +627,7 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    10
+    $ObjectID		    8
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -857,7 +857,7 @@ Model {
   }
   System {
     Name		    "balancingController"
-    Location		    [197, 67, 1678, 1005]
+    Location		    [99, 61, 939, 1084]
     Open		    off
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -871,7 +871,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "710"
+    SIDHighWatermark	    "711"
     Block {
       BlockType		      SubSystem
       Name		      "Subsystem"
@@ -903,7 +903,7 @@ Model {
       MaskValueString	      "'iCubGenova01'|0.01|'dynamicBalancing'"
       System {
 	Name			"Subsystem"
-	Location		[197, 67, 1678, 1005]
+	Location		[99, 61, 939, 1084]
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -915,7 +915,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"40"
 	Block {
 	  BlockType		  Constant
 	  Name			  "\n\n  "
@@ -973,7 +973,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "CoM "
-	    Location		    [197, 67, 1678, 1005]
+	    Location		    [163, 45, 1692, 1218]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1031,7 +1031,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"holder1"
-		Location		[1531, 45, 3106, 1781]
+		Location		[1497, 45, 3120, 2016]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1271,7 +1271,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "M(q) h(q,dq) g(q)"
-	    Location		    [567, 0, 2247, 1023]
+	    Location		    [533, 45, 2261, 1303]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1509,12 +1509,11 @@ Model {
 	Block {
 	  BlockType		  Reference
 	  Name			  "Set Torques"
-	  SID			  "402"
+	  SID			  "711"
 	  Ports			  [1]
 	  Position		  [1620, 498, 1690, 542]
-	  ZOrder		  185
-	  BackgroundColor	  "[0.941176, 0.415686, 0.192157]"
-	  ShowName		  off
+	  ZOrder		  216
+	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
 	  LibraryVersion	  "1.186"
 	  SourceBlock		  "WBCLibrary/wholeBodyActuators/Set Torques"
 	  SourceType		  "Set Joint Torques   "
@@ -1538,7 +1537,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "base + dq'"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1685,7 +1684,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "base + q"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1790,7 +1789,7 @@ Model {
 	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "controllerMatlab"
-	    Location		    [121, 45, 868, 1245]
+	    Location		    [87, 45, 882, 1480]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1803,7 +1802,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "94"
+	    SIDHighWatermark	    "98"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "q"
@@ -1950,20 +1949,20 @@ Model {
 	    Block {
 	      BlockType		      Demux
 	      Name		      " Demux "
-	      SID		      "3::72"
+	      SID		      "3::96"
 	      Ports		      [1, 1]
-	      Position		      [270, 570, 320, 610]
-	      ZOrder		      56
+	      Position		      [270, 440, 320, 480]
+	      ZOrder		      76
 	      Outputs		      "1"
 	    }
 	    Block {
 	      BlockType		      S-Function
 	      Name		      " SFunction "
-	      SID		      "3::71"
+	      SID		      "3::95"
 	      Tag		      "Stateflow S-Function balancingController 2"
 	      Ports		      [16, 3]
-	      Position		      [180, 109, 230, 571]
-	      ZOrder		      55
+	      Position		      [180, 100, 230, 440]
+	      ZOrder		      75
 	      FunctionName	      "sf_sfun"
 	      PortCounts	      "[16 3]"
 	      EnableBusSupport	      on
@@ -1983,9 +1982,9 @@ Model {
 	    Block {
 	      BlockType		      Terminator
 	      Name		      " Terminator "
-	      SID		      "3::74"
-	      Position		      [460, 581, 480, 599]
-	      ZOrder		      58
+	      SID		      "3::98"
+	      Position		      [460, 451, 480, 469]
+	      ZOrder		      78
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -2149,7 +2148,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "emergency stop: joint limits"
-	    Location		    [197, 67, 1678, 1005]
+	    Location		    [99, 61, 939, 1084]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2225,7 +2224,7 @@ Model {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function"
-		Location		[189, 219, 840, 949]
+		Location		[155, 100, 854, 1065]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -2238,7 +2237,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"28"
+		SIDHighWatermark	"32"
 		Block {
 		  BlockType		  Inport
 		  Name			  "umin"
@@ -2277,20 +2276,20 @@ Model {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "360::26"
+		  SID			  "360::30"
 		  Ports			  [1, 1]
 		  Position		  [270, 205, 320, 245]
-		  ZOrder		  6
+		  ZOrder		  10
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "360::25"
+		  SID			  "360::29"
 		  Tag			  "Stateflow S-Function balancingController 4"
 		  Ports			  [4, 2]
 		  Position		  [180, 102, 230, 203]
-		  ZOrder		  5
+		  ZOrder		  9
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[4 2]"
 		  EnableBusSupport	  on
@@ -2304,9 +2303,9 @@ Model {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "360::28"
+		  SID			  "360::32"
 		  Position		  [460, 216, 480, 234]
-		  ZOrder		  8
+		  ZOrder		  12
 		}
 		Block {
 		  BlockType		  Outport
@@ -2421,7 +2420,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "feet dJdq"
-	    Location		    [197, 67, 1678, 1005]
+	    Location		    [163, 45, 1692, 1218]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2567,7 +2566,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "feetJacobians"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2665,7 +2664,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "holder1"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2833,7 +2832,7 @@ Model {
 	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "trajectoryGeneratorCoM"
-	    Location		    [121, 45, 868, 1245]
+	    Location		    [87, 45, 882, 1480]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2846,7 +2845,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "60"
+	    SIDHighWatermark	    "64"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "xCom0"
@@ -2867,20 +2866,20 @@ Model {
 	    Block {
 	      BlockType		      Demux
 	      Name		      " Demux "
-	      SID		      "70::58"
+	      SID		      "70::62"
 	      Ports		      [1, 1]
-	      Position		      [270, 205, 320, 245]
-	      ZOrder		      44
+	      Position		      [270, 160, 320, 200]
+	      ZOrder		      48
 	      Outputs		      "1"
 	    }
 	    Block {
 	      BlockType		      S-Function
 	      Name		      " SFunction "
-	      SID		      "70::57"
+	      SID		      "70::61"
 	      Tag		      "Stateflow S-Function balancingController 1"
 	      Ports		      [2, 2]
-	      Position		      [180, 104, 230, 206]
-	      ZOrder		      43
+	      Position		      [180, 100, 230, 160]
+	      ZOrder		      47
 	      FunctionName	      "sf_sfun"
 	      PortCounts	      "[2 2]"
 	      EnableBusSupport	      on
@@ -2894,9 +2893,9 @@ Model {
 	    Block {
 	      BlockType		      Terminator
 	      Name		      " Terminator "
-	      SID		      "70::60"
-	      Position		      [460, 216, 480, 234]
-	      ZOrder		      46
+	      SID		      "70::64"
+	      Position		      [460, 171, 480, 189]
+	      ZOrder		      50
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -3131,7 +3130,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "tp92b83f66_5123_479d_bb63_0a778fb0f430_saveas"
+    name		    "tp4e5f4df8_ef26_441b_982c_f38cb220472e_saveas"
     created		    "18-Feb-2014 10:14:40"
     isLibrary		    0
     firstTarget		    43
@@ -3140,15 +3139,15 @@ Stateflow {
   chart {
     id			    2
     name		    "Subsystem/trajectoryGeneratorCoM"
-    windowPosition	    [498.833 20 135 880]
+    windowPosition	    [317.561 9.875 118 760]
     viewLimits		    [0 112 0 601]
-    screen		    [1 1 3280 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 3 0 0]
     firstTransition	    8
     firstJunction	    7
     viewObj		    2
     machine		    1
-    ssIdHighWaterMark	    28
+    ssIdHighWaterMark	    6
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    4
@@ -3157,6 +3156,7 @@ Stateflow {
     eml {
       name		      "fcn"
     }
+    supportVariableSizing   0
   }
   state {
     id			    3
@@ -3177,11 +3177,15 @@ Stateflow {
       "2*pi*f*t)*e3;\nxDDcomDes  =        -A*(2*pi*f)^2*sin(2*pi*f*t)*e3;\n\nDesired_x_dx_ddx_CoM = [xcomDes,xDcomDes,x"
       "DDcomDes];"
       editorLayout	      "100 M4x1[10 5 700 500]"
+      fimathString	      "fimath(...\n'RoundMode', 'floor',...\n'OverflowMode', 'wrap',...\n'ProductMode', 'KeepLSB', "
+      "'ProductWordLength', 32,...\n'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n'CastBeforeSum', true)"
+      fimathForFiConstructors FimathMatlabFactoryDefault
+      emlDefaultFimath	      FimathUserSpecified
     }
   }
   data {
     id			    4
-    ssIdNumber		    26
+    ssIdNumber		    4
     name		    "Desired_x_dx_ddx_CoM"
     linkNode		    [2 0 5]
     scope		    OUTPUT_DATA
@@ -3203,7 +3207,7 @@ Stateflow {
   }
   data {
     id			    5
-    ssIdNumber		    7
+    ssIdNumber		    5
     name		    "xCom0"
     linkNode		    [2 4 6]
     scope		    INPUT_DATA
@@ -3225,7 +3229,7 @@ Stateflow {
   }
   data {
     id			    6
-    ssIdNumber		    28
+    ssIdNumber		    6
     name		    "t"
     linkNode		    [2 5 0]
     scope		    INPUT_DATA
@@ -3287,15 +3291,15 @@ Stateflow {
   chart {
     id			    10
     name		    "Subsystem/controllerMatlab"
-    windowPosition	    [498.833 20 135 880]
+    windowPosition	    [317.561 9.875 118 760]
     viewLimits		    [0 112 0 601]
-    screen		    [1 1 3280 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 11 0 0]
     firstTransition	    31
     firstJunction	    30
     viewObj		    10
     machine		    1
-    ssIdHighWaterMark	    65
+    ssIdHighWaterMark	    21
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    12
@@ -3304,6 +3308,7 @@ Stateflow {
     eml {
       name		      "fcn"
     }
+    supportVariableSizing   0
   }
   state {
     id			    11
@@ -3335,11 +3340,15 @@ Stateflow {
       "edances.*(q-qInit);\n\ntau = tauForDesiredFeetForces + N0*tauForImpedenceBehaviour;\n\nCoMError    = xcom - Desi"
       "red_x_dx_ddx_CoM(:,1);\nnormCoMError  = norm(CoMError);\n\n\n"
       editorLayout	      "100 M4x1[10 5 700 500]"
+      fimathString	      "fimath(...\n'RoundMode', 'floor',...\n'OverflowMode', 'wrap',...\n'ProductMode', 'KeepLSB', "
+      "'ProductWordLength', 32,...\n'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n'CastBeforeSum', true)"
+      fimathForFiConstructors FimathMatlabFactoryDefault
+      emlDefaultFimath	      FimathUserSpecified
     }
   }
   data {
     id			    12
-    ssIdNumber		    6
+    ssIdNumber		    4
     name		    "q"
     linkNode		    [10 0 13]
     scope		    INPUT_DATA
@@ -3361,7 +3370,7 @@ Stateflow {
   }
   data {
     id			    13
-    ssIdNumber		    29
+    ssIdNumber		    5
     name		    "qInit"
     linkNode		    [10 12 14]
     scope		    INPUT_DATA
@@ -3383,7 +3392,7 @@ Stateflow {
   }
   data {
     id			    14
-    ssIdNumber		    7
+    ssIdNumber		    6
     name		    "qD"
     linkNode		    [10 13 15]
     scope		    INPUT_DATA
@@ -3405,7 +3414,7 @@ Stateflow {
   }
   data {
     id			    15
-    ssIdNumber		    8
+    ssIdNumber		    7
     name		    "M"
     linkNode		    [10 14 16]
     scope		    INPUT_DATA
@@ -3427,7 +3436,7 @@ Stateflow {
   }
   data {
     id			    16
-    ssIdNumber		    9
+    ssIdNumber		    8
     name		    "h"
     linkNode		    [10 15 17]
     scope		    INPUT_DATA
@@ -3449,7 +3458,7 @@ Stateflow {
   }
   data {
     id			    17
-    ssIdNumber		    55
+    ssIdNumber		    9
     name		    "g"
     linkNode		    [10 16 18]
     scope		    INPUT_DATA
@@ -3471,7 +3480,7 @@ Stateflow {
   }
   data {
     id			    18
-    ssIdNumber		    42
+    ssIdNumber		    10
     name		    "H"
     linkNode		    [10 17 19]
     scope		    INPUT_DATA
@@ -3493,7 +3502,7 @@ Stateflow {
   }
   data {
     id			    19
-    ssIdNumber		    35
+    ssIdNumber		    11
     name		    "PosRightFoot"
     linkNode		    [10 18 20]
     scope		    INPUT_DATA
@@ -3515,7 +3524,7 @@ Stateflow {
   }
   data {
     id			    20
-    ssIdNumber		    10
+    ssIdNumber		    12
     name		    "feetJacobians"
     linkNode		    [10 19 21]
     scope		    INPUT_DATA
@@ -3537,7 +3546,7 @@ Stateflow {
   }
   data {
     id			    21
-    ssIdNumber		    5
+    ssIdNumber		    13
     name		    "tau"
     linkNode		    [10 20 22]
     scope		    OUTPUT_DATA
@@ -3557,7 +3566,7 @@ Stateflow {
   }
   data {
     id			    22
-    ssIdNumber		    22
+    ssIdNumber		    14
     name		    "feetJdqd"
     linkNode		    [10 21 23]
     scope		    INPUT_DATA
@@ -3579,7 +3588,7 @@ Stateflow {
   }
   data {
     id			    23
-    ssIdNumber		    27
+    ssIdNumber		    15
     name		    "xcom"
     linkNode		    [10 22 24]
     scope		    INPUT_DATA
@@ -3601,7 +3610,7 @@ Stateflow {
   }
   data {
     id			    24
-    ssIdNumber		    63
+    ssIdNumber		    16
     name		    "Jcom"
     linkNode		    [10 23 25]
     scope		    INPUT_DATA
@@ -3623,7 +3632,7 @@ Stateflow {
   }
   data {
     id			    25
-    ssIdNumber		    26
+    ssIdNumber		    17
     name		    "Desired_x_dx_ddx_CoM"
     linkNode		    [10 24 26]
     scope		    INPUT_DATA
@@ -3645,7 +3654,7 @@ Stateflow {
   }
   data {
     id			    26
-    ssIdNumber		    16
+    ssIdNumber		    18
     name		    "Gains"
     linkNode		    [10 25 27]
     scope		    INPUT_DATA
@@ -3667,7 +3676,7 @@ Stateflow {
   }
   data {
     id			    27
-    ssIdNumber		    58
+    ssIdNumber		    19
     name		    "Impedances"
     linkNode		    [10 26 28]
     scope		    INPUT_DATA
@@ -3689,7 +3698,7 @@ Stateflow {
   }
   data {
     id			    28
-    ssIdNumber		    30
+    ssIdNumber		    20
     name		    "CoMError"
     linkNode		    [10 27 29]
     scope		    OUTPUT_DATA
@@ -3711,7 +3720,7 @@ Stateflow {
   }
   data {
     id			    29
-    ssIdNumber		    38
+    ssIdNumber		    21
     name		    "IntErrorCoM"
     linkNode		    [10 28 0]
     scope		    INPUT_DATA
@@ -3773,9 +3782,9 @@ Stateflow {
   chart {
     id			    33
     name		    "Subsystem/emergency stop: joint limits/MATLAB Function"
-    windowPosition	    [534.78 45 200 715]
+    windowPosition	    [366.947 20 200 760]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 3040 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 34 0 0]
     firstTransition	    41
     firstJunction	    40
@@ -3790,6 +3799,7 @@ Stateflow {
     eml {
       name		      "checkRange"
     }
+    supportVariableSizing   0
   }
   state {
     id			    34
@@ -3809,11 +3819,15 @@ Stateflow {
       " tol;\nres = sum(res);\nif res==0\n    inRange = 1;\nelse\n    inRange = 0;\n    u < umin + tol | u > umax - tol"
       "\nend"
       editorLayout	      "100 M4x1[10 5 700 500]"
+      fimathString	      "fimath(...\n'RoundMode', 'floor',...\n'OverflowMode', 'wrap',...\n'ProductMode', 'KeepLSB', "
+      "'ProductWordLength', 32,...\n'SumMode', 'KeepLSB', 'SumWordLength', 32,...\n'CastBeforeSum', true)"
+      fimathForFiConstructors FimathMatlabFactoryDefault
+      emlDefaultFimath	      FimathUserSpecified
     }
   }
   data {
     id			    35
-    ssIdNumber		    6
+    ssIdNumber		    4
     name		    "umin"
     linkNode		    [33 0 36]
     scope		    INPUT_DATA
@@ -3835,7 +3849,7 @@ Stateflow {
   }
   data {
     id			    36
-    ssIdNumber		    7
+    ssIdNumber		    5
     name		    "umax"
     linkNode		    [33 35 37]
     scope		    INPUT_DATA
@@ -3857,7 +3871,7 @@ Stateflow {
   }
   data {
     id			    37
-    ssIdNumber		    4
+    ssIdNumber		    6
     name		    "u"
     linkNode		    [33 36 38]
     scope		    INPUT_DATA
@@ -3876,7 +3890,7 @@ Stateflow {
   }
   data {
     id			    38
-    ssIdNumber		    5
+    ssIdNumber		    7
     name		    "inRange"
     linkNode		    [33 37 39]
     scope		    OUTPUT_DATA
@@ -3958,7 +3972,7 @@ Stateflow {
   target {
     id			    43
     name		    "sfun"
-    description		    "Default Simulink S-Function Target."
+    codeFlags		    ""
     machine		    1
     linkNode		    [1 0 0]
   }
