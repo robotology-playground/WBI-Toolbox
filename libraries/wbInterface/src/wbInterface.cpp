@@ -22,7 +22,6 @@
 
 #include "wbInterface.h"
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
-#include <bits/basic_string.h>
 // MASK PARAMETERS --------------------------------------
 #define NPARAMS            4                                // Number of input parameters
 #define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
