@@ -123,7 +123,7 @@ Our most recent controllers and other Simulink diagrams can be found in `${CODYC
 - **torqueBalancingV2/balancingController.mdl**  This is the latest torque based iCub's COM controller. The one used for the video in the beginning of this document.
 
 ###### Details on iCub joints ordering in WBI Toolbox  
-If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox](this wiki page).
+If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
 
 ###### Tested OS
 Linux, Windows, MAC OS X
