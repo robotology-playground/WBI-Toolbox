@@ -1,12 +1,12 @@
 Model {
-  Name			  "test_senddq2"
+  Name			  "test_senddq"
   Version		  7.9
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.33"
+    ComputedModelVersion    "1.29"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -18,7 +18,7 @@ Model {
       Type		      "Cell"
       Dimension		      2
       Cell		      "HDLSubsystem"
-      Cell		      "test_senddq2"
+      Cell		      "test_senddq"
       PropName		      "mdlProps"
     }
   }
@@ -36,11 +36,11 @@ Model {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jorhabib"
+  LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 03 16:04:13 2014"
-  RTWModifiedTimeStamp	  315763450
-  ModelVersionFormat	  "1.%<AutoIncrement:33>"
+  LastModifiedDate	  "Wed Jul 23 18:12:15 2014"
+  RTWModifiedTimeStamp	  328039926
+  ModelVersionFormat	  "1.%<AutoIncrement:29>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -75,14 +75,15 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    2
+    $ObjectID		    11
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "test_senddq2"
+    model_		    "test_senddq"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "test_senddq2"
+      Cell		      "test_senddq"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -134,18 +135,18 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      3
-      Version		      "1.12.0"
+      $ObjectID		      12
+      Version		      "1.12.1"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  4
-	  Version		  "1.12.0"
+	  $ObjectID		  13
+	  Version		  "1.12.1"
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "1"
+	  FixedStep		  "auto"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -161,8 +162,8 @@ Model {
 	  SolverMode		  "Auto"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "FixedStepDiscrete"
-	  SolverName		  "FixedStepDiscrete"
+	  Solver		  "ode45"
+	  SolverName		  "ode45"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -175,8 +176,8 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  5
-	  Version		  "1.12.0"
+	  $ObjectID		  14
+	  Version		  "1.12.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -207,8 +208,8 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  6
-	  Version		  "1.12.0"
+	  $ObjectID		  15
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -263,8 +264,8 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  7
-	  Version		  "1.12.0"
+	  $ObjectID		  16
+	  Version		  "1.12.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -349,10 +350,12 @@ Model {
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
 	  SFUnconditionalTransitionShadowingDiag "warning"
+	  SFUndirectedBroadcastEventsDiag "warning"
+	  SFTransitionActionBeforeConditionDiag	"warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  8
-	  Version		  "1.12.0"
+	  $ObjectID		  17
+	  Version		  "1.12.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -388,8 +391,8 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  9
-	  Version		  "1.12.0"
+	  $ObjectID		  18
+	  Version		  "1.12.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -403,8 +406,8 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  10
-	  Version		  "1.12.0"
+	  $ObjectID		  19
+	  Version		  "1.12.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -418,8 +421,8 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  11
-	  Version		  "1.12.0"
+	  $ObjectID		  20
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -473,8 +476,8 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      12
-	      Version		      "1.12.0"
+	      $ObjectID		      21
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		21
@@ -538,8 +541,8 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      13
-	      Version		      "1.12.0"
+	      $ObjectID		      22
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		16
@@ -567,7 +570,6 @@ Model {
 	      CodeReplacementLibrary  "ANSI_C"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
-	      CodeExecutionProfiling  off
 	      ERTMultiwordLength      256
 	      MultiwordLength	      2048
 	      GenerateFullHeader      on
@@ -598,7 +600,6 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      PortableWordSizes	      off
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    off
 	      AutosarCompliant	      off
@@ -621,29 +622,22 @@ Model {
 	  }
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  14
-	  Version		  "1.12.0"
+	  $ObjectID		  23
+	  Version		  "1.12.1"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    1
-	    Cell		    ""
-	    PropName		    "HDLConfigFile"
-	  }
-	  HDLCActiveTab		  "0"
 	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 212, 72, 1154, 656 ] 
+      ConfigPrmDlgPosition     [ 538, 52, 1438, 732 ] 
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    3
+    $ObjectID		    12
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -757,9 +751,9 @@ Model {
     }
   }
   System {
-    Name		    "test_senddq2"
-    Location		    [729, 502, 1439, 713]
-    Open		    on
+    Name		    "test_senddq"
+    Location		    [557, 147, 1038, 662]
+    Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -770,15 +764,16 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "100"
+    ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "70"
+    SIDHighWatermark	    "71"
     Block {
       BlockType		      SubSystem
       Name		      "Body Parts Mask"
       SID		      "60"
       Ports		      [0, 1]
       Position		      [195, 75, 235, 135]
+      ZOrder		      -1
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -788,8 +783,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Body Parts Mask"
-	Location		[555, 440, 930, 741]
-	Open			on
+	Location		[557, 147, 1038, 662]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -807,6 +802,7 @@ Model {
 	  SID			  "57"
 	  Ports			  [1, 1]
 	  Position		  [210, 120, 240, 150]
+	  ZOrder		  -1
 	  ShowName		  off
 	  LibraryVersion	  "1.44"
 	  SourceBlock		  "simulink_extras/Transformations/Degrees to\nRadians"
@@ -863,7 +859,7 @@ Model {
 	  SID			  "50"
 	  Position		  [25, 28, 115, 52]
 	  ZOrder		  -4
-	  Value			  "[0 50 50]"
+	  Value			  "[0 0 5]"
 	  VectorParams1D	  off
 	}
 	Block {
@@ -881,6 +877,7 @@ Model {
 	  Name			  "mask"
 	  SID			  "61"
 	  Position		  [270, 128, 300, 142]
+	  ZOrder		  -23
 	  IconDisplay		  "Port number"
 	}
 	Line {
@@ -933,15 +930,15 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Joint Angles"
-      SID		      "69"
+      Name		      "Joint Angles1"
+      SID		      "71"
       Ports		      [0, 1]
-      Position		      [390, 83, 455, 127]
-      ZOrder		      -1
-      BackgroundColor	      "orange"
-      LibraryVersion	      "1.196"
+      Position		      [395, 83, 465, 127]
+      ZOrder		      2
+      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
+      LibraryVersion	      "1.186"
       SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
-      SourceType	      ""
+      SourceType	      "Joint Angles"
       robotName		      "robotName"
       localName		      "localName"
     }
@@ -951,6 +948,7 @@ Model {
       SID		      "45"
       Ports		      [1, 1]
       Position		      [495, 90, 525, 120]
+      ZOrder		      -3
       LibraryVersion	      "1.44"
       SourceBlock	      "simulink_extras/Transformations/Radians\nto Degrees"
       SourceType	      "RadiansToDegrees"
@@ -963,7 +961,7 @@ Model {
       Position		      [575, 89, 605, 121]
       ZOrder		      -16
       Floating		      off
-      Location		      [800, 86, 1363, 794]
+      Location		      [789, 95, 1352, 803]
       Open		      off
       NumInputPorts	      "1"
       List {
@@ -989,34 +987,21 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "Set Velocities"
+      Name		      "Set Velocities1"
       SID		      "70"
       Ports		      [1]
-      Position		      [290, 83, 365, 127]
-      ZOrder		      -18
+      Position		      [280, 83, 355, 127]
+      ZOrder		      1
       BackgroundColor	      "[0.976000, 0.635000, 0.140000]"
-      LibraryVersion	      "1.196"
+      LibraryVersion	      "1.186"
       SourceBlock	      "WBCLibrary/wholeBodyActuators/Set Velocities"
-      SourceType	      ""
+      SourceType	      "Set Velocities"
       val		      "4"
       robotName		      "robotName"
       localName		      "localName"
     }
-    Block {
-      BlockType		      Reference
-      Name		      "Soft Real Time"
-      SID		      "30"
-      Ports		      []
-      Position		      [35, 50, 127, 147]
-      DropShadow	      on
-      ShowName		      off
-      LibraryVersion	      "1.7"
-      SourceBlock	      "utility/Soft Real Time"
-      SourceType	      ""
-      x			      "0.050"
-    }
     Line {
-      SrcBlock		      "Joint Angles"
+      SrcBlock		      "Joint Angles1"
       SrcPort		      1
       DstBlock		      "Radians\nto Degrees"
       DstPort		      1
@@ -1030,7 +1015,7 @@ Model {
     Line {
       SrcBlock		      "Body Parts Mask"
       SrcPort		      1
-      DstBlock		      "Set Velocities"
+      DstBlock		      "Set Velocities1"
       DstPort		      1
     }
     Annotation {

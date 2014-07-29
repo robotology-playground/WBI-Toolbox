@@ -85,10 +85,15 @@ You could additionally create an alias to launch Matlab this way:
 ```bash
     chmod +w .matlab7rc.sh
 ```
-Then looking for the variable `LDPATH_SUFFIX` and assign to it the contents of your `DYLD_LIBRARY_PATH`. Finally do:
+Then looking for the variable `LDPATH_SUFFIX` and assign to every instance the contents of your `DYLD_LIBRARY_PATH`. Finally do:
 ```bash
     chmod -w .matlab7rc.sh
 ```
+
+The error message you get in this case might look something like:
+Library not loaded: libyarpwholeBodyinterface.0.0.1.dylib
+Referenced from:
+${CODYCO_SUPERBUILD_DIR}/install/mex/robotState.mexmaci64
 
 ###### Notes on configuration files
 Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03, iCubDarmstadt01 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit` and contain the following parameters later used by the underlying Whole Body Interface:
@@ -115,8 +120,10 @@ Our most recent controllers and other Simulink diagrams can be found in `${CODYC
 
 - **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which puts all joints in impedance control mode where the equilibrium pose is the initial configuration before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
 
-- **torqueBalancing/controllerWithHandControl.slx**  This is the latest iCub's COM controller. The one used for the video in the beginning of this document.
+- **torqueBalancingV2/balancingController.mdl**  This is the latest torque based iCub's COM controller. The one used for the video in the beginning of this document.
 
+###### Details on iCub joints ordering in WBI Toolbox  
+If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
 
 ###### Tested OS
 Linux, Windows, MAC OS X

@@ -26,11 +26,19 @@ Model {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
+<<<<<<< HEAD:controllers/computeFRI.mdl
   LastModifiedBy	  "morteza"
   ModifiedDateFormat	  "%<Auto>"
   LastModifiedDate	  "Sat Jul 26 09:08:39 2014"
   RTWModifiedTimeStamp	  328265984
   ModelVersionFormat	  "1.%<AutoIncrement:155>"
+=======
+  LastModifiedBy	  "daniele"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Wed Jul 23 18:02:11 2014"
+  RTWModifiedTimeStamp	  327518352
+  ModelVersionFormat	  "1.%<AutoIncrement:153>"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -125,14 +133,24 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
+<<<<<<< HEAD:controllers/computeFRI.mdl
       $ObjectID		      2
       Version		      "1.12.0"
+=======
+      $ObjectID		      8
+      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  3
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  9
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  StartTime		  "0.0"
 	  StopTime		  "20"
 	  AbsTol		  "auto"
@@ -166,8 +184,13 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  4
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  10
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -198,8 +221,13 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  5
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  11
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -254,8 +282,13 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  6
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  12
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -342,8 +375,13 @@ Model {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  7
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  13
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -379,8 +417,13 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  8
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  14
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -394,8 +437,13 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  9
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  15
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -409,8 +457,13 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	  $ObjectID		  10
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  16
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -470,8 +523,13 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      $ObjectID		      11
 	      Version		      "1.12.0"
+=======
+	      $ObjectID		      17
+	      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		23
@@ -537,8 +595,13 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      $ObjectID		      12
 	      Version		      "1.12.0"
+=======
+	      $ObjectID		      18
+	      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      Array {
 		Type			"Cell"
 		Dimension		14
@@ -595,7 +658,10 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      PortableWordSizes	      off
+=======
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
@@ -628,7 +694,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
+<<<<<<< HEAD:controllers/computeFRI.mdl
     $ObjectID		    2
+=======
+    $ObjectID		    8
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -809,8 +879,13 @@ Model {
   }
   System {
     Name		    "computeFRI"
+<<<<<<< HEAD:controllers/computeFRI.mdl
     Location		    [172, 360, 545, 659]
     Open		    on
+=======
+    Location		    [0, 24, 1366, 768]
+    Open		    off
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -840,8 +915,13 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Subsystem"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	Location		[107, 188, 1242, 609]
 	Open			on
+=======
+	Location		[0, 24, 1366, 768]
+	Open			off
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -976,7 +1056,7 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -986,6 +1066,14 @@ Model {
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -1001,7 +1089,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -1193,7 +1281,11 @@ Model {
 	      Position		      [40, 76, 110, 204]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      LibraryVersion	      "1.183"
+=======
+	      LibraryVersion	      "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_foot_cartesian_wrench_from_model:o'"
@@ -1331,7 +1423,11 @@ Model {
 	    Annotation {
 	      SID		      "118"
 	      Name		      "FROM MODEL"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Position		      [66, 38]
+=======
+	      Position		      [241, 433]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      FontName		      "Arial"
@@ -1463,7 +1559,7 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -1473,6 +1569,14 @@ Model {
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -1488,7 +1592,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -1680,7 +1784,11 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      LibraryVersion	      "1.183"
+=======
+	      LibraryVersion	      "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_foot_cartesian_wrench:o'"
@@ -1958,7 +2066,7 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -1968,6 +2076,14 @@ Model {
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -1983,7 +2099,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -2175,7 +2291,11 @@ Model {
 	      Position		      [75, 131, 145, 259]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      LibraryVersion	      "1.183"
+=======
+	      LibraryVersion	      "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_ankle_cartesian_wrench_from_model:o'"
@@ -2313,7 +2433,11 @@ Model {
 	    Annotation {
 	      SID		      "43"
 	      Name		      "FROM MODEL"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Position		      [101, 93]
+=======
+	      Position		      [241, 433]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
 	      FontName		      "Arial"
@@ -2445,7 +2569,7 @@ Model {
 	      ZOrder		      26
 	      LibraryVersion	      "1.32"
 	      ErrorFcn		      "Stateflow.Translate.translate"
-	      PermitHierarchicalResolution "ExplicitOnly"
+	      PermitHierarchicalResolution "ParametersOnly"
 	      TreatAsAtomicUnit	      on
 	      MinAlgLoopOccurrences   off
 	      PropExecContextOutsideSubsystem off
@@ -2455,6 +2579,14 @@ Model {
 	      RequestExecContextInheritance off
 	      MaskHideContents	      off
 	      SFBlockType	      "MATLAB Function"
+	      MaskSelfModifiable      on
+	      MaskDisplay	      "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('p"
+	      "rivate/eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'SOF']);"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function1"
 		Location		[219, 337, 814, 775]
@@ -2470,7 +2602,7 @@ Model {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"29"
+		SIDHighWatermark	"253"
 		Block {
 		  BlockType		  Inport
 		  Name			  "m_foot"
@@ -2662,7 +2794,11 @@ Model {
 	      Position		      [215, 471, 285, 599]
 	      ZOrder		      28
 	      BackgroundColor	      "black"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      LibraryVersion	      "1.183"
+=======
+	      LibraryVersion	      "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      SourceBlock	      "WBCLibrary/Utilities/yarp read"
 	      SourceType	      ""
 	      from		      "'/wbdt/joint_ankle_cartesian_wrench:o'"
@@ -2803,7 +2939,11 @@ Model {
 	      Position		      [390, 714]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Interpreter	      "tex"
+=======
+	      TexMode	      "on"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	    }
 	    Annotation {
 	      SID		      "77"
@@ -2811,7 +2951,11 @@ Model {
 	      Position		      [390, 652]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Interpreter	      "tex"
+=======
+	      TexMode	      "on"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	    }
 	    Annotation {
 	      SID		      "76"
@@ -3054,7 +3198,7 @@ Model {
 	  ZOrder		  104
 	  LibraryVersion	  "1.32"
 	  ErrorFcn		  "Stateflow.Translate.translate"
-	  PermitHierarchicalResolution "ExplicitOnly"
+	  PermitHierarchicalResolution "ParametersOnly"
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -3064,6 +3208,14 @@ Model {
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  SFBlockType		  "MATLAB Function"
+	  MaskSelfModifiable	  on
+	  MaskDisplay		  "bgColor = Simulink.Root.ColorString2Rgb(get_param(gcbh, 'BackgroundColor')); image(imread('private/"
+	  "eml_membrane_16.png','png','BackgroundColor',bgColor(1:3)),'center'); disp([10 10 'fcn']);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "Plotting"
 	    Location		    [219, 337, 814, 775]
@@ -3079,7 +3231,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    "23"
+	    SIDHighWatermark	    "253"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u1"
@@ -3220,7 +3372,11 @@ Model {
 	      ZOrder		      90
 	      ForegroundColor	      "blue"
 	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      LibraryVersion	      "1.183"
+=======
+	      LibraryVersion	      "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/LinkFwdKin"
 	      SourceType	      "Link's Forward Kinematics"
 	      robotname		      "robotName"
@@ -3319,7 +3475,11 @@ Model {
 	      Position		      [395, 67]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Interpreter	      "tex"
+=======
+	      TexMode	      "on"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	    }
 	    Annotation {
 	      SID		      "232"
@@ -3327,7 +3487,11 @@ Model {
 	      Position		      [395, 129]
 	      HorizontalAlignment     "left"
 	      VerticalAlignment	      "top"
+<<<<<<< HEAD:controllers/computeFRI.mdl
 	      Interpreter	      "tex"
+=======
+	      TexMode	      "on"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 	    }
 	  }
 	}
@@ -3505,6 +3669,7 @@ Model {
     }
   }
 }
+<<<<<<< HEAD:controllers/computeFRI.mdl
 # Finite State Machines
 #
 #    Stateflow Version 7.6 (R2011b) dated Jan 25 2012, 13:50:40
@@ -3512,14 +3677,20 @@ Model {
 #
 
 
+=======
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
 Stateflow {
   machine {
     id			    1
-    name		    "computeFRI"
+    name		    "tp4b0f0a6f_10f3_47ec_bc69_e30cab8da546_saveas"
     created		    "09-Jul-2014 17:01:08"
     isLibrary		    0
     firstTarget		    58
+<<<<<<< HEAD:controllers/computeFRI.mdl
     sfVersion		    76014001.00040001
+=======
+    sfVersion		    60014000.000006
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3:controllers/compareCOPandFRI.mdl
   }
   chart {
     id			    2
@@ -4472,8 +4643,6 @@ Stateflow {
     firstJunction	    52
     viewObj		    50
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
     type		    EML_CHART

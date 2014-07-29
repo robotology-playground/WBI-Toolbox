@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [514.0, 177.0, 1084.0, 632.0]
+      Location		      [334.0, 206.0, 1084.0, 632.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -46,11 +46,11 @@ Library {
 	$ObjectID		5
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
-	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"369"
+	ViewObjType		"SimulinkTopLevel"
+	LoadSaveID		"0"
 	Extents			[1028.0, 434.0]
-	ZoomFactor		[1.25]
-	Offset			[-63.699999999999989, -103.6]
+	ZoomFactor		[1.75]
+	Offset			[-55.167284056699259, -15.859745990314138]
       }
     }
   }
@@ -60,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 21 18:01:05 2014"
-  RTWModifiedTimeStamp	  327866461
-  ModelVersionFormat	  "1.%<AutoIncrement:183>"
+  LastModifiedDate	  "Wed Jul 23 17:21:57 2014"
+  RTWModifiedTimeStamp	  328036887
+  ModelVersionFormat	  "1.%<AutoIncrement:186>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -852,8 +852,8 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [2013, 219, 3097, 851]
-    Open		    off
+    Location		    [334, 206, 1418, 838]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "black"
@@ -864,7 +864,7 @@ Library {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "214"
+    ZoomFactor		    "175"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "1445"
     Block {
@@ -3939,7 +3939,7 @@ Library {
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[2014, 247, 3098, 879]
+	Location		[514, 177, 1598, 809]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3951,7 +3951,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"175"
+	ZoomFactor		"174"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Dynamics"
@@ -3976,7 +3976,7 @@ Library {
 	  System {
 	    Name		    "Dynamics"
 	    Location		    [514, 177, 1598, 809]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -16333,7 +16333,7 @@ Library {
     Annotation {
       SID		      "1213"
       Name		      "WHOLE BODY INTERFACE TOOLBOX"
-      Position		      [348, 177]
+      Position		      [238, 162]
       ForegroundColor	      "white"
       BackgroundColor	      "black"
       FontName		      "Sans Serif"
@@ -16344,7 +16344,7 @@ Library {
       Name		      "Copyright  2013-2014 Robotics, Brain and Cognitive Sciences Department, Istituto Italiano di Tecnol"
       "ogia\nThis software was supported by the FP7 EU Project CoDyCO (No. 600716 ICT 2011.2.1 Cognitive Systems and Ro"
       "botics (b))\nhttp://www.codyco.eu"
-      Position		      [380, 212]
+      Position		      [240, 187]
       ForegroundColor	      "white"
       BackgroundColor	      "black"
       FontSize		      5

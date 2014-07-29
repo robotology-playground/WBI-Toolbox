@@ -6,7 +6,11 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
+<<<<<<< HEAD
     ComputedModelVersion    "1.1386"
+=======
+    ComputedModelVersion    "1.1377"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -28,9 +32,15 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "morteza"
   ModifiedDateFormat	  "%<Auto>"
+<<<<<<< HEAD
   LastModifiedDate	  "Thu Jul 24 09:18:27 2014"
   RTWModifiedTimeStamp	  328094305
   ModelVersionFormat	  "1.%<AutoIncrement:1386>"
+=======
+  LastModifiedDate	  "Thu Jul 24 12:07:13 2014"
+  RTWModifiedTimeStamp	  328103068
+  ModelVersionFormat	  "1.%<AutoIncrement:1377>"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -65,7 +75,11 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
+<<<<<<< HEAD
     $ObjectID		    1
+=======
+    $ObjectID		    7
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "controller"
     overrideMode_	    [0.0]
@@ -124,14 +138,24 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
+<<<<<<< HEAD
       $ObjectID		      2
       Version		      "1.12.0"
+=======
+      $ObjectID		      8
+      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
+<<<<<<< HEAD
 	  $ObjectID		  3
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  9
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  StartTime		  "0.0"
 	  StopTime		  "60"
 	  AbsTol		  "auto"
@@ -165,8 +189,13 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
+<<<<<<< HEAD
 	  $ObjectID		  4
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  10
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -197,8 +226,13 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
+<<<<<<< HEAD
 	  $ObjectID		  5
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  11
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -253,8 +287,13 @@ Model {
 	  ParallelExecutionInRapidAccelerator on
 	}
 	Simulink.DebuggingCC {
+<<<<<<< HEAD
 	  $ObjectID		  6
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  12
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -341,8 +380,13 @@ Model {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
+<<<<<<< HEAD
 	  $ObjectID		  7
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  13
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -378,8 +422,13 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
+<<<<<<< HEAD
 	  $ObjectID		  8
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  14
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -393,8 +442,13 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
+<<<<<<< HEAD
 	  $ObjectID		  9
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  15
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -408,8 +462,13 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
+<<<<<<< HEAD
 	  $ObjectID		  10
 	  Version		  "1.12.0"
+=======
+	  $ObjectID		  16
+	  Version		  "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -469,8 +528,13 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
+<<<<<<< HEAD
 	      $ObjectID		      11
 	      Version		      "1.12.0"
+=======
+	      $ObjectID		      17
+	      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	      Array {
 		Type			"Cell"
 		Dimension		22
@@ -535,8 +599,13 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
+<<<<<<< HEAD
 	      $ObjectID		      12
 	      Version		      "1.12.0"
+=======
+	      $ObjectID		      18
+	      Version		      "1.12.1"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	      Array {
 		Type			"Cell"
 		Dimension		15
@@ -626,7 +695,11 @@ Model {
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
+<<<<<<< HEAD
     $ObjectID		    2
+=======
+    $ObjectID		    8
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
   }
   ExplicitPartitioning	  off
   WSDataSource		  "MATLAB Code"
@@ -857,8 +930,13 @@ Model {
   }
   System {
     Name		    "balancingController"
+<<<<<<< HEAD
     Location		    [870, 361, 1259, 543]
     Open		    on
+=======
+    Location		    [99, 61, 939, 1084]
+    Open		    off
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -903,7 +981,11 @@ Model {
       MaskValueString	      "'icubGazeboSim'|Ts|'dynamicBalancing'"
       System {
 	Name			"Subsystem"
+<<<<<<< HEAD
 	Location		[211, 123, 1077, 758]
+=======
+	Location		[99, 61, 939, 1084]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	Open			off
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -915,7 +997,11 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
+<<<<<<< HEAD
 	ZoomFactor		"64"
+=======
+	ZoomFactor		"40"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	Block {
 	  BlockType		  Constant
 	  Name			  "\n\n  "
@@ -973,7 +1059,11 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "CoM "
+<<<<<<< HEAD
 	    Location		    [309, 242, 992, 457]
+=======
+	    Location		    [163, 45, 1692, 1218]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1031,7 +1121,7 @@ Model {
 	      MaskHideContents	      off
 	      System {
 		Name			"holder1"
-		Location		[1531, 45, 3106, 1781]
+		Location		[1497, 45, 3120, 2016]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -1271,7 +1361,11 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "M(q) h(q,dq) g(q)"
+<<<<<<< HEAD
 	    Location		    [257, 167, 852, 576]
+=======
+	    Location		    [533, 45, 2261, 1303]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1509,13 +1603,20 @@ Model {
 	Block {
 	  BlockType		  Reference
 	  Name			  "Set Torques"
-	  SID			  "402"
+	  SID			  "711"
 	  Ports			  [1]
+<<<<<<< HEAD
 	  Position		  [1220, 248, 1290, 292]
 	  ZOrder		  185
 	  BackgroundColor	  "[0.941176, 0.415686, 0.192157]"
 	  ShowName		  off
 	  LibraryVersion	  "1.183"
+=======
+	  Position		  [1620, 498, 1690, 542]
+	  ZOrder		  216
+	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
+	  LibraryVersion	  "1.186"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	  SourceBlock		  "WBCLibrary/wholeBodyActuators/Set Torques"
 	  SourceType		  "Set Joint Torques   "
 	  val			  "6"
@@ -1538,7 +1639,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "base + dq'"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1685,7 +1786,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "base + q"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -1790,7 +1891,7 @@ Model {
 	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "controllerMatlab"
-	    Location		    [121, 45, 868, 1245]
+	    Location		    [87, 45, 882, 1480]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2149,7 +2250,11 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "emergency stop: joint limits"
+<<<<<<< HEAD
 	    Location		    [273, 287, 934, 547]
+=======
+	    Location		    [99, 61, 939, 1084]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2225,7 +2330,7 @@ Model {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function"
-		Location		[189, 219, 840, 949]
+		Location		[155, 100, 854, 1065]
 		Open			off
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -2421,7 +2526,11 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "feet dJdq"
+<<<<<<< HEAD
 	    Location		    [241, 291, 799, 480]
+=======
+	    Location		    [163, 45, 1692, 1218]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2567,7 +2676,11 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "feetJacobians"
+<<<<<<< HEAD
 	    Location		    [328, 378, 751, 582]
+=======
+	    Location		    [1647, 45, 3375, 1330]
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2665,7 +2778,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "holder1"
-	    Location		    [1681, 0, 3361, 1050]
+	    Location		    [1647, 45, 3375, 1330]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2833,7 +2946,7 @@ Model {
 	  MaskIconUnits		  "normalized"
 	  System {
 	    Name		    "trajectoryGeneratorCoM"
-	    Location		    [121, 45, 868, 1245]
+	    Location		    [87, 45, 882, 1480]
 	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3138,7 +3251,11 @@ Model {
 Stateflow {
   machine {
     id			    1
+<<<<<<< HEAD
     name		    "balancingController"
+=======
+    name		    "tp4e5f4df8_ef26_441b_982c_f38cb220472e_saveas"
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     created		    "18-Feb-2014 10:14:40"
     isLibrary		    0
     firstTarget		    43
@@ -3147,9 +3264,9 @@ Stateflow {
   chart {
     id			    2
     name		    "Subsystem/trajectoryGeneratorCoM"
-    windowPosition	    [498.833 20 135 880]
+    windowPosition	    [317.561 9.875 118 760]
     viewLimits		    [0 112 0 601]
-    screen		    [1 1 3280 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 3 0 0]
     firstTransition	    5
     firstJunction	    4
@@ -3193,6 +3310,7 @@ Stateflow {
   }
   junction {
     id			    4
+<<<<<<< HEAD
     position		    [23.5747 49.5747 7]
     chart		    2
     linkNode		    [2 0 0]
@@ -3226,6 +3344,8 @@ Stateflow {
   }
   data {
     id			    6
+=======
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    4
     name		    "Desired_x_dx_ddx_CoM"
     linkNode		    [2 0 7]
@@ -3247,7 +3367,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    7
+=======
+    id			    5
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    5
     name		    "xCom0"
     linkNode		    [2 6 8]
@@ -3269,7 +3393,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    8
+=======
+    id			    6
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    6
     name		    "t"
     linkNode		    [2 7 0]
@@ -3299,9 +3427,9 @@ Stateflow {
   chart {
     id			    10
     name		    "Subsystem/controllerMatlab"
-    windowPosition	    [498.833 20 135 880]
+    windowPosition	    [317.561 9.875 118 760]
     viewLimits		    [0 112 0 601]
-    screen		    [1 1 3280 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 11 0 0]
     firstTransition	    13
     firstJunction	    12
@@ -3356,6 +3484,7 @@ Stateflow {
   }
   junction {
     id			    12
+<<<<<<< HEAD
     position		    [23.5747 49.5747 7]
     chart		    10
     linkNode		    [10 0 0]
@@ -3389,6 +3518,8 @@ Stateflow {
   }
   data {
     id			    14
+=======
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    4
     name		    "q"
     linkNode		    [10 0 15]
@@ -3410,7 +3541,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    15
+=======
+    id			    13
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    5
     name		    "qInit"
     linkNode		    [10 14 16]
@@ -3432,7 +3567,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    16
+=======
+    id			    14
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    6
     name		    "qD"
     linkNode		    [10 15 17]
@@ -3454,7 +3593,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    17
+=======
+    id			    15
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    7
     name		    "M"
     linkNode		    [10 16 18]
@@ -3476,7 +3619,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    18
+=======
+    id			    16
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    8
     name		    "h"
     linkNode		    [10 17 19]
@@ -3498,7 +3645,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    19
+=======
+    id			    17
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    9
     name		    "g"
     linkNode		    [10 18 20]
@@ -3520,7 +3671,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    20
+=======
+    id			    18
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    10
     name		    "H"
     linkNode		    [10 19 21]
@@ -3542,7 +3697,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    21
+=======
+    id			    19
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    11
     name		    "PosRightFoot"
     linkNode		    [10 20 22]
@@ -3564,7 +3723,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    22
+=======
+    id			    20
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    12
     name		    "feetJacobians"
     linkNode		    [10 21 23]
@@ -3586,7 +3749,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    23
+=======
+    id			    21
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    13
     name		    "tau"
     linkNode		    [10 22 24]
@@ -3606,7 +3773,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    24
+=======
+    id			    22
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    14
     name		    "feetJdqd"
     linkNode		    [10 23 25]
@@ -3628,7 +3799,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    25
+=======
+    id			    23
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    15
     name		    "xcom"
     linkNode		    [10 24 26]
@@ -3650,7 +3825,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    26
+=======
+    id			    24
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    16
     name		    "Jcom"
     linkNode		    [10 25 27]
@@ -3672,7 +3851,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    27
+=======
+    id			    25
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    17
     name		    "Desired_x_dx_ddx_CoM"
     linkNode		    [10 26 28]
@@ -3694,7 +3877,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    28
+=======
+    id			    26
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    18
     name		    "Gains"
     linkNode		    [10 27 29]
@@ -3716,7 +3903,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    29
+=======
+    id			    27
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    19
     name		    "Impedances"
     linkNode		    [10 28 30]
@@ -3738,7 +3929,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    30
+=======
+    id			    28
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    20
     name		    "CoMError"
     linkNode		    [10 29 31]
@@ -3760,7 +3955,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    31
+=======
+    id			    29
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    21
     name		    "IntErrorCoM"
     linkNode		    [10 30 0]
@@ -3790,9 +3989,9 @@ Stateflow {
   chart {
     id			    33
     name		    "Subsystem/emergency stop: joint limits/MATLAB Function"
-    windowPosition	    [534.78 45 200 715]
+    windowPosition	    [366.947 20 200 760]
     viewLimits		    [0 156.75 0 153.75]
-    screen		    [1 1 3040 1200 1.25]
+    screen		    [1 1 1680 1050 1.25]
     treeNode		    [0 34 0 0]
     firstTransition	    36
     firstJunction	    35
@@ -3835,6 +4034,7 @@ Stateflow {
   }
   junction {
     id			    35
+<<<<<<< HEAD
     position		    [23.5747 49.5747 7]
     chart		    33
     linkNode		    [33 0 0]
@@ -3868,6 +4068,8 @@ Stateflow {
   }
   data {
     id			    37
+=======
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    4
     name		    "umin"
     linkNode		    [33 0 38]
@@ -3889,7 +4091,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    38
+=======
+    id			    36
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    5
     name		    "umax"
     linkNode		    [33 37 39]
@@ -3911,7 +4117,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    39
+=======
+    id			    37
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    6
     name		    "u"
     linkNode		    [33 38 40]
@@ -3930,7 +4140,11 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+<<<<<<< HEAD
     id			    40
+=======
+    id			    38
+>>>>>>> 1339342a45e111716dd26a025998c4d7b01bfde3
     ssIdNumber		    7
     name		    "inRange"
     linkNode		    [33 39 41]
