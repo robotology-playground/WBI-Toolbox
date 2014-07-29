@@ -5,7 +5,7 @@ if exist(wbclibroot,'dir')
     controllersDir = [wbclibroot filesep 'controllers'];
     addpath(controllersDir);
     cd(controllersDir);
-    cd /home/jorhabib/Software/codyco-superbuild/build/install/mex; 
+    cd /home/morteza/icub_software/codyco-superbuild/build/install/mex; 
     libDir = pwd; 
     imgDir = [controllersDir filesep 'img'];
     addpath(libDir);        %Path where mex libs are compiled
@@ -13,9 +13,6 @@ if exist(wbclibroot,'dir')
     cd(controllersDir);     % Go back to controllers dir
     delete([pwd filesep 'pathdef.m'])
     if (~savepath([pwd filesep 'pathdef.m']))
-        usrpath = userpath;
-        usrpath(end)=[];   
-%         copyfile([controllersDir '']);
         disp(sprintf('ATTENTION: In the current directory you should now see a file called pathdef.m. \nIf this file is not empty please replace your Matlab pathdef.m in'));
         disp([matlabroot '/toolbox/local' ' with this new file in order to make the installation  of the toolbox permanent.']); 
         disp(sprintf('Due to permissions restrictions this step must be done by the user.'));
@@ -24,7 +21,3 @@ if exist(wbclibroot,'dir')
         disp('There was an error generating pathdef.m To proceed please manually add the contents of variables controllersDir, imgDir and libDir to your matlabpath')
     end
 end
-
-addpath(genpath('/home/daniele/MATLAB'))
-addpath(genpath('/home/daniele/src/codyco/build'))
-addpath(genpath('/home/daniele/src/codyco/src/simulink'))
