@@ -23,16 +23,19 @@
 #define S_FUNCTION_NAME yRead
 
 // PARAMETERS MASK
-#define NPARAMS 3                                                   // Number of input parameters
+#define NPARAMS 5                              // Number of input parameters
 
-#define PARAM_IDX_1 0                                               // FROM port name
-#define PARAM_IDX_2 1						    // TO port name
-#define PARAM_IDX_3 2						    // Size of the port you're reading
+#define PARAM_IDX_1 0                           // FROM port name
+#define PARAM_IDX_2 1                           // TO port name
+#define PARAM_IDX_3 2                           // Size of the port you're reading
+#define PARAM_IDX_4 3                           // boolean for blocking reading
+#define PARAM_IDX_5 4                           // boolean to stream timestamp
 #define SIZE_READING_PORT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_3))    // Get first input parameter from mask
+#define BLOCKING  mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4)
+#define TIMESTAMP mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5)
 
 // Need to include simstruc.h for the definition of the SimStruct and
 // its associated macro definitions.
-#include "matrix.h"
 #include "simstruc.h"
 
 #define IS_PARAM_DOUBLE(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
@@ -72,6 +75,7 @@ static void mdlInitializeSizes(SimStruct *S)
 
     // Parameter mismatch will be reported by Simulink
     if (ssGetNumSFcnParams(S) != ssGetSFcnParamsCount(S)) {
+        cout << "Number of paramaeters different from those defined" << endl;
         return;
     }
 
@@ -91,10 +95,8 @@ static void mdlInitializeSizes(SimStruct *S)
     // Reserve place for C++ object
     ssSetNumPWork(S, 1);
 
-    // DWork vectors
-    ssSetNumDWork(S, 1);
-    ssSetDWorkWidth(S, 0, 1);
-    ssSetDWorkDataType(S, 0, SS_DOUBLE);
+    // IWork vector for booleans
+    ssSetNumIWork(S, 2);
 
     ssSetSimStateCompliance(S, USE_CUSTOM_SIM_STATE);
 
@@ -176,7 +178,6 @@ static void mdlStart(SimStruct *S)
         ssSetErrorStatus(S,"Cannot retrieve string from parameter 1!! \n");
         return;
     }
-    //string port_name = String;
     
     char *port_name = String;				//FROM port name
 
@@ -196,12 +197,18 @@ static void mdlStart(SimStruct *S)
     toPort = new BufferedPort<Vector>;
     toPort->open(toPort_name);
     ConstString toPortName = toPort->getName();
-    
     cout<<"[From] Port name will be: "<<port_name<<endl;
     cout<<"[To] Port name will be:   "<<toPort->getName()<<endl;
 
-
     ssGetPWork(S)[0] = toPort;
+    
+    int_T blocking = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4));
+    cout << "Blocking? : " << blocking << endl;
+    ssGetIWork(S)[0] = blocking;
+    
+    int_T timestamp = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5));
+    cout << "Timestamp? : " << timestamp << endl;
+    ssGetIWork(S)[1] = timestamp;
     
     Network::connect(port_name,toPortName);
 }
@@ -213,26 +220,20 @@ static void mdlStart(SimStruct *S)
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     BufferedPort<Vector> *toPort = static_cast<BufferedPort<Vector>*>(ssGetPWork(S)[0]);
-    
-    Vector *v = toPort->read(false); // Read from the port.  Waits until data arrives.
+    int_T blocking = ssGetIWork(S)[0];
+    Vector *v = toPort->read((boolean_T) blocking); // Read from the port.  Waits until data arrives.
     if (v!=NULL)
     {
         for (int i = 0; i < SIZE_READING_PORT; i++)
         {
             real_T *pY = (real_T *)ssGetOutputPortSignal(S,i);
             int_T widthPort = ssGetOutputPortWidth(S,i);
-            if (widthPort == 1)
-            {
-                for(int_T j=0; j<widthPort; j++)
-                    if (i < (v->length())){
-                        pY[j] = v->data()[i];
-			//cout<<v->data()[i]<<" ";
-		    }
-                    else
-                        pY[j] = 0;
+            for(int_T j=0; j<widthPort; j++){
+                if (i < (v->length()))
+                    pY[j] = v->data()[i];
+                else
+                    pY[j] = 0;
             }
-            else
-                cout << "ERROR: something wrong with port dimensions \n";
         }
     }
 }
