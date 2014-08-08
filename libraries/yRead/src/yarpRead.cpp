@@ -237,7 +237,6 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     Vector *v = toPort->read((boolean_T) blocking); // Read from the port.  Waits until data arrives.
     if (v!=NULL)
     {
-        fprintf(stderr,"TIMESTAMP IS: \n");
         if (TIMESTAMP) {
             yarp::os::Stamp timestamp;
             toPort->getEnvelope(timestamp);
