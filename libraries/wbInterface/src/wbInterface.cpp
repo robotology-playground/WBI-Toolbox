@@ -114,7 +114,7 @@ bool robotStatus::robotConfig() {
     if (tmpContainer != NULL) {
         wbInterface = (wholeBodyInterface*) tmpContainer;
 // #ifdef DEBUG
-        fprintf (stderr, "robotStatus::robotConfig >> Copying wholeBodyInterface POINTER!\n");
+        fprintf (stderr, "[robotStatus::robotConfig] Copying wholeBodyInterface POINTER!\n");
 // #endif
     } else {
         ResourceFinder rf;
@@ -149,14 +149,14 @@ bool robotStatus::robotConfig() {
             fprintf (stderr, "[robotStatus::robotConfig] icub_fixed is false!\n");
 
 // #ifdef DEBUG
-        printf ("After reading from config file, params are \n");
-        printf ("robot name:    %s \n", robotNamefromConfigFile.c_str());
-        printf ("urdf file:     %s \n", urdf_file.c_str());
-        printf ("local name:    %s \n", localNamefromConfigFile.c_str());
-        printf ("head version:  %i \n", headVfromConfigFile);
-        printf ("legs version:  %i \n", legsVfromConfigFile);
-        printf ("feet version:  %i \n", feetFTfromConfigFile);
-        printf ("world reference frame: %s \n", worldRefFrame.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] After reading from config file, params are \n");
+        fprintf (stderr, "[robotStatus::robotConfig] robot name:    %s \n", robotNamefromConfigFile.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] urdf file:     %s \n", urdf_file.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] local name:    %s \n", localNamefromConfigFile.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] head version:  %i \n", headVfromConfigFile);
+        fprintf (stderr, "[robotStatus::robotConfig] legs version:  %i \n", legsVfromConfigFile);
+        fprintf (stderr, "[robotStatus::robotConfig] feet version:  %i \n", feetFTfromConfigFile);
+        fprintf (stderr, "[robotStatus::robotConfig] world reference frame: %s \n", worldRefFrame.c_str());
 // #endif
 
         //---------------- CREATION WHOLE BODY INTERFACE ---------------------/
@@ -172,42 +172,45 @@ bool robotStatus::robotConfig() {
 
 
 #ifdef DEBUG
-        fprintf (stderr, "robotStatus::robotConfig >> new wbInterface created ...\n");
+        fprintf (stderr, "[robotStatus::robotConfig] New wbInterface created\n");
 #endif
 
         tmpContainer = (int*) wbInterface;
 
 #ifdef DEBUG
-        fprintf (stderr, "robotStatus::robotConfig >> icubWholeBodyInterface has been created %p \n", wbInterface);
+        fprintf (stderr, "[robotStatus::robotConfig] icubWholeBodyInterface has been created %p \n", wbInterface);
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main iCub joints
         wbInterface->addJoints (ICUB_MAIN_JOINTS);
-        // Initializing whole body interface
 
-#ifdef WBI_ICUB_COMPILE_PARAM_HELP
-        if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
-            printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
-        else{
-            printf ("ERROR [mdlStart] >> The jointTorqueControl module is not running... \n");
-            return true;
+        if(robotNamefromConfigFile == "icub"){
+            fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
+            if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+                fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
+            else {
+                fprintf (stderr, "ERROR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running the simulation. \n");
+                return false;
+            }        
         }
-
+        
+#ifdef WBI_ICUB_COMPILE_PARAM_HELP
         yarp::os::Value trueValue;
         trueValue.fromString ("true");
         ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
         ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
         ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
 #endif
+        
         if (!wbInterface->init()) {
             fprintf (stderr, "ERROR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
             return false;
         } else {
-            fprintf (stderr, "robotStatus::robotConfig >> Whole Body Interface correctly initialized, yayyy!!!!\n");
+            fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
         }
 
         // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
-        if (VERBOSE) fprintf (stderr, "robotStatus::robotConfig >> About to set control mode\n");
+        if (VERBOSE) fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
         setCtrlMode (CTRL_MODE_POS);
     }
 
@@ -1089,7 +1092,7 @@ static void mdlStart (SimStruct* S) {
 
     res = res && robot->robotInit (static_cast<int> (block_type), static_cast<int> (*uPtrs[0]));
     if (res == true)
-        fprintf (stderr, "mdlStart >> Succesfully exiting robotConfig...\n");
+        fprintf (stderr, "mdlStart >> Succesfully exited robotInit.\n");
     else {
         ssSetErrorStatus (S, "ERROR [mdlStart] in robotInit. \n");
     }
