@@ -21,9 +21,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Aug 04 12:11:36 2014"
-  RTWModifiedTimeStamp	  329055096
-  ModelVersionFormat	  "1.%<AutoIncrement:187>"
+  LastModifiedDate	  "Fri Aug 08 16:21:18 2014"
+  RTWModifiedTimeStamp	  329415678
+  ModelVersionFormat	  "1.%<AutoIncrement:189>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -805,7 +805,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [149, 80, 1281, 738]
+    Location		    [149, 80, 1217, 713]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -838,7 +838,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Utilities"
-	Location		[385, 45, 1517, 912]
+	Location		[149, 80, 1217, 713]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -875,7 +875,7 @@ Library {
 	  MaskValueString	  "1e-4"
 	  System {
 	    Name		    "DampPinv"
-	    Location		    [384, 45, 1364, 1287]
+	    Location		    [350, 45, 1378, 1522]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -930,7 +930,7 @@ Library {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Damped Pseudo Inverse"
-		Location		[87, 45, 882, 1480]
+		Location		[53, 45, 896, 1715]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -943,7 +943,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1451"
+		SIDHighWatermark	"1454"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -964,20 +964,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "107::1450"
+		  SID			  "107::1453"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  32
+		  ZOrder		  35
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "107::1449"
+		  SID			  "107::1452"
 		  Tag			  "Stateflow S-Function WBCLibrary 6"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  31
+		  ZOrder		  34
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -991,9 +991,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "107::1451"
+		  SID			  "107::1454"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  33
+		  ZOrder		  36
 		}
 		Block {
 		  BlockType		  Outport
@@ -1102,7 +1102,7 @@ Library {
 	  MaskValueString	  "1e-4"
 	  System {
 	    Name		    "TruncPinv"
-	    Location		    [12, 45, 1426, 1024]
+	    Location		    [12, 45, 1474, 1259]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1157,7 +1157,7 @@ Library {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"Truncated PseudoInverse"
-		Location		[87, 45, 882, 1480]
+		Location		[53, 45, 896, 1715]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -1170,7 +1170,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1451"
+		SIDHighWatermark	"1454"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1191,20 +1191,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "112::1450"
+		  SID			  "112::1453"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  32
+		  ZOrder		  35
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "112::1449"
+		  SID			  "112::1452"
 		  Tag			  "Stateflow S-Function WBCLibrary 7"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  31
+		  ZOrder		  34
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -1218,9 +1218,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "112::1451"
+		  SID			  "112::1454"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  33
+		  ZOrder		  36
 		}
 		Block {
 		  BlockType		  Outport
@@ -1323,7 +1323,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "WBI to yarp"
-	    Location		    [12, 45, 763, 1044]
+	    Location		    [12, 45, 811, 1279]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1545,7 +1545,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "baseVelocity"
-	    Location		    [1594, 145, 2661, 978]
+	    Location		    [1560, 45, 2675, 1113]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1609,7 +1609,7 @@ Library {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function"
-		Location		[121, 45, 868, 1245]
+		Location		[87, 45, 882, 1480]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -1622,7 +1622,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1451"
+		SIDHighWatermark	"1454"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -1643,20 +1643,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1030::1450"
+		  SID			  "1030::1453"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  26
+		  ZOrder		  29
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1030::1449"
+		  SID			  "1030::1452"
 		  Tag			  "Stateflow S-Function WBCLibrary 2"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  25
+		  ZOrder		  28
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -1670,9 +1670,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1030::1451"
+		  SID			  "1030::1454"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  27
+		  ZOrder		  30
 		}
 		Block {
 		  BlockType		  Outport
@@ -1800,7 +1800,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "errors"
-	    Location		    [12, 45, 763, 1044]
+	    Location		    [12, 45, 811, 1279]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1939,7 +1939,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "holder\n"
-	    Location		    [247, 45, 1379, 912]
+	    Location		    [213, 45, 1393, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2007,7 +2007,7 @@ Library {
 	      MaskIconUnits	      "normalized"
 	      System {
 		Name			"MATLAB Function"
-		Location		[189, 219, 840, 949]
+		Location		[155, 100, 854, 1065]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -2020,7 +2020,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1451"
+		SIDHighWatermark	"1454"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -2041,20 +2041,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1300::1450"
+		  SID			  "1300::1453"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  20
+		  ZOrder		  23
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1300::1449"
+		  SID			  "1300::1452"
 		  Tag			  "Stateflow S-Function WBCLibrary 1"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  19
+		  ZOrder		  22
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -2068,9 +2068,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1300::1451"
+		  SID			  "1300::1454"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  21
+		  ZOrder		  24
 		}
 		Block {
 		  BlockType		  Outport
@@ -2191,7 +2191,7 @@ Library {
 	  MaskValueString	  "3|Ts|Tt"
 	  System {
 	    Name		    "minJerkTrajGen"
-	    Location		    [12, 45, 763, 1044]
+	    Location		    [12, 45, 811, 1279]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2390,7 +2390,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "yarp to WBI"
-	    Location		    [12, 45, 763, 1044]
+	    Location		    [12, 45, 811, 1279]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2551,7 +2551,7 @@ Library {
 	  MaskValueString	  "'...'"
 	  System {
 	    Name		    "yarp write"
-	    Location		    [384, 45, 1364, 1287]
+	    Location		    [350, 45, 1378, 1522]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2623,7 +2623,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyActuators"
-	Location		[1979, 100, 3111, 967]
+	Location		[149, 80, 1217, 713]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2669,7 +2669,7 @@ Library {
 	  MaskValueString	  "Velocity"
 	  System {
 	    Name		    "ControlMode"
-	    Location		    [384, 45, 1364, 1287]
+	    Location		    [350, 45, 1378, 1522]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2729,7 +2729,7 @@ Library {
 	  MaskValueString	  "5|robotName|localName"
 	  System {
 	    Name		    "Set Angles"
-	    Location		    [1979, 100, 3111, 967]
+	    Location		    [1945, 45, 3125, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3055,7 +3055,7 @@ Library {
 	  MaskValueString	  "6|robotName|localName"
 	  System {
 	    Name		    "Set Torques"
-	    Location		    [1979, 100, 3111, 967]
+	    Location		    [1945, 45, 3125, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3381,7 +3381,7 @@ Library {
 	  MaskValueString	  "4|robotName|localName"
 	  System {
 	    Name		    "Set Velocities"
-	    Location		    [1979, 100, 3111, 967]
+	    Location		    [1945, 45, 3125, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3695,7 +3695,7 @@ Library {
 	Annotation {
 	  SID			  "1212"
 	  Name			  "DO NOT USE THIS BLOCK YET. \nUNDER DEVELOPMENT"
-	  Position		  [518, 62]
+	  Position		  [443, 27]
 	}
       }
       RTWSystemCode	      "Auto"
@@ -3723,7 +3723,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyModel"
-	Location		[1980, 128, 3112, 995]
+	Location		[148, 52, 1216, 685]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3753,7 +3753,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Dynamics"
-	    Location		    [1980, 128, 3112, 995]
+	    Location		    [1946, 45, 3126, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3800,7 +3800,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Cent Momentum"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4127,7 +4127,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Inverse Dynamics"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4452,7 +4452,7 @@ Library {
 	      MaskValueString	      "7|robotName|localName"
 	      System {
 		Name			"computeh"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4778,7 +4778,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq LeftArm"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5105,7 +5105,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq LeftFoot"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5436,7 +5436,7 @@ Library {
 	      MaskValueString	      "19|robotName|localName|l_sole"
 	      System {
 		Name			"dJ*dq Link"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5763,7 +5763,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq RightArm"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6090,7 +6090,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq RightFoot"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6416,7 +6416,7 @@ Library {
 	      MaskValueString	      "8|robotName|localName"
 	      System {
 		Name			"massMatrix"
-		Location		[1979, 100, 3111, 967]
+		Location		[1945, 45, 3125, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6457,7 +6457,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "massMatrix"
-		    Location		    [1979, 100, 3111, 967]
+		    Location		    [1945, 45, 3125, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -6809,7 +6809,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Forward Kinematics"
-	    Location		    [12, 45, 1144, 912]
+	    Location		    [12, 45, 1192, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -6852,7 +6852,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"COMFwdKin "
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7205,7 +7205,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"LeftFootFwdKin"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7555,7 +7555,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"LeftHandFwdKin"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7914,7 +7914,7 @@ Library {
 	      MaskValueString	      "robotName|localName|l_sole"
 	      System {
 		Name			"LinkFwdKin"
-		Location		[12, 45, 1144, 912]
+		Location		[12, 45, 1192, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8244,7 +8244,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"RightFootFwdKin"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8598,7 +8598,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"RightHandFwdKin"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8938,7 +8938,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Jacobians"
-	    Location		    [1980, 128, 3112, 995]
+	    Location		    [1946, 45, 3126, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -8983,7 +8983,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Center of Mass Jacobian"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9007,7 +9007,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Right Foot \nJacobian1"
-		    Location		    [161, 45, 1293, 912]
+		    Location		    [127, 45, 1307, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -9414,7 +9414,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Foot Jacobian"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9438,7 +9438,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Left Foot \nJacobian"
-		    Location		    [161, 45, 1293, 912]
+		    Location		    [127, 45, 1307, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -9838,7 +9838,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Hand Jacobian"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9862,7 +9862,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Left Hand \nJacobian"
-		    Location		    [161, 45, 1293, 912]
+		    Location		    [127, 45, 1307, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -10268,7 +10268,7 @@ Library {
 	      MaskValueString	      "robotName|localName|l_sole"
 	      System {
 		Name			"Link Jacobian"
-		Location		[1980, 128, 3112, 995]
+		Location		[1946, 45, 3126, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10292,7 +10292,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Link Jacobian"
-		    Location		    [1980, 128, 3112, 995]
+		    Location		    [1946, 45, 3126, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -10692,7 +10692,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Foot Jacobian"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10716,7 +10716,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Right Foot \nJacobian"
-		    Location		    [161, 45, 1293, 912]
+		    Location		    [127, 45, 1307, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11125,7 +11125,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Hand Jacobian"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11149,7 +11149,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Right Hand\nJacobian"
-		    Location		    [161, 45, 1293, 912]
+		    Location		    [127, 45, 1307, 1147]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11573,7 +11573,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Limits"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -11906,7 +11906,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Set World Ref Frame"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12239,7 +12239,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyStates"
-	Location		[247, 45, 1379, 912]
+	Location		[213, 45, 1393, 1147]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -12283,7 +12283,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "DUMMY Joint Torques"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12306,7 +12306,7 @@ Library {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"tau from ports"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -12381,7 +12381,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.186"
+		  LibraryVersion	  "1.188"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -12397,7 +12397,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.186"
+		  LibraryVersion	  "1.188"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -12413,7 +12413,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.186"
+		  LibraryVersion	  "1.188"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -12429,7 +12429,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.186"
+		  LibraryVersion	  "1.188"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -12445,7 +12445,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.186"
+		  LibraryVersion	  "1.188"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -12697,7 +12697,7 @@ Library {
 	      RequestExecContextInheritance off
 	      System {
 		Name			"yarp to WBI"
-		Location		[161, 45, 1293, 912]
+		Location		[127, 45, 1307, 1147]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -12916,7 +12916,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Accelerations"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13246,7 +13246,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Angles"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13585,7 +13585,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Torques"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13915,7 +13915,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Velocities"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14259,7 +14259,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Left leg EE Wrench"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14591,7 +14591,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Right leg EE Wrench"
-	    Location		    [161, 45, 1293, 912]
+	    Location		    [127, 45, 1307, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14930,7 +14930,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "dq_b + dq_j"
-	    Location		    [1979, 100, 3111, 967]
+	    Location		    [1945, 45, 3125, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14952,7 +14952,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.186"
+	      LibraryVersion	      "1.188"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -14966,7 +14966,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.186"
+	      LibraryVersion	      "1.188"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -14991,7 +14991,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.186"
+	      LibraryVersion	      "1.188"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15005,7 +15005,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.186"
+	      LibraryVersion	      "1.188"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15093,7 +15093,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "q_b + q_j"
-	    Location		    [1979, 100, 3111, 967]
+	    Location		    [1945, 45, 3125, 1147]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15123,7 +15123,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.186"
+	      LibraryVersion	      "1.188"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
@@ -15222,7 +15222,7 @@ Stateflow {
   chart {
     id			    2
     name		    "Utilities/holder\n/MATLAB Function"
-    windowPosition	    [393.081 20 158 534.4]
+    windowPosition	    [487 -299.6 147 854]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
     treeNode		    [0 3 0 0]
@@ -15337,7 +15337,7 @@ Stateflow {
   transition {
     id			    8
     labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [44.125 37.875 102.544 14.964]
+    labelPosition	    [48.125 43.875 102.544 14.964]
     fontSize		    12
     src {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
@@ -15367,7 +15367,7 @@ Stateflow {
   chart {
     id			    10
     name		    "Utilities/baseVelocity/MATLAB Function"
-    windowPosition	    [429 -981.6 200 1536]
+    windowPosition	    [532 -1551.6 200 2106]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
     treeNode		    [0 11 0 0]
@@ -15477,7 +15477,7 @@ Stateflow {
   transition {
     id			    16
     labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [48.125 43.875 102.544 14.964]
+    labelPosition	    [52.125 49.875 102.544 14.964]
     fontSize		    12
     src {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
@@ -15507,7 +15507,7 @@ Stateflow {
   chart {
     id			    18
     name		    "Utilities/DampPinv/Damped Pseudo Inverse"
-    windowPosition	    [246 -1199.6 200 1754]
+    windowPosition	    [304 -1824.6 200 2379]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
     treeNode		    [0 19 0 0]
@@ -15618,7 +15618,7 @@ Stateflow {
   transition {
     id			    24
     labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [48.125 43.875 102.544 14.964]
+    labelPosition	    [52.125 49.875 102.544 14.964]
     fontSize		    12
     src {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
@@ -15648,7 +15648,7 @@ Stateflow {
   chart {
     id			    26
     name		    "Utilities/TruncPinv/Truncated PseudoInverse"
-    windowPosition	    [230 -1199.6 200 1754]
+    windowPosition	    [284 -1824.6 200 2379]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1366 768 1.25]
     treeNode		    [0 27 0 0]
@@ -15759,7 +15759,7 @@ Stateflow {
   transition {
     id			    32
     labelString		    "{eML_blk_kernel();}"
-    labelPosition	    [48.125 43.875 102.544 14.964]
+    labelPosition	    [52.125 49.875 102.544 14.964]
     fontSize		    12
     src {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
