@@ -239,7 +239,6 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     {
         fprintf(stderr,"TIMESTAMP IS: \n");
         if (TIMESTAMP) {
-            fprintf(stderr,"Printing timestamp \n");
             yarp::os::Stamp timestamp;
             toPort->getEnvelope(timestamp);
             
@@ -256,14 +255,10 @@ static void mdlOutputs(SimStruct *S, int_T tid)
             for(int_T j=0; j<widthPort; j++){
                 if (i < (v->length()))
                     pY[j] = v->data()[i];
-                else{
-                    fprintf(stderr,"writing 0\n");
+                else
                     pY[j] = 0;
-                }
             }
         }
-    } else {
-        fprintf(stderr,"no data to read\n");
     }
 }
 
