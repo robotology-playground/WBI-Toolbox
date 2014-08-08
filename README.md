@@ -79,9 +79,9 @@ You can also create a .m file with these two lines and launch MATLAB from termin
 
 You could additionally create an alias to launch Matlab this way:
 
-`alias matlab_codyco=`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 matlab"`
+`alias matlab_codyco="LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19 matlab"`
 
-- **For MAC OS X Users.** It has been reported that on MAC OS you need to define the place where you want MATLAB to find at runtime dynamic libraries for YARP, in case you have compiled YARP in a directory different from the default one. This can be added in `${MATLAB_ROOT}/bin/.matlab7rc.sh` by first doing
+- In case you have compiled YARP in a directory different from the system default one, you need to tell to MATLAB the location in which to find the shared libraries for YARP. If you launch MATLAB from command line, this task is already done for you by `bash` (if you edited `.bashrc`). If you launch MATLAB from the UI (e.g. on OS X by double clicking the application icon) you need to further add the variables in `${MATLAB_ROOT}/bin/.matlab7rc.sh` by first doing
 ```bash
     chmod +w .matlab7rc.sh
 ```
