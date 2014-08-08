@@ -31,8 +31,8 @@
 #define PARAM_IDX_4 3                           // boolean for blocking reading
 #define PARAM_IDX_5 4                           // boolean to stream timestamp
 #define SIZE_READING_PORT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_3))    // Get first input parameter from mask
-#define BLOCKING  mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4)
-#define TIMESTAMP mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5)
+#define BLOCKING  mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4))
+#define TIMESTAMP mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5))
 
 // Need to include simstruc.h for the definition of the SimStruct and
 // its associated macro definitions.
@@ -83,12 +83,25 @@ static void mdlInitializeSizes(SimStruct *S)
     // INPUTS
     if(!ssSetNumInputPorts(S,0)) return;
     // OUTPUTS
-    if (!ssSetNumOutputPorts(S,SIZE_READING_PORT)) return;
+    int timestamp = (int) TIMESTAMP;
+    int size_reading_port = (int) SIZE_READING_PORT;
+    if(!timestamp){
+        cout<<"Yarp read block will have: " << SIZE_READING_PORT << "outputs" << endl;
+        if (!ssSetNumOutputPorts(S,SIZE_READING_PORT)) return;
+    } else {
+        size_reading_port = size_reading_port + 1;
+        cout<<"yarp read block will have: " << size_reading_port << "outputs" << endl;
+        if (!ssSetNumOutputPorts(S,size_reading_port)) return;
+        ssSetOutputPortWidth (S, size_reading_port-1, 2);
+        ssSetOutputPortDataType (S, size_reading_port - 1, 0);
+    }
+
     for (int i = 0; i < SIZE_READING_PORT; i++)
     {
         ssSetOutputPortWidth   (S, i, 1);
         ssSetOutputPortDataType(S, i, 0);
     }
+    
     
     ssSetNumSampleTimes(S, 1);
 
@@ -224,6 +237,18 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     Vector *v = toPort->read((boolean_T) blocking); // Read from the port.  Waits until data arrives.
     if (v!=NULL)
     {
+        fprintf(stderr,"TIMESTAMP IS: \n");
+        if (TIMESTAMP) {
+            fprintf(stderr,"Printing timestamp \n");
+            yarp::os::Stamp timestamp;
+            toPort->getEnvelope(timestamp);
+            
+            int timestamp_index = SIZE_READING_PORT;
+            real_T *pY1 = (real_T *) ssGetOutputPortSignal(S, timestamp_index);
+            pY1[0] = (real_T)(timestamp.getCount());
+            pY1[1] = (real_T)(timestamp.getTime());
+        }
+        
         for (int i = 0; i < SIZE_READING_PORT; i++)
         {
             real_T *pY = (real_T *)ssGetOutputPortSignal(S,i);
@@ -231,10 +256,14 @@ static void mdlOutputs(SimStruct *S, int_T tid)
             for(int_T j=0; j<widthPort; j++){
                 if (i < (v->length()))
                     pY[j] = v->data()[i];
-                else
+                else{
+                    fprintf(stderr,"writing 0\n");
                     pY[j] = 0;
+                }
             }
         }
+    } else {
+        fprintf(stderr,"no data to read\n");
     }
 }
 
