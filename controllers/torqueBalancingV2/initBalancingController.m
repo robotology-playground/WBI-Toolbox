@@ -1,3 +1,4 @@
+%WBC ASW
 clear all
 
 % Controller period
@@ -14,13 +15,13 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-Gains  = [  70    0   0  4];
+Gains  = [  120    0   5  4];
 
 % Impadances acting in the null space of the desired contact forces 
 
-kImpTorso = [12 8 12]; 
+kImpTorso = [15 15 20]; 
 kImpArms  = [10 10 10 10 5];
-kImpLegs  = [35 50 0.1 30 2 10]; 
+kImpLegs  = [35 80 0.1 80 40 10]; 
 
 Impedances  = [kImpTorso,kImpArms,kImpArms,kImpLegs,kImpLegs];
 

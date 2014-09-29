@@ -1,16 +1,16 @@
 Model {
   Name			  "ft_sensor_debug_iCubGenova03"
-  Version		  8.3
+  Version		  8.0
   MdlSubVersion		  0
-  SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.2"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
+  SavedCharacterEncoding  "UTF-8"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [48.0, 52.0, 657.0, 715.0]
+      Location		      [641.0, 319.0, 1440.0, 873.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -39,7 +39,7 @@ Model {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -54,9 +54,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[621.0, 575.0]
-	ZoomFactor		[0.6]
-	Offset			[-220.37179077596443, -90.572356286299]
+	Extents			[1404.0, 687.0]
+	ZoomFactor		[1.0]
+	Offset			[417.68620009058895, 309.9056090395564]
       }
     }
   }
@@ -64,11 +64,11 @@ Model {
   Creator		  "pegua"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "pegua"
+  LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jul 07 11:00:52 2014"
-  RTWModifiedTimeStamp	  326033425
-  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  LastModifiedDate	  "Fri Sep 12 10:29:56 2014"
+  RTWModifiedTimeStamp	  332339969
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -94,11 +94,6 @@ Model {
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
-  PauseTimes		  "5"
-  NumberOfSteps		  1
-  SnapshotBufferSize	  10
-  SnapshotInterval	  10
-  NumberOfLastSnapshots	  0
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -132,7 +127,6 @@ Model {
   CovNameIncrementing	  off
   CovHtmlReporting	  on
   CovForceBlockReductionOff on
-  CovEnableCumulative	  on
   covSaveCumulativeToWorkspaceVar on
   CovSaveSingleToWorkspaceVar on
   CovCumulativeVarName	  "covCumulativeData"
@@ -140,9 +134,6 @@ Model {
   CovReportOnPause	  on
   CovModelRefEnable	  "Off"
   CovExternalEMLEnable	  off
-  CovSFcnEnable		  off
-  CovBoundaryAbsTol	  0.000010
-  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -172,13 +163,13 @@ Model {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      7
-      Version		      "1.14.2"
+      Version		      "1.12.1"
       Array {
 	Type			"Handle"
 	Dimension		8
 	Simulink.SolverCC {
 	  $ObjectID		  8
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
@@ -213,7 +204,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  9
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -231,7 +222,6 @@ Model {
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
-	  VisualizeSimOutput	  on
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -246,7 +236,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  10
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -266,14 +256,11 @@ Model {
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
-	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
 	  BufferReuse		  on
 	  EnhancedBackFolding	  off
-	  CachingGlobalReferences off
-	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
@@ -288,7 +275,6 @@ Model {
 	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
-	  ActiveStateOutputEnumStorageType "Native Integer"
 	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
@@ -306,7 +292,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  11
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -396,12 +382,11 @@ Model {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  12
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
-	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -411,20 +396,17 @@ Model {
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
-	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "32-bit Generic"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
-	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
-	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -437,7 +419,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  13
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -452,7 +434,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  14
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -463,12 +445,11 @@ Model {
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
-	  SimGenImportedTypeDefs  off
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  15
-	  Version		  "1.14.2"
+	  Version		  "1.12.1"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    15
@@ -490,15 +471,11 @@ Model {
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
-	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
-	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
-	  PostCodeGenCommand	  ""
-	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -509,29 +486,18 @@ Model {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
-	  ProcessScript		  ""
-	  ConfigurationScript	  ""
 	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
-	  CustomSourceCode	  ""
-	  CustomHeaderCode	  ""
-	  CustomInclude		  ""
-	  CustomSource		  ""
-	  CustomLibrary		  ""
-	  CustomInitializer	  ""
-	  CustomTerminator	  ""
-	  Toolchain		  "Automatically locate an installed toolchain"
-	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  PortableWordSizes	  off
+	  GenerateErtSFunction	  off
 	  CreateSILPILBlock	  "None"
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
 	  CodeProfilingInstrumentation off
-	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -545,17 +511,14 @@ Model {
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
-	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
-	  DataInitializer	  ""
-	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      16
-	      Version		      "1.14.2"
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		23
@@ -586,7 +549,6 @@ Model {
 	      }
 	      ForceParamTrailComments off
 	      GenerateComments	      on
-	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
 	      IncHierarchyInIds	      off
@@ -609,7 +571,6 @@ Model {
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
-	      CustomSymbolStrUtil     "$N$C"
 	      DefineNamingRule	      "None"
 	      ParamNamingRule	      "None"
 	      SignalNamingRule	      "None"
@@ -626,7 +587,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      17
-	      Version		      "1.14.2"
+	      Version		      "1.12.1"
 	      Array {
 		Type			"Cell"
 		Dimension		14
@@ -649,8 +610,6 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
-	      GenFloatMathFcnCalls    "NOT IN USE"
-	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
@@ -659,6 +618,7 @@ Model {
 	      GenerateFullHeader      on
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
+	      IsPILTarget	      off
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
@@ -675,7 +635,6 @@ Model {
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
-	      CodeInterfacePackaging  "Nonreusable function"
 	      SupportNonFinite	      on
 	      SupportComplex	      on
 	      PurelyIntegerCode	      off
@@ -684,12 +643,10 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
-	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      off
-	      GenerateAllocFcn	      off
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -703,7 +660,6 @@ Model {
 	      RTWCAPIStates	      off
 	      RTWCAPIRootIO	      off
 	      GenerateASAP2	      off
-	      MultiInstanceErrorCode  "Error"
 	    }
 	    PropName		    "Components"
 	  }
@@ -826,8 +782,8 @@ Model {
   }
   System {
     Name		    "ft_sensor_debug_iCubGenova03"
-    Location		    [48, 52, 705, 767]
-    Open		    off
+    Location		    [641, 319, 2081, 1192]
+    Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
     ScreenColor		    "white"
@@ -838,15 +794,15 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "51"
+    SIDHighWatermark	    "100"
     Block {
       BlockType		      Sum
       Name		      "Add"
       SID		      "35"
       Ports		      [2, 1]
-      Position		      [345, 182, 375, 213]
+      Position		      [355, 177, 385, 208]
       ZOrder		      35
       Inputs		      "+-"
       InputSameDT	      off
@@ -858,7 +814,7 @@ Model {
       Name		      "Add1"
       SID		      "37"
       Ports		      [2, 1]
-      Position		      [345, 347, 375, 378]
+      Position		      [355, 342, 385, 373]
       ZOrder		      40
       Inputs		      "+-"
       InputSameDT	      off
@@ -870,7 +826,7 @@ Model {
       Name		      "Add2"
       SID		      "42"
       Ports		      [2, 1]
-      Position		      [345, 512, 375, 543]
+      Position		      [355, 522, 385, 553]
       ZOrder		      45
       Inputs		      "+-"
       InputSameDT	      off
@@ -882,8 +838,56 @@ Model {
       Name		      "Add3"
       SID		      "43"
       Ports		      [2, 1]
-      Position		      [345, 677, 375, 708]
+      Position		      [345, 857, 375, 888]
       ZOrder		      50
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Add4"
+      SID		      "70"
+      Ports		      [2, 1]
+      Position		      [1005, 197, 1035, 228]
+      ZOrder		      74
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Add5"
+      SID		      "71"
+      Ports		      [2, 1]
+      Position		      [1005, 362, 1035, 393]
+      ZOrder		      77
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Add6"
+      SID		      "80"
+      Ports		      [2, 1]
+      Position		      [1005, 617, 1035, 648]
+      ZOrder		      84
+      Inputs		      "+-"
+      InputSameDT	      off
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Sum
+      Name		      "Add7"
+      SID		      "81"
+      Ports		      [2, 1]
+      Position		      [980, 912, 1010, 943]
+      ZOrder		      87
       Inputs		      "+-"
       InputSameDT	      off
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -894,7 +898,7 @@ Model {
       Name		      "Bus\nCreator"
       SID		      "34"
       Ports		      [3, 1]
-      Position		      [145, 171, 150, 209]
+      Position		      [155, 166, 160, 204]
       ZOrder		      34
       ShowName		      off
       Inputs		      "3"
@@ -905,7 +909,7 @@ Model {
       Name		      "Bus\nCreator1"
       SID		      "38"
       Ports		      [3, 1]
-      Position		      [145, 336, 150, 374]
+      Position		      [155, 331, 160, 369]
       ZOrder		      39
       ShowName		      off
       Inputs		      "3"
@@ -916,7 +920,7 @@ Model {
       Name		      "Bus\nCreator2"
       SID		      "44"
       Ports		      [3, 1]
-      Position		      [145, 501, 150, 539]
+      Position		      [155, 511, 160, 549]
       ZOrder		      44
       ShowName		      off
       Inputs		      "3"
@@ -927,55 +931,72 @@ Model {
       Name		      "Bus\nCreator3"
       SID		      "45"
       Ports		      [3, 1]
-      Position		      [145, 666, 150, 704]
+      Position		      [145, 846, 150, 884]
       ZOrder		      49
       ShowName		      off
       Inputs		      "3"
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      "36"
-      Ports		      [1]
-      Position		      [490, 184, 520, 216]
-      ZOrder		      36
-      Floating		      off
-      Location		      [716, 78, 1022, 286]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      YMin		      "-4.5"
-      YMax		      "0"
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator4"
+      SID		      "72"
+      Ports		      [3, 1]
+      Position		      [805, 186, 810, 224]
+      ZOrder		      73
+      ShowName		      off
+      Inputs		      "3"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator5"
+      SID		      "73"
+      Ports		      [3, 1]
+      Position		      [805, 351, 810, 389]
+      ZOrder		      76
+      ShowName		      off
+      Inputs		      "3"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator6"
+      SID		      "82"
+      Ports		      [3, 1]
+      Position		      [805, 606, 810, 644]
+      ZOrder		      83
+      ShowName		      off
+      Inputs		      "3"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator7"
+      SID		      "83"
+      Ports		      [3, 1]
+      Position		      [780, 901, 785, 939]
+      ZOrder		      86
+      ShowName		      off
+      Inputs		      "3"
+      DisplayOption	      "bar"
     }
     Block {
       BlockType		      Scope
-      Name		      "Scope1"
-      SID		      "39"
-      Ports		      [1]
-      Position		      [490, 349, 520, 381]
-      ZOrder		      41
+      Name		      "ForceTorqueLeftFoot"
+      SID		      "97"
+      Ports		      [3]
+      Position		      [1245, 136, 1320, 194]
+      ZOrder		      99
       Floating		      off
-      Location		      [1065, 157, 1362, 363]
+      Location		      [711, 95, 1431, 898]
       Open		      off
-      NumInputPorts	      "1"
+      NumInputPorts	      "3"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
       }
       List {
 	ListType		ScopeGraphics
@@ -988,28 +1009,103 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       ShowLegends	      off
-      YMin		      "-45"
-      YMax		      "0"
+      YMin		      "-4~0~-5"
+      YMax		      "1~20~5"
+      DataFormat	      "StructureWithTime"
+      LimitDataPoints	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "ForceTorqueLeftLeg"
+      SID		      "90"
+      Ports		      [3]
+      Position		      [1245, 301, 1320, 359]
+      ZOrder		      92
+      Floating		      off
+      Location		      [2, 95, 722, 898]
+      Open		      on
+      NumInputPorts	      "3"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
+      }
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      ShowLegends	      off
+      TimeRange		      "200000"
+      YMin		      "-60~0~-5"
+      YMax		      "10~1400~5"
+      SaveName		      "ScopeData4"
+      DataFormat	      "StructureWithTime"
+      LimitDataPoints	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "ForceTorqueRightFoot"
+      SID		      "99"
+      Ports		      [3]
+      Position		      [1245, 556, 1320, 614]
+      ZOrder		      101
+      Floating		      off
+      Location		      [2, 95, 722, 898]
+      Open		      off
+      NumInputPorts	      "3"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
+      }
+      List {
+	ListType		ScopeGraphics
+	FigureColor		"[0.5 0.5 0.5]"
+	AxesColor		"[0 0 0]"
+	AxesTickColor		"[1 1 1]"
+	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
+	LineStyles		"-|-|-|-|-|-"
+	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
+	MarkerStyles		"none|none|none|none|none|none"
+      }
+      ShowLegends	      off
+      YMin		      "-4~0~-5"
+      YMax		      "1~20~5"
       SaveName		      "ScopeData1"
+      DataFormat	      "StructureWithTime"
+      LimitDataPoints	      off
+      SampleTime	      "0"
     }
     Block {
       BlockType		      Scope
-      Name		      "Scope2"
-      SID		      "46"
-      Ports		      [1]
-      Position		      [490, 514, 520, 546]
-      ZOrder		      46
+      Name		      "ForceTorqueRightLeg"
+      SID		      "93"
+      Ports		      [3]
+      Position		      [1105, 858, 1135, 892]
+      ZOrder		      95
       Floating		      off
-      Location		      [727, 413, 1041, 622]
-      Open		      off
-      NumInputPorts	      "1"
+      Location		      [712, 95, 1431, 898]
+      Open		      on
+      NumInputPorts	      "3"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+	axes3			"%<SignalLabel>"
       }
       List {
 	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
+	FigureColor		"[0.501960784313725 0.501960784313725 0.501960784313725]"
 	AxesColor		"[0 0 0]"
 	AxesTickColor		"[1 1 1]"
 	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
@@ -1018,363 +1114,757 @@ Model {
 	MarkerStyles		"none|none|none|none|none|none"
       }
       ShowLegends	      off
-      YMin		      "-4"
-      YMax		      "0.5"
+      TimeRange		      "200000"
+      YMin		      "-60~0~-5"
+      YMax		      "10~1800~5"
       SaveName		      "ScopeData2"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope3"
-      SID		      "47"
-      Ports		      [1]
-      Position		      [490, 679, 520, 711]
-      ZOrder		      51
-      Floating		      off
-      Location		      [1050, 439, 1366, 677]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      YMin		      "-45"
-      YMax		      "0"
-      SaveName		      "ScopeData3"
+      DataFormat	      "StructureWithTime"
+      LimitDataPoints	      off
+      SampleTime	      "0"
     }
     Block {
       BlockType		      Reference
-      Name		      "holder"
-      SID		      "33"
+      Name		      "Matrix Square"
+      SID		      "95"
       Ports		      [1, 1]
-      Position		      [210, 238, 270, 282]
-      ZOrder		      33
-      BackgroundColor	      "[0.270000, 0.522000, 0.900000]"
-      LibraryVersion	      "1.92"
-      SourceBlock	      "WBCLibrary/Utilities/holder"
-      SourceType	      "Holder"
-      ContentPreviewEnabled   off
+      Position		      [1160, 320, 1210, 340]
+      ZOrder		      97
+      LibraryVersion	      "1.898"
+      SourceBlock	      "dspmtrx3/Matrix\nSquare"
+      SourceType	      "Matrix Square"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Reference
-      Name		      "holder1"
-      SID		      "40"
+      Name		      "Matrix Square1"
+      SID		      "96"
       Ports		      [1, 1]
-      Position		      [210, 403, 270, 447]
-      ZOrder		      38
-      BackgroundColor	      "[0.270000, 0.522000, 0.900000]"
-      LibraryVersion	      "1.92"
-      SourceBlock	      "WBCLibrary/Utilities/holder"
-      SourceType	      "Holder"
-      ContentPreviewEnabled   off
+      Position		      [960, 875, 1010, 895]
+      ZOrder		      98
+      LibraryVersion	      "1.898"
+      SourceBlock	      "dspmtrx3/Matrix\nSquare"
+      SourceType	      "Matrix Square"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Reference
-      Name		      "holder2"
-      SID		      "48"
+      Name		      "Matrix Square2"
+      SID		      "98"
       Ports		      [1, 1]
-      Position		      [210, 568, 270, 612]
-      ZOrder		      43
-      BackgroundColor	      "[0.270000, 0.522000, 0.900000]"
-      LibraryVersion	      "1.92"
-      SourceBlock	      "WBCLibrary/Utilities/holder"
-      SourceType	      "Holder"
-      ContentPreviewEnabled   off
+      Position		      [1160, 155, 1210, 175]
+      ZOrder		      100
+      LibraryVersion	      "1.898"
+      SourceBlock	      "dspmtrx3/Matrix\nSquare"
+      SourceType	      "Matrix Square"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Reference
-      Name		      "holder3"
-      SID		      "49"
+      Name		      "Matrix Square3"
+      SID		      "100"
       Ports		      [1, 1]
-      Position		      [210, 733, 270, 777]
-      ZOrder		      48
-      BackgroundColor	      "[0.270000, 0.522000, 0.900000]"
-      LibraryVersion	      "1.92"
-      SourceBlock	      "WBCLibrary/Utilities/holder"
-      SourceType	      "Holder"
-      ContentPreviewEnabled   off
+      Position		      [1160, 575, 1210, 595]
+      ZOrder		      102
+      LibraryVersion	      "1.898"
+      SourceBlock	      "dspmtrx3/Matrix\nSquare"
+      SourceType	      "Matrix Square"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Reference
-      Name		      "left foot\n"
+      Name		      "holder "
+      SID		      "52"
+      Ports		      [1, 1]
+      Position		      [220, 234, 280, 276]
+      ZOrder		      52
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 1"
+      SID		      "53"
+      Ports		      [1, 1]
+      Position		      [220, 399, 280, 441]
+      ZOrder		      53
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 2"
+      SID		      "54"
+      Ports		      [1, 1]
+      Position		      [220, 579, 280, 621]
+      ZOrder		      54
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 3"
+      SID		      "55"
+      Ports		      [1, 1]
+      Position		      [210, 914, 270, 956]
+      ZOrder		      55
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 4"
+      SID		      "76"
+      Ports		      [1, 1]
+      Position		      [870, 254, 930, 296]
+      ZOrder		      78
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 5"
+      SID		      "77"
+      Ports		      [1, 1]
+      Position		      [870, 419, 930, 461]
+      ZOrder		      79
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 6"
+      SID		      "86"
+      Ports		      [1, 1]
+      Position		      [885, 684, 945, 726]
+      ZOrder		      88
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "holder 7"
+      SID		      "87"
+      Ports		      [1, 1]
+      Position		      [845, 969, 905, 1011]
+      ZOrder		      89
+      BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/holder\n"
+      SourceType	      "Holder"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "left foot force\n"
       SID		      "1"
       Ports		      [0, 6]
-      Position		      [20, 172, 90, 238]
+      Position		      [30, 167, 100, 233]
       ZOrder		      1
       BackgroundColor	      "black"
-      LibraryVersion	      "1.92"
+      LibraryVersion	      "1.189"
       SourceBlock	      "WBCLibrary/Utilities/yarp read"
       SourceType	      ""
       from		      "['/icub/left_foot/analog:o']"
       to		      "'...'"
       num		      "6"
+      blocking		      off
+      timestamp		      off
     }
     Block {
       BlockType		      Reference
-      Name		      "left leg\n"
+      Name		      "left foot torque\n"
+      SID		      "78"
+      Ports		      [0, 6]
+      Position		      [680, 157, 750, 223]
+      ZOrder		      72
+      BackgroundColor	      "black"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/yarp read"
+      SourceType	      ""
+      from		      "['/icub/left_foot/analog:o']"
+      to		      "'...'"
+      num		      "6"
+      blocking		      off
+      timestamp		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "left leg force\n"
       SID		      "41"
       Ports		      [0, 6]
-      Position		      [20, 337, 90, 403]
+      Position		      [30, 332, 100, 398]
       ZOrder		      37
       BackgroundColor	      "black"
-      LibraryVersion	      "1.92"
+      LibraryVersion	      "1.189"
       SourceBlock	      "WBCLibrary/Utilities/yarp read"
       SourceType	      ""
       from		      "['/icub/left_leg/analog:o']"
       to		      "'...'"
       num		      "6"
+      blocking		      off
+      timestamp		      off
     }
     Block {
       BlockType		      Reference
-      Name		      "right foot"
+      Name		      "left leg torque"
+      SID		      "79"
+      Ports		      [0, 6]
+      Position		      [680, 322, 750, 388]
+      ZOrder		      75
+      BackgroundColor	      "black"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/yarp read"
+      SourceType	      ""
+      from		      "['/icub/left_leg/analog:o']"
+      to		      "'...'"
+      num		      "6"
+      blocking		      off
+      timestamp		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "right foot force"
       SID		      "50"
       Ports		      [0, 6]
-      Position		      [20, 502, 90, 568]
+      Position		      [30, 512, 100, 578]
       ZOrder		      42
       BackgroundColor	      "black"
-      LibraryVersion	      "1.92"
+      LibraryVersion	      "1.189"
       SourceBlock	      "WBCLibrary/Utilities/yarp read"
       SourceType	      ""
       from		      "['/icub/right_foot/analog:o']"
       to		      "'...'"
       num		      "6"
+      blocking		      off
+      timestamp		      off
     }
     Block {
       BlockType		      Reference
-      Name		      "right leg"
+      Name		      "right foot torque"
+      SID		      "88"
+      Ports		      [0, 6]
+      Position		      [680, 577, 750, 643]
+      ZOrder		      82
+      BackgroundColor	      "black"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/yarp read"
+      SourceType	      ""
+      from		      "['/icub/right_foot/analog:o']"
+      to		      "'...'"
+      num		      "6"
+      blocking		      off
+      timestamp		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "right leg force"
       SID		      "51"
       Ports		      [0, 6]
-      Position		      [20, 667, 90, 733]
+      Position		      [20, 847, 90, 913]
       ZOrder		      47
       BackgroundColor	      "black"
-      LibraryVersion	      "1.92"
+      LibraryVersion	      "1.189"
       SourceBlock	      "WBCLibrary/Utilities/yarp read"
       SourceType	      ""
       from		      "['/icub/right_leg/analog:o']"
       to		      "'...'"
       num		      "6"
+      blocking		      off
+      timestamp		      off
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "right leg torque"
+      SID		      "89"
+      Ports		      [0, 6]
+      Position		      [655, 872, 725, 938]
+      ZOrder		      85
+      BackgroundColor	      "black"
+      LibraryVersion	      "1.189"
+      SourceBlock	      "WBCLibrary/Utilities/yarp read"
+      SourceType	      ""
+      from		      "['/icub/right_leg/analog:o']"
+      to		      "'...'"
+      num		      "6"
+      blocking		      off
+      timestamp		      off
     }
     Line {
-      ZOrder		      124
-      SrcBlock		      "left foot\n"
+      SrcBlock		      "left foot force\n"
       SrcPort		      1
       DstBlock		      "Bus\nCreator"
       DstPort		      1
     }
     Line {
-      ZOrder		      125
-      SrcBlock		      "left foot\n"
+      SrcBlock		      "left foot force\n"
       SrcPort		      2
       DstBlock		      "Bus\nCreator"
       DstPort		      2
     }
     Line {
-      ZOrder		      127
-      SrcBlock		      "left foot\n"
-      SrcPort		      3
-      DstBlock		      "Bus\nCreator"
-      DstPort		      3
-    }
-    Line {
-      ZOrder		      128
       SrcBlock		      "Bus\nCreator"
       SrcPort		      1
       Points		      [12, 0]
       Branch {
-	ZOrder			133
-	DstBlock		"Add"
+	Points			[0, 70]
+	DstBlock		"holder "
 	DstPort			1
       }
       Branch {
-	ZOrder			132
-	Points			[0, 70]
-	DstBlock		"holder"
+	DstBlock		"Add"
 	DstPort			1
       }
     }
     Line {
-      ZOrder		      131
-      SrcBlock		      "holder"
+      SrcBlock		      "holder "
       SrcPort		      1
-      Points		      [22, 0; 0, -55]
+      Points		      [32, 0; 0, -55]
       DstBlock		      "Add"
       DstPort		      2
     }
     Line {
-      ZOrder		      135
-      SrcBlock		      "Add"
-      SrcPort		      1
-      DstBlock		      "Scope"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      136
-      SrcBlock		      "left leg\n"
+      SrcBlock		      "left leg force\n"
       SrcPort		      1
       DstBlock		      "Bus\nCreator1"
       DstPort		      1
     }
     Line {
-      ZOrder		      137
-      SrcBlock		      "left leg\n"
+      SrcBlock		      "left leg force\n"
       SrcPort		      2
       DstBlock		      "Bus\nCreator1"
       DstPort		      2
     }
     Line {
-      ZOrder		      138
-      SrcBlock		      "left leg\n"
+      SrcBlock		      "left leg force\n"
       SrcPort		      3
       DstBlock		      "Bus\nCreator1"
       DstPort		      3
     }
     Line {
-      ZOrder		      141
       SrcBlock		      "Bus\nCreator1"
       SrcPort		      1
       Points		      [12, 0]
       Branch {
-	ZOrder			140
-	DstBlock		"Add1"
+	Points			[0, 70]
+	DstBlock		"holder 1"
 	DstPort			1
       }
       Branch {
-	ZOrder			139
-	Points			[0, 70]
-	DstBlock		"holder1"
+	DstBlock		"Add1"
 	DstPort			1
       }
     }
     Line {
-      ZOrder		      142
-      SrcBlock		      "holder1"
+      SrcBlock		      "holder 1"
       SrcPort		      1
-      Points		      [22, 0; 0, -55]
+      Points		      [32, 0; 0, -55]
       DstBlock		      "Add1"
       DstPort		      2
     }
     Line {
-      ZOrder		      143
-      SrcBlock		      "Add1"
-      SrcPort		      1
-      DstBlock		      "Scope1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      144
-      SrcBlock		      "right foot"
+      SrcBlock		      "right foot force"
       SrcPort		      1
       DstBlock		      "Bus\nCreator2"
       DstPort		      1
     }
     Line {
-      ZOrder		      145
-      SrcBlock		      "right foot"
+      SrcBlock		      "right foot force"
       SrcPort		      2
       DstBlock		      "Bus\nCreator2"
       DstPort		      2
     }
     Line {
-      ZOrder		      146
-      SrcBlock		      "right foot"
+      SrcBlock		      "right foot force"
       SrcPort		      3
       DstBlock		      "Bus\nCreator2"
       DstPort		      3
     }
     Line {
-      ZOrder		      149
       SrcBlock		      "Bus\nCreator2"
       SrcPort		      1
       Points		      [12, 0]
       Branch {
-	ZOrder			148
-	DstBlock		"Add2"
+	Points			[0, 70]
+	DstBlock		"holder 2"
 	DstPort			1
       }
       Branch {
-	ZOrder			147
-	Points			[0, 70]
-	DstBlock		"holder2"
+	DstBlock		"Add2"
 	DstPort			1
       }
     }
     Line {
-      ZOrder		      150
-      SrcBlock		      "holder2"
+      SrcBlock		      "holder 2"
       SrcPort		      1
-      Points		      [22, 0; 0, -55]
+      Points		      [32, 0; 0, -55]
       DstBlock		      "Add2"
       DstPort		      2
     }
     Line {
-      ZOrder		      151
-      SrcBlock		      "Add2"
-      SrcPort		      1
-      DstBlock		      "Scope2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      152
-      SrcBlock		      "right leg"
+      SrcBlock		      "right leg force"
       SrcPort		      1
       DstBlock		      "Bus\nCreator3"
       DstPort		      1
     }
     Line {
-      ZOrder		      153
-      SrcBlock		      "right leg"
+      SrcBlock		      "right leg force"
       SrcPort		      2
       DstBlock		      "Bus\nCreator3"
       DstPort		      2
     }
     Line {
-      ZOrder		      154
-      SrcBlock		      "right leg"
+      SrcBlock		      "right leg force"
       SrcPort		      3
       DstBlock		      "Bus\nCreator3"
       DstPort		      3
     }
     Line {
-      ZOrder		      157
       SrcBlock		      "Bus\nCreator3"
       SrcPort		      1
       Points		      [12, 0]
       Branch {
-	ZOrder			156
-	DstBlock		"Add3"
+	Points			[0, 70]
+	DstBlock		"holder 3"
 	DstPort			1
       }
       Branch {
-	ZOrder			155
-	Points			[0, 70]
-	DstBlock		"holder3"
+	DstBlock		"Add3"
 	DstPort			1
       }
     }
     Line {
-      ZOrder		      158
-      SrcBlock		      "holder3"
+      SrcBlock		      "holder 3"
       SrcPort		      1
-      Points		      [22, 0; 0, -55]
+      Points		      [32, 0; 0, -55]
       DstBlock		      "Add3"
       DstPort		      2
     }
     Line {
-      ZOrder		      159
-      SrcBlock		      "Add3"
+      SrcBlock		      "left foot force\n"
+      SrcPort		      3
+      DstBlock		      "Bus\nCreator"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator4"
       SrcPort		      1
-      DstBlock		      "Scope3"
+      Points		      [12, 0]
+      Branch {
+	Points			[0, 70]
+	DstBlock		"holder 4"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Add4"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "holder 4"
+      SrcPort		      1
+      Points		      [32, 0; 0, -55]
+      DstBlock		      "Add4"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator5"
+      SrcPort		      1
+      Points		      [12, 0]
+      Branch {
+	Points			[0, 70]
+	DstBlock		"holder 5"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Add5"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "holder 5"
+      SrcPort		      1
+      Points		      [32, 0; 0, -55]
+      DstBlock		      "Add5"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "left foot torque\n"
+      SrcPort		      4
+      DstBlock		      "Bus\nCreator4"
       DstPort		      1
     }
+    Line {
+      SrcBlock		      "left foot torque\n"
+      SrcPort		      5
+      DstBlock		      "Bus\nCreator4"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "left foot torque\n"
+      SrcPort		      6
+      DstBlock		      "Bus\nCreator4"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "left leg torque"
+      SrcPort		      4
+      DstBlock		      "Bus\nCreator5"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "left leg torque"
+      SrcPort		      5
+      DstBlock		      "Bus\nCreator5"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "left leg torque"
+      SrcPort		      6
+      DstBlock		      "Bus\nCreator5"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator6"
+      SrcPort		      1
+      Points		      [12, 0]
+      Branch {
+	Points			[0, 80]
+	DstBlock		"holder 6"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Add6"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "holder 6"
+      SrcPort		      1
+      Points		      [17, 0; 0, -65]
+      DstBlock		      "Add6"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator7"
+      SrcPort		      1
+      Points		      [12, 0]
+      Branch {
+	Points			[0, 70]
+	DstBlock		"holder 7"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"Add7"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "holder 7"
+      SrcPort		      1
+      Points		      [32, 0; 0, -55]
+      DstBlock		      "Add7"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "right foot torque"
+      SrcPort		      4
+      DstBlock		      "Bus\nCreator6"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "right foot torque"
+      SrcPort		      5
+      DstBlock		      "Bus\nCreator6"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "right foot torque"
+      SrcPort		      6
+      DstBlock		      "Bus\nCreator6"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "right leg torque"
+      SrcPort		      4
+      DstBlock		      "Bus\nCreator7"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "right leg torque"
+      SrcPort		      5
+      DstBlock		      "Bus\nCreator7"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "right leg torque"
+      SrcPort		      6
+      DstBlock		      "Bus\nCreator7"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Add1"
+      SrcPort		      1
+      Points		      [142, 0; 0, -50; 598, 0]
+      Branch {
+	Points			[0, 20]
+	DstBlock		"Matrix Square"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"ForceTorqueLeftLeg"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Add3"
+      SrcPort		      1
+      Points		      [135, 0; 0, -10; 407, 0]
+      Branch {
+	Points			[0, 20]
+	DstBlock		"Matrix Square1"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"ForceTorqueRightLeg"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Add5"
+      SrcPort		      1
+      Points		      [98, 0; 0, -30]
+      DstBlock		      "ForceTorqueLeftLeg"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Matrix Square"
+      SrcPort		      1
+      DstBlock		      "ForceTorqueLeftLeg"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Add7"
+      SrcPort		      1
+      Points		      [28, 0; 0, -45]
+      DstBlock		      "ForceTorqueRightLeg"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Matrix Square1"
+      SrcPort		      1
+      Points		      [12, 0; 0, -10]
+      DstBlock		      "ForceTorqueRightLeg"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Add"
+      SrcPort		      1
+      Points		      [142, 0; 0, -50; 598, 0]
+      Branch {
+	Points			[0, 20]
+	DstBlock		"Matrix Square2"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"ForceTorqueLeftFoot"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Add4"
+      SrcPort		      1
+      Points		      [187, 0; 0, -30]
+      DstBlock		      "ForceTorqueLeftFoot"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Matrix Square2"
+      SrcPort		      1
+      DstBlock		      "ForceTorqueLeftFoot"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Add2"
+      SrcPort		      1
+      Points		      [740, 0; 0, 25]
+      Branch {
+	Points			[0, 20]
+	DstBlock		"Matrix Square3"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"ForceTorqueRightFoot"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Add6"
+      SrcPort		      1
+      Points		      [187, 0; 0, -30]
+      DstBlock		      "ForceTorqueRightFoot"
+      DstPort		      3
+    }
+    Line {
+      SrcBlock		      "Matrix Square3"
+      SrcPort		      1
+      DstBlock		      "ForceTorqueRightFoot"
+      DstPort		      2
+    }
+  }
+}
+# Finite State Machines
+#
+#    Stateflow Version 7.6 (R2012b) dated Jul 26 2012, 17:33:50
+#
+#
+
+Stateflow {
+  machine {
+    id			    1
+    name		    "ft_sensor_debug_iCubGenova03"
+    created		    "25-Aug-2014 09:19:48"
+    isLibrary		    0
+    firstTarget		    2
+    sfVersion		    76014001.001
+  }
+  target {
+    id			    2
+    name		    "sfun"
+    description		    "Default Simulink S-Function Target."
+    machine		    1
+    linkNode		    [1 0 0]
   }
 }

@@ -14,23 +14,26 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-Gains  = [  70    0   0  4];
+GainsPCOM        = diag([100  100 100]);
+GainsIDMomentum  = [ 0    1   1 ];
 
 % Impadances acting in the null space of the desired contact forces 
 
-impTorso            = [12    8   12
-                        0    0    0]; 
-impArms             = [10   10   10  10   5
+impTorso            = [ 9    20   10
+                        0     0   0]; 
+impArms             = [ 8    8    8   8   8
                         0    0    0   0   0];
-impLegs             = [35   50    0  30   2  10
-                        1    1    1   1   1   1]; 
+impLegs             = [35   70    0    1000    1000  10
+                       300  300   0   0    1000  25]; 
 
 impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
 
 increasingRatesImp  = [impTorso(2,:),impArms(2,:),impArms(2,:),impLegs(2,:),impLegs(2,:)];
 
-impedencesSat       = [1000   1000    1000];
+impedencesSat       = [100   100    2000];
               
+ReferenceParams = [0 0];  %[0.015 0.5];
+
 % Rotation of the gazebo FT sensor
 R   = [0 0 1; 0 -1 0;1 0 0];
 Rf  = [R, zeros(3,3); zeros(3,3), R];
@@ -50,11 +53,35 @@ Rf  = [R, zeros(3,3); zeros(3,3), R];
 % kImpLegs  = [35 50 0.1 30 2 10]; 
 
 %% GAINS FOR iCubGenova01
-% kw = 4;
-% kCom  = [  40    0.2   0 ];
-% kImpTorso = [3 2 4]*8; 
-% kImpArms  = [2 2 2 2 1]*8;
-% kImpLegs  = [35 10 0.1 40 2 0.5]; 
+% Gains  = [  120    0   5  4];
+% 
+% % Impadances acting in the null space of the desired contact forces 
+% 
+% impTorso            = [12    8   12
+%                         0    0    0]; 
+% impArms             = [10   10   10  10   5
+%                         0    0    0   0   0];
+% impLegs             = [35   50    0  30   2  10
+%                         0    0    0   0   0   0];  
+% 
+% Gains  = [  110    0   1  1];
+% 
+% % Impadances acting in the null space of the desired contact forces 
+% 
+% impTorso            = [30    30   10
+%                         0     0   0]; 
+% impArms             = [ 8    8    8   8   8
+%                         0    0    0   0   0];
+% impLegs             = [35   70    0    1000    1000  10
+%                        300  300   0   20000    1000  25]; 
+% 
+% impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
+% 
+% increasingRatesImp  = [impTorso(2,:),impArms(2,:),impArms(2,:),impLegs(2,:),impLegs(2,:)];
+% 
+% impedencesSat       = [100   100    2000];
+%               
+% ReferenceParams = [0.015 0.4];
 % 
 
 %% Right left 
