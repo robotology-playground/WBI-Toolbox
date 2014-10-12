@@ -14,8 +14,13 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-GainsPCOM        = diag([100  100 100]);
-GainsIDMomentum  = [ 0    1   1 ];
+GainsPCOM                 = diag([100  100 100]);
+minCoMx_y                 = [-0.1   -0.25 ];  
+maxCoMx_y                 = [ 0.1    0.05 ];
+satGainsPCOM              = 300;
+
+increasingRatesGainsPCOM  = [ 1      1    ];
+GainsIDMomentum           = [ 0     1   1 ];
 
 % Impadances acting in the null space of the desired contact forces 
 
