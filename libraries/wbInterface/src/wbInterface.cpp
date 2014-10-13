@@ -33,7 +33,6 @@
 
 #define VERBOSE   0
 #define TIMING    0
-#define DEBUG
 
 
 
@@ -197,8 +196,8 @@ bool robotStatus::robotConfig() {
         
 #ifdef WBI_ICUB_COMPILE_PARAM_HELP
 	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
-	  fprintf (stderr, "This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
-	  return;
+	  fprintf (stderr, "ERROR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
+	  return false;
 	}
 	else {
         yarp::os::Value trueValue;
