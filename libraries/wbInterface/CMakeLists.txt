@@ -33,7 +33,7 @@ include(iCubHelpers)
 include(iCubOptions)
 
 # Check if externl torque control is to be used
-if (ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL)
+if (CODYCO_ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL)
     message("Adding external torque control.")
     add_definitions(-DWBI_ICUB_COMPILE_PARAM_HELP)
 endif()
