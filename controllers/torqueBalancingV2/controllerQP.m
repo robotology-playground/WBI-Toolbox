@@ -310,7 +310,8 @@ JcMinvJct = JcMinv*transpose(Jc);
 
 xDcom      = J_CoM(1:3,:)*v;
 xDDcomStar = Desired_x_dx_ddx_CoM(:,3) - Gains(1)*(pos_CoM - Desired_x_dx_ddx_CoM(:,1)) - Gains(2)*IntErrorCoM - Gains(3)*(xDcom - Desired_x_dx_ddx_CoM(:,2));
-pos_CoM-Desired_x_dx_ddx_CoM(:,1)
+clc
+Desired_x_dx_ddx_CoM(:,1)
 
 Pr =  pos_rightFoot - pos_CoM; % Application point of the contact force on the right foot w.r.t. CoM
 
@@ -479,18 +480,19 @@ end
 % % output
 % % [x0 , desiredFeetContactForces]
 
+% the old controller
+desiredFeetContactForces = pinvA*(HDotDes-grav); % to ignore QP
 
-% desiredFeetContactForces = pinvA*(HDotDes-grav); % to ignore QP
-% 
-% measuredFeetContactForces = desiredFeetContactForces;
-% 
-% tauForDesiredFeetForces = PInv_JcMinvSt*(JcMinv*h - JcDqD - JcMinvJct*measuredFeetContactForces);
-% tauForImpedenceBehaviour = g(7:end)-Jc(:,7:end)'*measuredFeetContactForces - (Impedances.*(q-qjInit));
-% 
-% tau = tauForDesiredFeetForces + N0*tauForImpedenceBehaviour;
+measuredFeetContactForces = desiredFeetContactForces;
+
+tauForDesiredFeetForces = PInv_JcMinvSt*(JcMinv*h - JcDqD - JcMinvJct*measuredFeetContactForces);
+tauForImpedenceBehaviour = g(7:end)-Jc(:,7:end)'*measuredFeetContactForces - (Impedances.*(q-qjInit));
+
+tau_old = tauForDesiredFeetForces + N0_tau*tauForImpedenceBehaviour;
 
 tau = X_tau*desiredf0+Y_tau;
 % tau = zeros(25,1);
+% [tau,tau_old]
 CoMError    = pos_CoM - Desired_x_dx_ddx_CoM(:,1);
 
 % normCoMError  = norm(CoMError);
