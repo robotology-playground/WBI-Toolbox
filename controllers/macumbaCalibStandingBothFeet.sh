@@ -7,7 +7,7 @@ for a in $list; do
 	echo "set icmd cmod $a idl"  | yarp rpc /icub/left_leg/rpc:i
 done
 
-sleep 1
+sleep 0.5
 
 for a in $list; do
 	echo "set icmd cmod $a pos"  | yarp rpc /icub/right_leg/rpc:i
@@ -21,7 +21,7 @@ for a in $list; do
 	echo "set icmd cmod $a idl"  | yarp rpc /icub/left_leg/rpc:i
 done
 
-sleep 1
+sleep 0.5
 
 for a in $list; do
 	echo "set icmd cmod $a pos"  | yarp rpc /icub/right_leg/rpc:i
@@ -29,9 +29,9 @@ for a in $list; do
 done
 
 echo "!!Now I will calib the wholeBodyDynamics!!"
-sleep 1
+sleep 0.5
 echo "calibStanding all 600"  | yarp rpc /wholeBodyDynamicsTree/rpc:i
-sleep 1
+sleep 0.5
 yarp clean --timeout 0.2
 
 

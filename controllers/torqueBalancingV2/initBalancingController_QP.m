@@ -1,8 +1,9 @@
 %WBC ASW
-clear all
+% clear all
 
 % Controller period
-Ts = 0.01; 
+Ts             = 0.01; 
+simulationTime = 15;
  
 % Controller gains for convergence of the desired centroidal momentum. 
 % The first three elements are the Proportional, Intagral, and the Derivative
@@ -15,21 +16,20 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-% Gains  = [  120    0   5  4    ];
-gains  = [    100    0   1   1 ];
+gains  = [    120    0   1   1 ];
 
 % Impadances acting in the null space of the desired contact forces 
 
 
 impTorso            = [  70    20   10
-                        100     0    0]; 
+                          0     0    0]; 
 impArms             = [ 8    8    8   8   8
                         0    0    0   0   0];
-impLegs             = [35   70    0    1000    1000  10
-                        0    0   0       0        0  0]; 
+impLegs             = [35   70    0    100    100  10
+                        0    0   0     1000   1000  0]; 
 impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
 increasingRatesImp  = [impTorso(2,:),impArms(2,:),impArms(2,:),impLegs(2,:),impLegs(2,:)];
-impedencesSat       = [100   100    2000];
+impedencesSat       = [100   100    1000];
 
 
               
@@ -38,7 +38,7 @@ R   = [0 0 1; 0 -1 0;1 0 0];
 Rf  = [R, zeros(3,3); zeros(3,3), R];
 
 
-referenceParams = [0.04 0.5];  %[0.015 0.5];
+referenceParams = [0.04 0.25];  %[0.015 0.5];
 
 
 %% Parameters for QP
@@ -47,6 +47,7 @@ x0 = zeros(6*n_constraint,1);
 lb = -inf*ones(6*n_constraint,1);
 ub = inf*ones(6*n_constraint,1);
 x0_lb_ub    = [x0;lb;ub];
+
 
 %% GAINS FOR Gazebo
 
