@@ -54,14 +54,14 @@ class wholeBodyInterface;
 }
 
 //This should somehow be provided by the user, but 25 will be the default
-#define ICUB_DOFS 25
+#define ROBOT_DOF 25
 
 typedef Eigen::Matrix<double, 7, 1>  Vector7d;
 const int Dynamic = -1;
 // a Jacobian is 6 rows and N columns
 typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
 // N+6 x N+6 mass matrix
-typedef Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
+typedef Eigen::Matrix < double, ROBOT_DOF + 6, ROBOT_DOF + 6, Eigen::RowMajor > MassMatrix;
 
 static const Vector7d              DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 static const Eigen::Vector2d       DEFAULT_X_COM_SIZE  = Eigen::Vector2d::Constant (0.0);
