@@ -21,7 +21,7 @@ block.SetPreCompOutPortInfoToDynamic;
 % for now based on both feet (needs to be defined dynamically)
 % Override input port properties
 block.InputPort(1).Dimensions        = 13*12;      % %1 % [quadTerm,linTerm]               
-block.InputPort(2).Dimensions        = 24*13;      % %2 % [Aineq,bineq]
+block.InputPort(2).Dimensions        = 28*13;      % %2 % [Aineq,bineq]
 block.InputPort(3).Dimensions        = 13;      % %3 % [Aeq,beq] 
 block.InputPort(4).Dimensions        = 6*2*3;   % %4 % [x0;lb;ub] 
 block.InputPort(5).Dimensions        = 1;   % %5 % n_constraint 
@@ -214,7 +214,7 @@ x0_lb_ub            = block.InputPort(4).Data;
 QPterms    = reshape(QPterms,fdim+1,fdim);
   quadTerm = QPterms(1:fdim,:);
    linTerm = QPterms(fdim+1,:);
-const_ineq = reshape(const_ineq,24,fdim+1);
+const_ineq = reshape(const_ineq,28,fdim+1);
      Aineq = const_ineq(:,1:fdim);
      bineq = const_ineq(:,fdim+1);
 const_eq   = reshape(const_eq,1,fdim+1);
@@ -244,7 +244,7 @@ options = optimset('Algorithm','active-set','Display','off');
 % FOR EXPERIMENT 1 - NO CONSTRAINTS
 
 [desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
-                                                 [],   [], ... %inequalities
+                                              Aineq, bineq, ... %inequalities
                                                  [],   [], ... %equalities
                                                  lb,      ub, ... %bounds
                                                  x0,          ... %initial solution
