@@ -3,7 +3,7 @@ clear all
 
 % Controller period
 Ts             = 0.01; 
-simulationTime = 15;
+simulationTime = inf;
  
 % Controller gains for convergence of the desired centroidal momentum. 
 % The first three elements are the Proportional, Intagral, and the Derivative
