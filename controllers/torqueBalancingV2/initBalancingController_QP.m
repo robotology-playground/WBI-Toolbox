@@ -1,5 +1,5 @@
 %WBC ASW
-% clear all
+clear all
 
 % Controller period
 Ts             = 0.01; 
