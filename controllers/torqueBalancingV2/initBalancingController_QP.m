@@ -48,6 +48,37 @@ lb = -inf*ones(6*n_constraint,1);
 ub = inf*ones(6*n_constraint,1);
 x0_lb_ub    = [x0;lb;ub];
 
+%% constraints for QP for balancing on both feet - friction cone - z-moment - in terms of f (not f0!)
+
+n_constraint                 = 2;
+% friction cone
+staticFrictionCoefficient    = 1/3;  
+numberOfPoints               = 4; %number of points in a quadrant for cone
+torsionalFrictionCoefficient = 2/150;
+
+[Aineq_fcone_f,bineq_fcone_f]= constraint_fcone_QP(staticFrictionCoefficient,numberOfPoints,n_constraint);
+
+
+if n_constraint==2
+    Aineq_torsion_f = [0 , 0, -torsionalFrictionCoefficient, 0, 0, 1, zeros(1,6);
+                       0 , 0, -torsionalFrictionCoefficient, 0, 0,-1, zeros(1,6);
+                       zeros(1,6),0 , 0, -torsionalFrictionCoefficient, 0, 0, 1;
+                       zeros(1,6),0 , 0, -torsionalFrictionCoefficient, 0, 0,-1];   
+    bineq_torsion_f = zeros(4,1);
+else
+    Aineq_torsion_f = [0 , 0, -torsionalFrictionCoefficient, 0, 0, 1;
+                       0 , 0, -torsionalFrictionCoefficient, 0, 0,-1];
+    bineq_torsion_f = zeros(2,1); 
+end    
+%
+
+% merge the constraints together
+% here still in terms of f (not f0) 
+% (the constraint on f0 are variable and calculated in the controller)
+Aineq_f = [Aineq_fcone_f;
+           Aineq_torsion_f];
+bineq_f = [bineq_fcone_f;
+           bineq_torsion_f];
 
 %% GAINS FOR Gazebo
 
