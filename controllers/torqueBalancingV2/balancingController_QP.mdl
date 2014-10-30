@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1676"
+    ComputedModelVersion    "1.1678"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -31,7 +31,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [135.0, 52.0, 973.0, 1028.0]
+      Location		      [988.0, 52.0, 931.0, 1028.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -53,16 +53,16 @@ Model {
 	Dimension		4
 	Object {
 	  $ObjectID		  5
-	  IsActive		  [0]
+	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "736"
-	  Extents		  [742.0, 880.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [540.19747522934324, 282.51869071953013]
+	  Extents		  [700.0, 880.0]
+	  ZoomFactor		  [0.5]
+	  Offset		  [-82.895408236353546, -305.84152998387572]
 	}
 	Object {
 	  $ObjectID		  6
-	  IsActive		  [1]
+	  IsActive		  [0]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [742.0, 880.0]
@@ -76,7 +76,7 @@ Model {
 	  LoadSaveID		  "61"
 	  Extents		  [742.0, 880.0]
 	  ZoomFactor		  [0.65781990521327016]
-	  Offset		  [823.71757925072052, 68.123919308357245]
+	  Offset		  [823.71757925072063, 191.20334317239235]
 	}
 	Object {
 	  $ObjectID		  8
@@ -97,9 +97,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "talha"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Oct 29 00:47:54 2014"
-  RTWModifiedTimeStamp	  336444473
-  ModelVersionFormat	  "1.%<AutoIncrement:1676>"
+  LastModifiedDate	  "Thu Oct 30 12:32:41 2014"
+  RTWModifiedTimeStamp	  336572409
+  ModelVersionFormat	  "1.%<AutoIncrement:1678>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -1079,7 +1079,7 @@ Model {
   }
   System {
     Name		    "balancingController_QP"
-    Location		    [135, 52, 1108, 1080]
+    Location		    [609, 75, 1582, 1103]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1115,7 +1115,7 @@ Model {
 	    Type		    "edit"
 	    Name		    "robotName"
 	    Prompt		    "robot name"
-	    Value		    "'iCubGenova01'"
+	    Value		    "'iCubGenova03'"
 	  }
 	  Object {
 	    $ObjectID		    24
@@ -1136,7 +1136,7 @@ Model {
       }
       System {
 	Name			"Subsystem"
-	Location		[135, 52, 1108, 1080]
+	Location		[609, 75, 1582, 1103]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1175,7 +1175,7 @@ Model {
 	  ZOrder		  44
 	  BackgroundColor	  "[0.996109, 0.000000, 0.996109]"
 	  ShowName		  off
-	  LibraryVersion	  "1.189"
+	  LibraryVersion	  "1.191"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Jacobians/Center of Mass Jacobian"
 	  SourceType		  "Center of Mass Jacobian"
 	  ContentPreviewEnabled	  off
@@ -1223,7 +1223,7 @@ Model {
 	      ZOrder		      208
 	      BackgroundColor	      "lightBlue"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/COMFwdKin "
 	      SourceType	      "Center of Mass Forward Kinematics"
 	      ContentPreviewEnabled   off
@@ -1484,7 +1484,7 @@ Model {
 	  ZOrder		  39
 	  BackgroundColor	  "orange"
 	  ShowName		  off
-	  LibraryVersion	  "1.189"
+	  LibraryVersion	  "1.191"
 	  SourceBlock		  "WBCLibrary/wholeBodyStates/Joint Angles"
 	  SourceType		  "Joint Angles"
 	  ContentPreviewEnabled	  off
@@ -1500,7 +1500,7 @@ Model {
 	  ZOrder		  244
 	  BackgroundColor	  "[1.000000, 0.203922, 0.027451]"
 	  ShowName		  off
-	  LibraryVersion	  "1.189"
+	  LibraryVersion	  "1.191"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Joint Limits"
 	  SourceType		  "Joint Limits"
 	  ContentPreviewEnabled	  off
@@ -1556,7 +1556,7 @@ Model {
 	      Position		      [330, 488, 395, 532]
 	      ZOrder		      215
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/Cent Momentum"
 	      SourceType	      "Centroidal Momentum"
 	      ContentPreviewEnabled   off
@@ -1584,7 +1584,7 @@ Model {
 	      ZOrder		      211
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/computeh"
 	      SourceType	      "Generalized Bias Forces"
 	      ContentPreviewEnabled   off
@@ -1601,7 +1601,7 @@ Model {
 	      ZOrder		      213
 	      BackgroundColor	      "magenta"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/computeh"
 	      SourceType	      "Generalized Bias Forces"
 	      ContentPreviewEnabled   off
@@ -1618,7 +1618,7 @@ Model {
 	      ZOrder		      212
 	      BackgroundColor	      "red"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/massMatrix"
 	      SourceType	      "Mass Matrix"
 	      ContentPreviewEnabled   off
@@ -1768,7 +1768,7 @@ Model {
 	  ZOrder		  87
 	  BackgroundColor	  "[0.074000, 0.349000, 0.941000]"
 	  ShowName		  off
-	  LibraryVersion	  "1.189"
+	  LibraryVersion	  "1.191"
 	  SourceBlock		  "WBCLibrary/wholeBodyModel/Forward Kinematics/RightFootFwdKin"
 	  SourceType		  "Right Foot Forward Kinematics"
 	  ContentPreviewEnabled	  off
@@ -1783,7 +1783,7 @@ Model {
 	  Position		  [1830, 523, 1900, 567]
 	  ZOrder		  224
 	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
-	  LibraryVersion	  "1.189"
+	  LibraryVersion	  "1.191"
 	  SourceBlock		  "WBCLibrary/wholeBodyActuators/Set Torques"
 	  SourceType		  "Set Joint Torques   "
 	  ContentPreviewEnabled	  off
@@ -1980,7 +1980,7 @@ Model {
 	      ZOrder		      209
 	      BackgroundColor	      "[0.180392, 0.349020, 0.600000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/Utilities/WBI to yarp"
 	      SourceType	      "WBI to YARP"
 	      ContentPreviewEnabled   off
@@ -2195,7 +2195,7 @@ Model {
 	      ZOrder		      214
 	      BackgroundColor	      "[0.239216, 0.462745, 0.800000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/Utilities/yarp to WBI"
 	      SourceType	      "YARP to wbi"
 	      ContentPreviewEnabled   off
@@ -2423,7 +2423,7 @@ Model {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      ContentPreviewEnabled   off
@@ -2438,7 +2438,7 @@ Model {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      ContentPreviewEnabled   off
@@ -2464,7 +2464,7 @@ Model {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      ContentPreviewEnabled   off
@@ -2479,7 +2479,7 @@ Model {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	      ContentPreviewEnabled   off
@@ -2637,7 +2637,7 @@ Model {
 	  RequestExecContextInheritance	off
 	  System {
 	    Name		    "controller_QP"
-	    Location		    [135, 52, 1108, 1080]
+	    Location		    [988, 52, 1919, 1080]
 	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -2649,7 +2649,7 @@ Model {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "50"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "impedances"
@@ -3423,7 +3423,7 @@ Model {
 	      }
 	      System {
 		Name			"QPsolver - no constraints"
-		Location		[135, 52, 1108, 1080]
+		Location		[609, 75, 1582, 1103]
 		Open			on
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -3549,6 +3549,7 @@ Model {
 	      Position		      [1090, 431, 1130, 469]
 	      ZOrder		      234
 	      ShowName		      off
+	      Commented		      "on"
 	      InputPortWidth	      "12"
 	      Indices		      "[1 2 3]"
 	    }
@@ -3560,6 +3561,7 @@ Model {
 	      Position		      [1090, 486, 1130, 524]
 	      ZOrder		      235
 	      ShowName		      off
+	      Commented		      "on"
 	      InputPortWidth	      "12"
 	      Indices		      "[4 5 6]"
 	    }
@@ -3571,6 +3573,7 @@ Model {
 	      Position		      [1090, 541, 1130, 579]
 	      ZOrder		      236
 	      ShowName		      off
+	      Commented		      "on"
 	      InputPortWidth	      "12"
 	      Indices		      "[7 8 9]"
 	    }
@@ -3582,6 +3585,7 @@ Model {
 	      Position		      [1090, 596, 1130, 634]
 	      ZOrder		      237
 	      ShowName		      off
+	      Commented		      "on"
 	      InputPortWidth	      "12"
 	      Indices		      "[10 11 12]"
 	    }
@@ -3629,6 +3633,7 @@ Model {
 	      Ports		      [4]
 	      Position		      [1165, 418, 1235, 647]
 	      ZOrder		      233
+	      Commented		      "on"
 	      Floating		      off
 	      Location		      [58, 90, 1736, 1020]
 	      Open		      off
@@ -4317,7 +4322,7 @@ Model {
 	      ZOrder		      211
 	      BackgroundColor	      "[0.662196, 0.000000, 1.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/dJ*dq LeftFoot"
 	      SourceType	      "dJ*dq Left Foot"
 	      ContentPreviewEnabled   off
@@ -4334,7 +4339,7 @@ Model {
 	      ZOrder		      210
 	      BackgroundColor	      "[0.501000, 0.015000, 0.850000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Dynamics/dJ*dq RightFoot"
 	      SourceType	      "dJ*dq Right Foot"
 	      ContentPreviewEnabled   off
@@ -4450,7 +4455,7 @@ Model {
 	      ZOrder		      205
 	      BackgroundColor	      "[1.000000, 0.258824, 0.819608]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      ContentPreviewEnabled   off
@@ -4466,7 +4471,7 @@ Model {
 	      ZOrder		      206
 	      BackgroundColor	      "[0.996078, 0.000000, 0.996078]"
 	      ShowName		      off
-	      LibraryVersion	      "1.189"
+	      LibraryVersion	      "1.191"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      ContentPreviewEnabled   off
@@ -5297,10 +5302,7 @@ Stateflow {
     firstTransition	    40
     firstJunction	    39
     viewObj		    11
-    visible		    1
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    33
     decomposition	    CLUSTER_CHART
     type		    EML_CHART

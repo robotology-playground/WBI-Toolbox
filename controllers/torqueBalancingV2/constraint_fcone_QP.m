@@ -36,9 +36,8 @@ for i = 1 : numberOfEquations
    %I have constraints on fy and fz, and the offset will be multiplied by
    %mu * fx
    
-   Aineq(i,:) = inequalityFactor .* [-offsets * staticFrictionCoefficient,-angularCoefficients, 1, 0, 0, 0];  
-   % for simulink
-   %    [-angularCoefficients, 1, -offsets * staticFrictionCoefficient, 0, 0, 0];
+   Aineq(i,:) = inequalityFactor .*  [-angularCoefficients, 1, -offsets * staticFrictionCoefficient, 0, 0, 0];
+
 end
 
 switch n_constraint

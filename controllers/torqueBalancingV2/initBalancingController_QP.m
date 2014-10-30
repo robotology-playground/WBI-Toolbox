@@ -38,7 +38,7 @@ R   = [0 0 1; 0 -1 0;1 0 0];
 Rf  = [R, zeros(3,3); zeros(3,3), R];
 
 
-referenceParams = [0.04 0.25];  %[0.015 0.5];
+referenceParams = [0.0 0.0];  %[0.015 0.5];
 
 
 %% Parameters for QP
