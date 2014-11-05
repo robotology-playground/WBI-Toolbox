@@ -203,9 +203,9 @@ public:
     yarp::sig::Vector   getJntAccelerations();
     bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);
     bool                centroidalMomentum (double* qrad_input, double* dq_input, double* h);
-    bool                robotEEWrenches (wbi::LocalId LID);
+    bool                robotEEWrenches (wbi::wbiId LID);
     yarp::sig::Vector   getEEWrench();
-    bool                addEstimate();
+    bool                addEstimate(wbi::wbiId LID);
 };
 
 class counterClass {

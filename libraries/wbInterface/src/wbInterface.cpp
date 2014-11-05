@@ -21,7 +21,7 @@
 
 
 #include "wbInterface.h"
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 // MASK PARAMETERS --------------------------------------
 #define NPARAMS            4                                // Number of input parameters
 #define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
@@ -47,7 +47,7 @@ using namespace std;
 using namespace Eigen;
 
 using namespace wbi;
-using namespace wbiIcub;
+using namespace yarpWbi;
 
 
 
@@ -119,7 +119,7 @@ bool robotStatus::robotConfig() {
     } else {
         ResourceFinder rf;
         rf.setVerbose (true);
-        rf.setDefaultContext ("wbit");
+        rf.setDefaultContext ("wbi_conf_file");
 
         rf.setDefaultConfigFile (string (robotName + ".ini").c_str());
         rf.configure (1, 0);
@@ -134,7 +134,7 @@ bool robotStatus::robotConfig() {
         worldRefFrame                       = rf.find ("worldRefFrame").asString();
         if (rf.check ("icub_fixed")) {
             if (rf.find ("icub_fixed").isBool())
-                icub_fixed                  = rf.find ("icub_fixed").asBool();
+                icub_fixed = rf.find ("icub_fixed").asBool();
             else {
                 fprintf (stderr, "ERROR [robotStatus::robotConfig] Wrong icub_fixed in the config file!\n");
                 return false;
@@ -160,15 +160,19 @@ bool robotStatus::robotConfig() {
 // #endif
 
         //---------------- CREATION WHOLE BODY INTERFACE ---------------------/
-#ifdef CODYCO_USES_URDFDOM
-        iCub::iDynTree::iCubTree_version_tag icub_version =
-            iCub::iDynTree::iCubTree_version_tag (headVfromConfigFile, legsVfromConfigFile, feetFTfromConfigFile, uses_urdf, urdf_file);
-#else
-        iCub::iDynTree::iCubTree_version_tag icub_version =
-            iCub::iDynTree::iCubTree_version_tag (headVfromConfigFile, legsVfromConfigFile, feetFTfromConfigFile);
-#endif
 
-        wbInterface = new icubWholeBodyInterface (localNamefromConfigFile.c_str(), robotNamefromConfigFile.c_str(), icub_version);
+	//NOTE Storing pointer to yarpWbiOptions in a PWork vector
+	yarp::os::Property yarpWbiOptions;
+	// Get wbi options from file
+	if( !rf.check(robotNamefromConfigFile.c_str()))
+	{
+	  fprintf(stderr,"[ERR] impossible to open wholeBodyInterface: %s.ini missing \n", robotNamefromConfigFile.c_str() );
+	  return false;
+	}
+	std::string wbiConfFile = rf.findFile("wbi_conf_file");
+	yarpWbiOptions.fromConfigFile(wbiConfFile);
+
+        wbInterface = new yarpWholeBodyInterface (localNamefromConfigFile.c_str(), yarpWbiOptions);
 
 
 #ifdef DEBUG
@@ -182,7 +186,16 @@ bool robotStatus::robotConfig() {
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main iCub joints
-        wbInterface->addJoints (ICUB_MAIN_JOINTS);
+	wbiIdList RobotMainJoints;
+	std::string RobotMainJointsListName = "ICUB_MAIN_JOINTS";
+	
+	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions,RobotMainJoints) )
+	{
+	    fprintf(stderr, "[ERR] locomotionControl: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
+		return false;
+	}
+
+	wbInterface->addJoints (RobotMainJoints);
 
         if(robotNamefromConfigFile == "icub"){
             fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
@@ -739,26 +752,27 @@ bool robotStatus::getJointLimits (double* qminLims, double* qmaxLims, const int 
     }
 }
 //==========================================================================================================================
-bool robotStatus::robotEEWrenches (wbi::LocalId LID) {
+bool robotStatus::robotEEWrenches (wbi::wbiId LID) {
     bool ans = false;
     if (robotJntAngles (false)) {
         if (world2baseRototranslation (qRad.data())) {
-            if ( ( (icubWholeBodyInterface*) wbInterface)->setWorldBasePosition (xBase)) {
-                if (wbInterface->getEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID, EEWrench.data())) {
-#ifdef DEBUG
-                    printf ("End effector wrench retrieved: \n %s", EEWrench.toString().c_str());
-#endif
-                    ans = true;
-                    return ans;
-                }
-            }
+	  //TODO yarpWholeBodyInterface still doesn't have the method setWorldBasePosition which is needed by wbi to estimate forces at the EE
+//             if ( ( (yarpWholeBodyInterface*) wbInterface)->setWorldBasePosition (xBase)) {
+//                 if (wbInterface->getEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID, EEWrench.data())) {
+// #ifdef DEBUG
+//                     printf ("End effector wrench retrieved: \n %s", EEWrench.toString().c_str());
+// #endif
+//                     ans = true;
+//                     return ans;
+//                 }
+//             }
         }
     }
     return ans;
 }
 //==========================================================================================================================
-bool robotStatus::addEstimate() {
-    if (wbInterface->addEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, wbi::LocalId (iCub::skinDynLib::LEFT_LEG, 8)))
+bool robotStatus::addEstimate(wbi::wbiId LID) {
+    if (wbInterface->addEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID))
         return true;
     else
         return false;
@@ -836,6 +850,19 @@ static void mdlInitializeSizes (SimStruct* S) {
     }
 #endif
 
+    //TODO Make this resource finder take the right parameters from configuration file and pass it to a PWork vector.
+    ResourceFinder rf;
+    rf.setVerbose (true);
+    rf.setDefaultConfigFile ("wbi_conf_file.ini");
+    rf.setDefaultContext ("iCubGenova03");
+
+    rf.configure (1, 0);
+
+    ConstString robotNamefromConfigFile = rf.find ("robotName").asString();
+    ConstString localNamefromConfigFile = rf.find ("localName").asString();
+    std::string worldRefFrame           = rf.find ("worldRefFrame").asString();
+    
+    //TODO Robot DOF must be extracted from the ROBOTJOINTS defined in the configuration file of the robot
 
     // Specify I/O
     if (!ssSetNumInputPorts (S, 5)) return;
@@ -885,7 +912,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetNumSampleTimes (S, 1);
 
     // Reserve place for C++ object
-    ssSetNumPWork (S, 3);
+    ssSetNumPWork (S, 4);
 
     ssSetNumDWork (S, 2);
     ssSetDWorkWidth (S, 0, 1);
@@ -895,18 +922,22 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     ssSetSimStateCompliance (S, USE_CUSTOM_SIM_STATE);
 
+    //TODO Store yarpWbiOptions!
+    yarp::os::Property yarpWbiOptions;
+    std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
+    yarpWbiOptions.fromConfigFile(wbiConfFile);
+
+    ssGetPWork (S) [3] = &yarpWbiOptions;
+    
+    //NOTE This should the very last piece of code of mdlInitializesizes
     ssSetOptions (S,
                   SS_OPTION_WORKS_WITH_CODE_REUSE |
-                  SS_OPTION_EXCEPTION_FREE_CODE | //we must be sure that every function we call never throws an exception
+                  SS_OPTION_EXCEPTION_FREE_CODE | 	//we must be sure that every function we call never throws an exception
                   SS_OPTION_ALLOW_INPUT_SCALAR_EXPANSION |
-                  SS_OPTION_USE_TLC_WITH_ACCELERATOR);
+                  SS_OPTION_USE_TLC_WITH_ACCELERATOR |
+		  SS_OPTION_CALL_TERMINATE_ON_EXIT);
 
-    // For FUTURE WORK this flag should be called and debug by correctly programming mdlTerminate.
-    //SS_OPTION_CALL_TERMINATE_ON_EXIT); //this calls the terminate function even in case of errors
-#ifdef DEBUG
-    fprintf (stderr, "mdlInitializeSizes >> FINISHED\n\n");
-#endif
-
+    fprintf (stderr, "mdlInitializeSizes >> Options set\n\n");
 }
 
 
@@ -947,7 +978,7 @@ static void mdlStart (SimStruct* S) {
         ssSetErrorStatus (S, "mdlStart >> Cannot retrieve string from parameter 1.\n");
         return;
     }
-    fprintf (stderr, "mdlStart >> The string being passed for robotName is - %s\n ", cString);
+    fprintf (stderr, "mdlStart >> The string being passed for robotName is - %s\n", cString);
     std::string robot_name (cString);
     mxFree (cString);
     cString = 0;
@@ -962,7 +993,7 @@ static void mdlStart (SimStruct* S) {
     cString = 0;
 
     real_T block_type = mxGetScalar (ssGetSFcnParam (S, BLOCK_TYPE_IDX));
-    fprintf (stderr, "mdlStart >> BLOCK TYPE MASK PARAMETER: %f\n", block_type);
+    fprintf (stderr, "mdlStart >> Block type mask parameter: %f\n", block_type);
     
     cString = mxArrayToString (ssGetSFcnParam (S, LINKNAME_PARAM_IDX));
     if (!cString) {
@@ -1550,30 +1581,47 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will retrieve force/torque estimates at the end effectors of the arms and legs of the robot
     if (btype == 15) {
-        wbi::LocalId LID = wbi::LocalId (0, 0);
-        switch ( (int) *uPtrs[0]) {
+      // Retrieve 
+      yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
+      //TODO Check with Silvio if this is the right way to do it. In the configuration file for Heidelber there's no ID for the right/left sole
+      wbiIdList RobotJoint;
+      std::string RobotJointsListName;
+      wbi:wbiId LID; // Initializing in case we go default
+
+      switch ( (int) *uPtrs[0]) {
         case 0:
+	    RobotJointsListName = "r_ankle_pitch";
             linkName = "r_sole";
-            LID = wbi::LocalId (iCub::skinDynLib::RIGHT_LEG, 8);
+	    //TODO LID in the following cases must be assigned the REF FRAME of the arm and leg EE.
+	    if( !loadIdListFromConfig(RobotJointsListName,yarpWbiOptions[0],RobotJoint) )
+	    {
+
+	      fprintf(stderr, "[ERR] locomotionControl: impossible to load wbiId joint list with name %s\n",RobotJointsListName.c_str());
+	      return;
+	    }
+	    LID = wbi::wbiId ("r_sole");
             break;
         case 1:
             linkName = "l_sole";
-            LID = wbi::LocalId (iCub::skinDynLib::LEFT_LEG, 8);
+	    LID = wbi::wbiId ("l_sole");
+//             LID = wbi::wbiId (iCub::skinDynLib::LEFT_LEG, 8);
             break;
         case 2:
             linkName = "r_gripper";
-            LID = wbi::LocalId (iCub::skinDynLib::RIGHT_ARM, 8);
+	    LID = wbi::wbiId ("r_gripper");
+//             LID = wbi::wbiId (iCub::skinDynLib::RIGHT_ARM, 8);
             break;
         case 3:
             linkName = "l_gripper";
-            LID = wbi::LocalId (iCub::skinDynLib::LEFT_ARM, 8);
+	    LID = wbi::wbiId ("l_gripper");
+//             LID = wbi::wbiId (iCub::skinDynLib::LEFT_ARM, 8);
             break;
         default:
             fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute end effectors wrenches\n");
         }
 
         if (flag) {
-            if (robot->addEstimate()) {
+            if (robot->addEstimate(LID)) {
 #ifdef DEBUG
                 printf ("mdlOutputs: addEstimate exited correctly");
 #endif
@@ -1713,9 +1761,11 @@ static void mdlTerminate (SimStruct* S) {
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
     double* minJntLimits = 0;//new double[ICUB_DOFS];
     double* maxJntLimits = 0;//new double[ICUB_DOFS];
+    yarp::os::Property* yarpWbiOptions = NULL;
 
     minJntLimits = (double*) ssGetPWork (S) [1];
     maxJntLimits = (double*) ssGetPWork (S) [2];
+    yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
 
 #ifdef DEBUG
     fprintf (stderr, "mdlTerminate: robot pointer: %p\n", robot);
@@ -1733,16 +1783,20 @@ static void mdlTerminate (SimStruct* S) {
             printf ("minJntLimits deleted\n");
             delete[] maxJntLimits;
             printf ("maxJntLimits deleted\n");
+	    	delete yarpWbiOptions;
             robotStatus::resetCounter();
-            robot        = NULL;
-            minJntLimits = NULL;
-            maxJntLimits = NULL;
+            robot          = NULL;
+            minJntLimits   = NULL;
+            maxJntLimits   = NULL;
+	    	yarpWbiOptions = NULL;
             ssSetPWorkValue (S, 0, NULL);
             ssSetPWorkValue (S, 1, NULL);
             ssSetPWorkValue (S, 2, NULL);
+	    ssSetPWorkValue (S, 3, NULL);
         }
     }
         Network::fini();
+	fprintf(stderr,"Left mdlTerminate\n");
 }
 
 // Required S-function trailer
