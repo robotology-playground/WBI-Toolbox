@@ -64,7 +64,7 @@ yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 
 robotStatus::robotStatus() {
     creationCounter++;
-    fprintf (stderr, "robotStatus::robotStatus >> ROBOTSTATUS instantiated %d times\n ", creationCounter);
+    fprintf (stderr, "robotStatus::robotStatus >> ROBOTSTATUS instantiated %d times\n", creationCounter);
     wbInterface = NULL;
 }
 //=========================================================================================================================
@@ -77,7 +77,7 @@ robotStatus::~robotStatus() {
             fprintf (stderr, "robotStatus::~robotStatus >> wbInterface has been closed and deleted correctly. %d to go \n", creationCounter);
             wbInterface = NULL;
         } else {
-            fprintf (stderr, "robotStatus::~robotStatus >> ERROR: wbInterface couldn't close correctly");
+            fprintf (stderr, "robotStatus::~robotStatus >> ERR: wbInterface couldn't close correctly");
         }
 
         tmpContainer = NULL;
@@ -109,38 +109,41 @@ void robotStatus::resetCounter() {
     creationCounter = 0;
 }
 //=========================================================================================================================
-bool robotStatus::robotConfig() {
+bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
+    //TODO Input to robotConfig() should be the name of the config file and the defaultcontext?
     if (VERBOSE) fprintf (stderr, "robotStatus::robotConfig >> Configuring...\n");
     if (tmpContainer != NULL) {
         wbInterface = (wholeBodyInterface*) tmpContainer;
 // #ifdef DEBUG
         fprintf (stderr, "[robotStatus::robotConfig] Copying wholeBodyInterface POINTER!\n");
 // #endif
-    } else {
-        ResourceFinder rf;
-        rf.setVerbose (true);
-        rf.setDefaultContext ("wbi_conf_file");
+    } else {  
+          ResourceFinder rf;
+	  rf.setVerbose (true);
+	  //TODO This should be defined either in the header as done in wholeBodyDynamicsTree
+	  rf.setDefaultConfigFile ("wbi_conf_file.ini");
+	  //TODO This variable should be passed to this function as user input.
+	  rf.setDefaultContext ("iCubGenova03");
 
-        rf.setDefaultConfigFile (string (robotName + ".ini").c_str());
-        rf.configure (1, 0);
+          //NOTE We call rf.configure() this way since we don't have a command line to read commands from
+	  rf.configure (1, 0);
 
-        ConstString robotNamefromConfigFile = rf.find ("robot").asString();
-        ConstString localNamefromConfigFile = rf.find ("local").asString();
-        int         headVfromConfigFile     = rf.find ("headV").asInt();
-        int         legsVfromConfigFile     = rf.find ("legsV").asInt();
-        bool        feetFTfromConfigFile    = rf.find ("feetFT").asBool();
-        bool        uses_urdf               = rf.find ("uses_urdf").asBool();
-        std::string urdf_file               = rf.find ("urdf").asString();
-        worldRefFrame                       = rf.find ("worldRefFrame").asString();
+	  std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
+	  yarpWbiOptions->fromConfigFile(wbiConfFile);
+	  
+	  ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robotName").asString();
+	  ConstString localNamefromConfigFile = yarpWbiOptions->find ("localName").asString();
+	  std::string worldRefFrame           = yarpWbiOptions->find ("worldRefFrame").asString();
+	  
         if (rf.check ("icub_fixed")) {
             if (rf.find ("icub_fixed").isBool())
                 icub_fixed = rf.find ("icub_fixed").asBool();
             else {
-                fprintf (stderr, "ERROR [robotStatus::robotConfig] Wrong icub_fixed in the config file!\n");
+                fprintf (stderr, "ERR [robotStatus::robotConfig] Wrong icub_fixed in the config file!\n");
                 return false;
             }
         } else {
-            fprintf (stderr, "ERROR [robotStatus::robotConfig] No option icub_fixed in the config file!\n");
+            fprintf (stderr, "ERR [robotStatus::robotConfig] No option icub_fixed in the config file!\n");
             return false;
         }
         if (icub_fixed)
@@ -151,28 +154,13 @@ bool robotStatus::robotConfig() {
 // #ifdef DEBUG
         fprintf (stderr, "[robotStatus::robotConfig] After reading from config file, params are \n");
         fprintf (stderr, "[robotStatus::robotConfig] robot name:    %s \n", robotNamefromConfigFile.c_str());
-        fprintf (stderr, "[robotStatus::robotConfig] urdf file:     %s \n", urdf_file.c_str());
         fprintf (stderr, "[robotStatus::robotConfig] local name:    %s \n", localNamefromConfigFile.c_str());
-        fprintf (stderr, "[robotStatus::robotConfig] head version:  %i \n", headVfromConfigFile);
-        fprintf (stderr, "[robotStatus::robotConfig] legs version:  %i \n", legsVfromConfigFile);
-        fprintf (stderr, "[robotStatus::robotConfig] feet version:  %i \n", feetFTfromConfigFile);
         fprintf (stderr, "[robotStatus::robotConfig] world reference frame: %s \n", worldRefFrame.c_str());
 // #endif
 
         //---------------- CREATION WHOLE BODY INTERFACE ---------------------/
 
-	//NOTE Storing pointer to yarpWbiOptions in a PWork vector
-	yarp::os::Property yarpWbiOptions;
-	// Get wbi options from file
-	if( !rf.check(robotNamefromConfigFile.c_str()))
-	{
-	  fprintf(stderr,"[ERR] impossible to open wholeBodyInterface: %s.ini missing \n", robotNamefromConfigFile.c_str() );
-	  return false;
-	}
-	std::string wbiConfFile = rf.findFile("wbi_conf_file");
-	yarpWbiOptions.fromConfigFile(wbiConfFile);
-
-        wbInterface = new yarpWholeBodyInterface (localNamefromConfigFile.c_str(), yarpWbiOptions);
+        wbInterface = new yarpWholeBodyInterface (localNamefromConfigFile.c_str(), yarpWbiOptions[0]);
 
 
 #ifdef DEBUG
@@ -186,14 +174,17 @@ bool robotStatus::robotConfig() {
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main iCub joints
-	wbiIdList RobotMainJoints;
-	std::string RobotMainJointsListName = "ICUB_MAIN_JOINTS";
+	wbi::wbiIdList RobotMainJoints;
+	std::string RobotMainJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
 	
-	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions,RobotMainJoints) )
+	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
 	{
-	    fprintf(stderr, "[ERR] locomotionControl: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
+	    fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
 		return false;
 	}
+	
+        int ROBOT_DOF = RobotMainJoints.size();
+	robotStatus::setRobotDOF(ROBOT_DOF);
 
 	wbInterface->addJoints (RobotMainJoints);
 
@@ -202,14 +193,14 @@ bool robotStatus::robotConfig() {
             if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
                 fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
             else {
-                fprintf (stderr, "ERROR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running the simulation. \n");
+                fprintf (stderr, "ERR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running the simulation. \n");
                 return false;
             }        
         }
         
 #ifdef WBI_ICUB_COMPILE_PARAM_HELP
 	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
-	  fprintf (stderr, "ERROR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
+	  fprintf (stderr, "ERR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
 	  return false;
 	}
 	else {
@@ -222,7 +213,7 @@ bool robotStatus::robotConfig() {
 #endif
         
         if (!wbInterface->init()) {
-            fprintf (stderr, "ERROR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
+            fprintf (stderr, "ERR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
             return false;
         } else {
             fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
@@ -259,51 +250,51 @@ bool robotStatus::robotInit (int btype, int link) {
         int default_size = 0;
         int linkID = 0;
         printf ("READ LINK IS: %d \n", link);
-        switch (link) {
-        case 0:
-            linkName = "r_sole";
-            default_size = DEFAULT_X_LINK_SIZE.size();
-            break;
-        case 1:
-            linkName = "l_sole";
-            default_size = DEFAULT_X_LINK_SIZE.size();
-            break;
-        case 2:
-            linkName = "com";
-            default_size = DEFAULT_X_LINK_SIZE.size();
-            break;
-        case 3:
-            linkName = "r_gripper";
-            default_size = DEFAULT_X_LINK_SIZE.size();
-            break;
-        case 4:
-            linkName = "l_gripper";
-            default_size = DEFAULT_X_LINK_SIZE.size();
-            break;
-        default:
-            fprintf (stderr, "ERROR: No link has been specified for this block\n");
-            return false;
-        }
-        getLinkId (linkName, linkID);
-        // Output of forward kinematics and jacobian
-        x_pose.resize (default_size, 0.0);
+//         switch (link) {
+//         case 0:
+//             linkName = "r_sole";
+//             default_size = DEFAULT_X_LINK_SIZE.size();
+//             break;
+//         case 1:
+//             linkName = "l_sole";
+//             default_size = DEFAULT_X_LINK_SIZE.size();
+//             break;
+//         case 2:
+//             linkName = "com";
+//             default_size = DEFAULT_X_LINK_SIZE.size();
+//             break;
+//         case 3:
+//             linkName = "r_gripper";
+//             default_size = DEFAULT_X_LINK_SIZE.size();
+//             break;
+//         case 4:
+//             linkName = "l_gripper";
+//             default_size = DEFAULT_X_LINK_SIZE.size();
+//             break;
+//         default:
+//             fprintf (stderr, "ERR: No link has been specified for this block\n");
+//             return false;
+//         }
+//         getLinkId (linkName, linkID);
+//         // Output of forward kinematics and jacobian
+//         x_pose.resize (default_size, 0.0);
+//     }
+//     
+//     if(btype == 17) {
+//         x_pose.resize (DEFAULT_X_LINK_SIZE.size());
+//     }
     }
-    
-    if(btype == 17) {
-        x_pose.resize (DEFAULT_X_LINK_SIZE.size());
-    }
+    x_pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
 
     // TODO This variable JfootR must be changed with a more appropriate name
-    JfootR.resize (NoChange, ICUB_DOFS + 6);
+    JfootR.resize (NoChange, ROBOT_DOF + 6);
 
     // dot{J}dot{q}
     dJdq.resize (6, 0);
-
     dxB.resize (6, 0);
-
     ddxB.resize (6, 0);
-
     grav.resize (3, 1);
+    //TODO Gravity must be taken from the IMU
     grav[0] = grav[1] = 0;
     grav[2] = -9.81;
 #ifdef DEBUG
@@ -311,18 +302,17 @@ bool robotStatus::robotInit (int btype, int link) {
 #endif
 
     // Generalized bias forces term.
-    hterm.resize (6 + ICUB_DOFS, 0);
-
-
+    hterm.resize (6 + ROBOT_DOF, 0);
 
     // Should the mass matrix be resized here??? In the future if the number of DOFS or limbs for which the interface will
-    // be used are input parameters, all variables could be resized here and by default leave ICUB_DOFS.
+    // be used are input parameters, all variables could be resized here and by default leave ROBOT_DOF.
 
     // rotation to align foot Z axis with gravity, Ha=[0 0 1 0; 0 -1 0 0; 1 0 0 0; 0 0 0 1]
     Ha.R = Rotation (0, 0, 1, 0, -1, 0, 1, 0, 0);
 
     EEWrench.resize (6, 0);
-
+    
+    fprintf(stderr,"robotStatus::robotInit >> Finished robotInit\n");
     return true;
 }
 //=========================================================================================================================
@@ -332,7 +322,7 @@ void robotStatus::getLinkId (const char* linkName, int& lid) {
 #ifdef DEBUG
         printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
 #endif 
-        wbInterface->getLinkId (linkName, lid);
+        wbInterface->getFrameList().wbiIdToNumericId (linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
     }
@@ -374,6 +364,15 @@ void robotStatus::setWorldReferenceFrame (const char* wrf) {
 
 }
 //=========================================================================================================================
+void robotStatus::setRobotDOF(int ROBOTDOF) {
+  ROBOT_DOF = ROBOTDOF;
+}
+//
+int robotStatus::getRobotDOF()
+{
+  return ROBOT_DOF;
+}
+
 bool robotStatus::robotJntAngles (bool blockingRead) {
 #ifdef DEBUG
     fprintf (stderr, "robotStatus::robotJntAngles >> About to estimate joint positions\n");
@@ -420,10 +419,10 @@ Vector robotStatus::forwardKinematics (int& linkId) {
 //                return x_pose;
 //            }
         } else {
-            fprintf (stderr, "ERROR [robotStatus::forwardKinematics] computing world 2 base rototranslation in robotStatus::forwardKinematics!\n");
+            fprintf (stderr, "ERR [robotStatus::forwardKinematics] computing world 2 base rototranslation in robotStatus::forwardKinematics!\n");
         }
     } else {
-        fprintf (stderr, "ERROR [robotStatus::forwardKinematics] acquiring robot joint angles in robotStatus::forwardKinematics\n");
+        fprintf (stderr, "ERR [robotStatus::forwardKinematics] acquiring robot joint angles in robotStatus::forwardKinematics\n");
     }
     x_pose.zero();
     return x_pose;
@@ -440,10 +439,10 @@ JacobianMatrix robotStatus::jacobian (int& lid) {
                 return JfootR;
             }
         } else {
-            fprintf (stderr, "ERROR [robotStatus::jacobian] computing world to base rototranslation \n");
+            fprintf (stderr, "ERR [robotStatus::jacobian] computing world to base rototranslation \n");
         }
     } else {
-        fprintf (stderr, "ERROR [robotStatus::jacobian] getting robot joint angles to compute Jacobians \n");
+        fprintf (stderr, "ERR [robotStatus::jacobian] getting robot joint angles to compute Jacobians \n");
     }
     JfootR.setZero();
     return JfootR;
@@ -473,7 +472,7 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
     if (wbInterface->setControlMode (ctrl_mode)) {
         return true;
     } else {
-        fprintf (stderr, "ERROR [robotStatus::setCtrlMode] >> Control mode could not be set\n");
+        fprintf (stderr, "ERR [robotStatus::setCtrlMode] >> Control mode could not be set\n");
         return false;
     }
 }
@@ -483,7 +482,7 @@ void robotStatus::setdqDes (Vector dqD) {
     fprintf (stderr, "robotStatus::setdqDes >> control reference to be sent is: \n%s\n", dqD.toString().c_str());
 #endif
     if (!wbInterface->setControlReference (dqD.data()))
-        fprintf (stderr, "ERROR [robotStatus::setdqDes] control reference could not be set.\n");
+        fprintf (stderr, "ERR [robotStatus::setdqDes] control reference could not be set.\n");
 }
 //=========================================================================================================================
 bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tauJ_computed) {
@@ -620,12 +619,12 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 #ifdef DEBUG
                     printf ("computeGeneralizedBiasForces, computed with: \n");
                     printf ("qrad_robot: \n");
-                    for (unsigned int i = 0; i < ICUB_DOFS; i++)
+                    for (unsigned int i = 0; i < ROBOT_DOF; i++)
                         printf ("%f ", qrad_robot[i]);
                     printf ("\n");
                     printf ("xBase: \n%s\n", xBase.toString().c_str());
                     printf ("dq_robot: \n");
-                    for (unsigned int i = 0; i < ICUB_DOFS; i++)
+                    for (unsigned int i = 0; i < ROBOT_DOF; i++)
                         printf ("%f ", dq_robot[i]);
                     printf ("dq_base: \n%s\n", dq_base.toString().c_str());
                     printf ("grav: \n%s\n", grav.toString().c_str());
@@ -642,8 +641,8 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 #endif
         return hterm;
     } else {
-        fprintf (stderr, "ERROR [robotStatus::dynamicsGenBiasForces] Generalized bias forces were not successfully computed\n");
-        hterm.resize (ICUB_DOFS + 6, 0);
+        fprintf (stderr, "ERR [robotStatus::dynamicsGenBiasForces] Generalized bias forces were not successfully computed\n");
+        hterm.resize (ROBOT_DOF + 6, 0);
         return hterm;
     }
 }
@@ -666,7 +665,7 @@ bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_inpu
             if (world2baseRototranslation (qRad.data())) {
                 footLinkId = linkId;
                 if (!robotBaseVelocity()) {
-                    fprintf (stderr, "ERROR: robotStatus::dynamicsDJdq >> robotBaseVelocity failed in robotStatus::dynamicsDJd\n");
+                    fprintf (stderr, "ERR: robotStatus::dynamicsDJdq >> robotBaseVelocity failed in robotStatus::dynamicsDJd\n");
                     return false;
                 }
                 // This method does not use yet the last parameter xpose.
@@ -744,7 +743,7 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
 bool robotStatus::getJointLimits (double* qminLims, double* qmaxLims, const int jnt) {
     bool ans = false;
     if (!wbInterface->getJointLimits (qminLims, qmaxLims, jnt)) {
-        fprintf (stderr, "ERROR [robotStatus::getJointLimits] wbInterface->getJointLimits failed\n");
+        fprintf (stderr, "ERR [robotStatus::getJointLimits] wbInterface->getJointLimits failed\n");
         return ans;
     } else {
         ans = true;
@@ -850,7 +849,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     }
 #endif
 
-    //TODO Make this resource finder take the right parameters from configuration file and pass it to a PWork vector.
+    //NOTE This resource finder takes the right parameters from configuration file and passes them to a PWork vector.
     ResourceFinder rf;
     rf.setVerbose (true);
     rf.setDefaultConfigFile ("wbi_conf_file.ini");
@@ -858,19 +857,33 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     rf.configure (1, 0);
 
-    ConstString robotNamefromConfigFile = rf.find ("robotName").asString();
-    ConstString localNamefromConfigFile = rf.find ("localName").asString();
-    std::string worldRefFrame           = rf.find ("worldRefFrame").asString();
+    yarp::os::Property yarpWbiOptions;
+    std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
+    yarpWbiOptions.fromConfigFile(wbiConfFile);
     
-    //TODO Robot DOF must be extracted from the ROBOTJOINTS defined in the configuration file of the robot
-
+    ConstString robotNamefromConfigFile = yarpWbiOptions.find ("robotName").asString();
+    ConstString localNamefromConfigFile = yarpWbiOptions.find ("localName").asString();
+    std::string worldRefFrame           = yarpWbiOptions.find ("worldRefFrame").asString();
+    
+    // Extracting DOF from joints defined in config file.
+    wbi::wbiIdList RobotDynamicModelJoints;
+    std::string RobotDynamicModelJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
+    if( !loadIdListFromConfig(RobotDynamicModelJointsListName,yarpWbiOptions,RobotDynamicModelJoints) )
+    {
+        fprintf(stderr, "[ERR] wholeBodyDynamicsModule: impossible to load wbiId joint list with name %s\n",RobotDynamicModelJointsListName.c_str());
+        return;
+    }
+    
+    int ROBOT_DOF = RobotDynamicModelJoints.size();
+    fprintf(stderr,"mdlInitializeSizes >> ROBOT_DOF: %d \n", ROBOT_DOF);
+    
     // Specify I/O
     if (!ssSetNumInputPorts (S, 5)) return;
     ssSetInputPortWidth (S, 0, 1);                          //INPUT for BLOCK TYPE
-    ssSetInputPortWidth (S, 1, ICUB_DOFS);                  //INPUT for dqDes (control reference, for setting positions, velocities or torques)
-    ssSetInputPortWidth (S, 2, ICUB_DOFS + 16);         //INPUT for q (input angles different maybe from current ones)
-    ssSetInputPortWidth (S, 3, ICUB_DOFS + 6);      //INPUT for dq (input joint velocities maybe different from current ones)
-    ssSetInputPortWidth (S, 4, ICUB_DOFS + 6);      //INPUT for ddq (input joint accelerations maybe different from current ones)
+    ssSetInputPortWidth (S, 1, ROBOT_DOF);                  //INPUT for dqDes (control reference, for setting positions, velocities or torques)
+    ssSetInputPortWidth (S, 2, ROBOT_DOF + 16);             //INPUT for q (input angles different maybe from current ones)
+    ssSetInputPortWidth (S, 3, ROBOT_DOF + 6);              //INPUT for dq (input joint velocities maybe different from current ones)
+    ssSetInputPortWidth (S, 4, ROBOT_DOF + 6);              //INPUT for ddq (input joint accelerations maybe different from current ones)
     ssSetInputPortDataType (S, 0, SS_INT8);                 //Input data type
     ssSetInputPortDataType (S, 1, SS_DOUBLE);
     ssSetInputPortDataType (S, 2, SS_DOUBLE);
@@ -882,18 +895,18 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetInputPortDirectFeedThrough (S, 3, 1);
     ssSetInputPortDirectFeedThrough (S, 4, 1);
     if (!ssSetNumOutputPorts (S, 13)) return;
-    ssSetOutputPortWidth (S, 0, ICUB_DOFS);                 // Robot joint angular positions in radians
-    ssSetOutputPortWidth (S, 1, ICUB_DOFS);                 // Robot joint angular velocities in radians
+    ssSetOutputPortWidth (S, 0, ROBOT_DOF);                 // Robot joint angular positions in radians
+    ssSetOutputPortWidth (S, 1, ROBOT_DOF);                 // Robot joint angular velocities in radians
     ssSetOutputPortWidth (S, 2, 7);                         // foot or COM pose from fwdKinematics.
     ssSetOutputPortWidth (S, 3, 186);                       // 6 x (N+6) Jacobians for a specific link
-    ssSetOutputPortWidth (S, 4, (ICUB_DOFS + 6) * (ICUB_DOFS + 6)); // Mass matrix of size (N+6 x N+6)
-    ssSetOutputPortWidth (S, 5, ICUB_DOFS + 6);             // Generalized bias forces of size (N+6 x 1)
+    ssSetOutputPortWidth (S, 4, (ROBOT_DOF + 6) * (ROBOT_DOF + 6)); // Mass matrix of size (N+6 x N+6)
+    ssSetOutputPortWidth (S, 5, ROBOT_DOF + 6);             // Generalized bias forces of size (N+6 x 1)
     ssSetOutputPortWidth (S, 6, 6);                     // dot{J}dot{q} term
-    ssSetOutputPortWidth (S, 7, ICUB_DOFS);             // Joint accelerations
-    ssSetOutputPortWidth (S, 8, ICUB_DOFS);             // Joint torques
-    ssSetOutputPortWidth (S, 9, ICUB_DOFS);             // Compute torques with inverse dynamics
-    ssSetOutputPortWidth (S, 10, ICUB_DOFS);            // Min joint limits;
-    ssSetOutputPortWidth (S, 11, ICUB_DOFS);            // Max joint limits;
+    ssSetOutputPortWidth (S, 7, ROBOT_DOF);             // Joint accelerations
+    ssSetOutputPortWidth (S, 8, ROBOT_DOF);             // Joint torques
+    ssSetOutputPortWidth (S, 9, ROBOT_DOF);             // Compute torques with inverse dynamics
+    ssSetOutputPortWidth (S, 10, ROBOT_DOF);            // Min joint limits;
+    ssSetOutputPortWidth (S, 11, ROBOT_DOF);            // Max joint limits;
     ssSetOutputPortWidth (S, 12, 6);                //Centroidal momentum
     ssSetOutputPortDataType (S, 0, 0);
     ssSetOutputPortDataType (S, 1, 0);
@@ -921,13 +934,9 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetDWorkDataType (S, 1, SS_INTEGER);
 
     ssSetSimStateCompliance (S, USE_CUSTOM_SIM_STATE);
-
-    //TODO Store yarpWbiOptions!
-    yarp::os::Property yarpWbiOptions;
-    std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
-    yarpWbiOptions.fromConfigFile(wbiConfFile);
-
-    ssGetPWork (S) [3] = &yarpWbiOptions;
+    
+    //NOTE This can't be done in mdlInitializeSizes because no memory has been allocated yet
+//     ssGetPWork (S) [3] = &yarpWbiOptions;
     
     //NOTE This should the very last piece of code of mdlInitializesizes
     ssSetOptions (S,
@@ -972,7 +981,6 @@ static void mdlStart (SimStruct* S) {
     counterClass counter;
     fprintf (stderr, "mdlStart >> Publicly stating that a new child has been born: %d \n", counter.getCount());
 
-
     char* cString = mxArrayToString (ssGetSFcnParam (S, STRING_PARAM_IDX));
     if (!cString) {
         ssSetErrorStatus (S, "mdlStart >> Cannot retrieve string from parameter 1.\n");
@@ -1000,7 +1008,7 @@ static void mdlStart (SimStruct* S) {
         ssSetErrorStatus (S, "mdlStart >> Cannot retrieve string from parameter 4.\n");
         return;
     }
-    printf("The link passed for parametric blocks is: %s\n", cString);
+    fprintf(stderr,"mdlStart >> The link passed for parametric blocks is: %s\n", cString);
     std::string param_link_name (cString);
     mxFree (cString);
     cString = 0;
@@ -1013,70 +1021,69 @@ static void mdlStart (SimStruct* S) {
     int_T* flag = (int_T*) ssGetDWork (S, 1);
     flag[0]     = 1;
 
-
     switch (static_cast<int> (block_type)) {
     case 0:
-        printf ("mdlOutputs: This block will retrieve joints angles\n");
+        printf ("mdlOutputs >> This block will retrieve joints angles\n");
         break;
     case 1:
-        printf ("mdlOutputs: This block will retrieve joints velocities\n");
+        printf ("mdlOutputs >> This block will retrieve joints velocities\n");
         break;
     case 2:
-        printf ("mdlOutputs: This block will retrieve parametric forward kinematics\n");
+        printf ("mdlOutputs >> This block will retrieve parametric forward kinematics\n");
         break;
     case 3:
-        printf ("mdlOutputs: This block will retrieve parametric Jacobians\n");
+        printf ("mdlOutputs >> This block will retrieve parametric Jacobians\n");
         break;
     case 4:
-        printf ("mdlOutputs: This block will set velocities\n");
+        printf ("mdlOutputs >> This block will set velocities\n");
         break;
     case 5:
-        printf ("mdlOutputs: This block will set positions\n");
+        printf ("mdlOutputs >> This block will set positions\n");
         break;
     case 6:
-        printf ("mdlOutputs: This block will set torques\n");
+        printf ("mdlOutputs >> This block will set torques\n");
         break;
     case 7:
-        printf ("mdlOutputs: This block will compute generalized bias forces from dynamics\n");
+        printf ("mdlOutputs >> This block will compute generalized bias forces from dynamics\n");
         break;
     case 8:
-        printf ("mdlOutputs: This block will compute mass matrix from dynamics\n");
+        printf ("mdlOutputs >> This block will compute mass matrix from dynamics\n");
         break;
     case 9:
-        printf ("mdlOutputs: This block will compute dJdq\n");
+        printf ("mdlOutputs >> This block will compute dJdq\n");
         break;
     case 10:
-        printf ("mdlOutputs: This block will retrieve joint accelerations\n");
+        printf ("mdlOutputs >> This block will retrieve joint accelerations\n");
         break;
     case 11:
-        printf ("mdlOutputs: This block will retrieve joint torques\n");
+        printf ("mdlOutputs >> This block will retrieve joint torques\n");
         break;
     case 12:
-        printf ("mdlOutputs: This block will compute inverse dynamics\n");
+        printf ("mdlOutputs >> This block will compute inverse dynamics\n");
         break;
     case 13:
-        printf ("mdlOutputs: This block will retrieve joint limits\n");
+        printf ("mdlOutputs >> This block will retrieve joint limits\n");
         break;
     case 14:
-        printf ("mdlOutputs: This block will retrieve the centroidal momentum\n");
+        printf ("mdlOutputs >> This block will retrieve the centroidal momentum\n");
         break;
     case 15:
-        printf ("mdlOutputs: This block will retrieve end-effector wrenches for legs or arms\n");
+        printf ("mdlOutputs >> This block will retrieve end-effector wrenches for legs or arms\n");
         break;
     case 16:
-        printf ("mldOutputs: This block will attach the world reference frame to the specified link\n");
+        printf ("mldOutputs >> This block will attach the world reference frame to the specified link\n");
         break;
     case 17:
-        printf ("mdlOutputs: This block will compute forward kinematics for the specified link\n");
+        printf ("mdlOutputs >> This block will compute forward kinematics for the specified link\n");
         break;
     case 18:
-        printf ("mdlOutputs: This  block will compute the Jacobian matrix for the specified link\n");
+        printf ("mdlOutputs >> This  block will compute the Jacobian matrix for the specified link\n");
         break;
     case 19:
-        printf ("mdlOutputs: This block will compute the product dJdq for the specified link\n");
+        printf ("mdlOutputs >> This block will compute the product dJdq for the specified link\n");
         break;
     default:
-        ssSetErrorStatus (S, "ERROR: [mdlOutputs] The type of this block has not been defined yet\n");
+        ssSetErrorStatus (S, "ERR: [mdlOutputs] The type of this block has not been defined yet\n");
     }
 
     Network::init();
@@ -1100,30 +1107,33 @@ static void mdlStart (SimStruct* S) {
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
 
-    if(robot_name == "icubGazeboSim"){
-        if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
-            printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
-        else{
-            ssSetErrorStatus (S, "ERROR [mdlStart] >> The simulator is not running... ");
-            return;
-        }
-    } else{
-        std::size_t pos = robot_name.find ("iCub");
-        if(pos != std::string::npos){ //iCubGenova0X is being used
-            if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
-                printf("You're using the real iCub platform. Proceeding with configuration of the interface...");
-            else{
-                ssSetErrorStatus (S, "ERROR [mdlStart] >> The real platform is not reachable... ");
-                return;
-            }
-        }
-    }
+    //TODO Temporarily commented this out
+//     if(robot_name == "icubGazeboSim"){
+//         if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
+//             printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
+//         else{
+//             ssSetErrorStatus (S, "ERR [mdlStart] >> The simulator is not running... ");
+//             return;
+//         }
+//     } else{
+//         std::size_t pos = robot_name.find ("iCub");
+//         if(pos != std::string::npos){ //iCubGenova0X is being used
+//             if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
+//                 printf("You're using the real iCub platform. Proceeding with configuration of the interface...");
+//             else{
+//                 ssSetErrorStatus (S, "ERR [mdlStart] >> The real platform is not reachable... ");
+//                 return;
+//             }
+//         }
+//     }
+
+    yarp::os::Property* yarpWbiOptions = NULL;
+    bool res = robot->robotConfig(yarpWbiOptions);
     
-    bool res = robot->robotConfig();
     if (res)
         fprintf (stderr, "mdlStart >> Succesfully exited robotConfig.\n");
     else {
-        ssSetErrorStatus (S, "ERROR [mdlStart] in robotConfig.\n");
+        ssSetErrorStatus (S, "ERR [mdlStart] in robotConfig.\n");
         return;
     }
 
@@ -1131,14 +1141,15 @@ static void mdlStart (SimStruct* S) {
     if (res == true)
         fprintf (stderr, "mdlStart >> Succesfully exited robotInit.\n");
     else {
-        ssSetErrorStatus (S, "ERROR [mdlStart] in robotInit. \n");
+        ssSetErrorStatus (S, "ERR [mdlStart] in robotInit. \n");
     }
 
-    double* minJntLimits = new double[ICUB_DOFS];
-    double* maxJntLimits = new double[ICUB_DOFS];
+    int ROBOT_DOF = robot->getRobotDOF();
+    double* minJntLimits = new double[ROBOT_DOF];
+    double* maxJntLimits = new double[ROBOT_DOF];
 
     if (!robot->getJointLimits (&minJntLimits[0], &maxJntLimits[0], -1)) {
-        ssSetErrorStatus (S, "ERROR [mdlOutput] Joint limits could not be computed\n");
+        ssSetErrorStatus (S, "ERR [mdlOutput] Joint limits could not be computed\n");
         return;
     }
 
@@ -1149,6 +1160,7 @@ static void mdlStart (SimStruct* S) {
     ssGetPWork (S) [0] = robot;
     ssGetPWork (S) [1] = &minJntLimits[0];
     ssGetPWork (S) [2] = &maxJntLimits[0];
+    ssGetPWork (S) [3] = &yarpWbiOptions;
 
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
@@ -1182,6 +1194,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     fprintf (stderr, "mdlOutputs: wbInterface pointers: %p %p for btype %d\n", robot->tmpContainer, robot->wbInterface, btype);
 #endif
 
+    int ROBOT_DOF = robot->getRobotDOF();
 
     // INPUT PARAMETER FOR FORWARD KINEMATICS
     InputPtrsType           u = ssGetInputPortSignalPtrs (S, 0);
@@ -1192,7 +1205,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will compute robot joint angles
     if (btype == 0) {
-        Vector qrad (ICUB_DOFS);
+        Vector qrad (ROBOT_DOF);
         qrad.zero();
         if (robot->robotJntAngles (blockingRead)) {
             qrad = robot->getEncoders();
@@ -1206,7 +1219,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY1[i] = qrad ( (int) i);
             }
         } else {
-            fprintf (stderr, "ERROR: [mdlOutputs] Robot Joint Angles could not be computed\n");
+            fprintf (stderr, "ERR: [mdlOutputs] Robot Joint Angles could not be computed\n");
         }
     }
 //
@@ -1216,7 +1229,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         fprintf (stderr, "mdlOutputs: About to send joint velocities to ports...\n");
 #endif
         Eigen::VectorXd dotq;
-        dotq.Zero (ICUB_DOFS);
+        dotq.Zero (ROBOT_DOF);
 
         if (robot->robotJntVelocities (blockingRead)) {
             dotq = robot->getJntVelocities();
@@ -1226,7 +1239,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY2[i] = dotq ( (int) i);
             }
         } else {
-            fprintf (stderr, "ERROR: [mdlOutputs] Robot joint velocities could not be computed\n");
+            fprintf (stderr, "ERR: [mdlOutputs] Robot joint velocities could not be computed\n");
         }
     }
 
@@ -1253,7 +1266,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             linkName = "head";
             break;
         default:
-            fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
+            fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
         }
         robot->getLinkId (linkName, lid);
 #ifdef DEBUG
@@ -1294,7 +1307,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             linkName = "head";
             break;
         default:
-            fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute jacobians\n");
+            fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute jacobians\n");
         }
         robot->getLinkId (linkName, lid);
 
@@ -1315,7 +1328,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         InputRealPtrsType uPtrs1 = ssGetInputPortRealSignalPtrs (S, 1); //Get the corresponding pointer to "desired position port"
         int nu = ssGetInputPortWidth (S, 1);                            //Getting the amount of elements of the input vector/matrix
         Vector dqDestmp;
-        dqDestmp.resize (ICUB_DOFS, 0.0);
+        dqDestmp.resize (ROBOT_DOF, 0.0);
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
             dqDestmp (j) = (*uPtrs1[j]);
         }
@@ -1326,7 +1339,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     Vector h;
-    h.resize (ICUB_DOFS + 6, 0);
+    h.resize (ROBOT_DOF + 6, 0);
     // This block will compute the generalized bias force from the dynamics equation
     if (btype == 7) {
         int nu;
@@ -1371,7 +1384,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         fprintf (stderr, "mdlOutputs: About to compute mass matrix\n");
 #endif
         if (!robot->dynamicsMassMatrix (qrad_in.data())) {
-            fprintf (stderr, "ERROR: [mdlOutputs] Mass matrix was not successfully computed\n");
+            fprintf (stderr, "ERR: [mdlOutputs] Mass matrix was not successfully computed\n");
         }
         massMatrix = robot->getMassMatrix();
         real_T* pY6 = (real_T*) ssGetOutputPortSignal (S, 4);
@@ -1405,7 +1418,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             linkName = "head";
             break;
         default:
-            fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
+            fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
         }
 
         int nu;
@@ -1429,7 +1442,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
         robot->getLinkId (linkName, lid);
         if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
-            fprintf (stderr, "ERROR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
+            fprintf (stderr, "ERR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
         } else {
             dJdq = robot->getDJdq();
         }
@@ -1446,7 +1459,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     // This block will retrieve joint accelerations
     if (btype == 10) {
         Vector ddqJ;
-        ddqJ.resize (ICUB_DOFS, 0);
+        ddqJ.resize (ROBOT_DOF, 0);
         if (robot->robotJntAccelerations (blockingRead)) {
             ddqJ = robot->getJntAccelerations();
             //Stream joint accelerations
@@ -1455,12 +1468,12 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY8[j] = ddqJ (j);
             }
         } else {
-            fprintf (stderr, "ERROR: [mdlOutputs] Joint accelerations could not be retrieved\n");
+            fprintf (stderr, "ERR: [mdlOutputs] Joint accelerations could not be retrieved\n");
         }
     }
 
     // This block will retrieve joint torques
-    yarp::sig::Vector tauJ (ICUB_DOFS);
+    yarp::sig::Vector tauJ (ROBOT_DOF);
     if (btype == 11) {
         if (robot->robotJntTorques (blockingRead)) {
             tauJ = robot->getJntTorques();
@@ -1470,7 +1483,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY9[j] = tauJ (j);
             }
         } else {
-            fprintf (stderr, "ERROR: [mdlOutputs) Joint torques could not be retrieved\n");
+            fprintf (stderr, "ERR: [mdlOutputs) Joint torques could not be retrieved\n");
         }
     }
 
@@ -1505,7 +1518,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
 
         yarp::sig::Vector tau_computed;
-        tau_computed.resize (ICUB_DOFS + 6, 0.0);
+        tau_computed.resize (ROBOT_DOF + 6, 0.0);
         if (robot->inverseDynamics (qrad_in.data(), dqrad_in.data(), ddqrad_in.data(), tau_computed.data())) {
 #ifdef DEBUG
             fprintf (stderr, "robotStatus::inverseDynamics >> Inverse dynamics has been computed correctly\n");
@@ -1525,11 +1538,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // min/max joint limits
     if (btype == 13) {
-        double* minJntLimits = 0;// new double[ICUB_DOFS];
-        double* maxJntLimits = 0; //new double[ICUB_DOFS];
-        // Gets joint limits for the entire body since we're still using ICUB_DOFS as default
+        double* minJntLimits = 0;// new double[ROBOT_DOF];
+        double* maxJntLimits = 0; //new double[ROBOT_DOF];
+        // Gets joint limits for the entire body since we're still using ROBOT_DOF as default
         if (!ssGetPWork (S) [1] & !ssGetPWork (S) [2]) {
-            ssSetErrorStatus (S, "ERROR [mdlOutput] Joint limits could not be computed\n");
+            ssSetErrorStatus (S, "ERR [mdlOutput] Joint limits could not be computed\n");
         } else {
 #ifdef DEBUG
 //             fprintf(stderr,"minJntLimits are: \n%s\n maxJntLimits are: \n%s\n", minJntLimits.toString().c_str(), maxJntLimits.toString().c_str());
@@ -1573,7 +1586,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         Vector momentum (6);
         momentum.zero();
         if (!robot->centroidalMomentum (qrad_in.data(), dqrad_in.data(), momentum.data()))
-            fprintf (stderr, "ERROR [mdlOutput] in robot->centroidalMomentum");
+            fprintf (stderr, "ERR [mdlOutput] in robot->centroidalMomentum");
         real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 12);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 12); j++)
             pY13[j] = momentum[j];
@@ -1583,7 +1596,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     if (btype == 15) {
       // Retrieve 
       yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
-      //TODO Check with Silvio if this is the right way to do it. In the configuration file for Heidelber there's no ID for the right/left sole
       wbiIdList RobotJoint;
       std::string RobotJointsListName;
       wbi:wbiId LID; // Initializing in case we go default
@@ -1617,7 +1629,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 //             LID = wbi::wbiId (iCub::skinDynLib::LEFT_ARM, 8);
             break;
         default:
-            fprintf (stderr, "ERROR: [mdlOutputs] No body part has been specified to compute end effectors wrenches\n");
+            fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute end effectors wrenches\n");
         }
 
         if (flag) {
@@ -1731,7 +1743,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
 
         if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
-            fprintf (stderr, "ERROR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
+            fprintf (stderr, "ERR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
         } else {
             dJdq = robot->getDJdq();
         }
@@ -1759,8 +1771,8 @@ static void mdlTerminate (SimStruct* S) {
     // IF YOU FORGET TO DESTROY OBJECTS OR DEALLOCATE MEMORY, MATLAB WILL CRASH.
     // Retrieve and destroy C++ object
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
-    double* minJntLimits = 0;//new double[ICUB_DOFS];
-    double* maxJntLimits = 0;//new double[ICUB_DOFS];
+    double* minJntLimits = 0;//new double[ROBOT_DOF];
+    double* maxJntLimits = 0;//new double[ROBOT_DOF];
     yarp::os::Property* yarpWbiOptions = NULL;
 
     minJntLimits = (double*) ssGetPWork (S) [1];
@@ -1805,5 +1817,6 @@ static void mdlTerminate (SimStruct* S) {
 #else
 #include "cg_sfun.h"       /* Code generation registration function */
 #endif
+
 
 
