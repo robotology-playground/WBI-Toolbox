@@ -155,9 +155,9 @@ private:
 
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
     static bool             icub_fixed;
-
-
-
+    
+    /*Robot DOF read from configuration file*/ 
+    int                     ROBOT_DOF;
 
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -173,7 +173,7 @@ public:
     std::string         getParamLink ();
     int                 decreaseCounter();
     static void         resetCounter();
-    bool                robotConfig();
+    bool                robotConfig(yarp::os::Property* yarpWbiOptions);
     bool                robotInit (int btype, int link);
     void                getLinkId (const char* linkName, int& lid);
     //This is especifically for the COM
@@ -206,6 +206,8 @@ public:
     bool                robotEEWrenches (wbi::wbiId LID);
     yarp::sig::Vector   getEEWrench();
     bool                addEstimate(wbi::wbiId LID);
+    void                setRobotDOF(int ROBOTDOF);
+    int                 getRobotDOF();
 };
 
 class counterClass {
