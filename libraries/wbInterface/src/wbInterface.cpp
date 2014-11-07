@@ -123,13 +123,20 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 	  //TODO This should be defined either in the header as done in wholeBodyDynamicsTree
 	  rf.setDefaultConfigFile ("wbi_conf_file.ini");
 	  //TODO This variable should be passed to this function as user input.
-	  rf.setDefaultContext ("iCubGenova03");
+	  rf.setDefaultContext ("icubGazeboSim");
 
           //NOTE We call rf.configure() this way since we don't have a command line to read commands from
 	  rf.configure (1, 0);
 
 	  std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
-	  yarpWbiOptions->fromConfigFile(wbiConfFile);
+	  fprintf(stderr,"robotStatus::robotConfig >> wbiConfFile is: %s\n",wbiConfFile.c_str());
+	  if(!yarpWbiOptions->fromConfigFile(wbiConfFile)){
+	    fprintf(stderr,"ERR [robotStatus::robotConfig] An error occurred whilte interpreting the list of properties. \n");
+	    return false;
+	  }
+	  else{
+	    fprintf(stderr,"[robotStatus::robotConfig] List of properties was interpreted correctly\n");
+	  }
 	  
 	  ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robotName").asString();
 	  ConstString localNamefromConfigFile = yarpWbiOptions->find ("localName").asString();
@@ -219,9 +226,13 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
             fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
         }
 
+        //TODO COMMENTED THIS OUT AS IT WASN'T WORKING AND IT ALSO BECAUSE IT MIGHT NOT BE NECESSARY ANYMORE.
         // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
-        if (VERBOSE) fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
-        setCtrlMode (CTRL_MODE_POS);
+        fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
+        if(!setCtrlMode (CTRL_MODE_POS)) {
+	  fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
+	  return false;
+        }
     }
 
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
@@ -1127,7 +1138,8 @@ static void mdlStart (SimStruct* S) {
 //         }
 //     }
 
-    yarp::os::Property* yarpWbiOptions = NULL;
+    yarp::os::Property* yarpWbiOptions;
+    yarpWbiOptions = new yarp::os::Property;
     bool res = robot->robotConfig(yarpWbiOptions);
     
     if (res)
