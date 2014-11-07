@@ -22,6 +22,7 @@
 
 #include "wbInterface.h"
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
+
 // MASK PARAMETERS --------------------------------------
 #define NPARAMS            4                                // Number of input parameters
 #define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
@@ -33,7 +34,7 @@
 
 #define VERBOSE   0
 #define TIMING    0
-
+// #define USE_ACCELEROMETER_LEFT_FOOT  //to do: bring this define at cmake level
 
 
 YARP_DECLARE_DEVICES (icubmod)
@@ -76,6 +77,11 @@ robotStatus::~robotStatus() {
             delete wbInterface;
             fprintf (stderr, "robotStatus::~robotStatus >> wbInterface has been closed and deleted correctly. %d to go \n", creationCounter);
             wbInterface = NULL;
+#ifdef USE_ACCELEROMETER_LEFT_FOOT
+            std::string accelerometerInputPort = robotName + "/left_foot_inertial/analog:o";
+            Network::disconnect(accelerometerInputPort, accelerometerPort.getName());
+            accelerometerPort.close();
+#endif
         } else {
             fprintf (stderr, "robotStatus::~robotStatus >> ERROR: wbInterface couldn't close correctly");
         }
@@ -218,6 +224,28 @@ bool robotStatus::robotConfig() {
         // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
         if (VERBOSE) fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
         setCtrlMode (CTRL_MODE_POS);
+        
+#ifdef USE_ACCELEROMETER_LEFT_FOOT
+        if (!accelerometerPort.open(localNamefromConfigFile + "/accelerometer:i")) {
+            fprintf (stderr, "ERROR [robotStatus::robotConfig] Cannot open accelerometer port!\n");
+            return false;
+        }
+        
+        std::string accelerometerInputPort = robotNamefromConfigFile + "/left_foot_inertial/analog:o";
+        if (!yarp::os::Network::exists(accelerometerInputPort)) {
+            fprintf (stderr, "ERROR [robotStatus::robotConfig] Cannot find %s port!\n", accelerometerInputPort.c_str());
+            return false;
+        }
+        
+        if (!yarp::os::Network::connect(accelerometerInputPort, accelerometerPort.getName())) {
+            fprintf (stderr, "ERROR [robotStatus::robotConfig] Cannot connect %s port to %s!\n", accelerometerInputPort.c_str(), accelerometerPort.getName().c_str());
+            return false;
+        }
+        
+        //initialize tranformation from accelerometer frame to foot frame
+        accelerometerToFootTransformation.R = wbi::Rotation::identity(); //TODO
+        
+#endif
     }
 
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
@@ -228,8 +256,7 @@ bool robotStatus::robotConfig() {
     ddqJ.resize (actJnts, 0.0);
     tauJ.resize (actJnts, 0.0);
     tauJ_out.resize (actJnts, 0.0);
-
-
+    
     return true;
 
 }
@@ -338,12 +365,33 @@ bool robotStatus::world2baseRototranslation (double* q) {
         getLinkId (worldRefFrame.c_str(), LINK_FOOT_WRF);
         wbInterface->computeH (q, Frame(), LINK_FOOT_WRF, H_base_wrfLink);
         H_base_wrfLink = H_base_wrfLink * Ha;
+
     } else {
         int LINK_ROOT;
         getLinkId ("root_link", LINK_ROOT);
         wbInterface->computeH (q, Frame(), LINK_ROOT, H_base_wrfLink);
     }
     H_base_wrfLink.setToInverse().get4x4Matrix (H_w2b.data());
+#ifdef USE_ACCELEROMETER_LEFT_FOOT
+    if (!icub_fixed) {
+            //read accelerometer
+            Bottle *acc = accelerometerPort.read(false);
+            if (acc) {
+                printf("Acc: %s", acc->toString().c_str());
+                double a_x = acc->get(0).asDouble();
+                double a_y = acc->get(1).asDouble();
+                double a_z = acc->get(2).asDouble();
+            }
+            
+            //check frame of accelerometer
+            //create homogenous transformation matrix between world and left foot
+            worldToFootTransformation.R = wbi::Rotation::identity();
+
+        //apply transformation to obtain the complete world to base transformation
+        H_base_wrfLink = worldToFootTransformation*H_base_wrfLink;    
+        H_base_wrfLink.get4x4Matrix (H_w2b.data());
+    }
+#endif
 #ifdef DEBUG
     fprintf (stderr, "robotStatus::world2baseRototranslation >> Ha             : %s \n", Ha.toString().c_str());
     fprintf (stderr, "robotStatus::world2baseRototranslation >> H_base_wrfLink : %s \n", H_base_wrfLink.toString().c_str());

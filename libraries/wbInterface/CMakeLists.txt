@@ -38,6 +38,13 @@ if (CODYCO_ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL)
     add_definitions(-DWBI_ICUB_COMPILE_PARAM_HELP)
 endif()
 
+option(CODYCO_ICUBWBI_ACCELEROMETER_SUPPORT "WBI-Toolbox: Use left foot accelerometer to compensate for skin compliance" OFF)
+
+if (CODYCO_ICUBWBI_ACCELEROMETER_SUPPORT)
+    message("Enabling accelerometer support.")
+    add_definitions(-DUSE_ACCELEROMETER_LEFT_FOOT)
+endif(CODYCO_ICUBWBI_ACCELEROMETER_SUPPORT)
+
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")
 
 
