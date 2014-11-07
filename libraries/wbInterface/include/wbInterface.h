@@ -156,7 +156,12 @@ private:
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
     static bool             icub_fixed;
 
-
+#ifdef USE_ACCELEROMETER_LEFT_FOOT
+    yarp::os::BufferedPort<yarp::os::Bottle>          accelerometerPort;
+    yarp::sig::Vector       leftFootAcceleration;
+    wbi::Frame              accelerometerToFootTransformation;
+    wbi::Frame              worldToFootTransformation;    
+#endif
 
 
 public:
