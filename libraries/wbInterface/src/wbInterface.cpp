@@ -226,12 +226,11 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
             fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
         }
 
-        //TODO COMMENTED THIS OUT AS IT WASN'T WORKING AND IT ALSO BECAUSE IT MIGHT NOT BE NECESSARY ANYMORE.
         // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
         fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
         if(!setCtrlMode (CTRL_MODE_POS)) {
-	  fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
-	  return false;
+        fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
+        return false;
         }
     }
 
@@ -261,6 +260,7 @@ bool robotStatus::robotInit (int btype, int link) {
         int default_size = 0;
         int linkID = 0;
         printf ("READ LINK IS: %d \n", link);
+	//TODO Delete the following commented block
 //         switch (link) {
 //         case 0:
 //             linkName = "r_sole";
@@ -1118,7 +1118,7 @@ static void mdlStart (SimStruct* S) {
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
 
-    //TODO Temporarily commented this out
+    //TODO Temporarily commented this out. This block should check whether the simulator is active or not or the real robot reachable.
 //     if(robot_name == "icubGazeboSim"){
 //         if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
 //             printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
@@ -1172,7 +1172,7 @@ static void mdlStart (SimStruct* S) {
     ssGetPWork (S) [0] = robot;
     ssGetPWork (S) [1] = &minJntLimits[0];
     ssGetPWork (S) [2] = &maxJntLimits[0];
-    ssGetPWork (S) [3] = &yarpWbiOptions;
+    ssGetPWork (S) [3] = yarpWbiOptions;
 
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
@@ -1280,6 +1280,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         default:
             fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute forward kinematics\n");
         }
+        // Retrieve link id
         robot->getLinkId (linkName, lid);
 #ifdef DEBUG
        fprintf(stderr,"mdlOutputs: RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
@@ -1785,11 +1786,10 @@ static void mdlTerminate (SimStruct* S) {
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
     double* minJntLimits = 0;//new double[ROBOT_DOF];
     double* maxJntLimits = 0;//new double[ROBOT_DOF];
-    yarp::os::Property* yarpWbiOptions = NULL;
 
     minJntLimits = (double*) ssGetPWork (S) [1];
     maxJntLimits = (double*) ssGetPWork (S) [2];
-    yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
+    yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
 
 #ifdef DEBUG
     fprintf (stderr, "mdlTerminate: robot pointer: %p\n", robot);
@@ -1807,12 +1807,14 @@ static void mdlTerminate (SimStruct* S) {
             printf ("minJntLimits deleted\n");
             delete[] maxJntLimits;
             printf ("maxJntLimits deleted\n");
-	    	delete yarpWbiOptions;
+	    delete yarpWbiOptions;
+	    printf ("yarpWbiOptions deleted\n");
             robotStatus::resetCounter();
             robot          = NULL;
             minJntLimits   = NULL;
             maxJntLimits   = NULL;
-	    	yarpWbiOptions = NULL;
+	    yarpWbiOptions = NULL;
+	    printf ("all variables set to NULL\n");
             ssSetPWorkValue (S, 0, NULL);
             ssSetPWorkValue (S, 1, NULL);
             ssSetPWorkValue (S, 2, NULL);
