@@ -53,17 +53,11 @@ namespace wbi {
 class wholeBodyInterface;
 }
 
-//This should somehow be provided by the user, but 25 will be the default
-#define ICUB_DOFS 25
-
 typedef Eigen::Matrix<double, 7, 1>  Vector7d;
 const int Dynamic = -1;
 // a Jacobian is 6 rows and N columns
 typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
-// N+6 x N+6 mass matrix
-typedef Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
-
-static const Vector7d              DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
+static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
 class robotStatus {
 private:
@@ -190,16 +184,14 @@ public:
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
-
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
     void                setdqDes (yarp::sig::Vector dqD);
-
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
     bool                dynamicsMassMatrix (double* qrad_input);
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
     bool                robotBaseVelocity();
     bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
-    MassMatrix          getMassMatrix();
+    Eigen::MatrixXd     getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
     bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);

@@ -323,6 +323,8 @@ bool robotStatus::robotInit (int btype, int link) {
 
     EEWrench.resize (6, 0);
     
+    massMatrix.resize(ROBOT_DOF + 6, ROBOT_DOF + 6);
+    
     fprintf(stderr,"robotStatus::robotInit >> Finished robotInit\n");
     return true;
 }
@@ -333,7 +335,7 @@ void robotStatus::getLinkId (const char* linkName, int& lid) {
 #ifdef DEBUG
         printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
 #endif 
-        wbInterface->getFrameList().wbiIdToNumericId (linkName, lid);
+        wbInterface->getFrameList().idToIndex (linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
     }
@@ -584,7 +586,7 @@ bool robotStatus::dynamicsMassMatrix (double* qrad_input) {
     return ans;
 }
 //=========================================================================================================================
-MassMatrix robotStatus::getMassMatrix() {
+Eigen::MatrixXd robotStatus::getMassMatrix() {
     return massMatrix;
 }
 //=========================================================================================================================
@@ -1381,7 +1383,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
-    MassMatrix massMatrix ;
+    MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
     // This block will return the mass matrix from the dynamics equation
     if (btype == 8) {
         int nu;
