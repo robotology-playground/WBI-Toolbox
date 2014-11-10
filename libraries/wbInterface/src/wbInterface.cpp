@@ -333,7 +333,7 @@ void robotStatus::getLinkId (const char* linkName, int& lid) {
 #ifdef DEBUG
         printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
 #endif 
-        wbInterface->getFrameList().wbiIdToNumericId (linkName, lid);
+        wbInterface->getFrameList().idToIndex(linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
     }
