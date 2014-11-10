@@ -181,7 +181,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main iCub joints
-	wbi::wbiIdList RobotMainJoints;
+	wbi::IDList RobotMainJoints;
 	std::string RobotMainJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
 	
 	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
@@ -762,7 +762,7 @@ bool robotStatus::getJointLimits (double* qminLims, double* qmaxLims, const int 
     }
 }
 //==========================================================================================================================
-bool robotStatus::robotEEWrenches (wbi::wbiId LID) {
+bool robotStatus::robotEEWrenches (wbi::ID LID) {
     bool ans = false;
     if (robotJntAngles (false)) {
         if (world2baseRototranslation (qRad.data())) {
@@ -781,7 +781,7 @@ bool robotStatus::robotEEWrenches (wbi::wbiId LID) {
     return ans;
 }
 //==========================================================================================================================
-bool robotStatus::addEstimate(wbi::wbiId LID) {
+bool robotStatus::addEstimate(wbi::ID LID) {
     if (wbInterface->addEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID))
         return true;
     else
@@ -877,7 +877,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     std::string worldRefFrame           = yarpWbiOptions.find ("worldRefFrame").asString();
     
     // Extracting DOF from joints defined in config file.
-    wbi::wbiIdList RobotDynamicModelJoints;
+    wbi::IDList RobotDynamicModelJoints;
     std::string RobotDynamicModelJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
     if( !loadIdListFromConfig(RobotDynamicModelJointsListName,yarpWbiOptions,RobotDynamicModelJoints) )
     {
@@ -1381,7 +1381,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
-    MassMatrix massMatrix;
+    MassMatrix massMatrix ;
     // This block will return the mass matrix from the dynamics equation
     if (btype == 8) {
         int nu;
@@ -1609,9 +1609,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     if (btype == 15) {
       // Retrieve 
       yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
-      wbiIdList RobotJoint;
+      IDList RobotJoint;
       std::string RobotJointsListName;
-      wbi:wbiId LID; // Initializing in case we go default
+      wbi:ID LID; // Initializing in case we go default
 
       switch ( (int) *uPtrs[0]) {
         case 0:
@@ -1624,21 +1624,21 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 	      fprintf(stderr, "[ERR] locomotionControl: impossible to load wbiId joint list with name %s\n",RobotJointsListName.c_str());
 	      return;
 	    }
-	    LID = wbi::wbiId ("r_sole");
+	    LID = wbi::ID ("r_sole");
             break;
         case 1:
             linkName = "l_sole";
-	    LID = wbi::wbiId ("l_sole");
+	    LID = wbi::ID ("l_sole");
 //             LID = wbi::wbiId (iCub::skinDynLib::LEFT_LEG, 8);
             break;
         case 2:
             linkName = "r_gripper";
-	    LID = wbi::wbiId ("r_gripper");
+	    LID = wbi::ID ("r_gripper");
 //             LID = wbi::wbiId (iCub::skinDynLib::RIGHT_ARM, 8);
             break;
         case 3:
             linkName = "l_gripper";
-	    LID = wbi::wbiId ("l_gripper");
+	    LID = wbi::ID ("l_gripper");
 //             LID = wbi::wbiId (iCub::skinDynLib::LEFT_ARM, 8);
             break;
         default:

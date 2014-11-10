@@ -64,7 +64,6 @@ typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMat
 typedef Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
 
 static const Vector7d              DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
-static const Eigen::Vector2d       DEFAULT_X_COM_SIZE  = Eigen::Vector2d::Constant (0.0);
 
 class robotStatus {
 private:
@@ -148,7 +147,9 @@ private:
     yarp::sig::Vector       dJdq;
 
     /** Mass matrix N+6xN+6 */
-    MassMatrix              massMatrix;
+    // N+6 x N+6 mass matrix
+//     Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
+    Eigen::MatrixXd         massMatrix;
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
@@ -203,9 +204,9 @@ public:
     yarp::sig::Vector   getJntAccelerations();
     bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);
     bool                centroidalMomentum (double* qrad_input, double* dq_input, double* h);
-    bool                robotEEWrenches (wbi::wbiId LID);
+    bool                robotEEWrenches (wbi::ID LID);
     yarp::sig::Vector   getEEWrench();
-    bool                addEstimate(wbi::wbiId LID);
+    bool                addEstimate(wbi::ID LID);
     void                setRobotDOF(int ROBOTDOF);
     int                 getRobotDOF();
 };
