@@ -18,7 +18,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 
 ###### Requirements
-* Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a, R2013a, R2012a/b, R2011a)
+* Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a/b, R2013a, R2012a/b, R2011a)
 * Simulink Toolboxes: Simulink Coder.
 * YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
 * CoDyCo (https://github.com/robotology-playground/codyco-superbuild)
@@ -34,7 +34,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 ###### Compiling the Toolbox MEX Files
 The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). This is the easiest and recommended way to do so. In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
-- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation.
+- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation. See [Troubleshooting Section](#Troubleshooting)
 
 - **Compiling the WBI Toolbox.** To compile the WBI Toolbox via `codyco-superbuild`, you first need to configure the latter with CMake. A few flags need to be taken into account in order to do this. In particular if you want to use the Gazebo simulator please do:
 
@@ -127,3 +127,16 @@ If you want more information about the serialization of the iCub joints used in 
 
 ###### Tested OS
 Linux, Windows, MAC OS X
+
+##### Troubleshooting
+###### Matlab 2012 on new version of OS X
+If you are using an old version of Matlab, e.g. 2012b, on newer version of OS X (> 10.6), the mex compiling is not officially supported.
+Nevertheless a partial support is achievable with the following modifications:
+1) Run `mex -setup` so that matlab creates your local copy of `mexopts.sh`
+2) Go to the OS X configuration section (starting with `maci64`).
+3) Change the variables `CC` to `gcc` or `clang` and the variable `CXX` to `g++` or `clang++`.
+4) Update the deployment target to your current version of OS X, e.g. `10.9` for Mavericks
+5) Update the SDK root variable to point to the correct location: e.g. `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk`
+6) Add the `-std=c++11` flag to `CXXFLAGS`
+
+
