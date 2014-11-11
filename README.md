@@ -132,11 +132,12 @@ Linux, Windows, MAC OS X
 ###### Matlab 2012 on new version of OS X
 If you are using an old version of Matlab, e.g. 2012b, on newer version of OS X (> 10.6), the mex compiling is not officially supported.
 Nevertheless a partial support is achievable with the following modifications:
-1) Run `mex -setup` so that matlab creates your local copy of `mexopts.sh`
-2) Go to the OS X configuration section (starting with `maci64`).
-3) Change the variables `CC` to `gcc` or `clang` and the variable `CXX` to `g++` or `clang++`.
-4) Update the deployment target to your current version of OS X, e.g. `10.9` for Mavericks
-5) Update the SDK root variable to point to the correct location: e.g. `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk`
-6) Add the `-std=c++11` flag to `CXXFLAGS`
+
+1. Run `mex -setup` so that matlab creates your local copy of `mexopts.sh`
+2. Go to the OS X configuration section (starting with `maci64`).
+3. Change the variables `CC` to `gcc` or `clang` and the variable `CXX` to `g++` or `clang++`.
+4. Update the deployment target to your current version of OS X, e.g. `10.9` for Mavericks
+5. Update the SDK root variable to point to the correct location: e.g. `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk`
+6. Add the `-std=c++11` flag to `CXXFLAGS`
 
 
