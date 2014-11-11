@@ -122,7 +122,7 @@ bool robotStatus::robotConfig() {
         rf.setDefaultContext ("wbit");
 
         rf.setDefaultConfigFile (string (robotName + ".ini").c_str());
-        rf.configure (1, 0);
+        rf.configure (0, 0);
 
         ConstString robotNamefromConfigFile = rf.find ("robot").asString();
         ConstString localNamefromConfigFile = rf.find ("local").asString();
