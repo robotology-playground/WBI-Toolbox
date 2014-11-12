@@ -188,7 +188,7 @@ public:
     Eigen::VectorXd     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
-    void                setdqDes (yarp::sig::Vector dqD);
+    void                setRefDes (yarp::sig::Vector refDes);
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
     bool                dynamicsMassMatrix (double* qrad_input);
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);

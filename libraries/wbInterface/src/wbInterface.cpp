@@ -141,7 +141,10 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
             fprintf(stderr,"[robotStatus::robotConfig] List of properties was interpreted correctly\n");
           }
 
-          ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robotName").asString();
+          // Overwrite robotName by what the user inputs from MATLAB's command line
+          yarpWbiOptions->put("robot",robotStatus::robotName);
+
+          ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robot").asString();
           ConstString localNamefromConfigFile = yarpWbiOptions->find ("localName").asString();
           std::string worldRefFrame           = yarpWbiOptions->find ("worldRefFrame").asString();
 
@@ -198,7 +201,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 
 	wbInterface->addJoints (RobotMainJoints);
 
-        if(robotNamefromConfigFile == "icub"){
+        if(robotStatus::robotName == "icub"){
             fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
             if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
                 fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
@@ -453,11 +456,11 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
     }
 }
 //=========================================================================================================================
-void robotStatus::setdqDes (Vector dqD) {
+void robotStatus::setRefDes (Vector refDes) {
 #ifdef DEBUG
-    fprintf (stderr, "robotStatus::setdqDes >> control reference to be sent is: \n%s\n", dqD.toString().c_str());
+    fprintf (stderr, "robotStatus::setdqDes >> control reference to be sent is: \n%s\n", refDes.toString().c_str());
 #endif
-    if (!wbInterface->setControlReference (dqD.data()))
+    if (!wbInterface->setControlReference (refDes.data()))
         fprintf (stderr, "ERR [robotStatus::setdqDes] control reference could not be set.\n");
 }
 //=========================================================================================================================
@@ -863,7 +866,6 @@ static void mdlInitializeSizes (SimStruct* S) {
     int ROBOT_DOF = RobotDynamicModelJoints.size();
     fprintf(stderr,"mdlInitializeSizes >> ROBOT_DOF: %d \n", ROBOT_DOF);
 
-//     int_T ROBOT_DOF = 15;
     // Specify I/O
     if (!ssSetNumInputPorts (S, 5)) return;
     ssSetInputPortWidth (S, 0, 1);                          //INPUT for BLOCK TYPE
@@ -1311,19 +1313,19 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will set control references for the specified control mode
     if (btype == 4 || btype == 5 || btype == 6) {
-        //GET INPUT dqDes
+        //GET INPUT refDes
         InputRealPtrsType uPtrs1 = ssGetInputPortRealSignalPtrs (S, 1); //Get the corresponding pointer to "desired position port"
         int nu = ssGetInputPortWidth (S, 1);                            //Getting the amount of elements of the input vector/matrix
-        Vector dqDestmp;
-        dqDestmp.resize (ROBOT_DOF, 0.0);
+        Vector refTmp;
+        refTmp.resize (ROBOT_DOF, 0.0);
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
 	    //TODO Change name to this variable for something general
-            dqDestmp (j) = (*uPtrs1[j]);
+            refTmp (j) = (*uPtrs1[j]);
         }
         if (btype == 4) robot->setCtrlMode (CTRL_MODE_VEL);
         if (btype == 5) robot->setCtrlMode (CTRL_MODE_POS);
         if (btype == 6) robot->setCtrlMode (CTRL_MODE_TORQUE);
-        robot->setdqDes (dqDestmp);
+        robot->setRefDes (refTmp);
     }
 
     Vector h;

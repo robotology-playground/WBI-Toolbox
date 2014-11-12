@@ -1,16 +1,16 @@
 Model {
   Name			  "COMPoseTesting"
-  Version		  8.0
+  Version		  8.3
   MdlSubVersion		  0
+  SavedCharacterEncoding  "UTF-8"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.29"
+    ComputedModelVersion    "1.34"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
-  SavedCharacterEncoding  "UTF-8"
   slprops.hdlmdlprops {
     $PropName		    "HDLParams"
     $ObjectID		    1
@@ -41,7 +41,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [99.0, 42.0, 1287.0, 784.0]
+      Location		      [1528.0, 219.0, 1287.0, 715.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -65,9 +65,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1251.0, 598.0]
+	Extents			[1251.0, 568.0]
 	ZoomFactor		[1.8599999999999997]
-	Offset			[14.946236559139606, -73.736307123655962]
+	Offset			[14.946236559139606, -38.736307123655962]
       }
     }
   }
@@ -75,11 +75,11 @@ Model {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "daniele"
+  LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Aug 08 16:42:59 2014"
-  RTWModifiedTimeStamp	  329416973
-  ModelVersionFormat	  "1.%<AutoIncrement:29>"
+  LastModifiedDate	  "Wed Nov 12 16:14:08 2014"
+  RTWModifiedTimeStamp	  337709646
+  ModelVersionFormat	  "1.%<AutoIncrement:34>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -105,6 +105,11 @@ Model {
   BrowserShowLibraryLinks off
   BrowserLookUnderMasks	  off
   SimulationMode	  "normal"
+  PauseTimes		  "5"
+  NumberOfSteps		  1
+  SnapshotBufferSize	  10
+  SnapshotInterval	  10
+  NumberOfLastSnapshots	  0
   LinearizationMsg	  "none"
   Profile		  off
   ParamWorkspaceSource	  "MATLABWorkspace"
@@ -138,6 +143,7 @@ Model {
   CovNameIncrementing	  off
   CovHtmlReporting	  on
   CovForceBlockReductionOff on
+  CovEnableCumulative	  on
   covSaveCumulativeToWorkspaceVar on
   CovSaveSingleToWorkspaceVar on
   CovCumulativeVarName	  "covCumulativeData"
@@ -145,6 +151,9 @@ Model {
   CovReportOnPause	  on
   CovModelRefEnable	  "Off"
   CovExternalEMLEnable	  off
+  CovSFcnEnable		  off
+  CovBoundaryAbsTol	  0.000010
+  CovBoundaryRelTol	  0.010000
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -174,15 +183,15 @@ Model {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      8
-      Version		      "1.12.1"
+      Version		      "1.14.2"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  9
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  StartTime		  "0.0"
-	  StopTime		  "inf"
+	  StopTime		  "10"
 	  AbsTol		  "auto"
 	  FixedStep		  "Ts"
 	  InitialStep		  "auto"
@@ -200,8 +209,8 @@ Model {
 	  SolverMode		  "Auto"
 	  EnableConcurrentExecution off
 	  ConcurrentTasks	  off
-	  Solver		  "ode3"
-	  SolverName		  "ode3"
+	  Solver		  "FixedStepDiscrete"
+	  SolverName		  "FixedStepDiscrete"
 	  SolverJacobianMethodControl "auto"
 	  ShapePreserveControl	  "DisableAll"
 	  ZeroCrossControl	  "UseLocalSettings"
@@ -215,7 +224,7 @@ Model {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  10
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -233,6 +242,7 @@ Model {
 	  SignalLogging		  on
 	  DSMLogging		  on
 	  InspectSignalLogs	  off
+	  VisualizeSimOutput	  on
 	  SaveTime		  on
 	  ReturnWorkspaceOutputs  off
 	  StateSaveName		  "xout"
@@ -247,7 +257,7 @@ Model {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  11
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -267,11 +277,14 @@ Model {
 	  InlineParams		  off
 	  UseIntDivNetSlope	  off
 	  UseFloatMulNetSlope	  off
+	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
 	  InlineInvariantSignals  off
 	  OptimizeBlockIOStorage  on
 	  BufferReuse		  on
 	  EnhancedBackFolding	  off
+	  CachingGlobalReferences off
+	  GlobalBufferReuse	  on
 	  StrengthReduction	  off
 	  ExpressionFolding	  on
 	  BooleansAsBitfields	  off
@@ -286,6 +299,7 @@ Model {
 	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
+	  ActiveStateOutputEnumStorageType "Native Integer"
 	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
@@ -303,7 +317,7 @@ Model {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  12
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -393,11 +407,12 @@ Model {
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  13
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
 	  ProdBitPerLong	  32
+	  ProdBitPerLongLong	  64
 	  ProdBitPerFloat	  32
 	  ProdBitPerDouble	  64
 	  ProdBitPerPointer	  32
@@ -407,17 +422,20 @@ Model {
 	  ProdEndianess		  "Unspecified"
 	  ProdWordSize		  32
 	  ProdShiftRightIntArith  on
+	  ProdLongLongMode	  off
 	  ProdHWDeviceType	  "32-bit Generic"
 	  TargetBitPerChar	  8
 	  TargetBitPerShort	  16
 	  TargetBitPerInt	  32
 	  TargetBitPerLong	  32
+	  TargetBitPerLongLong	  64
 	  TargetBitPerFloat	  32
 	  TargetBitPerDouble	  64
 	  TargetBitPerPointer	  32
 	  TargetLargestAtomicInteger "Char"
 	  TargetLargestAtomicFloat "None"
 	  TargetShiftRightIntArith on
+	  TargetLongLongMode	  off
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
@@ -430,7 +448,7 @@ Model {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  14
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -445,7 +463,7 @@ Model {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  15
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -456,11 +474,12 @@ Model {
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
 	  SimBuildMode		  "sf_incremental_build"
+	  SimGenImportedTypeDefs  off
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  16
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -476,11 +495,15 @@ Model {
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
+	  TLCOptions		  ""
 	  GenCodeOnly		  off
 	  MakeCommand		  "make_rtw"
 	  GenerateMakefile	  on
 	  PackageGeneratedCodeAndArtifacts off
+	  PackageName		  ""
 	  TemplateMakefile	  "grt_default_tmf"
+	  PostCodeGenCommand	  ""
+	  Description		  ""
 	  GenerateReport	  off
 	  SaveLog		  off
 	  RTWVerbose		  on
@@ -491,18 +514,29 @@ Model {
 	  TLCAssert		  off
 	  ProcessScriptMode	  "Default"
 	  ConfigurationMode	  "Optimized"
+	  ProcessScript		  ""
+	  ConfigurationScript	  ""
 	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
+	  CustomSourceCode	  ""
+	  CustomHeaderCode	  ""
+	  CustomInclude		  ""
+	  CustomSource		  ""
+	  CustomLibrary		  ""
+	  CustomInitializer	  ""
+	  CustomTerminator	  ""
+	  Toolchain		  "Automatically locate an installed toolchain"
+	  BuildConfiguration	  "Faster Builds"
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  PortableWordSizes	  off
-	  GenerateErtSFunction	  off
 	  CreateSILPILBlock	  "None"
 	  CodeExecutionProfiling  off
 	  CodeExecutionProfileVariable "executionProfile"
 	  CodeProfilingSaveOptions "SummaryOnly"
 	  CodeProfilingInstrumentation off
+	  SILDebugging		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
 	  IncludeERTFirstTime	  off
@@ -516,14 +550,17 @@ Model {
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
+	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
 	  CustomRebuildMode	  "OnUpdate"
+	  DataInitializer	  ""
+	  SharedConstantsCachingThreshold 1024
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      17
-	      Version		      "1.12.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		21
@@ -552,6 +589,7 @@ Model {
 	      }
 	      ForceParamTrailComments off
 	      GenerateComments	      on
+	      CommentStyle	      "Auto"
 	      IgnoreCustomStorageClasses on
 	      IgnoreTestpoints	      off
 	      IncHierarchyInIds	      off
@@ -574,6 +612,7 @@ Model {
 	      CustomSymbolStrBlkIO    "rtb_$N$M"
 	      CustomSymbolStrTmpVar   "$N$M"
 	      CustomSymbolStrMacro    "$R$N$M"
+	      CustomSymbolStrUtil     "$N$C"
 	      DefineNamingRule	      "None"
 	      ParamNamingRule	      "None"
 	      SignalNamingRule	      "None"
@@ -582,7 +621,7 @@ Model {
 	      SimulinkBlockComments   on
 	      MATLABSourceComments    off
 	      EnableCustomComments    off
-	      InternalIdentifier      "Classic"
+	      InternalIdentifier      "Shortened"
 	      InlinedPrmAccess	      "Literals"
 	      ReqsInCode	      off
 	      UseSimReservedNames     off
@@ -590,7 +629,7 @@ Model {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      18
-	      Version		      "1.12.1"
+	      Version		      "1.14.2"
 	      Array {
 		Type			"Cell"
 		Dimension		16
@@ -615,6 +654,8 @@ Model {
 	      TargetFcnLib	      "ansi_tfl_table_tmw.mat"
 	      TargetLibSuffix	      ""
 	      TargetPreCompLibLocation ""
+	      GenFloatMathFcnCalls    "NOT IN USE"
+	      TargetLangStandard      "C89/C90 (ANSI)"
 	      CodeReplacementLibrary  "None"
 	      UtilityFuncGeneration   "Auto"
 	      ERTMultiwordTypeDef     "System defined"
@@ -623,7 +664,6 @@ Model {
 	      GenerateFullHeader      on
 	      GenerateSampleERTMain   off
 	      GenerateTestInterfaces  off
-	      IsPILTarget	      off
 	      ModelReferenceCompliant on
 	      ParMdlRefBuildCompliant on
 	      CompOptLevelCompliant   on
@@ -640,6 +680,7 @@ Model {
 	      LogVarNameModifier      "rt_"
 	      MatFileLogging	      on
 	      MultiInstanceERTCode    off
+	      CodeInterfacePackaging  "Nonreusable function"
 	      SupportNonFinite	      on
 	      SupportComplex	      on
 	      PurelyIntegerCode	      off
@@ -648,10 +689,12 @@ Model {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
+	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      off
+	      GenerateAllocFcn	      off
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -665,21 +708,29 @@ Model {
 	      RTWCAPIStates	      off
 	      RTWCAPIRootIO	      off
 	      GenerateASAP2	      off
+	      MultiInstanceErrorCode  "Error"
 	    }
 	    PropName		    "Components"
 	  }
 	}
 	hdlcoderui.hdlcc {
 	  $ObjectID		  19
-	  Version		  "1.12.1"
+	  Version		  "1.14.2"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
+	  Array {
+	    Type		    "Cell"
+	    Dimension		    1
+	    Cell		    " "
+	    PropName		    "HDLConfigFile"
+	  }
+	  HDLCActiveTab		  "0"
 	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition     [ 113, 73, 1045, 832 ] 
+      ConfigPrmDlgPosition     [ 1861, 26, 2963, 790 ] 
     }
     PropName		    "ConfigurationSets"
   }
@@ -750,30 +801,12 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Demux
-      Outputs		      "4"
-      DisplayOption	      "none"
-      BusSelectionMode	      off
-    }
-    Block {
       BlockType		      Display
       Format		      "short"
       Decimation	      "10"
       Floating		      off
+      Lockdown		      off
       SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Probe
-      ProbeWidth	      on
-      ProbeSampleTime	      on
-      ProbeComplexSignal      on
-      ProbeSignalDimensions   off
-      ProbeFramedSignal	      off
-      ProbeWidthDataType      "double"
-      ProbeSampleTimeDataType "double"
-      ProbeComplexityDataType "double"
-      ProbeDimensionsDataType "double"
-      ProbeFrameDataType      "double"
     }
     Block {
       BlockType		      Scope
@@ -799,11 +832,14 @@ Model {
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
       SampleTime	      "-1"
+      IndexOptions	      "Index vector (dialog)"
+      Indices		      "1"
+      OutputSizes	      "1"
     }
   }
   System {
     Name		    "COMPoseTesting"
-    Location		    [99, 42, 1386, 826]
+    Location		    [1528, 219, 2815, 934]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -815,15 +851,15 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "185"
+    ZoomFactor		    "186"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "102"
+    SIDHighWatermark	    "104"
     Block {
       BlockType		      Scope
       Name		      "COM Pos"
       SID		      "19"
       Ports		      [1]
-      Position		      [440, 109, 470, 141]
+      Position		      [350, 84, 380, 116]
       ZOrder		      -16
       Floating		      off
       Location		      [558, 234, 1280, 535]
@@ -853,123 +889,61 @@ Model {
     }
     Block {
       BlockType		      Reference
-      Name		      "COMFwdKin 1"
-      SID		      "100"
+      Name		      "COMFwdKin "
+      SID		      "103"
       Ports		      [0, 1]
-      Position		      [105, 43, 180, 87]
-      ZOrder		      2
+      Position		      [100, 78, 175, 122]
+      ZOrder		      3
       BackgroundColor	      "[0.243000, 0.074000, 0.972000]"
-      LibraryVersion	      "1.189"
+      LibraryVersion	      "1.192"
       SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/COMFwdKin "
       SourceType	      "Center of Mass Forward Kinematics"
+      ContentPreviewEnabled   off
       robotName		      "robotName"
       localName		      "localName"
     }
     Block {
-      BlockType		      Demux
-      Name		      "Demux"
-      SID		      "18"
-      Ports		      [1, 2]
-      Position		      [300, 46, 305, 84]
-      ZOrder		      -6
-      ShowName		      off
-      Outputs		      "2"
-      DisplayOption	      "bar"
-    }
-    Block {
       BlockType		      Display
       Name		      "Display"
-      SID		      "98"
+      SID		      "104"
       Ports		      [1]
-      Position		      [590, 40, 680, 70]
-      ZOrder		      -1
+      Position		      [350, 20, 440, 50]
+      ZOrder		      4
       Decimation	      "1"
-      Lockdown		      off
-    }
-    Block {
-      BlockType		      Probe
-      Name		      "Probe"
-      SID		      "97"
-      Ports		      [1, 1]
-      Position		      [440, 26, 575, 84]
-      ZOrder		      -9
-      ProbeWidth	      off
-      ProbeComplexSignal      off
     }
     Block {
       BlockType		      Selector
       Name		      "Selector"
       SID		      "16"
       Ports		      [1, 1]
-      Position		      [215, 46, 255, 84]
+      Position		      [215, 81, 255, 119]
       ZOrder		      -17
       InputPortWidth	      "7"
-      IndexOptions	      "Index vector (dialog)"
       Indices		      "[1:2]"
-      OutputSizes	      "1"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "XY Graph"
-      SID		      "17"
-      Ports		      [2]
-      Position		      [350, 50, 380, 85]
-      ZOrder		      -8
-      LibraryVersion	      "1.281"
-      SourceBlock	      "simulink/Sinks/XY Graph"
-      SourceType	      "XY scope."
-      xmin		      "-0.1"
-      xmax		      "0.01"
-      ymin		      "-0.05"
-      ymax		      "0.05"
-      st		      "-1"
     }
     Line {
-      SrcBlock		      "COMFwdKin 1"
+      ZOrder		      10
+      SrcBlock		      "COMFwdKin "
       SrcPort		      1
       DstBlock		      "Selector"
       DstPort		      1
     }
     Line {
+      ZOrder		      2
       SrcBlock		      "Selector"
       SrcPort		      1
-      Points		      [15, 0]
+      Points		      [50, 0]
       Branch {
-	DstBlock		"Demux"
+	ZOrder			12
+	Points			[0, -65]
+	DstBlock		"Display"
 	DstPort			1
       }
       Branch {
-	Points			[0, 60; 120, 0]
-	Branch {
-	  DstBlock		  "COM Pos"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, -70]
-	  DstBlock		  "Probe"
-	  DstPort		  1
-	}
+	ZOrder			11
+	DstBlock		"COM Pos"
+	DstPort			1
       }
-    }
-    Line {
-      SrcBlock		      "Demux"
-      SrcPort		      2
-      Points		      [25, 0]
-      DstBlock		      "XY Graph"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Demux"
-      SrcPort		      1
-      Points		      [25, 0]
-      DstBlock		      "XY Graph"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Probe"
-      SrcPort		      1
-      DstBlock		      "Display"
-      DstPort		      1
     }
   }
 }
