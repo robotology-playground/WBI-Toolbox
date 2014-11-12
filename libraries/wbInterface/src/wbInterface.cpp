@@ -190,7 +190,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
 	{
 	    fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
-		return false;
+            return false;
 	}
 
         int ROBOT_DOF = RobotMainJoints.size();
@@ -828,14 +828,23 @@ static void mdlInitializeSizes (SimStruct* S) {
     //NOTE This resource finder takes the right parameters from configuration file and passes them to a PWork vector.
     ResourceFinder rf;
     rf.setVerbose (true);
-    rf.setDefaultConfigFile ("wbi_conf_file.ini");
+    rf.setDefaultConfigFile ("yarpWholeBodyInterface.ini");
     rf.setDefaultContext ("iCubGenova03");
 
-    rf.configure (0, 0);
+    if (!rf.configure (0, 0)) {
+      printf("Problems in the configuration of the ResourceFinder\n");
+      printf("[ERR] mdlInitializeSizes: It was not possible to configure the ResourceFinder\n");
+      ssSetErrorStatus(S,"It was not possible to configure the ResourceFinder");
+      return;
+    }
 
     yarp::os::Property yarpWbiOptions;
-    std::string wbiConfFile = rf.findFile("wbi_conf_file.ini");
-    yarpWbiOptions.fromConfigFile(wbiConfFile);
+    std::string wbiConfFile = rf.findFile(DEFAULT_CONFIG_FILE);
+    if (!yarpWbiOptions.fromConfigFile(wbiConfFile)) {
+      printf("[ERR] mdlInitializeSizes: impossible to read from configuration file. Maybe yarpWholeBodyInterface was not installed?\n");
+      ssSetErrorStatus(S, "impossible to read from configuration file. Maybe yarpWholeBodyInterface was not installed? or the configuration file is empty.");
+      return;
+    }
 
     ConstString robotNamefromConfigFile = yarpWbiOptions.find ("robotName").asString();
     ConstString localNamefromConfigFile = yarpWbiOptions.find ("localName").asString();
@@ -846,7 +855,8 @@ static void mdlInitializeSizes (SimStruct* S) {
     std::string RobotDynamicModelJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
     if( !loadIdListFromConfig(RobotDynamicModelJointsListName,yarpWbiOptions,RobotDynamicModelJoints) )
     {
-        fprintf(stderr, "[ERR] wholeBodyDynamicsModule: impossible to load wbiId joint list with name %s\n",RobotDynamicModelJointsListName.c_str());
+        fprintf(stderr, "[ERR] mdlInitializeSizes: impossible to load wbiId joint list with name %s\n",RobotDynamicModelJointsListName.c_str());
+        ssSetErrorStatus(S, "impossible to load wbiId joint list");
         return;
     }
 
@@ -1115,6 +1125,7 @@ static void mdlStart (SimStruct* S) {
         fprintf (stderr, "mdlStart >> Succesfully exited robotInit.\n");
     else {
         ssSetErrorStatus (S, "ERR [mdlStart] in robotInit. \n");
+        return;
     }
 
     int ROBOT_DOF = robot->getRobotDOF();
@@ -1193,6 +1204,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             }
         } else {
             fprintf (stderr, "ERR: [mdlOutputs] Robot Joint Angles could not be computed\n");
+            return;
         }
     }
 //
@@ -1213,6 +1225,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             }
         } else {
             fprintf (stderr, "ERR: [mdlOutputs] Robot joint velocities could not be computed\n");
+            return;
         }
     }
 
@@ -1359,7 +1372,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         fprintf (stderr, "mdlOutputs: About to compute mass matrix\n");
 #endif
         if (!robot->dynamicsMassMatrix (qrad_in.data())) {
+            ssSetErrorStatus(S, "Mass matrix was not successfully computed");
             fprintf (stderr, "ERR: [mdlOutputs] Mass matrix was not successfully computed\n");
+            return;
         }
         massMatrix = robot->getMassMatrix();
         real_T* pY6 = (real_T*) ssGetOutputPortSignal (S, 4);
@@ -1417,7 +1432,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
         robot->getLinkId (linkName, lid);
         if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
+            ssSetErrorStatus(S, "dynamicsDJdq did not finish successfully")
             fprintf (stderr, "ERR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
+            return;
         } else {
             dJdq = robot->getDJdq();
         }
@@ -1443,7 +1460,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY8[j] = ddqJ (j);
             }
         } else {
+            ssSetErrorStatus(S, "Joint accelerations could not be retrieved");
             fprintf (stderr, "ERR: [mdlOutputs] Joint accelerations could not be retrieved\n");
+            return;
         }
     }
 
@@ -1458,7 +1477,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 pY9[j] = tauJ (j);
             }
         } else {
+            ssSetErrorStatus(S, "Joint torques could not be retrieved");
             fprintf (stderr, "ERR: [mdlOutputs) Joint torques could not be retrieved\n");
+            return;
         }
     }
 
@@ -1518,6 +1539,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         // Gets joint limits for the entire body since we're still using ROBOT_DOF as default
         if (!ssGetPWork (S) [1] & !ssGetPWork (S) [2]) {
             ssSetErrorStatus (S, "ERR [mdlOutput] Joint limits could not be computed\n");
+            return;
         } else {
 #ifdef DEBUG
 //             fprintf(stderr,"minJntLimits are: \n%s\n maxJntLimits are: \n%s\n", minJntLimits.toString().c_str(), maxJntLimits.toString().c_str());
@@ -1560,8 +1582,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         // Centroidal momentum
         Vector momentum (6);
         momentum.zero();
-        if (!robot->centroidalMomentum (qrad_in.data(), dqrad_in.data(), momentum.data()))
+        if (!robot->centroidalMomentum (qrad_in.data(), dqrad_in.data(), momentum.data())) {
             fprintf (stderr, "ERR [mdlOutput] in robot->centroidalMomentum");
+            ssSetErrorStatus(S, "Centroidal momentum could not be computed");
+            return;
+        }
         real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 12);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 12); j++)
             pY13[j] = momentum[j];
@@ -1582,8 +1607,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 	    //TODO LID in the following cases must be assigned the REF FRAME of the arm and leg EE.
 	    if( !loadIdListFromConfig(RobotJointsListName,yarpWbiOptions[0],RobotJoint) )
 	    {
-
-	      fprintf(stderr, "[ERR] locomotionControl: impossible to load wbiId joint list with name %s\n",RobotJointsListName.c_str());
+	      fprintf(stderr, "[ERR] mdlOutputs: impossible to load wbiId joint list with name %s\n",RobotJointsListName.c_str());
+              ssSetErrorStatus(S, "impossible to load wbiId joint list");
 	      return;
 	    }
 	    LID = wbi::ID ("r_sole");
@@ -1619,7 +1644,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         Vector tmp (6);
         tmp.zero();
         if (!robot->robotEEWrenches (LID)) {
-            printf ("Error obtaining es for ... \n");
+            ssSetErrorStatus(S, "Error obtaining robot end effector wrenches");
+            printf ("ERR [mdlOutputs] obtaining robot end effector wrenches \n");
         } else {
             tmp = robot->getEEWrench();
         }
@@ -1719,6 +1745,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
         if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
             fprintf (stderr, "ERR: [mdlOutputs] dynamicsDJdq did not finish successfully\n");
+            ssSetErrorStatus(S, "dynamicsDjdq did not finish Succesfully");
+            return;
         } else {
             dJdq = robot->getDJdq();
         }

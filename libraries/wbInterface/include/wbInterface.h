@@ -46,7 +46,7 @@
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
 
-#define DEFAULT_CONFIG_FILE "wbi_conf_file.ini"
+#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface.ini"
 
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
