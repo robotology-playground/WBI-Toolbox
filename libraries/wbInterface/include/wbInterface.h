@@ -46,6 +46,9 @@
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
 
+#define DEFAULT_CONFIG_FILE "wbi_conf_file.ini"
+
+
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
 #include "simstruc.h"
 
@@ -86,7 +89,7 @@ private:
 
     /** Link name used for parametric blocks, such as Link Forward Kinematics, Link Jacobian, etc */
     std::string             linkName;
-    
+
     static yarp::os::ConstString   worldRefFrame;
 
     /** Joint velocities (size of vectors: n+6, n, 6). */
@@ -114,7 +117,7 @@ private:
     yarp::sig::Vector       tauJ_out;
 
     /** General Jacobian matrix initialized depending on the link for which the Jacobian is then needed.*/
-    JacobianMatrix          JfootR;
+    JacobianMatrix          jacobianMatrix;
 
     /** rotation to align foot Z axis with gravity, Ha=[0 0 1 0; 0 -1 0 0; 1 0 0 0; 0 0 0 1] */
     wbi::Frame              Ha;
@@ -150,8 +153,8 @@ private:
 
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
     static bool             icub_fixed;
-    
-    /*Robot DOF read from configuration file*/ 
+
+    /*Robot DOF read from configuration file*/
     int                     ROBOT_DOF;
 
 public:
