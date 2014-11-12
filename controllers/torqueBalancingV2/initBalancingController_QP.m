@@ -38,95 +38,51 @@ R   = [0 0 1; 0 -1 0;1 0 0];
 Rf  = [R, zeros(3,3); zeros(3,3), R];
 
 
-referenceParams = [0.0 0.0];  %[0.015 0.5];
+referenceParams = [0.05 0.4];  %[0.015 0.5];
 
 
 %% Parameters for QP
-n_constraint = 2;
-x0 = zeros(6*n_constraint,1);
-lb = -inf*ones(6*n_constraint,1);
-ub = inf*ones(6*n_constraint,1);
-x0_lb_ub    = [x0;lb;ub];
+number_of_feet_on_ground = 2;
+init_conditions_QP   = zeros(6*number_of_feet_on_ground,1);
+lower_bound_opt_var  = -inf*ones(6*number_of_feet_on_ground,1);
+upper_bound_opt_var  = inf*ones(6*number_of_feet_on_ground,1);
+init_params_QP       = [init_conditions_QP;lower_bound_opt_var;upper_bound_opt_var];
 
 %% constraints for QP for balancing on both feet - friction cone - z-moment - in terms of f (not f0!)
 
-n_constraint                 = 2;
-% friction cone
-staticFrictionCoefficient    = 1/3;  
-numberOfPoints               = 4; %number of points in a quadrant for cone
+number_of_feet_on_ground     = 2;
+
+% Friction cone parameters
+numberOfPoints               = 4; % The friction cone is approximated by using linear interpolation of the circle. 
+                                  % So, numberOfPoints defines the number of points used to interpolate the circle in each cicle's quadrant 
+
+forceFrictionCoefficient     = 1/3;  
 torsionalFrictionCoefficient = 2/150;
 
-[Aineq_fcone_f,bineq_fcone_f]= constraint_fcone_QP(staticFrictionCoefficient,numberOfPoints,n_constraint);
+%% The QP solver will search a solution fo that 
+% satisfies the inequality Aineq_f F(fo) < bineq_f
+
+[Aineq_fcone,bineq_fcone]= constraint_fcone_QP(forceFrictionCoefficient,numberOfPoints,number_of_feet_on_ground);
 
 
-if n_constraint==2
-    Aineq_torsion_f = [0 , 0, -torsionalFrictionCoefficient, 0, 0, 1, zeros(1,6);
-                       0 , 0, -torsionalFrictionCoefficient, 0, 0,-1, zeros(1,6);
-                       zeros(1,6),0 , 0, -torsionalFrictionCoefficient, 0, 0, 1;
-                       zeros(1,6),0 , 0, -torsionalFrictionCoefficient, 0, 0,-1];   
-    bineq_torsion_f = zeros(4,1);
+if number_of_feet_on_ground == 2
+    Aineq_torsion = [ 0         , 0, -torsionalFrictionCoefficient,               0,               0, 1, zeros(1,6);
+                      0         , 0, -torsionalFrictionCoefficient,               0,               0,-1, zeros(1,6); 
+                      zeros(1,6), 0,              0,                -torsionalFrictionCoefficient, 0, 0,      1;
+                      zeros(1,6), 0,              0,                -torsionalFrictionCoefficient, 0, 0,     -1];   
+    bineq_torsion = zeros(4,1);
 else
-    Aineq_torsion_f = [0 , 0, -torsionalFrictionCoefficient, 0, 0, 1;
-                       0 , 0, -torsionalFrictionCoefficient, 0, 0,-1];
-    bineq_torsion_f = zeros(2,1); 
+    Aineq_torsion = [ 0, 0, -torsionalFrictionCoefficient, 0, 0, 1;
+                      0, 0, -torsionalFrictionCoefficient, 0, 0,-1];
+    bineq_torsion = zeros(2,1); 
 end    
 %
 
 % merge the constraints together
 % here still in terms of f (not f0) 
 % (the constraint on f0 are variable and calculated in the controller)
-Aineq_f = [Aineq_fcone_f;
-           Aineq_torsion_f];
-bineq_f = [bineq_fcone_f;
-           bineq_torsion_f];
+Aineq_F = [ Aineq_fcone;
+            Aineq_torsion];
+bineq_F = [ bineq_fcone;
+            bineq_torsion];
 
-%% GAINS FOR Gazebo
-
-
-
-% kCom  = [  40    0.2   0 ];
-% kImpTorso = [3 2 4]*8; 
-% kImpArms  = [2 2 2 2 1]*8;
-% kImpLegs  = [35 10 0.1 40 2 0.5]; 
-% 
-% Gains  = [  70    0   0  4];
-% 
-% % Impadances acting in the null space of the desired contact forces 
-% 
-% kImpTorso = [12 8 12]; 
-% kImpArms  = [10 10 10 10 5];
-% kImpLegs  = [35 50 0.1 30 2 10]; 
-
-%% GAINS FOR iCubGenova01
-% kw = 4;
-% kCom  = [  40    0.2   0 ];
-% kImpTorso = [3 2 4]*8; 
-% kImpArms  = [2 2 2 2 1]*8;
-% kImpLegs  = [35 10 0.1 40 2 0.5]; 
-% 
-
-%% Right left 
-% A = 0.02;
-% f = 0.15; up to 0.17
-% kH  = [  70    2   0 4];
-% kImpTorso = [3 2 3]*4; 
-% kImpArms  = [2 2 2 2 1]*5;
-% kImpLegs  = [35 50 0.1 30 2 10];  
-
-%% GAINS FOR iCubGenova03
-%
-% Demo: right left
-%
-% kCom  = [  40    1   0 ];
-% kImpTorso = [1 1 4]*15; 
-% kImpArms  = [2 2 2 2 1]*15;
-% kImpLegs  = [200 150 250 500 10 1]; 
-% kImp  = [kImpTorso,kImpArms,kImpArms,kImpLegs,kImpLegs];
-%
-% 
-% Demo: Constanst CoM
-%
-% kCom  = [  40    0   0 ];
-% kImpTorso = [1 1 2]*15; 
-% kImpArms  = [1 1 1 1 1]*15;
-% kImpLegs  = [200 150 250 450 10 1]; 

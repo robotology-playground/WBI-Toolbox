@@ -378,9 +378,9 @@ bool robotStatus::world2baseRototranslation (double* q) {
             Bottle *acc = accelerometerPort.read(false);
             if (acc) {
                 printf("Acc: %s", acc->toString().c_str());
-                double a_x = acc->get(0).asDouble();
-                double a_y = acc->get(1).asDouble();
-                double a_z = acc->get(2).asDouble();
+                double a_x = -acc->get(1).asDouble(); 
+                double a_y =  acc->get(0).asDouble();
+                double a_z =  acc->get(2).asDouble();
             }
             
             //check frame of accelerometer

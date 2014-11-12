@@ -15,7 +15,7 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-Gains  = [  120    0   5  4];
+Gains  = [  120    0   1  1];
 
 % Impadances acting in the null space of the desired contact forces 
 
