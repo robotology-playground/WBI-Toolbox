@@ -2,10 +2,23 @@
 Whole Body Interface Toolbox (WBI-Toolbox) - A Simulink Wrapper for Whole Body Control
 -------------------------------------------------------------
 
-## THE FOLLOWING NOTES APPLY ONLY FOR THE new_wbi_ID BRANCH OF THIS REPOSITORY
+
+### :new: THE FOLLOWING NOTES APPLY ONLY TO THE new_wbi_ID BRANCH OF THIS REPOSITORY
 To illustrate the process of using the WBI-Toolbox in the branch new_wbi_ID, let us try to run the model `$CODYCO_SUPERBUILD_DIR/main/WBIToolbox/controllers/tests/COMPoseTesting.mdl` with iCub on the Gazebo simulator. 
-- Define the environmental variable `$YARP_ROBOT_NAME=icubGazeboSim` in `~/.bashrc`
-- 
+* In the new version of the toolbox you first need to define the environmental variable `$YARP_ROBOT_NAME=icubGazeboSim` in your `~/.bashrc`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `$YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
+For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This allows the WBI-Toolbox to be used not only with `iCubGenova0X`. It has been tested so far with `iCubHeidelberg01` and `COMAN`.
+
+* As usual, launch a `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
+* Open MATLAB (hoping you have installed the Toolbox as stated in the rest of this README), and open `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/controllers/tests/COMPoseTesting`. This model consists of a single `COMFwdKin` block that retrieves the center of mass of the robot. 
+* Before running the simulation, set the following variables in the MATLAB command line:
+   * `robot`     = `'icubGazeboSim'` (or `icub` if you're gonna use the real robot)
+   * `localName` = `'simulink'`      (or whatever you like)
+   * `Ts`        =  `0.10`           (for example)
+   * `ROBOT_DOF` =  `25`             (in the case of `icub`/`icubGazeboSim`. For `iCubHeidelberg01` it's 15 e.g.)
+* At this point you can run your simulation.
+
+Shall you find any issue or problem, please feel free to submit an issue with the proper label and it will be addressed as soon as possible.
+-------------------------------------------------------------------------------------------------------------
 
 
 This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
