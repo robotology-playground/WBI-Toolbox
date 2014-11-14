@@ -47,7 +47,7 @@
 #include <wbi/wbi.h>
 
 #define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface.ini"
-
+#define DEFAULT_WBIT_CONTEXT "wbit"
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
 #include "simstruc.h"
@@ -82,7 +82,7 @@ private:
     /** Prefix given to the ports that will be open by Simulink. */
     std::string             moduleName;
 
-    /** name of the robot being used, e.g. 'icubSim' or 'icub'. */
+    /** name of the robot being used, e.g. 'icubGazeboSim', 'icub', 'coman' */
     std::string             robotName;
     // This variable map an Eigen vector to a yarp vector. //
     // Eigen::Map<Eigen::VectorXd>  dqDesMap; //
@@ -145,14 +145,13 @@ private:
 
     /** Mass matrix N+6xN+6 */
     // N+6 x N+6 mass matrix
-//     Eigen::Matrix < double, ICUB_DOFS + 6, ICUB_DOFS + 6, Eigen::RowMajor > MassMatrix;
     Eigen::MatrixXd         massMatrix;
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
 
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
-    static bool             icub_fixed;
+    static bool             robot_fixed;
 
     /*Robot DOF read from configuration file*/
     int                     ROBOT_DOF;

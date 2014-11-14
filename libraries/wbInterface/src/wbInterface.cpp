@@ -59,7 +59,7 @@ using namespace yarpWbi;
 int  robotStatus::creationCounter = 0;
 int* robotStatus::tmpContainer    = NULL;
 int  counterClass::count          = 0;
-bool robotStatus::icub_fixed      = false;
+bool robotStatus::robot_fixed      = false;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 
 
@@ -111,7 +111,6 @@ void robotStatus::resetCounter() {
 }
 //=========================================================================================================================
 bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
-    //TODO Input to robotConfig() should be the name of the config file and the defaultcontext?
     fprintf (stderr, "robotStatus::robotConfig >> Configuring...\n");
     if (tmpContainer != NULL) {
         wbInterface = (wholeBodyInterface*) tmpContainer;
@@ -119,11 +118,12 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
         fprintf (stderr, "[robotStatus::robotConfig] Copying wholeBodyInterface POINTER!\n");
 // #endif
     } else {
+          //NOTE The following ResourceFinder will look for the file DEFAULT_CONFIG_FILE in app/robots/$YARP_ROBOT_NAME
           ResourceFinder rf;
           rf.setVerbose (true);
           rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
           //TODO In this deafult context I should find the right configuration files per robot... Remember to add
-          rf.setDefaultContext ("wbit");
+          rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
 
           //NOTE We call rf.configure() this way since we don't have a command line to read commands from
           if (!rf.configure (0, 0)) {
@@ -142,27 +142,28 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
           }
 
           // Overwrite robotName by what the user inputs from MATLAB's command line
-          yarpWbiOptions->put("robot",robotStatus::robotName);
+          yarpWbiOptions->put("robot", robotStatus::robotName);
+          yarpWbiOptions->put("localName", robotStatus::moduleName);
 
           ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robot").asString();
           ConstString localNamefromConfigFile = yarpWbiOptions->find ("localName").asString();
           std::string worldRefFrame           = yarpWbiOptions->find ("worldRefFrame").asString();
 
-        if (rf.check ("icub_fixed")) {
-            if (rf.find ("icub_fixed").isBool())
-                icub_fixed = rf.find ("icub_fixed").asBool();
+        if (rf.check ("robot_fixed")) {
+            if (rf.find ("robot_fixed").isBool())
+                robot_fixed = rf.find ("robot_fixed").asBool();
             else {
-                fprintf (stderr, "ERR [robotStatus::robotConfig] Wrong icub_fixed in the config file!\n");
+                fprintf (stderr, "ERR [robotStatus::robotConfig] Wrong robot_fixed in the config file!\n");
                 return false;
             }
         } else {
-            fprintf (stderr, "ERR [robotStatus::robotConfig] No option icub_fixed in the config file!\n");
+            fprintf (stderr, "ERR [robotStatus::robotConfig] No option robot_fixed in the config file!\n");
             return false;
         }
-        if (icub_fixed)
-            fprintf (stderr, "[robotStatus::robotConfig] icub_fixed is true!\n");
+        if (robot_fixed)
+            fprintf (stderr, "[robotStatus::robotConfig] robot_fixed is true!\n");
         else
-            fprintf (stderr, "[robotStatus::robotConfig] icub_fixed is false!\n");
+            fprintf (stderr, "[robotStatus::robotConfig] robot_fixed is false!\n");
 
 // #ifdef DEBUG
         fprintf (stderr, "[robotStatus::robotConfig] After reading from config file, params are \n");
@@ -183,12 +184,12 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
         tmpContainer = (int*) wbInterface;
 
 #ifdef DEBUG
-        fprintf (stderr, "[robotStatus::robotConfig] icubWholeBodyInterface has been created %p \n", wbInterface);
+        fprintf (stderr, "[robotStatus::robotConfig] yarpWholeBodyInterface has been created %p \n", wbInterface);
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
-        // Add main iCub joints
+        // Add main robot joints
 	wbi::IDList RobotMainJoints;
-	std::string RobotMainJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
+	std::string RobotMainJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
 
 	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
 	{
@@ -201,8 +202,10 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 
 	wbInterface->addJoints (RobotMainJoints);
 
+        //TODO Change this part with something more generic. coman for example doens't have the word icub in it. Should I check for both?
         if(robotStatus::robotName == "icub"){
             fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
+            //TODO This is not strictly necessary when using the robot unless you wanna send torque commands
             if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
                 fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
             else {
@@ -219,9 +222,9 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 	else {
         yarp::os::Value trueValue;
         trueValue.fromString ("true");
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
+        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpbWholeBodyActuators::yarpWholeBodyActuatorsUseExternalTorqueModule, trueValue);
+        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
+        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
 	}
 #endif
 
@@ -320,7 +323,7 @@ int robotStatus::getLinkId (const char* linkName) {
 }
 //=========================================================================================================================
 bool robotStatus::world2baseRototranslation (double* q) {
-    if (!icub_fixed) {
+    if (!robot_fixed) {
         int LINK_FOOT_WRF;
         getLinkId (worldRefFrame.c_str(), LINK_FOOT_WRF);
         wbInterface->computeH (q, Frame(), LINK_FOOT_WRF, H_base_wrfLink);
@@ -855,7 +858,7 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     // Extracting DOF from joints defined in config file.
     wbi::IDList RobotDynamicModelJoints;
-    std::string RobotDynamicModelJointsListName = "ICUB_DYNAMIC_MODEL_JOINTS";
+    std::string RobotDynamicModelJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
     if( !loadIdListFromConfig(RobotDynamicModelJointsListName,yarpWbiOptions,RobotDynamicModelJoints) )
     {
         fprintf(stderr, "[ERR] mdlInitializeSizes: impossible to load wbiId joint list with name %s\n",RobotDynamicModelJointsListName.c_str());
@@ -1092,6 +1095,7 @@ static void mdlStart (SimStruct* S) {
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
 
+    //TODO It won't always be icubGazeboSim. Do this chekc in a more appropriate way
     if(robot_name == "icubGazeboSim"){
         if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
             printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
@@ -1100,10 +1104,11 @@ static void mdlStart (SimStruct* S) {
             return;
         }
     } else{
+        //TODO Find also coman in the name? or do this check in a more appropriate way
         std::size_t pos = robot_name.find ("iCub");
         if(pos != std::string::npos){ //iCubGenova0X is being used
             if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
-                printf("You're using the real iCub platform. Proceeding with configuration of the interface...");
+                printf("You're using the real robot platform. Proceeding with configuration of the interface...");
             else{
                 ssSetErrorStatus (S, "ERR [mdlStart] >> The real platform is not reachable... ");
                 return;
@@ -1319,7 +1324,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         Vector refTmp;
         refTmp.resize (ROBOT_DOF, 0.0);
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
-	    //TODO Change name to this variable for something general
             refTmp (j) = (*uPtrs1[j]);
         }
         if (btype == 4) robot->setCtrlMode (CTRL_MODE_VEL);
@@ -1598,18 +1602,18 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     if (btype == 15) {
       // Retrieve
       yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
-      IDList RobotJoint;
-      std::string RobotJointsListName;
+      IDList jointIdLIst;
+      std::string requestedJointIdList;
       wbi:ID LID; // Initializing in case we go default
 
       switch ( (int) *uPtrs[0]) {
         case 0:
-	    RobotJointsListName = "r_ankle_pitch";
+	    requestedJointIdList = "r_ankle_pitch";
             linkName = "r_sole";
 	    //TODO LID in the following cases must be assigned the REF FRAME of the arm and leg EE.
-	    if( !loadIdListFromConfig(RobotJointsListName,yarpWbiOptions[0],RobotJoint) )
+	    if( !loadIdListFromConfig(requestedJointIdList, yarpWbiOptions[0], jointIdLIst) )
 	    {
-	      fprintf(stderr, "[ERR] mdlOutputs: impossible to load wbiId joint list with name %s\n",RobotJointsListName.c_str());
+	      fprintf(stderr, "[ERR] mdlOutputs: impossible to load wbiId joint list with name %s\n", requestedJointIdList.c_str());
               ssSetErrorStatus(S, "impossible to load wbiId joint list");
 	      return;
 	    }
