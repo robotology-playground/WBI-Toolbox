@@ -59,7 +59,7 @@ using namespace yarpWbi;
 int  robotStatus::creationCounter = 0;
 int* robotStatus::tmpContainer    = NULL;
 int  counterClass::count          = 0;
-bool robotStatus::robot_fixed      = false;
+bool robotStatus::robot_fixed     = false;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 
 
@@ -114,16 +114,16 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
     fprintf (stderr, "robotStatus::robotConfig >> Configuring...\n");
     if (tmpContainer != NULL) {
         wbInterface = (wholeBodyInterface*) tmpContainer;
-// #ifdef DEBUG
+#ifdef DEBUG
         fprintf (stderr, "[robotStatus::robotConfig] Copying wholeBodyInterface POINTER!\n");
-// #endif
+#endif
     } else {
           //NOTE The following ResourceFinder will look for the file DEFAULT_CONFIG_FILE in app/robots/$YARP_ROBOT_NAME
           ResourceFinder rf;
           rf.setVerbose (true);
           rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
           //TODO In this deafult context I should find the right configuration files per robot... Remember to add
-          rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
+//           rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
 
           //NOTE We call rf.configure() this way since we don't have a command line to read commands from
           if (!rf.configure (0, 0)) {
@@ -188,44 +188,44 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main robot joints
-	wbi::IDList RobotMainJoints;
-	std::string RobotMainJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
+    wbi::IDList RobotMainJoints;
+    std::string RobotMainJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
 
-	if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
-	{
-	    fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
+    if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
+    {
+        fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
             return false;
-	}
+    }
 
-        int ROBOT_DOF = RobotMainJoints.size();
-	robotStatus::setRobotDOF(ROBOT_DOF);
+    int ROBOT_DOF = RobotMainJoints.size();
+    robotStatus::setRobotDOF(ROBOT_DOF);
 
-	wbInterface->addJoints (RobotMainJoints);
+    wbInterface->addJoints (RobotMainJoints);
 
-        //TODO Change this part with something more generic. coman for example doens't have the word icub in it. Should I check for both?
-        if(robotStatus::robotName == "icub"){
-            fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
-            //TODO This is not strictly necessary when using the robot unless you wanna send torque commands
-            if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
-                fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
-            else {
-                fprintf (stderr, "ERR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running the simulation. \n");
-                return false;
-            }
-        }
+    //TODO Change this part with something more generic. coman for example doens't have the word icub in it. Should I check for both?
+//     if(robotStatus::robotName == "icub"){
+//         fprintf (stderr, "[robotStatus::robotConfig] Configuring WBI to use the jointTorqueControl module\n");
+//         //TODO This is not strictly necessary when using the robot unless you wanna send torque commands
+//         if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+//             fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
+//         else {
+//             fprintf (stderr, "ERR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running the simulation. \n");
+//             return false;
+//         }
+//     }
 
 #ifdef WBI_ICUB_COMPILE_PARAM_HELP
-	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
-	  fprintf (stderr, "ERR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
-	  return false;
-	}
-	else {
+    if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
+      fprintf (stderr, "ERR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
+      return false;
+    }
+    else {
         yarp::os::Value trueValue;
         trueValue.fromString ("true");
         ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpbWholeBodyActuators::yarpWholeBodyActuatorsUseExternalTorqueModule, trueValue);
         ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
         ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
-	}
+    }
 #endif
 
         if (!wbInterface->init()) {
@@ -494,7 +494,7 @@ bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double*
         wbi::Frame qBaseFrame = wbi::Frame (qrad_base.data());
 #ifdef DEBUG
         fprintf (stderr, "robotStatus::inverseDynamics >> This is the rototranslation \
-	    matrix for the base that has been read: \n%s\n", qBaseFrame.toString().c_str());
+        matrix for the base that has been read: \n%s\n", qBaseFrame.toString().c_str());
         fprintf (stderr, "robotStatus::inverseDynamics >> Reading external world to base rototranslation\n");
 #endif
         ans = wbInterface->inverseDynamics (qrad_robot, qBaseFrame, dq_robot, dq_base.data(), ddq_robot, ddq_base.data(), grav.data(), tauJ_computed);
@@ -536,7 +536,7 @@ bool robotStatus::dynamicsMassMatrix (double* qrad_input) {
             wbi::Frame qBaseFrame = wbi::Frame (qrad_base.data());
 #ifdef DEBUG
             fprintf (stderr, "robotStatus::dynamicsMassMatrix >> This is the rototranslation \
-	  matrix for the base that has been read: \n%s\n", qBaseFrame.toString().c_str());
+      matrix for the base that has been read: \n%s\n", qBaseFrame.toString().c_str());
 #endif
 
 #ifdef WORLD2BASE_EXTERNAL
@@ -737,7 +737,7 @@ bool robotStatus::robotEEWrenches (wbi::ID LID) {
     bool ans = false;
     if (robotJntAngles (false)) {
         if (world2baseRototranslation (qRad.data())) {
-	  //TODO yarpWholeBodyInterface still doesn't have the method setWorldBasePosition which is needed by wbi to estimate forces at the EE
+      //TODO yarpWholeBodyInterface still doesn't have the method setWorldBasePosition which is needed by wbi to estimate forces at the EE
 //             if ( ( (yarpWholeBodyInterface*) wbInterface)->setWorldBasePosition (xBase)) {
 //                 if (wbInterface->getEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID, EEWrench.data())) {
 // #ifdef DEBUG
@@ -929,10 +929,10 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     ssSetOptions (S,
                   SS_OPTION_WORKS_WITH_CODE_REUSE |
-                  SS_OPTION_EXCEPTION_FREE_CODE | 	//we must be sure that every function we call never throws an exception
+                  SS_OPTION_EXCEPTION_FREE_CODE |   //we must be sure that every function we call never throws an exception
                   SS_OPTION_ALLOW_INPUT_SCALAR_EXPANSION |
                   SS_OPTION_USE_TLC_WITH_ACCELERATOR |
-		  SS_OPTION_CALL_TERMINATE_ON_EXIT);
+          SS_OPTION_CALL_TERMINATE_ON_EXIT);
 
     fprintf (stderr, "mdlInitializeSizes >> Options set\n\n");
 }
@@ -1608,30 +1608,30 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
       switch ( (int) *uPtrs[0]) {
         case 0:
-	    requestedJointIdList = "r_ankle_pitch";
+        requestedJointIdList = "r_ankle_pitch";
             linkName = "r_sole";
-	    //TODO LID in the following cases must be assigned the REF FRAME of the arm and leg EE.
-	    if( !loadIdListFromConfig(requestedJointIdList, yarpWbiOptions[0], jointIdLIst) )
-	    {
-	      fprintf(stderr, "[ERR] mdlOutputs: impossible to load wbiId joint list with name %s\n", requestedJointIdList.c_str());
+        //TODO LID in the following cases must be assigned the REF FRAME of the arm and leg EE.
+        if( !loadIdListFromConfig(requestedJointIdList, yarpWbiOptions[0], jointIdLIst) )
+        {
+          fprintf(stderr, "[ERR] mdlOutputs: impossible to load wbiId joint list with name %s\n", requestedJointIdList.c_str());
               ssSetErrorStatus(S, "impossible to load wbiId joint list");
-	      return;
-	    }
-	    LID = wbi::ID ("r_sole");
+          return;
+        }
+        LID = wbi::ID ("r_sole");
             break;
         case 1:
             linkName = "l_sole";
-	    LID = wbi::ID ("l_sole");
+        LID = wbi::ID ("l_sole");
 //             LID = wbi::wbiId (iCub::skinDynLib::LEFT_LEG, 8);
             break;
         case 2:
             linkName = "r_gripper";
-	    LID = wbi::ID ("r_gripper");
+        LID = wbi::ID ("r_gripper");
 //             LID = wbi::wbiId (iCub::skinDynLib::RIGHT_ARM, 8);
             break;
         case 3:
             linkName = "l_gripper";
-	    LID = wbi::ID ("l_gripper");
+        LID = wbi::ID ("l_gripper");
 //             LID = wbi::wbiId (iCub::skinDynLib::LEFT_ARM, 8);
             break;
         default:
@@ -1803,22 +1803,22 @@ static void mdlTerminate (SimStruct* S) {
             printf ("minJntLimits deleted\n");
             delete[] maxJntLimits;
             printf ("maxJntLimits deleted\n");
-	    delete yarpWbiOptions;
-	    printf ("yarpWbiOptions deleted\n");
+            delete yarpWbiOptions;
+            printf ("yarpWbiOptions deleted\n");
             robotStatus::resetCounter();
             robot          = NULL;
             minJntLimits   = NULL;
             maxJntLimits   = NULL;
-	    yarpWbiOptions = NULL;
-	    printf ("all variables set to NULL\n");
+            yarpWbiOptions = NULL;
+            printf ("all variables set to NULL\n");
             ssSetPWorkValue (S, 0, NULL);
             ssSetPWorkValue (S, 1, NULL);
             ssSetPWorkValue (S, 2, NULL);
-	    ssSetPWorkValue (S, 3, NULL);
+            ssSetPWorkValue (S, 3, NULL);
         }
     }
         Network::fini();
-	fprintf(stderr,"Left mdlTerminate\n");
+    fprintf(stderr,"Left mdlTerminate\n");
 }
 
 // Required S-function trailer
