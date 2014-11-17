@@ -276,9 +276,9 @@ bool robotStatus::robotInit (int btype, int link) {
 
     // dot{J}dot{q}
     dJdq.resize (6, 0);
-    dxB.resize (6, 0);
+    dxB.resize  (6, 0);
     ddxB.resize (6, 0);
-    grav.resize (3, 1);
+    grav.resize (3, 0);
     //TODO Gravity must be taken from the IMU
     grav[0] = grav[1] = 0;
     grav[2] = -9.81;
