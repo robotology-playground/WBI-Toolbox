@@ -17,7 +17,7 @@ For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This al
 * As usual, launch a `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
 * Open MATLAB (hoping you have installed the Toolbox as stated in the rest of this README), and open `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/controllers/tests/COMPoseTesting`. This model consists of a single `COMFwdKin` block that retrieves the center of mass of the robot. 
 * Before running the simulation, set the following variables in the MATLAB command line:
-   * `robot`     = `'icubGazeboSim'` (or `icub` if you're gonna use the real robot)
+   * `robotName`     = `'icubGazeboSim'` (or `icub` if you're gonna use the real robot)
    * `localName` = `'simulink'`      (or whatever you like)
    * `Ts`        =  `0.10`           (for example)
    * `ROBOT_DOF` =  `25`             (in the case of `icub`/`icubGazeboSim`. For `iCubHeidelberg01` it's 15 e.g.)
