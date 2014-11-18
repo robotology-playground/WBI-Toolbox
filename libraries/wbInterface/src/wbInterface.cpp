@@ -1362,7 +1362,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
-    fprintf(stderr,"[mdlOutputs] >> ROBOT_DOF for massMatrix is: \n", ROBOT_DOF);
     MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
     // This block will return the mass matrix from the dynamics equation
     if (btype == 8) {
