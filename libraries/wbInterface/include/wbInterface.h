@@ -145,7 +145,7 @@ private:
 
     /** Mass matrix N+6xN+6 */
     // N+6 x N+6 mass matrix
-    Eigen::MatrixXd         massMatrix;
+    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>         massMatrix;
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;

@@ -120,7 +120,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
     } else {
           //NOTE The following ResourceFinder will look for the file DEFAULT_CONFIG_FILE in app/robots/$YARP_ROBOT_NAME
           ResourceFinder rf;
-          rf.setVerbose (true);
+          rf.setVerbose (false);
           rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
           //TODO In this deafult context I should find the right configuration files per robot... Remember to add
 //           rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
@@ -833,7 +833,7 @@ static void mdlInitializeSizes (SimStruct* S) {
 
     //NOTE This resource finder takes the right parameters from configuration file and passes them to a PWork vector.
     ResourceFinder rf;
-    rf.setVerbose (true);
+    rf.setVerbose (false);
     rf.setDefaultConfigFile ("yarpWholeBodyInterface.ini");
     rf.setDefaultContext ("iCubGenova03");
 
@@ -928,11 +928,11 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetSimStateCompliance (S, USE_CUSTOM_SIM_STATE);
 
     ssSetOptions (S,
-                  SS_OPTION_WORKS_WITH_CODE_REUSE |
-                  SS_OPTION_EXCEPTION_FREE_CODE |   //we must be sure that every function we call never throws an exception
+                  SS_OPTION_WORKS_WITH_CODE_REUSE        |
+                  SS_OPTION_EXCEPTION_FREE_CODE          |   //we must be sure that every function we call never throws an exception
                   SS_OPTION_ALLOW_INPUT_SCALAR_EXPANSION |
-                  SS_OPTION_USE_TLC_WITH_ACCELERATOR |
-          SS_OPTION_CALL_TERMINATE_ON_EXIT);
+                  SS_OPTION_USE_TLC_WITH_ACCELERATOR     |
+                  SS_OPTION_CALL_TERMINATE_ON_EXIT);
 
     fprintf (stderr, "mdlInitializeSizes >> Options set\n\n");
 }
@@ -1362,6 +1362,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
+    fprintf(stderr,"[mdlOutputs] >> ROBOT_DOF for massMatrix is: \n", ROBOT_DOF);
     MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
     // This block will return the mass matrix from the dynamics equation
     if (btype == 8) {
@@ -1779,14 +1780,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 static void mdlTerminate (SimStruct* S) {
     // IF YOU FORGET TO DESTROY OBJECTS OR DEALLOCATE MEMORY, MATLAB WILL CRASH.
     // Retrieve and destroy C++ object
-    robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
-    double* minJntLimits = 0;//new double[ROBOT_DOF];
-    double* maxJntLimits = 0;//new double[ROBOT_DOF];
-
-    minJntLimits = (double*) ssGetPWork (S) [1];
-    maxJntLimits = (double*) ssGetPWork (S) [2];
-    yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
-
 #ifdef DEBUG
     fprintf (stderr, "mdlTerminate: robot pointer: %p\n", robot);
 #endif
@@ -1795,6 +1788,13 @@ static void mdlTerminate (SimStruct* S) {
     if (robot != NULL) {
         fprintf (stderr, "mdlTerminate >> Inside robot object %p \n", robot);
         if (robot->decreaseCounter() == 0) {
+            robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
+            double*      minJntLimits = 0;//new double[ROBOT_DOF];
+            double*      maxJntLimits = 0;//new double[ROBOT_DOF];
+            minJntLimits = (double*) ssGetPWork (S) [1];
+            maxJntLimits = (double*) ssGetPWork (S) [2];
+            yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
+
             robot->setCtrlMode (CTRL_MODE_POS);
             printf ("ctrl mode set\n");
             delete robot;
@@ -1817,7 +1817,7 @@ static void mdlTerminate (SimStruct* S) {
             ssSetPWorkValue (S, 3, NULL);
         }
     }
-        Network::fini();
+    Network::fini();
     fprintf(stderr,"Left mdlTerminate\n");
 }
 
