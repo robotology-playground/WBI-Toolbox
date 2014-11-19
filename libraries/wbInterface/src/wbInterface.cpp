@@ -841,13 +841,13 @@ static void mdlInitializeSizes (SimStruct* S) {
     ConstString robotNamefromConfigFile = yarpWbiOptions.find ("robotName").asString();
     ConstString localNamefromConfigFile = yarpWbiOptions.find ("localName").asString();
     std::string worldRefFrame           = yarpWbiOptions.find ("worldRefFrame").asString();
+    std::string robotMainJointsListNameFromConfigFile = yarpWbiOptions.find ("wbi_id_list").asString();
 
     // Extracting DOF from joints defined in config file.
     wbi::IDList RobotDynamicModelJoints;
-    std::string RobotDynamicModelJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
-    if( !loadIdListFromConfig(RobotDynamicModelJointsListName,yarpWbiOptions,RobotDynamicModelJoints) )
+    if( !loadIdListFromConfig(robotMainJointsListNameFromConfigFile,yarpWbiOptions,RobotDynamicModelJoints) )
     {
-        fprintf(stderr, "[ERR] mdlInitializeSizes: impossible to load wbiId joint list with name %s\n",RobotDynamicModelJointsListName.c_str());
+        fprintf(stderr, "[ERR] mdlInitializeSizes: impossible to load wbiId joint list with name %s\n",robotMainJointsListNameFromConfigFile.c_str());
         ssSetErrorStatus(S, "impossible to load wbiId joint list");
         return;
     }
