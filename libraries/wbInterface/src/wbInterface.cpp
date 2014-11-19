@@ -120,7 +120,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
     } else {
           //NOTE The following ResourceFinder will look for the file DEFAULT_CONFIG_FILE in app/robots/$YARP_ROBOT_NAME
           ResourceFinder rf;
-          rf.setVerbose (false);
+          rf.setVerbose (true);
           rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
           //TODO In this deafult context I should find the right configuration files per robot... Remember to add
 //           rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
@@ -145,9 +145,10 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
           yarpWbiOptions->put("robot", robotStatus::robotName);
           yarpWbiOptions->put("localName", robotStatus::moduleName);
 
-          ConstString robotNamefromConfigFile = yarpWbiOptions->find ("robot").asString();
-          ConstString localNamefromConfigFile = yarpWbiOptions->find ("localName").asString();
-          std::string worldRefFrame           = yarpWbiOptions->find ("worldRefFrame").asString();
+          ConstString robotNamefromConfigFile               = yarpWbiOptions->find ("robot").asString();
+          ConstString localNamefromConfigFile               = yarpWbiOptions->find ("localName").asString();
+          std::string worldRefFrame                         = yarpWbiOptions->find ("worldRefFrame").asString();
+          std::string robotMainJointsListNameFromConfigFile = yarpWbiOptions->find ("wbi_id_list").asString();
 
         if (rf.check ("robot_fixed")) {
             if (rf.find ("robot_fixed").isBool())
@@ -167,9 +168,10 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 
 // #ifdef DEBUG
         fprintf (stderr, "[robotStatus::robotConfig] After reading from config file, params are \n");
-        fprintf (stderr, "[robotStatus::robotConfig] robot name:    %s \n", robotNamefromConfigFile.c_str());
-        fprintf (stderr, "[robotStatus::robotConfig] local name:    %s \n", localNamefromConfigFile.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] robot name:            %s \n", robotNamefromConfigFile.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] local name:            %s \n", localNamefromConfigFile.c_str());
         fprintf (stderr, "[robotStatus::robotConfig] world reference frame: %s \n", worldRefFrame.c_str());
+        fprintf (stderr, "[robotStatus::robotConfig] WBI ID List:           %s \n", robotMainJointsListNameFromConfigFile.c_str());
 // #endif
 
         //---------------- CREATION WHOLE BODY INTERFACE ---------------------/
@@ -188,19 +190,18 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 #endif
         //---------------- CONFIGURATION WHOLE BODY INTERFACE ----------------/
         // Add main robot joints
-    wbi::IDList RobotMainJoints;
-    std::string RobotMainJointsListName = "ROBOT_DYNAMIC_MODEL_JOINTS";
+      wbi::IDList RobotMainJoints;
 
-    if( !loadIdListFromConfig(RobotMainJointsListName,yarpWbiOptions[0],RobotMainJoints) )
-    {
-        fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n",RobotMainJointsListName.c_str());
-            return false;
-    }
+      if( !loadIdListFromConfig(robotMainJointsListNameFromConfigFile, yarpWbiOptions[0], RobotMainJoints) )
+      {
+          fprintf(stderr, "[ERR] robotStatus:robotConfig: impossible to load wbiId joint list with name %s\n", robotMainJointsListNameFromConfigFile.c_str());
+              return false;
+      }
 
-    int ROBOT_DOF = RobotMainJoints.size();
-    robotStatus::setRobotDOF(ROBOT_DOF);
+      int ROBOT_DOF = RobotMainJoints.size();
+      robotStatus::setRobotDOF(ROBOT_DOF);
 
-    wbInterface->addJoints (RobotMainJoints);
+      wbInterface->addJoints (RobotMainJoints);
 
     //TODO Change this part with something more generic. coman for example doens't have the word icub in it. Should I check for both?
 //     if(robotStatus::robotName == "icub"){
@@ -214,34 +215,20 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
 //         }
 //     }
 
-#ifdef WBI_ICUB_COMPILE_PARAM_HELP
-    if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
-      fprintf (stderr, "ERR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
-      return false;
-    }
-    else {
-        yarp::os::Value trueValue;
-        trueValue.fromString ("true");
-        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpbWholeBodyActuators::yarpWholeBodyActuatorsUseExternalTorqueModule, trueValue);
-        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
-        ( (yarpWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (yarpWholeBodyActuators::yarpWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
-    }
-#endif
+          if (!wbInterface->init()) {
+              fprintf (stderr, "ERR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
+              return false;
+          } else {
+              fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
+          }
 
-        if (!wbInterface->init()) {
-            fprintf (stderr, "ERR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
-            return false;
-        } else {
-            fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
-        }
-
-        // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
-        fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
-        if(!setCtrlMode (CTRL_MODE_POS)) {
-        fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
-        return false;
-        }
-    }
+          // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
+          fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
+          if(!setCtrlMode (CTRL_MODE_POS)) {
+          fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
+          return false;
+          }
+      }
 
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
     actJnts = wbInterface->getJointList().size();
@@ -251,7 +238,6 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
     ddqJ.resize (actJnts, 0.0);
     tauJ.resize (actJnts, 0.0);
     tauJ_out.resize (actJnts, 0.0);
-
 
     return true;
 
