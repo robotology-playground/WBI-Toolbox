@@ -59,7 +59,7 @@ class wholeBodyInterface;
 typedef Eigen::Matrix<double, 7, 1>  Vector7d;
 const int Dynamic = -1;
 // a Jacobian is 6 rows and N columns
-typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
+// typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
 static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
 class robotStatus {
@@ -117,7 +117,7 @@ private:
     yarp::sig::Vector       tauJ_out;
 
     /** General Jacobian matrix initialized depending on the link for which the Jacobian is then needed.*/
-    JacobianMatrix          jacobianMatrix;
+    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>  jacobianMatrix;
 
     /** rotation to align foot Z axis with gravity, Ha=[0 0 1 0; 0 -1 0 0; 1 0 0 0; 0 0 0 1] */
     wbi::Frame              Ha;

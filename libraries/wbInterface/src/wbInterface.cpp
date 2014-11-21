@@ -258,7 +258,9 @@ bool robotStatus::robotInit (int btype, int link) {
     }
     x_pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
 
-    jacobianMatrix.resize (NoChange, ROBOT_DOF + 6);
+    fprintf(stderr,"[DEBUGGING] Before resizing jacobianMAtrix\n");
+    jacobianMatrix.resize (6, ROBOT_DOF + 6);
+    fprintf(stderr,"[DEBUGGING] After resizing jacobianMatrix\n");
 
     // dot{J}dot{q}
     dJdq.resize (6, 0);
@@ -1266,7 +1268,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will compute Jacobians for the specified link
     if (btype == 3) {
-        JacobianMatrix jacob;
+        MatrixXd jacob(6,ROBOT_DOF+6);
         switch ( (int) *uPtrs[0]) {
         case 0:
             linkName = "r_sole";
@@ -1688,7 +1690,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // Parametric Jacobians
     if (btype == 18) {
-        JacobianMatrix jacob;
+        MatrixXd jacob(6, ROBOT_DOF+6);
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
 #ifdef DEBUG
