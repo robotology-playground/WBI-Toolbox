@@ -233,7 +233,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
     actJnts = wbInterface->getJointList().size();
     qRad.resize (actJnts, 0.0);
-    dqJ.resize (actJnts);
+    dqJ.resize (actJnts, 0.0);
 
     ddqJ.resize (actJnts, 0.0);
     tauJ.resize (actJnts, 0.0);
@@ -259,6 +259,7 @@ bool robotStatus::robotInit (int btype, int link) {
     x_pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
 
     fprintf(stderr,"[DEBUGGING] Before resizing jacobianMAtrix\n");
+    fprintf(stderr,"[DEBUGGING] ROBOT_DOF is: %d\n", ROBOT_DOF);
     jacobianMatrix.resize (6, ROBOT_DOF + 6);
     fprintf(stderr,"[DEBUGGING] After resizing jacobianMatrix\n");
 
@@ -398,7 +399,7 @@ Vector robotStatus::forwardKinematics (int& linkId) {
     return x_pose;
 }
 //=========================================================================================================================
-JacobianMatrix robotStatus::jacobian (int& lid) {
+Eigen::MatrixXd robotStatus::jacobian (int& lid) {
     if (robotJntAngles (false)) {
         if (world2baseRototranslation (qRad.data())) {
             bool ans = wbInterface->computeJacobian (qRad.data(), xBase, lid, jacobianMatrix.data());

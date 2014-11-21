@@ -182,7 +182,7 @@ public:
     bool                robotJntAccelerations (bool blockingRead);
     bool                robotJntTorques (bool blockingRead);
     yarp::sig::Vector   forwardKinematics (int& linkId);
-    JacobianMatrix      jacobian (int& lid);
+    Eigen::MatrixXd      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
