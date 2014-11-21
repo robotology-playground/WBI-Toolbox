@@ -61,7 +61,7 @@ int* robotStatus::tmpContainer    = NULL;
 int  counterClass::count          = 0;
 bool robotStatus::robot_fixed     = false;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
-
+int robotStatus::ROBOT_DOF = 0;
 
 robotStatus::robotStatus() {
     creationCounter++;
@@ -199,6 +199,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
       }
 
       int ROBOT_DOF = RobotMainJoints.size();
+      
       robotStatus::setRobotDOF(ROBOT_DOF);
 
       wbInterface->addJoints (RobotMainJoints);
@@ -219,7 +220,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
               fprintf (stderr, "ERR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
               return false;
           } else {
-              fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized, yayyy!!!!\n");
+              fprintf (stderr, "[robotStatus::robotConfig] Whole Body Interface correctly initialized\n");
           }
 
           // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
@@ -259,7 +260,8 @@ bool robotStatus::robotInit (int btype, int link) {
     x_pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
 
     fprintf(stderr,"[DEBUGGING] Before resizing jacobianMAtrix\n");
-    jacobianMatrix.resize (6, ROBOT_DOF + 6);
+    fprintf(stderr,"[DEBUGGING] ROBOT_DOF is: %d\n", ROBOT_DOF);
+    jacobianMatrix.resize (Eigen::NoChange, ROBOT_DOF + 6);
     fprintf(stderr,"[DEBUGGING] After resizing jacobianMatrix\n");
 
     // dot{J}dot{q}
@@ -340,12 +342,12 @@ void robotStatus::setWorldReferenceFrame (const char* wrf) {
 }
 //=========================================================================================================================
 void robotStatus::setRobotDOF(int ROBOTDOF) {
-  ROBOT_DOF = ROBOTDOF;
+  robotStatus::ROBOT_DOF = ROBOTDOF;
 }
 //
 int robotStatus::getRobotDOF()
 {
-  return ROBOT_DOF;
+  return robotStatus::ROBOT_DOF;
 }
 
 bool robotStatus::robotJntAngles (bool blockingRead) {
@@ -398,7 +400,7 @@ Vector robotStatus::forwardKinematics (int& linkId) {
     return x_pose;
 }
 //=========================================================================================================================
-JacobianMatrix robotStatus::jacobian (int& lid) {
+Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian (int& lid) {
     if (robotJntAngles (false)) {
         if (world2baseRototranslation (qRad.data())) {
             bool ans = wbInterface->computeJacobian (qRad.data(), xBase, lid, jacobianMatrix.data());
@@ -1123,7 +1125,7 @@ static void mdlStart (SimStruct* S) {
         return;
     }
 
-    int ROBOT_DOF = robot->getRobotDOF();
+    int ROBOT_DOF = robotStatus::getRobotDOF();
     double* minJntLimits = new double[ROBOT_DOF];
     double* maxJntLimits = new double[ROBOT_DOF];
 
@@ -1173,7 +1175,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     fprintf (stderr, "mdlOutputs: wbInterface pointers: %p %p for btype %d\n", robot->tmpContainer, robot->wbInterface, btype);
 #endif
 
-    int ROBOT_DOF = robot->getRobotDOF();
+    int ROBOT_DOF = robotStatus::getRobotDOF();
 
     // INPUT PARAMETER FOR FORWARD KINEMATICS
     InputPtrsType           u = ssGetInputPortSignalPtrs (S, 0);

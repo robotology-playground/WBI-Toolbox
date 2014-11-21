@@ -154,7 +154,7 @@ private:
     static bool             robot_fixed;
 
     /*Robot DOF read from configuration file*/
-    int                     ROBOT_DOF;
+    static int              ROBOT_DOF;
 
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -182,7 +182,7 @@ public:
     bool                robotJntAccelerations (bool blockingRead);
     bool                robotJntTorques (bool blockingRead);
     yarp::sig::Vector   forwardKinematics (int& linkId);
-    JacobianMatrix      jacobian (int& lid);
+    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
@@ -201,8 +201,8 @@ public:
     bool                robotEEWrenches (wbi::ID LID);
     yarp::sig::Vector   getEEWrench();
     bool                addEstimate(wbi::ID LID);
-    void                setRobotDOF(int ROBOTDOF);
-    int                 getRobotDOF();
+    static void         setRobotDOF(int ROBOTDOF);
+    static int          getRobotDOF();
 };
 
 class counterClass {
