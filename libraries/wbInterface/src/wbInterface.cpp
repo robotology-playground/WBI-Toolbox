@@ -1765,6 +1765,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 static void mdlTerminate (SimStruct* S) {
     // IF YOU FORGET TO DESTROY OBJECTS OR DEALLOCATE MEMORY, MATLAB WILL CRASH.
     // Retrieve and destroy C++ object
+    if (ssGetNumPWork(S) <=0 || !ssGetPWork (S)) {
+        return;
+    }
     robotStatus* robot = (robotStatus*) ssGetPWork (S) [0];
 #ifdef DEBUG
     fprintf (stderr, "mdlTerminate: robot pointer: %p\n", robot);
