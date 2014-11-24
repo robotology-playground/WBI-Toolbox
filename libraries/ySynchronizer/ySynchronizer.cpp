@@ -19,7 +19,6 @@
 #include <yarp/os/Network.h>
 #include <yarp/os/BufferedPort.h>
 #include <thrift/ClockServer.h>
-#include <thrift/ClockServer.h>
 
 static void mdlInitializeSizes(SimStruct *S)
 {
@@ -107,16 +106,16 @@ static void mdlTerminate(SimStruct *S)
     if (ssGetNumPWork(S) >0 && ssGetPWork (S)) {
         fprintf(stderr,"Enteder mdlTerminate\n");
         yarp::os::Port *clientPort = static_cast<yarp::os::Port*> (ssGetPWork(S)[0]);
-        if(!clientPort) {
+        if(clientPort) {
             clientPort->interrupt();
             yarp::os::Network::disconnect("/ySynchronizer/clock:o","/clock/rpc");
             clientPort->close();
         }
         gazebo::ClockServer *clockServer = static_cast<gazebo::ClockServer*> (ssGetPWork(S)[1]);
-        if(!clockServer)
+        if(clockServer)
             delete clockServer;
 
-        if(!clientPort) {
+        if(clientPort) {
             delete clientPort;
         }
     }
