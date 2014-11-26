@@ -33,7 +33,7 @@ if(NOT (CMAKE_VERSION VERSION_LESS 2.8.12))
     if(NOT MSVC)
         #add the option to disable RPATH
         set(WBITOOLBOX_DISABLE_RPATH FALSE CACHE BOOL "Disable RPATH installation")
-        mark_as_advanced(CODYCOMODULES_DISABLE_RPATH)
+        mark_as_advanced(WBITOOLBOX_DISABLE_RPATH)
     endif(NOT MSVC)
 
     #Configure RPATH
