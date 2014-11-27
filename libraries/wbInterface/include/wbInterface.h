@@ -45,6 +45,7 @@
 #include <Eigen/Core>                           // import most common Eigen types
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
+#include <../../../../codyco-superbuild/external/orocos_kdl/python_orocos_kdl/PyKDL/std_string.sip>
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
 #include "simstruc.h"
@@ -93,7 +94,7 @@ private:
 
     /** Link name used for parametric blocks, such as Link Forward Kinematics, Link Jacobian, etc */
     std::string             linkName;
-    
+
     static yarp::os::ConstString   worldRefFrame;
 
     /** Joint velocities (size of vectors: n+6, n, 6). */
@@ -191,6 +192,7 @@ public:
     yarp::sig::Vector   getJntTorques();
 
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
+    bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
     void                setdqDes (yarp::sig::Vector dqD);
 
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
