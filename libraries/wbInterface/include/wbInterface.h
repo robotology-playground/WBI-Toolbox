@@ -45,7 +45,6 @@
 #include <Eigen/Core>                           // import most common Eigen types
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
-#include <../../../../codyco-superbuild/external/orocos_kdl/python_orocos_kdl/PyKDL/std_string.sip>
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
 #include "simstruc.h"
