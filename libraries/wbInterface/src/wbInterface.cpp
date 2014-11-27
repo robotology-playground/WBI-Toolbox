@@ -451,10 +451,12 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
 //=========================================================================================================================
 bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpeed)
 {
-    Vector refSpeed (dof, constRefSpeed);
-    if(!wbInterface->setControlParam(wbi::CTRL_PARAM_REF_VEL, refSpeed.data())) {
-        fprintf (stderr, "[ERR] robotStatus::setControlMode : Reference speeds could not be set Succesfully\n");
-        return false;
+    if(ctrl_mode == wbi::CTRL_MODE_POS) {
+        Vector refSpeed (dof, constRefSpeed);
+        if(!wbInterface->setControlParam(wbi::CTRL_PARAM_REF_VEL, refSpeed.data())) {
+            fprintf (stderr, "[ERR] robotStatus::setControlMode : Reference speeds could not be set Succesfully\n");
+            return false;
+        }
     }
 
     if (!wbInterface->setControlMode (ctrl_mode)) {
@@ -1810,7 +1812,7 @@ static void mdlTerminate (SimStruct* S) {
             maxJntLimits = (double*) ssGetPWork (S) [2];
             yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
 
-            robot->setCtrlMode (CTRL_MODE_POS);
+            robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*0.0);
             printf ("ctrl mode set\n");
             delete robot;
             printf ("robot deleted\n");
