@@ -21,7 +21,7 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  InitFcn		  "init;"
+  InitFcn		  "init_new_wbi_ID;"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
