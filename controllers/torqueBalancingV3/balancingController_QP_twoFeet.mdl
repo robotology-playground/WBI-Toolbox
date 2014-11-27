@@ -6,11 +6,11 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1769"
+    ComputedModelVersion    "1.1770"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
-  SavedCharacterEncoding  "UTF-8"
+  SavedCharacterEncoding  "US-ASCII"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -58,7 +58,7 @@ Model {
 	  LoadSaveID		  "736"
 	  Extents		  [1447.0, 815.0]
 	  ZoomFactor		  [0.6]
-	  Offset		  [-340.41343003844736, -6.3333333333333712]
+	  Offset		  [-513.74676337178084, -78.9763756241316]
 	}
 	Object {
 	  $ObjectID		  6
@@ -75,8 +75,8 @@ Model {
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "61"
 	  Extents		  [1447.0, 815.0]
-	  ZoomFactor		  [0.6]
-	  Offset		  [202.5272399959523, 97.326704591082773]
+	  ZoomFactor		  [0.8]
+	  Offset		  [657.319055270519, 241.25502950759079]
 	}
 	Object {
 	  $ObjectID		  8
@@ -106,9 +106,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "icub"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 11 12:23:20 2014"
-  RTWModifiedTimeStamp	  337272952
-  ModelVersionFormat	  "1.%<AutoIncrement:1769>"
+  LastModifiedDate	  "Thu Nov 27 16:03:28 2014"
+  RTWModifiedTimeStamp	  339004999
+  ModelVersionFormat	  "1.%<AutoIncrement:1770>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -1107,7 +1107,7 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"60"
+	ZoomFactor		"80"
 	Block {
 	  BlockType		  Constant
 	  Name			  "\n\n  1"
@@ -1891,6 +1891,7 @@ Model {
 	      Ports		      [5]
 	      Position		      [770, 429, 820, 571]
 	      ZOrder		      241
+	      Commented		      on
 	      Floating		      off
 	      Location		      [2, 90, 1680, 1020]
 	      Open		      off
@@ -3041,6 +3042,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [820, 825, 890, 1055]
 	      ZOrder		      241
+	      Commented		      on
 	      Floating		      off
 	      Location		      [2, 90, 1680, 1020]
 	      Open		      off
@@ -5701,10 +5703,7 @@ Stateflow {
     firstTransition	    11
     firstJunction	    10
     viewObj		    2
-    visible		    1
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    11
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -6108,10 +6107,7 @@ Stateflow {
     firstTransition	    56
     firstJunction	    55
     viewObj		    23
-    visible		    1
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    38
     decomposition	    CLUSTER_CHART
     type		    EML_CHART

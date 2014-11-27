@@ -223,7 +223,7 @@ bool robotStatus::robotConfig() {
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
     actJnts = wbInterface->getJointList().size();
     qRad.resize (actJnts, 0.0);
-    dqJ.resize (actJnts);
+    dqJ.resize (actJnts); dqJ.setZero();
 
     ddqJ.resize (actJnts, 0.0);
     tauJ.resize (actJnts, 0.0);

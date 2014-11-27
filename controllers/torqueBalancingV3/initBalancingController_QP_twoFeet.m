@@ -62,7 +62,7 @@ kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1
                        kdTorso(1,:),kdArms(1,:),kdArms(1,:),kdLegs(1,:),kdLegs(1,:)]*0;
 
 directionOfOscillation = [0;1;0];
-referenceParams        = [0.04 0.5];  %[0.04 0.5]; 
+referenceParams        = [0.0 0.5];  %[0.04 0.5]; 
 
 
 %% Parameters for QP
