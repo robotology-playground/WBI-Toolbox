@@ -199,7 +199,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
       }
 
       int ROBOT_DOF = RobotMainJoints.size();
-      
+
       robotStatus::setRobotDOF(ROBOT_DOF);
 
       wbInterface->addJoints (RobotMainJoints);
@@ -449,12 +449,29 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
     }
 }
 //=========================================================================================================================
+bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpeed)
+{
+    Vector refSpeed (dof, constRefSpeed);
+    if(!wbInterface->setControlParam(wbi::CTRL_PARAM_REF_VEL, refSpeed.data())) {
+        fprintf (stderr, "[ERR] robotStatus::setControlMode : Reference speeds could not be set Succesfully\n");
+        return false;
+    }
+
+    if (!wbInterface->setControlMode (ctrl_mode)) {
+        fprintf (stderr, "[ERR] robotStatus::setCtrlMode : Position mode could not be set\n");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+//=========================================================================================================================
 void robotStatus::setRefDes (Vector refDes) {
 #ifdef DEBUG
     fprintf (stderr, "robotStatus::setdqDes >> control reference to be sent is: \n%s\n", refDes.toString().c_str());
 #endif
     if (!wbInterface->setControlReference (refDes.data()))
-        fprintf (stderr, "ERR [robotStatus::setdqDes] control reference could not be set.\n");
+        fprintf (stderr, "ERR [robotStatus::setRefDes] control reference could not be set.\n");
 }
 //=========================================================================================================================
 bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tauJ_computed) {
@@ -1317,7 +1334,13 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             refTmp (j) = (*uPtrs1[j]);
         }
         if (btype == 4) robot->setCtrlMode (CTRL_MODE_VEL);
-        if (btype == 5) robot->setCtrlMode (CTRL_MODE_POS);
+        if (btype == 5) {
+            if(!robot->setCtrlMode (CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
+                fprintf(stderr,"[ERR] Error setting position control mode\n");
+                ssSetErrorStatus(S, "[ERR] Error setting position control mode");
+                return;
+            }
+        }
         if (btype == 6) robot->setCtrlMode (CTRL_MODE_TORQUE);
         robot->setRefDes (refTmp);
     }

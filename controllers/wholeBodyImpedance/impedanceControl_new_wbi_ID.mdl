@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.63"
+    ComputedModelVersion    "1.72"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -57,8 +57,8 @@ Model {
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
 	  Extents		  [1281.0, 596.0]
-	  ZoomFactor		  [1.5718232044198892]
-	  Offset		  [37.511423550087784, 200.09314586994728]
+	  ZoomFactor		  [1.6608187134502923]
+	  Offset		  [74.34683098591546, 200.57042253521126]
 	}
 	Object {
 	  $ObjectID		  6
@@ -79,9 +79,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Nov 27 13:19:34 2014"
-  RTWModifiedTimeStamp	  338995170
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Thu Nov 27 16:06:06 2014"
+  RTWModifiedTimeStamp	  339005165
+  ModelVersionFormat	  "1.%<AutoIncrement:72>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -932,14 +932,14 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "157"
+    ZoomFactor		    "166"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "37"
+    SIDHighWatermark	    "42"
     Block {
       BlockType		      Gain
       Name		      "Gain"
       SID		      "11"
-      Position		      [265, 295, 320, 325]
+      Position		      [255, 255, 310, 285]
       ZOrder		      19
       ShowName		      off
       Gain		      "180/pi"
@@ -951,10 +951,10 @@ Model {
       BlockType		      Gain
       Name		      "Gain1"
       SID		      "14"
-      Position		      [510, 215, 565, 245]
+      Position		      [495, 215, 550, 245]
       ZOrder		      22
       ShowName		      off
-      Gain		      "1.0"
+      Gain		      "Kp"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -963,10 +963,10 @@ Model {
       BlockType		      Gain
       Name		      "Gain2"
       SID		      "20"
-      Position		      [470, 360, 525, 390]
+      Position		      [490, 360, 545, 390]
       ZOrder		      26
       ShowName		      off
-      Gain		      "0.1"
+      Gain		      "Kd"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -975,7 +975,7 @@ Model {
       BlockType		      Gain
       Name		      "Gain3"
       SID		      "22"
-      Position		      [285, 520, 315, 550]
+      Position		      [295, 500, 325, 530]
       ZOrder		      136
       ShowName		      off
       Gain		      "0"
@@ -987,7 +987,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto"
       SID		      "37"
-      Position		      [270, 360, 310, 390]
+      Position		      [260, 320, 300, 350]
       ZOrder		      138
       GotoTag		      "q"
       TagVisibility	      "global"
@@ -997,7 +997,7 @@ Model {
       Name		      "Joint Angles"
       SID		      "1"
       Ports		      [0, 1]
-      Position		      [170, 288, 240, 332]
+      Position		      [160, 248, 230, 292]
       ZOrder		      1
       BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
       ShowName		      off
@@ -1013,7 +1013,7 @@ Model {
       Name		      "Joint Velocities"
       SID		      "18"
       Ports		      [0, 1]
-      Position		      [380, 353, 450, 397]
+      Position		      [400, 353, 470, 397]
       ZOrder		      24
       BackgroundColor	      "[0.634000, 0.401533, 0.000000]"
       LibraryVersion	      "1.198"
@@ -1028,11 +1028,11 @@ Model {
       Name		      "Selector1"
       SID		      "23"
       Ports		      [1, 1]
-      Position		      [410, 511, 450, 549]
+      Position		      [420, 491, 460, 529]
       ZOrder		      137
       ShowName		      off
-      InputPortWidth	      "8"
-      Indices		      "[7:8]"
+      InputPortWidth	      "ROBOT_DOF+6"
+      Indices		      "[7:ROBOT_DOF+6]"
     }
     Block {
       BlockType		      Reference
@@ -1056,7 +1056,7 @@ Model {
       Name		      "Sum"
       SID		      "13"
       Ports		      [2, 1]
-      Position		      [470, 220, 490, 240]
+      Position		      [455, 220, 475, 240]
       ZOrder		      21
       ShowName		      off
       IconShape		      "round"
@@ -1084,7 +1084,7 @@ Model {
       Name		      "base + dq'"
       SID		      "24"
       Ports		      [0, 1]
-      Position		      [210, 518, 260, 552]
+      Position		      [220, 498, 270, 532]
       ZOrder		      134
       RequestExecContextInheritance off
       System {
@@ -1237,13 +1237,13 @@ Model {
       Name		      "base + q"
       SID		      "31"
       Ports		      [0, 1]
-      Position		      [210, 474, 260, 506]
+      Position		      [220, 454, 270, 486]
       ZOrder		      133
       NamePlacement	      "alternate"
       RequestExecContextInheritance off
       System {
 	Name			"base + q"
-	Location		[49, 24, 1366, 768]
+	Location		[49, 24, 1489, 897]
 	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1324,7 +1324,7 @@ Model {
       Name		      "computeh"
       SID		      "36"
       Ports		      [2, 1]
-      Position		      [340, 511, 390, 544]
+      Position		      [350, 491, 400, 524]
       ZOrder		      135
       ForegroundColor	      "red"
       BackgroundColor	      "yellow"
@@ -1342,7 +1342,7 @@ Model {
       Name		      "holder\n"
       SID		      "12"
       Ports		      [1, 1]
-      Position		      [350, 209, 410, 251]
+      Position		      [335, 209, 395, 251]
       ZOrder		      20
       BackgroundColor	      "[0.537255, 0.721569, 1.000000]"
       ShowName		      off
@@ -1352,10 +1352,6 @@ Model {
       ContentPreviewEnabled   off
     }
     Line {
-      FontName		      "Helvetica"
-      FontSize		      9
-      FontWeight	      "normal"
-      FontAngle		      "normal"
       ZOrder		      1
       SrcBlock		      "Joint Angles"
       SrcPort		      1
@@ -1376,16 +1372,16 @@ Model {
       ZOrder		      2
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [9, 0; 0, -1]
+      Points		      [4, 0]
       Branch {
-	ZOrder			3
+	ZOrder			40
 	Points			[146, 0]
 	DstBlock		"Sum"
 	DstPort			2
       }
       Branch {
 	ZOrder			4
-	Points			[0, -79]
+	Points			[0, -40]
 	DstBlock		"holder\n"
 	DstPort			1
       }
@@ -1408,7 +1404,7 @@ Model {
       ZOrder		      11
       SrcBlock		      "Gain1"
       SrcPort		      1
-      Points		      [13, 0; 0, 68]
+      Points		      [28, 0; 0, 68]
       DstBlock		      "Sum1"
       DstPort		      1
     }
@@ -1423,7 +1419,7 @@ Model {
       ZOrder		      9
       SrcBlock		      "Gain2"
       SrcPort		      1
-      Points		      [59, 0]
+      Points		      [39, 0]
       DstBlock		      "Sum1"
       DstPort		      2
     }
@@ -1467,9 +1463,42 @@ Model {
       ZOrder		      22
       SrcBlock		      "Selector1"
       SrcPort		      1
-      Points		      [155, 0]
+      Points		      [145, 0]
       DstBlock		      "Sum1"
       DstPort		      3
+    }
+    Annotation {
+      SID		      "42"
+      Name		      "g"
+      Position		      [502, 489, 509, 506]
+      InternalMargins	      [0, 0, 0, 0]
+      FixedHeight	      off
+      FixedWidth	      off
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      ZOrder		      -1
+    }
+    Annotation {
+      SID		      "39"
+      Name		      "Kd"
+      Position		      [505, 401, 519, 418]
+      InternalMargins	      [0, 0, 0, 0]
+      FixedHeight	      off
+      FixedWidth	      off
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      ZOrder		      -2
+    }
+    Annotation {
+      SID		      "38"
+      Name		      "Kp"
+      Position		      [515, 252, 530, 269]
+      InternalMargins	      [0, 0, 0, 0]
+      FixedHeight	      off
+      FixedWidth	      off
+      HorizontalAlignment     "left"
+      VerticalAlignment	      "top"
+      ZOrder		      -3
     }
   }
 }
