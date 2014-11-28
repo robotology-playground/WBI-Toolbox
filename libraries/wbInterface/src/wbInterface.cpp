@@ -1806,6 +1806,7 @@ static void mdlTerminate (SimStruct* S) {
     if (robot != NULL) {
         fprintf (stderr, "mdlTerminate >> Inside robot object %p \n", robot);
         if (robot->decreaseCounter() == 0) {
+            int ROBOT_DOF = robotStatus::getRobotDOF();
             double*      minJntLimits = 0;//new double[ROBOT_DOF];
             double*      maxJntLimits = 0;//new double[ROBOT_DOF];
             minJntLimits = (double*) ssGetPWork (S) [1];
