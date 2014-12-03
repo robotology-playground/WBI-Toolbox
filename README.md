@@ -16,7 +16,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 > The library should allow non-programming experts or those researchers just getting acquainted with Whole Body Control to more easily deploy controllers either on simulation or a real YARP-based robotic platform, as well as to analyze their performance and take advantage of the innumerable MATLAB and Simulink toolboxes. We like to call it "rapid controller prototyping" after which a proper YARP module should be made for hard real time performance and final deployment.
 
 
-#### Requirements
+#### Dependencies
 * Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a/b, R2013a, R2012a/b)
 * Simulink Toolboxes: Simulink Coder.
 * YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
