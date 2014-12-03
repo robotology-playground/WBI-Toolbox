@@ -1,6 +1,7 @@
 ![](http://drive.google.com/uc?export=view&id=0B6zDGh11iY6oc0gtM0lMdDNweWM)
-Whole Body Interface Toolbox (WBI-Toolbox) - A Simulink Wrapper for Whole Body Control
--------------------------------------------------------------
+Whole Body Interface Toolbox (WBI-Toolbox) 
+===================================================================
+###### A Simulink Wrapper for Whole Body Control
 
 This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results (an improved version) on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
 
