@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [67.0, 57.0, 1065.0, 618.0]
+      Location		      [341.0, 245.0, 1084.0, 650.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -33,7 +33,7 @@ Library {
 	DockPosition		"Left"
 	Width			[50]
 	Height			[50]
-	Filter			[8]
+	Filter			[9]
       }
       Object {
 	$PropName		"ExplorerBarInfo"
@@ -48,7 +48,7 @@ Library {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1029.0, 477.0]
+	Extents			[1028.0, 461.0]
 	ZoomFactor		[2.14]
 	Offset			[0.0, 0.0]
       }
@@ -58,11 +58,11 @@ Library {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jorhabib"
+  LastModifiedBy	  "luca"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Nov 27 16:49:20 2014"
-  RTWModifiedTimeStamp	  338339568
-  ModelVersionFormat	  "1.%<AutoIncrement:198>"
+  LastModifiedDate	  "Fri Dec 05 17:56:29 2014"
+  RTWModifiedTimeStamp	  339702919
+  ModelVersionFormat	  "1.%<AutoIncrement:200>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -914,7 +914,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [67, 57, 1132, 675]
+    Location		    [341, 245, 1425, 895]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -3972,7 +3972,7 @@ Library {
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[103, 45, 1379, 995]
+	Location		[644, 292, 1709, 910]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -7360,7 +7360,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Forward Kinematics"
-	    Location		    [1403, 45, 2678, 1646]
+	    Location		    [644, 292, 1709, 910]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -7805,7 +7805,7 @@ Library {
 	      }
 	      System {
 		Name			"LeftFootFwdKin"
-		Location		[12, 45, 1287, 1646]
+		Location		[644, 292, 1709, 910]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7867,7 +7867,7 @@ Library {
 		  Position		  [70, 440, 100, 470]
 		  ZOrder		  -5
 		  ShowName		  off
-		  Value			  "zeros(ROBOT_DOF,1)"
+		  Value			  "zeros(ROBOT_DOF+6,1)"
 		  OutDataTypeStr	  "double"
 		  SampleTime		  "Ts"
 		}
@@ -8195,7 +8195,7 @@ Library {
 	      }
 	      System {
 		Name			"LeftHandFwdKin"
-		Location		[12, 45, 1287, 1646]
+		Location		[644, 292, 1709, 910]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8655,7 +8655,7 @@ Library {
 	      }
 	      System {
 		Name			"LinkFwdKin"
-		Location		[12, 45, 1287, 1646]
+		Location		[644, 292, 1709, 910]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9007,7 +9007,7 @@ Library {
 	      }
 	      System {
 		Name			"RightFootFwdKin"
-		Location		[12, 45, 1287, 1646]
+		Location		[644, 292, 1709, 910]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9399,7 +9399,7 @@ Library {
 	      }
 	      System {
 		Name			"RightHandFwdKin"
-		Location		[12, 45, 1287, 1646]
+		Location		[644, 292, 1709, 910]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -13410,7 +13410,7 @@ Library {
       }
       System {
 	Name			"wholeBodyStates"
-	Location		[1403, 45, 2678, 1646]
+	Location		[499, 65, 1564, 683]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -14484,7 +14484,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Joint Angles"
-	    Location		    [12, 45, 1287, 1646]
+	    Location		    [578, 268, 1643, 886]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15613,7 +15613,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Left leg EE Wrench"
-	    Location		    [12, 45, 1287, 1646]
+	    Location		    [578, 268, 1643, 886]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15746,7 +15746,7 @@ Library {
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
-		  Dimension		  3
+		  Dimension		  4
 		  Object {
 		    $ObjectID		    235
 		    Type		    "edit"
@@ -15767,6 +15767,13 @@ Library {
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
+		  }
+		  Object {
+		    $ObjectID		    238
+		    Type		    "edit"
+		    Name		    "linkname"
+		    Prompt		    "Link Name"
+		    Value		    "'l_sole'"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -15955,7 +15962,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    238
+	    $ObjectID		    239
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Right Leg End Effector Wrench"
 	    Description		    "This block retrieves an estimate of the wrench at the end-effector of the right leg of the robo"
@@ -15966,14 +15973,14 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      2
 	      Object {
-		$ObjectID		239
+		$ObjectID		240
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"robotName"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		240
+		$ObjectID		241
 		Type			"edit"
 		Name			"localName"
 		Prompt			"localName"
@@ -15984,7 +15991,7 @@ Library {
 	  }
 	  System {
 	    Name		    "Right leg EE Wrench"
-	    Location		    [1402, 45, 2677, 1646]
+	    Location		    [644, 292, 1709, 910]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16070,31 +16077,38 @@ Library {
 	      EnableBusSupport	      off
 	      Object {
 		$PropName		"MaskObject"
-		$ObjectID		241
+		$ObjectID		242
 		$ClassName		"Simulink.Mask"
 		Array {
 		  Type			  "Simulink.MaskParameter"
-		  Dimension		  3
+		  Dimension		  4
 		  Object {
-		    $ObjectID		    242
+		    $ObjectID		    243
 		    Type		    "edit"
 		    Name		    "val"
 		    Prompt		    "Value"
 		    Value		    "15"
 		  }
 		  Object {
-		    $ObjectID		    243
+		    $ObjectID		    244
 		    Type		    "edit"
 		    Name		    "robotname"
 		    Prompt		    "Robot Name (icub - icubSim)"
 		    Value		    "robotName"
 		  }
 		  Object {
-		    $ObjectID		    244
+		    $ObjectID		    245
 		    Type		    "edit"
 		    Name		    "localname"
 		    Prompt		    "Module Name"
 		    Value		    "localName"
+		  }
+		  Object {
+		    $ObjectID		    246
+		    Type		    "edit"
+		    Name		    "linkname"
+		    Prompt		    "Link Name"
+		    Value		    "'r_sole'"
 		  }
 		  PropName		  "Parameters"
 		}
@@ -16335,7 +16349,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    245
+	    $ObjectID		    247
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Floating base velocity + robot joint velocities"
 	    Description		    "This block retrieves the robot joint velocities plus the virtual floating base joint velocities"
@@ -16344,21 +16358,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		246
+		$ObjectID		248
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		247
+		$ObjectID		249
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
 		Value			"localName"
 	      }
 	      Object {
-		$ObjectID		248
+		$ObjectID		250
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts "
@@ -16516,7 +16530,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    249
+	    $ObjectID		    251
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Floating Base + Roobot Joints"
 	    Description		    "This block retrieves a vector of size (ROBOT_DOF + 6) with the robot joint angles and the virtu"
@@ -16525,21 +16539,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		250
+		$ObjectID		252
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		251
+		$ObjectID		253
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
 		Value			"localName"
 	      }
 	      Object {
-		$ObjectID		252
+		$ObjectID		254
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -16671,7 +16685,6 @@ Stateflow {
     id			    1
     name		    "WBCLibrary"
     created		    "06-Feb-2014 11:51:26"
-    locked		    1
     isLibrary		    1
     firstTarget		    34
     sfVersion		    76014001.002
@@ -16687,7 +16700,6 @@ Stateflow {
     firstJunction	    7
     viewObj		    2
     machine		    1
-    locked		    1
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -16833,7 +16845,6 @@ Stateflow {
     firstJunction	    15
     viewObj		    10
     machine		    1
-    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
@@ -16974,7 +16985,6 @@ Stateflow {
     firstJunction	    23
     viewObj		    18
     machine		    1
-    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
@@ -17117,7 +17127,6 @@ Stateflow {
     firstJunction	    31
     viewObj		    26
     machine		    1
-    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
