@@ -93,7 +93,7 @@ private:
 
     /** Link name used for parametric blocks, such as Link Forward Kinematics, Link Jacobian, etc */
     std::string             linkName;
-    
+
     static yarp::os::ConstString   worldRefFrame;
 
     /** Joint velocities (size of vectors: n+6, n, 6). */
@@ -191,6 +191,7 @@ public:
     yarp::sig::Vector   getJntTorques();
 
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
+    bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
     void                setdqDes (yarp::sig::Vector dqD);
 
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);

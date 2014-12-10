@@ -1,4 +1,7 @@
 clear all
+robotName = 'icubGazeboSim';
+localName = 'simulinkJorh';
+Ts        = 0.01;
 
 % Controller period
 Ts = 0.01; 
@@ -44,6 +47,7 @@ dampLegs             = [ 0.1  0.1  0.1 0.1  0.1 0.1];
 
 damping          = [dampTorso,dampArms,dampArms,dampLegs,dampLegs]*0;
               
+
 referenceParams = [0.0 0.0];  %[0.015 0.5];
 
 % Rotation of the gazebo FT sensor

@@ -97,7 +97,7 @@ void robotStatus::setParamLink (string lk) {
 }
 //=========================================================================================================================
 std::string robotStatus::getParamLink () {
-    return linkName; 
+    return linkName;
 }
 //=========================================================================================================================
 int robotStatus::decreaseCounter() {
@@ -191,9 +191,9 @@ bool robotStatus::robotConfig() {
             else {
                 fprintf (stderr, "ERROR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running your controller. \n");
                 return false;
-            }        
+            }
         }
-        
+
 #ifdef WBI_ICUB_COMPILE_PARAM_HELP
 	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
 	  fprintf (stderr, "ERROR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
@@ -207,7 +207,7 @@ bool robotStatus::robotConfig() {
         ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
 	}
 #endif
-        
+
         if (!wbInterface->init()) {
             fprintf (stderr, "ERROR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
             return false;
@@ -275,7 +275,7 @@ bool robotStatus::robotInit (int btype, int link) {
         // Output of forward kinematics and jacobian
         x_pose.resize (default_size, 0.0);
     }
-    
+
     if(btype == 17) {
         x_pose.resize (DEFAULT_X_LINK_SIZE.size());
     }
@@ -318,7 +318,7 @@ void robotStatus::getLinkId (const char* linkName, int& lid) {
     if (strcmp (linkName, comlink) != 0) { // !=0 means that they're different
 #ifdef DEBUG
         printf("robotStatus::getLinkId has params: %s, %i\n", linkName, lid);
-#endif 
+#endif
         wbInterface->getLinkId (linkName, lid);
     } else {
         lid = wbi::iWholeBodyModel::COM_LINK_ID;
@@ -352,7 +352,7 @@ bool robotStatus::world2baseRototranslation (double* q) {
     xBase.set4x4Matrix (H_w2b.data());
 #ifdef DEBUG
     fprintf (stderr, "robotStatus::world2baseRototranslation >> xbase          : %s \n", xBase.toString().c_str());
-#endif    
+#endif
     return true;
 }
 //=========================================================================================================================
@@ -464,6 +464,25 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
         return false;
     }
 }
+//=========================================================================================================================
+bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpeed)
+{
+    if(ctrl_mode == wbi::CTRL_MODE_POS) {
+        yarp::sig::Vector refSpeed(dof, constRefSpeed);
+        if(!wbInterface->setControlParam(wbi::CTRL_PARAM_REF_VEL, refSpeed.data())) {
+            fprintf(stderr,"[ERR] robotStatus::setCtrlMode : Error setting reference speed\n");
+            return false;
+        }
+    }
+    if (wbInterface->setControlMode (ctrl_mode)) {
+        return true;
+    } else {
+        fprintf (stderr, "ERROR [robotStatus::setCtrlMode] >> Control mode could not be set\n");
+        return false;
+    }
+
+}
+
 //=========================================================================================================================
 void robotStatus::setdqDes (Vector dqD) {
 #ifdef DEBUG
@@ -945,10 +964,10 @@ static void mdlStart (SimStruct* S) {
     double* maxJntLimits = new double[ROBOT_DOF];
     ssGetPWork (S) [1] = &minJntLimits[0];
     ssGetPWork (S) [2] = &maxJntLimits[0];
-    
+
     int_T* flagConfig = (int_T*) ssGetDWork (S, 2);
     flagConfig[0] = 0;
-    
+
 //     fprintf (stderr, "mdlStart >> Publicly stating that a new child has been born: %d \n", counter.getCount());
 
     // Objects creation
@@ -962,9 +981,9 @@ static void mdlStart (SimStruct* S) {
         fprintf (stderr, "mdlStart >> YARP is up and running!!\n");
     }
     // -------------------- END YARP INITALIZATION STUFF --------------------
- 
+
     robotStatus* robot = new robotStatus();
-    
+
 
     char* cString = mxArrayToString (ssGetSFcnParam (S, STRING_PARAM_IDX));
     if (!cString) {
@@ -987,7 +1006,7 @@ static void mdlStart (SimStruct* S) {
 
     real_T block_type = mxGetScalar (ssGetSFcnParam (S, BLOCK_TYPE_IDX));
 //     fprintf (stderr, "mdlStart >> BLOCK TYPE MASK PARAMETER: %f\n", block_type);
-    
+
     cString = mxArrayToString (ssGetSFcnParam (S, LINKNAME_PARAM_IDX));
     if (!cString) {
         ssSetErrorStatus (S, "mdlStart >> Cannot retrieve string from parameter 4.\n");
@@ -1080,10 +1099,10 @@ static void mdlStart (SimStruct* S) {
     robot->setmoduleName (local_name);
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
-    
+
 // NOTE: If I don't do this here when I call ssSetErrorStatus in the following validation it will try to retrieve from PWork that wouldn't exist yet
 // in a few words, always remember to have initialized all the objects you instantiate before the first ssSetErrorStatus as it will call mdlTerminate
-    
+
     ssGetPWork (S) [0] = robot; // update PWork
 
     if(robot_name == "icubGazeboSim"){
@@ -1104,8 +1123,8 @@ static void mdlStart (SimStruct* S) {
             }
         }
     }
-    
-    fprintf (stderr, "mdlStart >> About to configure robot... \n");    
+
+    fprintf (stderr, "mdlStart >> About to configure robot... \n");
     bool res = robot->robotConfig();
     if (res) {
         flagConfig[0]     = 1;
@@ -1148,7 +1167,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #endif
     double tinit, tend;
     if (TIMING) tinit = Time::now();
-    
+
     //Getting type of block
     real_T* block_type = (real_T*) ssGetDWork (S, 0);
     int btype = (int) block_type[0];
@@ -1240,12 +1259,12 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->getLinkId (linkName, lid);
 #ifdef DEBUG
        fprintf(stderr,"mdlOutputs: RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
-#endif 
+#endif
         xpose = robot->forwardKinematics (lid);
 
 #ifdef DEBUG
        fprintf(stderr,"mdlOutputs: RIGHT AFTER CALLING FORWARDKINEMATICS\n");
-#endif 
+#endif
 
         real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
@@ -1302,7 +1321,13 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             dqDestmp (j) = (*uPtrs1[j]);
         }
         if (btype == 4) robot->setCtrlMode (CTRL_MODE_VEL);
-        if (btype == 5) robot->setCtrlMode (CTRL_MODE_POS);
+        if (btype == 5) {
+            if(!robot->setCtrlMode (CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
+                fprintf(stderr,"[ERR] Error setting position control mode\n");
+                ssSetErrorStatus(S, "[ERR] Error setting position control mode");
+                return;
+            }
+        }
         if (btype == 6) robot->setCtrlMode (CTRL_MODE_TORQUE);
         robot->setdqDes (dqDestmp);
     }
@@ -1625,8 +1650,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
         robot->setWorldReferenceFrame (charLink);
     }
-    
-    
+
+
     // Parametric forward kinematics
     if (btype == 17) {
         Vector xpose;
@@ -1635,17 +1660,17 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->getLinkId (linkName, lid);
 #ifdef DEBUG
        fprintf(stderr,"mdlOutputs: RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
-#endif         
+#endif
         xpose = robot->forwardKinematics (lid);
 #ifdef DEBUG
        fprintf(stderr,"mdlOutputs: RIGHT AFTER CALLING FORWARDKINEMATICS\n");
-#endif  
+#endif
         real_T* pY3 = (real_T*) ssGetOutputPortSignal (S, 2);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 2); j++) {
             pY3[j] = xpose ( (int) j);
-        }        
+        }
     }
-    
+
     // Parametric Jacobians
     if (btype == 18) {
         JacobianMatrix jacob;
@@ -1664,9 +1689,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
             pY4[j] = jacob (j);
-        }        
+        }
     }
-    
+
     // Parametric dJdq
     if (btype == 19) {
         std::string tmpStr (robot->getParamLink());
@@ -1730,7 +1755,7 @@ static void mdlTerminate (SimStruct* S) {
 
     minJntLimits = (double*) ssGetPWork (S) [1];
     maxJntLimits = (double*) ssGetPWork (S) [2];
-    
+
     // Was the interface configured?
     int_T* flagConfig = (int_T*) ssGetDWork (S, 2);
 
@@ -1744,7 +1769,7 @@ static void mdlTerminate (SimStruct* S) {
         if (robot->decreaseCounter() == 0) {
 	    // NOTE This should be done only if the WBI has been configured and control mode was initially set.
 	    if (flagConfig[0] == 1){
-	      robot->setCtrlMode (CTRL_MODE_POS);
+	      robot->setCtrlMode (CTRL_MODE_POS, ROBOT_DOF, 0.0);
 	      printf ("ctrl mode set\n");
 	    }
             delete robot;
