@@ -14,7 +14,7 @@ Ts = 0.01;
 %
 % hwDot = -Gains(4)*hw  
 
-gainsPCOM                 = diag([100  100 100]);
+gainsPCOM                 = diag([80  80 80]);
 minCoMx_y                 = [-0.1   -0.25 ];  
 maxCoMx_y                 = [ 0.1    0.05 ];
 satGainsPCOM              = 300;
@@ -24,7 +24,7 @@ gainsIDMomentum           = [ 0     1   1 ];
 
 % Impadances acting in the null space of the desired contact forces 
 
-impTorso            = [  70    20   10
+impTorso            = [  50    15   10
                           0     0   0]; 
 impArms             = [ 8    8    8   8   8
                         0    0    0   0   0];
@@ -44,7 +44,7 @@ dampLegs             = [ 0.1  0.1  0.1 0.1  0.1 0.1];
 
 damping          = [dampTorso,dampArms,dampArms,dampLegs,dampLegs]*0;
               
-referenceParams = [0.05 0.1];  %[0.015 0.5];
+referenceParams = [0.0 0.0];  %[0.015 0.5];
 
 % Rotation of the gazebo FT sensor
 R   = [0 0 1; 0 -1 0;1 0 0];

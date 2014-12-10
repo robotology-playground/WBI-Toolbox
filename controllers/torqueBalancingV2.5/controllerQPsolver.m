@@ -244,15 +244,16 @@ ub         = x0_lb_ub(2*fdim+1:3*fdim);
 %                                                  options);
 
 
-[desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
-                                              Aineq, bineq, ...   % Inequalities
-                                                 [],   [], ...    % Equalities
-                                                 lb,      ub, ... % Bounds
-                                                 x0,          ... % Initial solution
-                                                 options);
+% [desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
+%                                               Aineq, bineq, ...   % Inequalities
+%                                                  [],   [], ...    % Equalities
+%                                                  lb,      ub, ... % Bounds
+%                                                  x0,          ... % Initial solution
+%                                                  options);
                                       
-                                             
-                                             
+ desiredf0 = -quadTerm\linTerm';                                       
+ exitFlag  = 1;               
+ 
 if exitFlag~=1
     disp('qp_tau_f0 failed');
     desiredf0 = zeros(6*n_constraint,1);
