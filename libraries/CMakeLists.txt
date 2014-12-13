@@ -87,3 +87,15 @@ add_subdirectory(yRead)
 add_subdirectory(yWrite)
 add_subdirectory(softRealTime)
 add_subdirectory(ySynchronizer)
+
+set(WBI-TOOLBOX_SHARE_DIR "${CMAKE_INSTALL_PREFIX}/share/WBI-Toolbox")
+
+# The following line is to properly configure the installation script of the toolbox
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m)
+
+# Install configuration files
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/images DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/slblocks.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.mdl DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.slx DESTINATION ${WBI-TOOLBOX_SHARE_DIR})

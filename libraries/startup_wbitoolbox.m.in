@@ -3,7 +3,7 @@ fprintf('\nWhole Body Interface Toolbox\n');
 installDir = '@CMAKE_INSTALL_PREFIX@';
 mexDir = [installDir, filesep, 'mex'];
 shareDir = '@WBI-TOOLBOX_SHARE_DIR@';
-imgDir = [shareDir, filesep, 'img'];
+imgDir = [shareDir, filesep, 'images'];
 
 if exist(mexDir, 'dir')
     addpath(mexDir);

@@ -24,17 +24,3 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 add_subdirectory(libraries)
-
-set(WBI-TOOLBOX_SHARE_DIR "${CMAKE_INSTALL_PREFIX}/share/WBI-Toolbox")
-
-# The following line is to properly configure the installation script of the toolbox
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m)
-
-
-
-# Install configuration files
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/controllers/img DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libraries/slblocks.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libraries/WBCLibrary.mdl DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libraries/WBCLibrary.slx DESTINATION ${WBI-TOOLBOX_SHARE_DIR})

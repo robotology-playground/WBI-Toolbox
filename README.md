@@ -85,12 +85,22 @@ If for some reason the installation fails or you want to do this manually, the d
 ```bash
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/mex])
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox])
-    addpath([getenv(CODYCO_SUPERBUILD_ROOT) /install/share/WBI-Toolbox/img])
+    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox/img])
 ```
 You can also create a .m file with these two lines and launch MATLAB from terminal as:
 ```bash
     matlab -r yourStartupFile
 ```
+
+###### Working from the build tree
+If you prefer to work from the build tree (for example you are not using the `codyco-superbuild` and you are not installing the library) you cannot use the provided script as it assumes the install directories.
+Instead you have to manually add the following directories to your MATLAB's path
+```bash
+    addpath([getenv(WBI_TOOLBOX_BUILD_DIR)    /path/to/builded/libraries])
+    addpath([getenv(WBI_TOOLBOX_SOURCES_DIR)  /libraries])
+    addpath([getenv(WBI_TOOLBOX_SOURCES_DIR)  /libraries/images])
+```
+
 
 - **Finding robots' configuration files** Each robot that can be used through the Toolbox has its own configuration file. In order for WBI-Toolbox to find them your `YARP_DATA_DIRS` environmental variable **should include your CoDyCo `/share` directory** where CoDyCo contexts can be found. If you locally installed CoDyCo, it should be enough to append the following location:
 `$CODYCO_SUPERBUILD_DIR/install/share/codyco` to `YARP_DATA_DIRS` in your bashrc as:
