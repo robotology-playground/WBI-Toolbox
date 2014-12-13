@@ -27,3 +27,9 @@ add_subdirectory(libraries)
 
 # The following line is to properly configure the installation script of the toolbox
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m)
+
+# Install configuration files
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m DESTINATION share/WBI-Toolbox)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/controllers/img DESTINATION share/WBI-Toolbox)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libraries/WBCLibrary.mdl DESTINATION share/WBI-Toolbox)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/libraries/WBCLibrary.slx DESTINATION share/WBI-Toolbox)

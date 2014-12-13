@@ -78,13 +78,14 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CODYCO_SUPERBUILD_DIR}/install/lib/
 **Note: For more information on how to compile or update `codyco-superbuild` go to http://goo.gl/aU6EjH**
 
 ###### Installing the WBI-Toolbox
-- **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_ROOT}/main/WBIToolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/main/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. It will also give you further instructions if you desire to permanently install it as to not run the script every time you want to use the Toolbox.
+- **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/main/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. By default it updates the MATLAB's path by creating a `pathdef.m` file in your user startup folder. In case the script fails for permission reasons, it will provide you with further instructions on how to manually solve the problem.
 
-If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and that for the controllers, models and Toolbox itself, i.e. `${CODYCO_SUPERBUILD_ROOT}/main/WBIToolbox/controllers` by doing
+If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and that for the Toolbox itself, i.e. `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` by doing
 
 ```bash
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/mex])
-    addpath([getenv(CODYCO_SUPERBUILD_ROOT) /main/WBIToolbox/controllers])
+    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox])
+    addpath([getenv(CODYCO_SUPERBUILD_ROOT) /install/share/WBI-Toolbox/img])
 ```
 You can also create a .m file with these two lines and launch MATLAB from terminal as:
 ```bash
