@@ -251,7 +251,7 @@ bool robotStatus::robotInit (int btype, int link) {
     //it is desired. So far, we have it only for right and left leg and
     //center of mass
     /** There might be additional block types that should be considered here. Check out*/
-    if (btype == 2 || btype == 3) {
+    if (btype == FORWARD_KINEMATICS_OF_LINK_BLOCK || btype == JACOBIANS_OF_LINK_BLOCK) {
         const char* linkName = "";
         int default_size = 0;
         int linkID = 0;
@@ -1204,7 +1204,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #endif
 
     // This block will compute robot joint angles
-    if (btype == 0) {
+    if (btype == JOINT_ANGLES_BLOCK) {
         Vector qrad (ROBOT_DOF);
         qrad.zero();
         if (robot->robotJntAngles (blockingRead)) {
@@ -1225,7 +1225,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 //
     // This block will compute robot joint velocities
-    if (btype == 1) {
+    if (btype == JOINT_VELOCITIES_BLOCK) {
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: About to send joint velocities to ports...\n");
 #endif
@@ -1246,7 +1246,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will compute forward kinematics of the specified link
-    if (btype == 2) {
+    if (btype == FORWARD_KINEMATICS_OF_LINK_BLOCK) {
         Vector xpose;
         switch ( (int) *uPtrs[0]) {
         case 0:
@@ -1288,7 +1288,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will compute Jacobians for the specified link
-    if (btype == 3) {
+    if (btype == JACOBIANS_OF_LINK_BLOCK) {
         MatrixXd jacob(6,ROBOT_DOF+6);
         switch ( (int) *uPtrs[0]) {
         case 0:
@@ -1326,7 +1326,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will set control references for the specified control mode
-    if (btype == 4 || btype == 5 || btype == 6) {
+    if (btype == POSITION_CONTROL_REF_BLOCK || btype == 5 || btype == 6) {
         //GET INPUT refDes
         InputRealPtrsType uPtrs1 = ssGetInputPortRealSignalPtrs (S, 1); //Get the corresponding pointer to "desired position port"
         int nu = ssGetInputPortWidth (S, 1);                            //Getting the amount of elements of the input vector/matrix
@@ -1335,22 +1335,22 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
             refTmp (j) = (*uPtrs1[j]);
         }
-        if (btype == 4) robot->setCtrlMode (CTRL_MODE_VEL);
-        if (btype == 5) {
+        if (btype == VELOCITY_CONTROL_REF_BLOCK) robot->setCtrlMode (CTRL_MODE_VEL);
+        if (btype == POSITION_CONTROL_REF_BLOCK) {
             if(!robot->setCtrlMode (CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
                 fprintf(stderr,"[ERR] Error setting position control mode\n");
                 ssSetErrorStatus(S, "[ERR] Error setting position control mode");
                 return;
             }
         }
-        if (btype == 6) robot->setCtrlMode (CTRL_MODE_TORQUE);
+        if (btype == TORQUE_CONTROL_REF_BLOCK) robot->setCtrlMode (CTRL_MODE_TORQUE);
         robot->setRefDes (refTmp);
     }
 
     Vector h;
     h.resize (ROBOT_DOF + 6, 0);
     // This block will compute the generalized bias force from the dynamics equation
-    if (btype == 7) {
+    if (btype == GENERALIZED_BIAS_FORCES_BLOCK) {
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1379,7 +1379,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
     // This block will return the mass matrix from the dynamics equation
-    if (btype == 8) {
+    if (btype == MASS_MATRIX_BLOCK) {
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1405,7 +1405,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will compute dJdq from the dynamics equation for the specified link
-    if (btype == 9) {
+    if (btype == DJ_DQ_BLOCK) {
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: About to compute dJdq\n");
 #endif
@@ -1470,7 +1470,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will retrieve joint accelerations
-    if (btype == 10) {
+    if (btype == JOINT_ACCELERATIONS_BLOCK) {
         Vector ddqJ;
         ddqJ.resize (ROBOT_DOF, 0);
         if (robot->robotJntAccelerations (blockingRead)) {
@@ -1489,7 +1489,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will retrieve joint torques
     yarp::sig::Vector tauJ (ROBOT_DOF);
-    if (btype == 11) {
+    if (btype == JOINT_TORQUES_BLOCK) {
         if (robot->robotJntTorques (blockingRead)) {
             tauJ = robot->getJntTorques();
             //Stream joint torques
@@ -1505,7 +1505,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will compute inverse dynamics
-    if (btype == 12) {
+    if (btype == INVERSE_DYNAMICS_BLOCK) {
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1554,7 +1554,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // min/max joint limits
-    if (btype == 13) {
+    if (btype == JOINT_LIMITS_BLOCK) {
         double* minJntLimits = 0;// new double[ROBOT_DOF];
         double* maxJntLimits = 0; //new double[ROBOT_DOF];
         // Gets joint limits for the entire body since we're still using ROBOT_DOF as default
@@ -1579,7 +1579,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // angular momentumminJntLimits
-    if (btype == 14) {
+    if (btype == CENTROIDAL_MOMENTUM_BLOCK) {
 
         int nu;
         //READ INPUT ANGLES
@@ -1614,7 +1614,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will retrieve force/torque estimates at the end effectors of the arms and legs of the robot
-    if (btype == 15) {
+    if (btype == FORCE_TORQUE_ESTIMATE_BLOCK) {
       // Retrieve
       yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
       IDList jointIdLIst;
@@ -1677,7 +1677,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             pY15[j] = tmp (j);
     }
 
-    if (btype == 16) {
+    // This block sets the world reference frame to either to right or left sole
+    if (btype == SET_WORLD_REF_FRAME_BLOCK) {
         InputRealPtrsType uPtrs0   = ssGetInputPortRealSignalPtrs (S, 0); //Get the input link
         InputInt8PtrsType uPtrsInt = (InputInt8PtrsType) uPtrs0;
         int extLink = static_cast<int> (*uPtrsInt[0]);
@@ -1697,7 +1698,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
 
     // Parametric forward kinematics
-    if (btype == 17) {
+    if (btype == PARAM_FORWARD_KINEMATICS_BLOCK) {
         Vector xpose;
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
@@ -1716,7 +1717,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // Parametric Jacobians
-    if (btype == 18) {
+    if (btype == PARAM_JACOBIANS_BLOCK) {
         MatrixXd jacob(6, ROBOT_DOF+6);
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
@@ -1737,7 +1738,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // Parametric dJdq
-    if (btype == 19) {
+    if (btype == PARAM_DJ_DQ_BLOCK) {
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
 #ifdef DEBUG

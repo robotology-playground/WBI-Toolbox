@@ -62,6 +62,29 @@ const int Dynamic = -1;
 // typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
 static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
+enum BLOCK_TYPE {
+    JOINT_ANGLES_BLOCK,
+    JOINT_VELOCITIES_BLOCK,
+    FORWARD_KINEMATICS_OF_LINK_BLOCK,
+    JACOBIANS_OF_LINK_BLOCK,
+    POSITION_CONTROL_REF_BLOCK,
+    VELOCITY_CONTROL_REF_BLOCK,
+    TORQUE_CONTROL_REF_BLOCK,
+    GENERALIZED_BIAS_FORCES_BLOCK,
+    MASS_MATRIX_BLOCK,
+    DJ_DQ_BLOCK,
+    JOINT_ACCELERATIONS_BLOCK,
+    JOINT_TORQUES_BLOCK,
+    INVERSE_DYNAMICS_BLOCK,
+    JOINT_LIMITS_BLOCK,
+    CENTROIDAL_MOMENTUM_BLOCK,
+    FORCE_TORQUE_ESTIMATE_BLOCK,
+    SET_WORLD_REF_FRAME_BLOCK,
+    PARAM_FORWARD_KINEMATICS_BLOCK,
+    PARAM_JACOBIANS_BLOCK,
+    PARAM_DJ_DQ_BLOCK,
+};
+
 class robotStatus {
 private:
     /** This object is used to control reentrancy. Counts the times the class robotStatus has been created.*/
