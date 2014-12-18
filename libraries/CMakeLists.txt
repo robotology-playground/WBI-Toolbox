@@ -96,7 +96,7 @@ message("WBI-TOOLBOX_ROOT_DIR: " ${WBI-TOOLBOX_ROOT_DIR})
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../.startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/../startup_wbitoolbox.m)
 
 # Install configuration files
-#install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../startup_wbitoolbox.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/images         DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../share/tools DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/slblocks.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
