@@ -34,4 +34,20 @@ Browser.Library   = 'WBCLibrary';     %Name of the .mdl file
 Browser.Name      = 'Whole Body Interface Toolbox';    
 Browser.IsFlat    =  0;
 
+if (~verLessThan('matlab', '8.4'))  % R2014b
+  % Add repository information if not yet done
+  try
+    load_system('WBCLibrary');
+    if (strcmp(get_param('WBCLibrary', 'EnableLBRepository'), 'off'))
+      set_param('WBCLibrary', 'Lock', 'off');
+      set_param('WBCLibrary', 'EnableLBRepository', 'on');
+      set_param('WBCLibrary', 'Lock', 'on');
+      save_system('WBCLibrary');
+    end;
+    close_system('WBCLibrary');
+  catch ex;
+  end
+end;
+
+
 blkStruct.Browser =  Browser;
