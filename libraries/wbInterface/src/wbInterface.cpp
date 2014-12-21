@@ -1074,10 +1074,13 @@ static void mdlStart (SimStruct* S) {
         printf ("mdlOutputs >> This block will compute forward kinematics for the specified link\n");
         break;
     case 18:
-        printf ("mdlOutputs >> This  block will compute the Jacobian matrix for the specified link\n");
+        printf ("mdlOutputs >> This block will compute the Jacobian matrix for the specified link\n");
         break;
     case 19:
         printf ("mdlOutputs >> This block will compute the product dJdq for the specified link\n");
+        break;
+    case 20:
+        printf ("mdlOutputs >> This block will set joint angles with the Position Direct control mode\n");
         break;
     default:
         ssSetErrorStatus (S, "ERR: [mdlOutputs] The type of this block has not been defined yet\n");
@@ -1326,7 +1329,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will set control references for the specified control mode
-    if (btype == POSITION_CONTROL_REF_BLOCK || btype == 5 || btype == 6) {
+    if (btype == POSITION_CONTROL_REF_BLOCK || btype == VELOCITY_CONTROL_REF_BLOCK || btype == TORQUE_CONTROL_REF_BLOCK || btype == POSITION_DIRECT_CONTROL_REF_BLOCK) {
         //GET INPUT refDes
         InputRealPtrsType uPtrs1 = ssGetInputPortRealSignalPtrs (S, 1); //Get the corresponding pointer to "desired position port"
         int nu = ssGetInputPortWidth (S, 1);                            //Getting the amount of elements of the input vector/matrix
@@ -1335,15 +1338,35 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
             refTmp (j) = (*uPtrs1[j]);
         }
-        if (btype == VELOCITY_CONTROL_REF_BLOCK) robot->setCtrlMode (CTRL_MODE_VEL);
+        if (btype == VELOCITY_CONTROL_REF_BLOCK) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL)) {
+                fprintf(stderr, "[ERR] Error sending velocity reference\n");
+                ssSetErrorStatus (S, "[ERR] Error sending velocity reference");
+                return;
+            }
+        }
+        if (btype == POSITION_DIRECT_CONTROL_REF_BLOCK) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_DIRECT_POSITION)) {
+                fprintf(stderr, "[ERR] Error sending position direct references\n" );
+                ssSetErrorStatus(S, "[ERR] Error sending position direct references");
+                return;
+            }
+        }
         if (btype == POSITION_CONTROL_REF_BLOCK) {
-            if(!robot->setCtrlMode (CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
+            if(!robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
                 fprintf(stderr,"[ERR] Error setting position control mode\n");
                 ssSetErrorStatus(S, "[ERR] Error setting position control mode");
                 return;
             }
         }
-        if (btype == TORQUE_CONTROL_REF_BLOCK) robot->setCtrlMode (CTRL_MODE_TORQUE);
+        if (btype == TORQUE_CONTROL_REF_BLOCK) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_TORQUE)) {
+                fprintf(stderr, "[ERR] Error sending toruqe control references \n");
+                ssSetErrorStatus(S, "[ERR] Error sending toruqe control references");
+                return;
+            }
+        }
+
         robot->setRefDes (refTmp);
     }
 
