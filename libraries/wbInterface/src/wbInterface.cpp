@@ -1370,10 +1370,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->setRefDes (refTmp);
     }
 
-    Vector h;
-    h.resize (ROBOT_DOF + 6, 0);
+
     // This block will compute the generalized bias force from the dynamics equation
     if (btype == GENERALIZED_BIAS_FORCES_BLOCK) {
+        Vector h;
+        h.resize (ROBOT_DOF + 6, 0);
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1400,9 +1401,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
     }
 
-    MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
     // This block will return the mass matrix from the dynamics equation
     if (btype == MASS_MATRIX_BLOCK) {
+        MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1511,8 +1512,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
 
     // This block will retrieve joint torques
-    yarp::sig::Vector tauJ (ROBOT_DOF);
     if (btype == JOINT_TORQUES_BLOCK) {
+        yarp::sig::Vector tauJ (ROBOT_DOF);
         if (robot->robotJntTorques (blockingRead)) {
             tauJ = robot->getJntTorques();
             //Stream joint torques

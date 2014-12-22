@@ -46,7 +46,7 @@
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
 
-#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface.ini"
+#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface_jtc.ini"
 #define DEFAULT_WBIT_CONTEXT "wbit"
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
@@ -63,12 +63,12 @@ const int Dynamic = -1;
 static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
 enum BLOCK_TYPE {
-    JOINT_ANGLES_BLOCK,
+    JOINT_ANGLES_BLOCK = 0,
     JOINT_VELOCITIES_BLOCK,
     FORWARD_KINEMATICS_OF_LINK_BLOCK,
     JACOBIANS_OF_LINK_BLOCK,
-    POSITION_CONTROL_REF_BLOCK,
     VELOCITY_CONTROL_REF_BLOCK,
+    POSITION_CONTROL_REF_BLOCK,
     TORQUE_CONTROL_REF_BLOCK,
     GENERALIZED_BIAS_FORCES_BLOCK,
     MASS_MATRIX_BLOCK,
