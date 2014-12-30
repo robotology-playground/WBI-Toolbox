@@ -1292,7 +1292,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will compute Jacobians for the specified link
     if (btype == JACOBIANS_OF_LINK_BLOCK) {
-        MatrixXd jacob(6,ROBOT_DOF+6);
+        Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic,Eigen::RowMajor> jacob(6,ROBOT_DOF+6);
         switch ( (int) *uPtrs[0]) {
         case 0:
             linkName = "r_sole";
@@ -1321,7 +1321,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: Jacobians Computed Succesfully. Jacobian is: \n");
 #endif
-
+         
         real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
             pY4[j] = jacob (j);
@@ -1742,7 +1742,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // Parametric Jacobians
     if (btype == PARAM_JACOBIANS_BLOCK) {
-        MatrixXd jacob(6, ROBOT_DOF+6);
+        Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic,Eigen::RowMajor> jacob(6, ROBOT_DOF+6);
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
 #ifdef DEBUG
@@ -1754,7 +1754,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: Jacobians Computed Succesfully. Jacobian is: \n");
 #endif
-
+        
         real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
             pY4[j] = jacob (j);
