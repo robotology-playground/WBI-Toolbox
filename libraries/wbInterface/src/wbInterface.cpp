@@ -1101,6 +1101,13 @@ static void mdlStart (SimStruct* S) {
     InputInt8PtrsType   uPtrs = (InputInt8PtrsType) u;
 
     robotStatus* robot = new robotStatus();
+    if (!robot) {
+        ssSetErrorStatus (S, "[ERR] mdlStart: cannot allocate robot object.\n");
+        return;
+    }
+    //save robot pointer
+    ssGetPWork(S)[0] = robot;
+    
     fprintf (stderr, "mdlStart >> An object robot of type wholeBodyInterface has been created\n");
     fprintf (stderr, "mdlStart >> About to configure robot \n");
     robot->setmoduleName (local_name);
@@ -1130,6 +1137,8 @@ static void mdlStart (SimStruct* S) {
 
     yarp::os::Property* yarpWbiOptions;
     yarpWbiOptions = new yarp::os::Property;
+    ssGetPWork(S)[3] = yarpWbiOptions;
+    
     bool res = robot->robotConfig(yarpWbiOptions);
 
     if (res)
@@ -1160,10 +1169,8 @@ static void mdlStart (SimStruct* S) {
     printf ("got limits right\n");
 #endif
 
-    ssGetPWork (S) [0] = robot;
     ssGetPWork (S) [1] = &minJntLimits[0];
     ssGetPWork (S) [2] = &maxJntLimits[0];
-    ssGetPWork (S) [3] = yarpWbiOptions;
 
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
@@ -1834,19 +1841,22 @@ static void mdlTerminate (SimStruct* S) {
             int ROBOT_DOF = robotStatus::getRobotDOF();
             double*      minJntLimits = 0;//new double[ROBOT_DOF];
             double*      maxJntLimits = 0;//new double[ROBOT_DOF];
-            minJntLimits = (double*) ssGetPWork (S) [1];
-            maxJntLimits = (double*) ssGetPWork (S) [2];
-            yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
+            minJntLimits = (double*)ssGetPWork(S)[1];
+            maxJntLimits = (double*)ssGetPWork(S)[2];
+            yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[3];
 
-            robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*0.0);
+            robot->setCtrlMode(wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD * 0.0);
             printf ("ctrl mode set\n");
             delete robot;
             printf ("robot deleted\n");
-            delete[] minJntLimits;
+            if (minJntLimits)
+                delete[] minJntLimits;
             printf ("minJntLimits deleted\n");
-            delete[] maxJntLimits;
+            if (maxJntLimits)
+                delete[] maxJntLimits;
             printf ("maxJntLimits deleted\n");
-            delete yarpWbiOptions;
+            if (yarpWbiOptions)
+                delete yarpWbiOptions;
             printf ("yarpWbiOptions deleted\n");
             robotStatus::resetCounter();
             robot          = NULL;
