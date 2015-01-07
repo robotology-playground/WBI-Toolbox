@@ -564,7 +564,7 @@ bool robotStatus::dynamicsMassMatrix (double* qrad_input) {
     return ans;
 }
 //=========================================================================================================================
-Eigen::MatrixXd robotStatus::getMassMatrix() {
+Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::getMassMatrix() {
     return massMatrix;
 }
 //=========================================================================================================================
@@ -1299,7 +1299,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will compute Jacobians for the specified link
     if (btype == JACOBIANS_OF_LINK_BLOCK) {
-        Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic,Eigen::RowMajor> jacob(6,ROBOT_DOF+6);
         switch ( (int) *uPtrs[0]) {
         case 0:
             linkName = "r_sole";
@@ -1323,16 +1322,21 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             fprintf (stderr, "ERR: [mdlOutputs] No body part has been specified to compute jacobians\n");
         }
         robot->getLinkId (linkName, lid);
-
-        jacob = robot->jacobian (lid);
+        
+        real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
+        //serialize matrix into vector
+        int_T portSize = ssGetOutputPortWidth(S, 3);
+        //we serialize in column mode: each column has size 6;
+        if (portSize / 6 != (ROBOT_DOF + 6)) {
+            fprintf (stderr, "ERR: [mdlOutputs] Jacobian has wrong size: Port: %d\n", portSize);
+            return;
+        }
+        
+        Eigen::Map<Eigen::Matrix<real_T, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
+        outputSignal = robot->jacobian(lid);
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: Jacobians Computed Succesfully. Jacobian is: \n");
 #endif
-         
-        real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
-        for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
-            pY4[j] = jacob (j);
-        }
     }
 
     // This block will set control references for the specified control mode
@@ -1410,7 +1414,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will return the mass matrix from the dynamics equation
     if (btype == MASS_MATRIX_BLOCK) {
-        MatrixXd massMatrix(ROBOT_DOF + 6, ROBOT_DOF + 6) ;
         int nu;
         //READ INPUT ANGLES
         InputRealPtrsType uPtrs2 = ssGetInputPortRealSignalPtrs (S, 2); //Get the corresponding pointer to "input joint angles port"
@@ -1428,11 +1431,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             fprintf (stderr, "ERR: [mdlOutputs] Mass matrix was not successfully computed\n");
             return;
         }
-        massMatrix = robot->getMassMatrix();
-        real_T* pY6 = (real_T*) ssGetOutputPortSignal (S, 4);
-        for (int_T j = 0; j < ssGetOutputPortWidth (S, 4); j++) {
-            pY6[j] = massMatrix (j);
-        }
+        real_T* pY6 = ssGetOutputPortRealSignal(S, 4);
+        Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> > outputMatrix(pY6, ROBOT_DOF + 6, ROBOT_DOF + 6);
+        outputMatrix = robot->getMassMatrix();
     }
 
     // This block will compute dJdq from the dynamics equation for the specified link
@@ -1749,23 +1750,20 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // Parametric Jacobians
     if (btype == PARAM_JACOBIANS_BLOCK) {
-        Eigen::Matrix<double,Eigen::Dynamic,Eigen::Dynamic,Eigen::RowMajor> jacob(6, ROBOT_DOF+6);
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
 #ifdef DEBUG
         printf("Parametric Jacobian will be computed for linkName: %s\n", linkName);
 #endif
         robot->getLinkId (linkName, lid);
-
-        jacob = robot->jacobian (lid);
+        
+        real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
+        Eigen::Map<Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
+        outputSignal = robot->jacobian(lid);
+        
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: Jacobians Computed Succesfully. Jacobian is: \n");
 #endif
-        
-        real_T* pY4 = (real_T*) ssGetOutputPortSignal (S, 3);
-        for (int_T j = 0; j < ssGetOutputPortWidth (S, 3); j++) {
-            pY4[j] = jacob (j);
-        }
     }
 
     // Parametric dJdq

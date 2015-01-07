@@ -218,7 +218,7 @@ public:
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
     bool                robotBaseVelocity();
     bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
-    Eigen::MatrixXd     getMassMatrix();
+    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
     bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);
