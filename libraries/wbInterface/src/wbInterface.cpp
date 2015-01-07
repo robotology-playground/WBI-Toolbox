@@ -1432,7 +1432,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             return;
         }
         real_T* pY6 = ssGetOutputPortRealSignal(S, 4);
-        Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> > outputMatrix(pY6, ROBOT_DOF + 6, ROBOT_DOF + 6);
+        Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor> > outputMatrix(pY6, ROBOT_DOF + 6, ROBOT_DOF + 6);
         outputMatrix = robot->getMassMatrix();
     }
 
@@ -1758,7 +1758,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->getLinkId (linkName, lid);
         
         real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
-        Eigen::Map<Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
+        Eigen::Map<Eigen::Matrix<real_T, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
         outputSignal = robot->jacobian(lid);
         
 #ifdef DEBUG
