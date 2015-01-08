@@ -4,10 +4,12 @@ function [] = generateFilesForPlayerScript()
     clc
     
     HOLD_INITIAL_POSITION_TIME = 3;
-    FILE_TO_LOAD = [pwd,filesep,'softTouchDown.csv'];
-    TORSO_FILENAME = 'torso_trj.txt';
-    LEFT_LEG_FILENAME = 'l_leg_trj.txt';
-    RIGHT_LEG_FILENAME = 'r_lrg_trj.txt';
+    FILE_NAME = 'icp-insideJointLimits-smallCoMOscillations';
+    FILE_TYPE = '.csv';
+    FILE_TO_LOAD = [pwd,filesep,FILE_NAME, FILE_TYPE];
+    TORSO_SUFFIX = '_torso.txt';
+    LEFT_LEG_SUFFIX = '_left.txt';
+    RIGHT_LEG_SUFFIX = '_right.txt';
     
     [leftLeg, rightLeg, torso] = loadFile(FILE_TO_LOAD);
     
@@ -15,16 +17,16 @@ function [] = generateFilesForPlayerScript()
     rightLeg = addRowWithConstantInitialPosition(rightLeg, HOLD_INITIAL_POSITION_TIME);
     torso = addRowWithConstantInitialPosition(torso, HOLD_INITIAL_POSITION_TIME);
     
-    leftLeg = addFirstColumWithRowNumber(leftLeg);
-    rightLeg = addFirstColumWithRowNumber(rightLeg);
-    torso = addFirstColumWithRowNumber(torso);
+    leftLeg = addFirstColumnWithRowNumber(leftLeg);
+    rightLeg = addFirstColumnWithRowNumber(rightLeg);
+    torso = addFirstColumnWithRowNumber(torso);
     
-    dlmwrite(LEFT_LEG_FILENAME, leftLeg,'delimiter','\t');
-    dlmwrite(RIGHT_LEG_FILENAME, rightLeg,'delimiter','\t'); 
-    dlmwrite(TORSO_FILENAME, torso,'delimiter','\t');
+    dlmwrite([FILE_NAME, LEFT_LEG_SUFFIX], leftLeg,'delimiter',' ');
+    dlmwrite([FILE_NAME, RIGHT_LEG_SUFFIX], rightLeg,'delimiter',' '); 
+    dlmwrite([FILE_NAME, TORSO_SUFFIX], torso,'delimiter',' ');
 end
 
-function [trajectory] = addFirstColumWithRowNumber(trajectory)
+function [trajectory] = addFirstColumnWithRowNumber(trajectory)
     % Add a column with row numbers as first column
     % INPUT
     % - trajectory: first column must be sample time, other columns are the

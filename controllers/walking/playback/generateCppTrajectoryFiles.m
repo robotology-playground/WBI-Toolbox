@@ -3,7 +3,7 @@ function generateCppTrajectoryFiles()
 varname=@(x) inputname(1);
 
 %%Load parts
-filename = 'softTouchDown';
+filename = 'icp-insideJointLimits-smallCoMOscillations';
 extension = '.csv';
 [~, parts] = TrajectoryLoader([pwd,filesep,filename, extension], 1);
 
