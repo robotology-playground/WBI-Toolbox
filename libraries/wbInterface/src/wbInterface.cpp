@@ -424,7 +424,7 @@ Vector robotStatus::getEncoders() {
     return qRad;
 }
 //=========================================================================================================================
-VectorXd robotStatus::getJntVelocities() {
+VectorXd& robotStatus::getJntVelocities() {
     return dqJ;
 }
 //=========================================================================================================================
@@ -451,7 +451,7 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
 //=========================================================================================================================
 bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpeed)
 {
-    if(ctrl_mode == wbi::CTRL_MODE_POS) {
+    if(ctrl_mode == wbi::CTRL_MODE_POS && dof > 0) {
         Vector refSpeed (dof, constRefSpeed);
         if(!wbInterface->setControlParam(wbi::CTRL_PARAM_REF_VEL, refSpeed.data())) {
             fprintf (stderr, "[ERR] robotStatus::setControlMode : Reference speeds could not be set Succesfully\n");
@@ -1113,27 +1113,28 @@ static void mdlStart (SimStruct* S) {
     robot->setmoduleName (local_name);
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
+    
 
-    //TODO It won't always be icubGazeboSim. Do this chekc in a more appropriate way
-    if(robot_name == "icubGazeboSim"){
-        if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
-            printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
-        else{
-            ssSetErrorStatus (S, "ERR [mdlStart] >> The simulator is not running... ");
-            return;
-        }
-    } else{
-        //TODO Find also coman in the name? or do this check in a more appropriate way
-        std::size_t pos = robot_name.find ("iCub");
-        if(pos != std::string::npos){ //iCubGenova0X is being used
-            if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
-                printf("You're using the real robot platform. Proceeding with configuration of the interface...");
-            else{
-                ssSetErrorStatus (S, "ERR [mdlStart] >> The real platform is not reachable... ");
-                return;
-            }
-        }
-    }
+//     //TODO It won't always be icubGazeboSim. Do this chekc in a more appropriate way
+//     if(robot_name == "icubGazeboSim"){
+//         if(yarp::os::NetworkBase::exists(string("/"+robot_name+"/torso/state:o").c_str()))
+//             printf ("iCub on the Gazebo simulator has been found active. Proceeding with configuration of the interface...\n");
+//         else{
+//             ssSetErrorStatus (S, "ERR [mdlStart] >> The simulator is not running... ");
+//             return;
+//         }
+//     } else{
+//         //TODO Find also coman in the name? or do this check in a more appropriate way
+//         std::size_t pos = robot_name.find ("iCub");
+//         if(pos != std::string::npos){ //iCubGenova0X is being used
+//             if(yarp::os::NetworkBase::exists(string("/icub/torso/state:o").c_str()))
+//                 printf("You're using the real robot platform. Proceeding with configuration of the interface...");
+//             else{
+//                 ssSetErrorStatus (S, "ERR [mdlStart] >> The real platform is not reachable... ");
+//                 return;
+//             }
+//         }
+//     }
 
     yarp::os::Property* yarpWbiOptions;
     yarpWbiOptions = new yarp::os::Property;
@@ -1149,6 +1150,7 @@ static void mdlStart (SimStruct* S) {
     }
 
     res = res && robot->robotInit (static_cast<int> (block_type), static_cast<int> (*uPtrs[0]));
+    
     if (res == true)
         fprintf (stderr, "mdlStart >> Succesfully exited robotInit.\n");
     else {
@@ -1239,15 +1241,12 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #ifdef DEBUG
         fprintf (stderr, "mdlOutputs: About to send joint velocities to ports...\n");
 #endif
-        Eigen::VectorXd dotq;
-        dotq.Zero (ROBOT_DOF);
-
         if (robot->robotJntVelocities (blockingRead)) {
-            dotq = robot->getJntVelocities();
+            Eigen::VectorXd &dotq = robot->getJntVelocities();
             real_T* pY2 = (real_T*) ssGetOutputPortSignal (S, 1);
             int_T widthPort = ssGetOutputPortWidth (S, 1);
             for (int_T i = 0; i < widthPort; i++) {
-                pY2[i] = dotq ( (int) i);
+                pY2[i] = dotq((int)i);
             }
         } else {
             fprintf (stderr, "ERR: [mdlOutputs] Robot joint velocities could not be computed\n");
@@ -1349,6 +1348,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
             refTmp (j) = (*uPtrs1[j]);
         }
+        
         if (btype == VELOCITY_CONTROL_REF_BLOCK) {
             if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL)) {
                 fprintf(stderr, "[ERR] Error sending velocity reference\n");
@@ -1377,7 +1377,6 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
                 return;
             }
         }
-
         robot->setRefDes (refTmp);
     }
 

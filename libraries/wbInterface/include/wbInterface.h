@@ -208,7 +208,7 @@ public:
     yarp::sig::Vector   forwardKinematics (int& linkId);
     Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
-    Eigen::VectorXd     getJntVelocities();
+    Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
     bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
