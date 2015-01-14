@@ -184,29 +184,29 @@ bool robotStatus::robotConfig() {
         // Add main iCub joints
         wbInterface->addJoints (ICUB_MAIN_JOINTS);
 
-        if(robotNamefromConfigFile == "icub"){
-            fprintf (stderr, "WARNING [robotStatus::robotConfig] Configuring WBI for the real robot. Please check the jointTorqueControl module is up and running.\n");
-            if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
-                fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
-            else {
-                fprintf (stderr, "ERROR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running your controller. \n");
-                return false;
-            }
-        }
+//        if(robotNamefromConfigFile == "icub"){
+//            fprintf (stderr, "WARNING [robotStatus::robotConfig] Configuring WBI for the real robot. Please check the jointTorqueControl module is up and running.\n");
+//            if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+//                fprintf (stderr, "[robotStatus::robotConfig] The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
+//           else {
+//                fprintf (stderr, "ERROR [robotStatus::robotConfig] The jointTorqueControl module is not running. Please launch it before running your controller. \n");
+//                return false;
+//            }
+//        }
 
-#ifdef WBI_ICUB_COMPILE_PARAM_HELP
-	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
-	  fprintf (stderr, "ERROR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
-	  return false;
-	}
-	else {
-        yarp::os::Value trueValue;
-        trueValue.fromString ("true");
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
-        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
-	}
-#endif
+// #ifdef WBI_ICUB_COMPILE_PARAM_HELP
+//	if(!yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str())){
+//	  fprintf (stderr, "ERROR [robotStatus::robotConfig] This module is trying to use the jointTorqueControl but it was not found active. Type jointTorqueControl --help for more information.\n");
+//	  return false;
+//	}
+//	else {
+//       yarp::os::Value trueValue;
+//        trueValue.fromString ("true");
+//        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
+//        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
+//        ( (icubWholeBodyInterface*) wbInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
+//	}
+//#endif
 
         if (!wbInterface->init()) {
             fprintf (stderr, "ERROR [robotStatus::robotConfig] Initializing Whole Body Interface!\n");
