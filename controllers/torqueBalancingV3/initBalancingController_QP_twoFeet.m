@@ -1,5 +1,5 @@
 %WBC ASW
- clear all
+clear all
 
 % Controller period
 Ts                = 0.01; 
@@ -62,8 +62,8 @@ kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1
                        kdTorso(1,:),kdArms(1,:),kdArms(1,:),kdLegs(1,:),kdLegs(1,:)]*0;
 
 directionOfOscillation = [0;1;0];
-referenceParams        = [0.05 0.35];  %referenceParams(1) = amplitude of ascillations in meters
-                                      %referenceParams(2) = frequency of ascillations in hertz
+referenceParams        = [0.04 0.5];  %[0.04 0.5]; 
+
 
 %% Parameters for QP
 number_of_feet_on_ground = 2;

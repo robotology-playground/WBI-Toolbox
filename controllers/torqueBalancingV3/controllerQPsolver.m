@@ -234,7 +234,7 @@ ub         = x0_lb_ub(2*fdim+1:3*fdim);
          
 % QP FOR TORQUE MINIMIZATION BASED ON arbitrary vector F0
 
-% options = optimset('Algorithm','active-set','Display','off');
+options = optimset('Algorithm','active-set','Display','off');
     
 % [desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
 %                                               Aineq,   bineq, ... %inequalities
@@ -245,12 +245,18 @@ ub         = x0_lb_ub(2*fdim+1:3*fdim);
 
 
 [desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
-                                              Aineq, bineq, ...   % Inequalities
-                                                 [],   [], ...    % Equalities
-                                                 lb,      ub, ... % Bounds
-                                                 x0,          ... % Initial solution
+                                              Aineq, bineq, ... %inequalities
+                                                 [],   [], ... %equalities
+                                                 lb,      ub, ... %bounds
+                                                 x0,          ... %initial solution
                                                  options);
-                                      
+                                             
+% [desiredf0, ~, exitFlag, ~, ~] = quadprog( quadTerm, linTerm, ...
+%                                               [], [], ... %inequalities
+%                                                  [],   [], ... %equalities
+%                                                  lb,      ub, ... %bounds
+%                                                  x0,          ... %initial solution
+%                                                  options);
                                              
                                              
 if exitFlag~=1

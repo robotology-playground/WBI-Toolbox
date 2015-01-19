@@ -24,6 +24,3 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 add_subdirectory(libraries)
-
-# The following line is to properly configure the installation script of the toolbox
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/startup_wbitoolbox.m)

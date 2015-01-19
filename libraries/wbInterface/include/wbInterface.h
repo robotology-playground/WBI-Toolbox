@@ -46,6 +46,9 @@
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
 
+#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface.ini"
+#define DEFAULT_WBIT_CONTEXT "wbit"
+
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
 #include "simstruc.h"
 
@@ -53,18 +56,35 @@ namespace wbi {
 class wholeBodyInterface;
 }
 
-//This should somehow be provided by the user, but 25 will be the default
-#define ROBOT_DOF 25
-
 typedef Eigen::Matrix<double, 7, 1>  Vector7d;
 const int Dynamic = -1;
 // a Jacobian is 6 rows and N columns
-typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
-// N+6 x N+6 mass matrix
-typedef Eigen::Matrix < double, ROBOT_DOF + 6, ROBOT_DOF + 6, Eigen::RowMajor > MassMatrix;
+// typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
+static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
-static const Vector7d              DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
-static const Eigen::Vector2d       DEFAULT_X_COM_SIZE  = Eigen::Vector2d::Constant (0.0);
+enum BLOCK_TYPE {
+    JOINT_ANGLES_BLOCK = 0,
+    JOINT_VELOCITIES_BLOCK,
+    FORWARD_KINEMATICS_OF_LINK_BLOCK,
+    JACOBIANS_OF_LINK_BLOCK,
+    VELOCITY_CONTROL_REF_BLOCK,
+    POSITION_CONTROL_REF_BLOCK,
+    TORQUE_CONTROL_REF_BLOCK,
+    GENERALIZED_BIAS_FORCES_BLOCK,
+    MASS_MATRIX_BLOCK,
+    DJ_DQ_BLOCK,
+    JOINT_ACCELERATIONS_BLOCK,
+    JOINT_TORQUES_BLOCK,
+    INVERSE_DYNAMICS_BLOCK,
+    JOINT_LIMITS_BLOCK,
+    CENTROIDAL_MOMENTUM_BLOCK,
+    FORCE_TORQUE_ESTIMATE_BLOCK,
+    SET_WORLD_REF_FRAME_BLOCK,
+    PARAM_FORWARD_KINEMATICS_BLOCK,
+    PARAM_JACOBIANS_BLOCK,
+    PARAM_DJ_DQ_BLOCK,
+    POSITION_DIRECT_CONTROL_REF_BLOCK
+};
 
 class robotStatus {
 private:
@@ -86,7 +106,7 @@ private:
     /** Prefix given to the ports that will be open by Simulink. */
     std::string             moduleName;
 
-    /** name of the robot being used, e.g. 'icubSim' or 'icub'. */
+    /** name of the robot being used, e.g. 'icubGazeboSim', 'icub', 'coman' */
     std::string             robotName;
     // This variable map an Eigen vector to a yarp vector. //
     // Eigen::Map<Eigen::VectorXd>  dqDesMap; //
@@ -121,7 +141,7 @@ private:
     yarp::sig::Vector       tauJ_out;
 
     /** General Jacobian matrix initialized depending on the link for which the Jacobian is then needed.*/
-    JacobianMatrix          JfootR;
+    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>  jacobianMatrix;
 
     /** rotation to align foot Z axis with gravity, Ha=[0 0 1 0; 0 -1 0 0; 1 0 0 0; 0 0 0 1] */
     wbi::Frame              Ha;
@@ -148,16 +168,17 @@ private:
     yarp::sig::Vector       dJdq;
 
     /** Mass matrix N+6xN+6 */
-    MassMatrix              massMatrix;
+    // N+6 x N+6 mass matrix
+    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>         massMatrix;
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
 
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
-    static bool             icub_fixed;
+    static bool             robot_fixed;
 
-
-
+    /*Robot DOF read from configuration file*/
+    static int              ROBOT_DOF;
 
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -173,7 +194,7 @@ public:
     std::string         getParamLink ();
     int                 decreaseCounter();
     static void         resetCounter();
-    bool                robotConfig();
+    bool                robotConfig(yarp::os::Property* yarpWbiOptions);
     bool                robotInit (int btype, int link);
     void                getLinkId (const char* linkName, int& lid);
     //This is especifically for the COM
@@ -185,28 +206,28 @@ public:
     bool                robotJntAccelerations (bool blockingRead);
     bool                robotJntTorques (bool blockingRead);
     yarp::sig::Vector   forwardKinematics (int& linkId);
-    JacobianMatrix      jacobian (int& lid);
+    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
-    Eigen::VectorXd     getJntVelocities();
+    Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
-
     bool                setCtrlMode (wbi::ControlMode ctrl_mode);
     bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
-    void                setdqDes (yarp::sig::Vector dqD);
-
+    void                setRefDes (yarp::sig::Vector refDes);
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
     bool                dynamicsMassMatrix (double* qrad_input);
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
     bool                robotBaseVelocity();
     bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
-    MassMatrix          getMassMatrix();
+    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
     bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);
     bool                centroidalMomentum (double* qrad_input, double* dq_input, double* h);
-    bool                robotEEWrenches (wbi::LocalId LID);
+    bool                robotEEWrenches (wbi::ID LID);
     yarp::sig::Vector   getEEWrench();
-    bool                addEstimate();
+    bool                addEstimate(wbi::ID LID);
+    static void         setRobotDOF(int ROBOTDOF);
+    static int          getRobotDOF();
 };
 
 class counterClass {

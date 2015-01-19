@@ -17,6 +17,23 @@
 #include <time.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Network.h>
+#include <yarp/os/BufferedPort.h>
+#include <thrift/ClockServer.h>
+
+
+struct InternalData
+{
+    struct {
+        std::string clientPortName;
+        std::string serverPortName;
+
+        unsigned numberOfSteps;
+    } configuration;
+
+    yarp::os::Port clientPort;
+    gazebo::ClockServer clockServer;
+};
+typedef struct InternalData InternalData;
 
 static void mdlInitializeSizes(SimStruct *S)
 {
@@ -27,22 +44,23 @@ static void mdlInitializeSizes(SimStruct *S)
 
     ssSetNumContStates(S, 0);
     ssSetNumDiscStates(S, 0);
-
-    if (!ssSetNumInputPorts(S, 0)) return;
-
-    if (!ssSetNumOutputPorts(S, 2)) return;
-    ssSetOutputPortWidth(S, 0, 1);	    		// Robot joint angular positions in radians
-    ssSetOutputPortWidth(S, 1, 1);
-    ssSetOutputPortDataType(S, 0, 0);
-    ssSetOutputPortDataType(S, 1, 0);
-
     ssSetNumSampleTimes(S, 1);
-    ssSetNumRWork(S, 3);
-    ssSetNumIWork(S, 0);
-    ssSetNumPWork(S, 0);
-    ssSetNumModes(S, 0);
-    ssSetNumNonsampledZCs(S, 0);
+    ssSetNumPWork(S, 1);
+    ssSetNumDWork (S, 1);
+    ssSetDWorkWidth (S, 0, 1);
+    ssSetDWorkDataType (S, 0, SS_INTEGER);
     ssSetOptions(S, 0);
+
+    ssSetOptions (S,
+                  SS_OPTION_WORKS_WITH_CODE_REUSE        |
+                  SS_OPTION_EXCEPTION_FREE_CODE          |   //we must be sure that every function we call never throws an exception
+                  SS_OPTION_ALLOW_INPUT_SCALAR_EXPANSION |
+                  SS_OPTION_USE_TLC_WITH_ACCELERATOR     |
+                  SS_OPTION_PLACE_ASAP                   |   // This options makes the ySynchronizer execute AS SOON AS POSSIBLE
+                  SS_OPTION_CALL_TERMINATE_ON_EXIT);
+
+    fprintf (stderr, "[mdlInitializeSizes] : Options set\n\n");
+
 }
 
 #define MDL_INITIALIZE_SAMPLE_TIMES
@@ -55,6 +73,9 @@ static void mdlInitializeSampleTimes(SimStruct *S)
 #define MDL_START
 static void mdlStart(SimStruct *S)
 {
+    int_T* flag = (int_T*) ssGetDWork (S, 0);
+    flag[0] = 0;
+
     yarp::os::Network::init();
     printf("YARP Network initialized\n");
 
@@ -63,61 +84,76 @@ static void mdlStart(SimStruct *S)
         return;
     }
 
-    ssSetRWorkValue(S,0,ssGetTStart(S));         // Get initial simulation time.
-    ssSetRWorkValue(S,1,yarp::os::Time::now());  // Initial real time
-    ssSetRWorkValue(S,2,-1);                     // Real initial time of Matlab step.
-    yarp::os::Time::useNetworkClock("/clock");
+    //  During startup I need this block to pause the simulation, then execute last
+    //  and step the simulation by Ts.
+    InternalData *internalData = new InternalData();
+
+    internalData->configuration.clientPortName = "/ySynchronizer/clock:o"; //compose this with the module name?
+    internalData->configuration.serverPortName = "/clock/rpc";
+
+    bool resetTimeAtStart = false;
+
+    double period = 0.01;
+    //TODO read period from parameter here
+
+    internalData->clientPort.open(internalData->configuration.clientPortName);
+    if (!yarp::os::Network::connect(internalData->configuration.clientPortName, internalData->configuration.serverPortName)) {
+        fprintf(stderr,"mdlStart : ERR Problems connecting with /clock/rpc. Has gazebo been launched with the clock plugin?\n");
+        ssSetErrorStatus(S, "Problems connecting with /clock/rpc. Has gazebo been launched with the clock plugin?");
+    }
+
+    internalData->clockServer.yarp().attachAsClient(internalData->clientPort);
+
+    double stepSize = internalData->clockServer.getStepSize();
+    fprintf(stderr,"[ySynchronizer::mdlStart] >> clockServer client retrieved stepSize = %lf\n", stepSize);
+
+    //check if stepSize / period is an integer.
+    internalData->configuration.numberOfSteps = period / stepSize;
+
+//     internalData->clockServer.pauseSimulation();
+
+    if (resetTimeAtStart) {
+        internalData->clockServer.resetSimulationTime();
+    }
+
+    ssGetPWork(S)[0] = internalData;
+
+    // Initialization is over.
+    flag[0]     = 1;
+
+    fprintf(stderr,"ySynchronizer::mdlStart >> Finished startup\n");
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    // Store real time at the beginning of each simulation step
-    double             t_c = yarp::os::Time::now();	                // Real time in current simulation step
-    real_T             t_system;
-    t_system = (real_T)clock()/CLOCKS_PER_SEC;
-//     time_T             t_SimTime = ssGetT(S);				// Useful to retrieve the simulation rate
-//     real_T             t_previousSimTime = ssGetRWorkValue(S,0);		// Useful to retrieve the simulation rate
-    
-    const real_T      *sample_time = mxGetPr(RATE(S));
-    
-//     Retrieve actual sampling time. For now assume the desired time scale factor is 1, i.e. Time ratio is 1:1
-//     real_T             fund_sample_time = t_SimTime - t_previousSimTime;  // 
-    
-    double             t_realSamplingTime = sample_time[0];
+    InternalData *internalData = static_cast<InternalData*>(ssGetPWork(S)[0]);
 
-    double             t_prev = static_cast<double>(ssGetRWorkValue(S,2));
-    
-    // if it's the first simulation step ...
-    if(t_prev<0) {
-	// ... then wait for the desired period ... 
-	yarp::os::Time::delay(static_cast<double>(sample_time[0]));  // First delay before execution of the other blocks
+    int_T* flag = (int_T*) ssGetDWork (S, 0);
+    if (flag[0]) {
+        // Pause only once in mdlOutputs
+        internalData->clockServer.pauseSimulation();
+        flag[0] = 0;
     }
-    else {
-        // ... If it's not the first simulation step, then delay the simulation for 2Ts - (tc - tprev)
-        yarp::os::Time::delay(2*t_realSamplingTime - (t_c - t_prev));
-    }
-    
-    // and store the real time at the beginning of this simulation step ...
-    ssSetRWorkValue(S,2,t_c);
-    
-    // store also the matlab time at the beginning of this simulation step
-//     ssSetRWorkValue(S, 0, t_SimTime);
-    
-    real_T *pY0 = (real_T*)ssGetOutputPortSignal(S,0);
-    for(int_T j=0; j<ssGetOutputPortWidth(S,0); j++)
-//     pY0[j] = yarp::os::Time::now() - ssGetRWorkValue(S,1);
-        pY0[j] = t_c - ssGetRWorkValue(S,1);
-	
-    real_T *pY1 = (real_T*)ssGetOutputPortSignal(S,1);
-    for(int_T j=0; j<ssGetOutputPortWidth(S,1); j++)
-      pY1[j] = t_system;
-
+    internalData->clockServer.stepSimulationAndWait(internalData->configuration.numberOfSteps);
 }
 
 static void mdlTerminate(SimStruct *S)
 {
-    UNUSED_ARG(S); /* unused input argument */
-// I should use yarp::os::Network::fini() to terminate network connection but it currently hangs. Waiting for bug fix.
+    if (ssGetNumPWork(S) > 0 && ssGetPWork(S)) {
+        InternalData *internalData = static_cast<InternalData*>(ssGetPWork(S)[0]);
+        if (internalData) {
+            fprintf(stderr,"mdlTerminate >> Before issuing continueSimulation command\n");
+            internalData->clockServer.continueSimulation();
+            if(!yarp::os::Network::disconnect(internalData->configuration.clientPortName, internalData->configuration.serverPortName)) {
+                fprintf(stderr,"mdlTerminate >> ySynchronizer: Could not disconnect src %s from dest %s \n", internalData->configuration.clientPortName.c_str(), internalData->configuration.serverPortName.c_str());
+            }
+            internalData->clientPort.close();
+            delete internalData;
+            internalData = 0;
+        }
+    }
+    yarp::os::Network::fini();
+    fprintf(stderr,"mdlTerminate : ySynchronizer reached end of this simulation\n");
 }
 
 /*

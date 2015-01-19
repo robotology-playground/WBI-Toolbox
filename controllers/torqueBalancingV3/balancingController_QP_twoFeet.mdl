@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.1778"
+    ComputedModelVersion    "1.1769"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -31,7 +31,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [49.0, 266.0, 1522.0, 931.0]
+      Location		      [0.0, 27.0, 1680.0, 996.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -56,16 +56,16 @@ Model {
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "736"
-	  Extents		  [1271.0, 726.0]
+	  Extents		  [1447.0, 815.0]
 	  ZoomFactor		  [0.6]
-	  Offset		  [-367.8821247981831, -43.384733980708873]
+	  Offset		  [-340.41343003844736, -6.3333333333333712]
 	}
 	Object {
 	  $ObjectID		  6
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkTopLevel"
 	  LoadSaveID		  "0"
-	  Extents		  [1449.0, 836.0]
+	  Extents		  [1447.0, 815.0]
 	  ZoomFactor		  [1.0]
 	  Offset		  [0.0, 0.0]
 	}
@@ -74,25 +74,25 @@ Model {
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "61"
-	  Extents		  [1271.0, 726.0]
-	  ZoomFactor		  [0.8]
-	  Offset		  [773.52813272933349, 236.31446675007263]
+	  Extents		  [1447.0, 815.0]
+	  ZoomFactor		  [0.6]
+	  Offset		  [202.5272399959523, 97.326704591082773]
 	}
 	Object {
 	  $ObjectID		  8
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "760"
-	  Extents		  [1271.0, 726.0]
-	  ZoomFactor		  [1.0]
-	  Offset		  [-338.0, 27.0]
+	  Extents		  [1447.0, 815.0]
+	  ZoomFactor		  [1.25]
+	  Offset		  [-215.69999999999987, 367.09393731433443]
 	}
 	Object {
 	  $ObjectID		  9
 	  IsActive		  [0]
 	  ViewObjType		  "SimulinkSubsys"
 	  LoadSaveID		  "799"
-	  Extents		  [1449.0, 836.0]
+	  Extents		  [1447.0, 815.0]
 	  ZoomFactor		  [1.75]
 	  Offset		  [121.57142857142856, 32.142857142857139]
 	}
@@ -104,11 +104,11 @@ Model {
   Creator		  "daniele"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "daniele"
+  LastModifiedBy	  "icub"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Dec 10 19:13:02 2014"
-  RTWModifiedTimeStamp	  340137909
-  ModelVersionFormat	  "1.%<AutoIncrement:1778>"
+  LastModifiedDate	  "Tue Nov 11 12:23:20 2014"
+  RTWModifiedTimeStamp	  337272952
+  ModelVersionFormat	  "1.%<AutoIncrement:1769>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  on
@@ -1032,7 +1032,7 @@ Model {
   }
   System {
     Name		    "balancingController_QP_twoFeet"
-    Location		    [59, 274, 1739, 1297]
+    Location		    [0, 27, 1680, 1023]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1095,7 +1095,7 @@ Model {
       }
       System {
 	Name			"Subsystem"
-	Location		[49, 266, 1571, 1197]
+	Location		[0, 27, 1680, 1023]
 	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
@@ -1107,12 +1107,12 @@ Model {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"80"
+	ZoomFactor		"60"
 	Block {
 	  BlockType		  Constant
 	  Name			  "\n\n  1"
 	  SID			  "847"
-	  Position		  [815, 983, 920, 997]
+	  Position		  [710, 983, 815, 997]
 	  ZOrder		  247
 	  ShowName		  off
 	  Value			  "directionOfOscillation"
@@ -1121,7 +1121,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "\n\n  2"
 	  SID			  "778"
-	  Position		  [925, 968, 1030, 982]
+	  Position		  [840, 968, 945, 982]
 	  ZOrder		  242
 	  ShowName		  off
 	  Value			  "referenceParams"
@@ -1130,7 +1130,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "\n\n  3"
 	  SID			  "848"
-	  Position		  [925, 998, 1030, 1012]
+	  Position		  [840, 998, 945, 1012]
 	  ZOrder		  248
 	  ShowName		  off
 	  Value			  "noOscillationTime"
@@ -1154,7 +1154,7 @@ Model {
 	  BlockType		  Clock
 	  Name			  "Clock"
 	  SID			  "71"
-	  Position		  [1060, 950, 1080, 970]
+	  Position		  [975, 950, 995, 970]
 	  ZOrder		  49
 	  ShowName		  off
 	}
@@ -1163,7 +1163,7 @@ Model {
 	  Name			  "CoM "
 	  SID			  "480"
 	  Ports			  [0, 2]
-	  Position		  [930, 914, 1030, 956]
+	  Position		  [845, 914, 945, 956]
 	  ZOrder		  207
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
@@ -1474,7 +1474,7 @@ Model {
 	  Name			  "M(q) h(q,dq) g(q)"
 	  SID			  "467"
 	  Ports			  [2, 4]
-	  Position		  [1225, 500, 1290, 700]
+	  Position		  [1195, 500, 1260, 700]
 	  ZOrder		  206
 	  ShowName		  off
 	  MinAlgLoopOccurrences	  off
@@ -1726,7 +1726,7 @@ Model {
 	  Name			  "Set Torques"
 	  SID			  "711"
 	  Ports			  [1]
-	  Position		  [1800, 488, 1870, 532]
+	  Position		  [1830, 523, 1900, 567]
 	  ZOrder		  224
 	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
 	  LibraryVersion	  "1.191"
@@ -1891,7 +1891,6 @@ Model {
 	      Ports		      [5]
 	      Position		      [770, 429, 820, 571]
 	      ZOrder		      241
-	      Commented		      on
 	      Floating		      off
 	      Location		      [2, 90, 1680, 1020]
 	      Open		      off
@@ -2833,7 +2832,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "controller_QP"
-	    Location		    [49, 266, 1571, 1197]
+	    Location		    [0, 27, 1680, 1023]
 	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -3042,7 +3041,6 @@ Model {
 	      Ports		      [1]
 	      Position		      [820, 825, 890, 1055]
 	      ZOrder		      241
-	      Commented		      on
 	      Floating		      off
 	      Location		      [2, 90, 1680, 1020]
 	      Open		      off
@@ -3736,7 +3734,7 @@ Model {
 	      }
 	      System {
 		Name			"QPsolver - no constraints"
-		Location		[49, 266, 1571, 1197]
+		Location		[0, 27, 1680, 1023]
 		Open			on
 		ModelBrowserVisibility	on
 		ModelBrowserWidth	200
@@ -3748,7 +3746,7 @@ Model {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"100"
+		ZoomFactor		"125"
 		Block {
 		  BlockType		  Inport
 		  Name			  "[quad,lin]"
@@ -4581,7 +4579,7 @@ Model {
 	  Name			  "emergency stop: joint limits"
 	  SID			  "799"
 	  Ports			  [3]
-	  Position		  [1245, 272, 1345, 318]
+	  Position		  [1415, 272, 1520, 318]
 	  ZOrder		  245
 	  ForegroundColor	  "[0.901961, 0.000000, 0.000000]"
 	  BackgroundColor	  "[0.901961, 0.000000, 0.000000]"
@@ -4595,7 +4593,7 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "emergency stop: joint limits"
-	    Location		    [11, 35, 1691, 1058]
+	    Location		    [0, 27, 1680, 1023]
 	    Open		    on
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
@@ -5254,7 +5252,7 @@ Model {
 	  Name			  "trajectoryGeneratorCoM"
 	  SID			  "779"
 	  Ports			  [5, 1]
-	  Position		  [1180, 932, 1320, 1018]
+	  Position		  [1075, 932, 1215, 1018]
 	  ZOrder		  241
 	  ShowName		  off
 	  LibraryVersion	  "1.32"
@@ -5573,6 +5571,7 @@ Model {
 	Line {
 	  SrcBlock		  "controller_QP"
 	  SrcPort		  1
+	  Points		  [37, 0; 0, 35]
 	  DstBlock		  "Set Torques"
 	  DstPort		  1
 	}

@@ -1,8 +1,14 @@
 %WBC ASW
  clear all
+ 
+setenv('YARP_ROBOT_NAME', 'iCubGenova03');
+robotName = 'icub';
+localName = 'balancing';
+ROBOT_DOF = 15;
+
 
 % Controller period
-Ts                = 0.01; 
+Ts                = 0.01;
 simulationTime    = inf;
 noOscillationTime = 0;
  
@@ -34,8 +40,8 @@ gainMomentum           = 1 ;
 % 
 impTorso            = [   80    20   10
                            0     0    0]; 
-impArms             = [ 8    8    8   8   8
-                        0    0    0   0   0];
+impArms             = [ 8    8    8   8   
+                        0    0    0   0   ];
 impLegs             = [35   70    0      350    350  10
                          0    0   0        0      0   0]; 
 impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
@@ -51,11 +57,11 @@ impedencesSat       = [80   100    400];
 
 
 kpTorso            =   [ 30   30    30]; 
-kpArms             =   [200  200   200   200   150];
+kpArms             =   [200  200   200   200   ];
 kpLegs             =   [ 35   70    20   300   100  10]; 
 
 kdTorso            = [ 1     1     1]; 
-kdArms             = [ 1     1     1     1     1 ];
+kdArms             = [ 1     1     1     1      ];
 kdLegs             = [ 1     1     1     1     1     1]; 
 
 kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1,:)
