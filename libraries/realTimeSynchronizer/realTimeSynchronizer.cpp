@@ -1,8 +1,6 @@
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME  realTimeSynchronizer
 
-#define TIME_SCALE_FACTOR(S) ssGetSFcnParam(S,0)
-
 #include <stdlib.h>
 /*
  * Need to include simstruc.h for the definition of the SimStruct and
@@ -16,11 +14,10 @@
  *  ---------------------------------------------------------------
  */
 #include <time.h>
-#include <boost/concept_check.hpp>
+
 
 static void mdlInitializeSizes(SimStruct *S)
 {
-
    ssSetNumSFcnParams(S, 1);  /* Number of expected parameters */
 
    if (ssGetNumSFcnParams(S) != ssGetSFcnParamsCount(S)) return;
@@ -65,32 +62,35 @@ static void mdlStart(SimStruct *S)
         return;
     }
     threadPeriod->tv_sec = 0;
-    threadPeriod->tv_nsec = 10e+6;
+    threadPeriod->tv_nsec = 10e+6; //10ms
     ssSetPWorkValue(S, 0, threadPeriod);
 }
 
-static timespec computeDiffTime(timespec start, timespec end)
+//Hp: end > start
+static inline timespec computeDiffTime(timespec start, timespec end)
 {
-    timespec temp;
+    timespec result;
     if (end.tv_nsec - start.tv_nsec < 0) {
-        temp.tv_sec = end.tv_sec - start.tv_sec - 1;
-        temp.tv_nsec = 1e+9 + end.tv_nsec - start.tv_nsec;
+        result.tv_sec = end.tv_sec - start.tv_sec - 1;
+        result.tv_nsec = 1e+9 + end.tv_nsec - start.tv_nsec;
     } else {
-        temp.tv_sec = end.tv_sec - start.tv_sec;
-        temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+        result.tv_sec = end.tv_sec - start.tv_sec;
+        result.tv_nsec = end.tv_nsec - start.tv_nsec;
     }
-    return temp;
+    return result;
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     static short firstLoop = 1;
     static timespec previousTime;
+    static timespec firstTime;
     int returnValue = 0;
     if (firstLoop) {
         //initialization logic
         firstLoop = 0;
         returnValue = clock_gettime(CLOCK_REALTIME, &previousTime);
+        firstTime = previousTime;
     }
     timespec *threadPeriod = (timespec*)ssGetPWorkValue(S, 0);
     
@@ -98,19 +98,29 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     timespec currentTime;
     returnValue = clock_gettime(CLOCK_REALTIME, &currentTime);
     
+    timespec timeSinceStart = computeDiffTime(firstTime, currentTime);
+    mexPrintf("Time is %ld-%ld\n", timeSinceStart.tv_sec, (long int)((long double)timeSinceStart.tv_nsec * 1e-6));
+    
     //compute diff time
-    //FIXME: DOES NOT WORK
     timespec diffTime = computeDiffTime(previousTime, currentTime);
+    mexPrintf("%ld-%ld - %ld-%ld => %ld-%ld\n", currentTime.tv_sec, currentTime.tv_nsec, previousTime.tv_sec, previousTime.tv_nsec, diffTime.tv_sec, diffTime.tv_nsec);
     diffTime.tv_sec = threadPeriod->tv_sec - diffTime.tv_sec;
-    diffTime.tv_sec = threadPeriod->tv_nsec - diffTime.tv_nsec;
-//     diffTime.tv_sec =  previousTime.tv_sec - currentTime.tv_sec + threadPeriod->tv_sec;
-//     diffTime.tv_nsec = previousTime.tv_nsec - currentTime.tv_nsec + threadPeriod->tv_nsec;
+    diffTime.tv_nsec = threadPeriod->tv_nsec - diffTime.tv_nsec;
     
 
     //sleep for the remaining time
     timespec unsleptAmount;
-    mexPrintf("Sleeping for %ld-%ld\n", diffTime.tv_sec, diffTime.tv_nsec);
+    mexPrintf("Sleeping for %ld[s]-%ld[ms]-%ld[us]\n", diffTime.tv_sec, (diffTime.tv_nsec/1000000), (diffTime.tv_nsec/1000));
+//     diffTime.tv_sec = 0;
+//     diffTime.tv_nsec = 600e+6;
+    
+//     timespec tempPrev, tempAfter;
+//     returnValue = clock_gettime(CLOCK_REALTIME, &tempPrev);
     returnValue = nanosleep(&diffTime, &unsleptAmount);
+//     returnValue = clock_gettime(CLOCK_REALTIME, &tempAfter);
+//     timespec tempDiff = computeDiffTime(tempPrev, tempAfter);
+//     mexPrintf("----------------TEMP%ld-%ld\n", tempDiff.tv_sec, tempDiff.tv_nsec);
+    
     if (returnValue < 0) {
         //an error occurred
         //TODO: handle this case
