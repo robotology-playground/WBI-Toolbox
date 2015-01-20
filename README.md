@@ -3,15 +3,14 @@ Whole Body Interface Toolbox (WBI-Toolbox) - A Simulink Wrapper for Whole Body C
 -------------------------------------------------------------
 
 
-### :new: THE FOLLOWING NOTES APPLY ONLY TO THE new_wbi_ID BRANCH OF THIS REPOSITORY :exclamation: :exclamation: :exclamation:
-To illustrate the process of using the WBI-Toolbox in the branch new_wbi_ID, let us try to run the model `$CODYCO_SUPERBUILD_DIR/main/WBIToolbox/controllers/tests/COMPoseTesting.mdl` with iCub on the Gazebo simulator. 
-* First make sure the following are in their `new_wbi_ID` branch whenever it applies:
+To illustrate the process of using the WBI-Toolbox, let us try to run the model `$CODYCO_SUPERBUILD_DIR/main/WBIToolbox/controllers/tests/COMPoseTesting.mdl` with iCub on the Gazebo simulator. 
+* First make sure the following are in their `master` branch whenever it applies:
     * `codyco-superbuild`
     * `iDynTree`
     * `wholeBodyInterface`
     * `yarpWholeBodyInterface`
     * `WBIToolbox`
-* In the new version of the toolbox you first need to define the environmental variable `YARP_ROBOT_NAME` in `~/.bashrc` with the actual name of your robot, e.g. `$YARP_ROBOT_NAME=icubGazeboSim`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `$YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
+* In the new version (v0.2) of the toolbox you first need to define the environmental variable `YARP_ROBOT_NAME` in `~/.bashrc` with the actual name of your robot, e.g. `$YARP_ROBOT_NAME=icubGazeboSim`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `$YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
 For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This allows the WBI-Toolbox to be used not only with `iCubGenova0X`. It has been tested so far with `iCubHeidelberg01` and `COMAN`.
 
 * As usual, launch a `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
