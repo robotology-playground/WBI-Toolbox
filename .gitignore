@@ -13,3 +13,5 @@ slprj/
 *.autosave
 *.original
 *~
+.DS_Store
+
