@@ -13,7 +13,6 @@ find_package(ICUB                   REQUIRED)
 find_package(Eigen3                 REQUIRED)
 find_package(TinyXML                REQUIRED)
 find_package(iDynTree               REQUIRED)
-find_package(paramHelp              REQUIRED)
 find_package(wholeBodyInterface     REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
 
@@ -32,12 +31,6 @@ source_group("Header Files" FILES ${folder_header})
 include(iCubHelpers)
 include(iCubOptions)
 
-# Check if externl torque control is to be used
-if (CODYCO_ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL)
-    message("Adding external torque control.")
-    add_definitions(-DWBI_ICUB_COMPILE_PARAM_HELP)
-endif()
-
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")
 
 
@@ -46,7 +39,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include
                     ${wholeBodyInterface_INCLUDE_DIRS}
                     ${wholeBodyInterfaceIcub_INCLUDE_DIRS}
                     ${iDynTree_INCLUDE_DIRS}
-                    ${paramHelp_INCLUDE_DIRS}
                     ${skinDynLib_INCLUDE_DIRS}
                     ${ctrlLib_INCLUDE_DIRS}
                     ${EIGEN3_INCLUDE_DIR})
@@ -100,10 +92,8 @@ endif(WIN32)
 target_link_libraries(${PROJECTNAME}
 ${wholeBodyInterface_LIBRARIES}
 ${yarpWholeBodyInterface_LIBRARIES}
-${paramHelp_LIBRARIES}
 ${iDynTree_LIBRARIES}
 ${YARP_LIBRARIES}
-# ${ICUB_LIBRARIES}
 ${MATLAB_LIBRARIES}
 ${skinDynLib_LIBRARIES}
 ${ctrlLib_LIBRARIES}
