@@ -9,11 +9,7 @@
 #include "simstruc.h"
 #include <mex.h>
 
-/*
- *  Include the standard ANSI C header for handling time functions:
- *  ---------------------------------------------------------------
- */
-#include <time.h>
+#include <yarp/os/Time.h>
 
 
 static void mdlInitializeSizes(SimStruct *S)
@@ -30,9 +26,9 @@ static void mdlInitializeSizes(SimStruct *S)
    if (!ssSetNumOutputPorts(S, 0)) return;
    
    ssSetNumSampleTimes(S, 1);
-   ssSetNumRWork(S, 0);
+   ssSetNumRWork(S, 1);
    ssSetNumIWork(S, 0);
-   ssSetNumPWork(S, 1);
+   ssSetNumPWork(S, 0);
    ssSetNumModes(S, 0);
    ssSetNumNonsampledZCs(S, 0);
    ssSetOptions(S, 0);
@@ -55,93 +51,52 @@ static void mdlStart(SimStruct *S)
         return;
     }
     //use this period
-    //convert into timespec structure
-    timespec *threadPeriod = (timespec*)malloc(sizeof(timespec));
-    if (!threadPeriod) {
-        //TODO: return an error
-        return;
-    }
-    threadPeriod->tv_sec = 0;
-    threadPeriod->tv_nsec = 10e+6; //10ms
-    ssSetPWorkValue(S, 0, threadPeriod);
-}
-
-//Hp: end > start
-static inline timespec computeDiffTime(timespec start, timespec end)
-{
-    timespec result;
-    if (end.tv_nsec - start.tv_nsec < 0) {
-        result.tv_sec = end.tv_sec - start.tv_sec - 1;
-        result.tv_nsec = 1e+9 + end.tv_nsec - start.tv_nsec;
-    } else {
-        result.tv_sec = end.tv_sec - start.tv_sec;
-        result.tv_nsec = end.tv_nsec - start.tv_nsec;
-    }
-    return result;
+    ssSetRWorkValue(S, 0, *threadPeriodInput);
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     static short firstLoop = 1;
-    static timespec previousTime;
-    static timespec firstTime;
-    int returnValue = 0;
+    static double previousTime = yarp::os::Time::now();
+    static double firstTime;
     if (firstLoop) {
         //initialization logic
         firstLoop = 0;
-        returnValue = clock_gettime(CLOCK_REALTIME, &previousTime);
         firstTime = previousTime;
     }
-    timespec *threadPeriod = (timespec*)ssGetPWorkValue(S, 0);
+    double threadPeriod = ssGetRWorkValue(S, 0); //move to double
     
     //read current time
-    timespec currentTime;
-    returnValue = clock_gettime(CLOCK_REALTIME, &currentTime);
-    
-    timespec timeSinceStart = computeDiffTime(firstTime, currentTime);
-    mexPrintf("Time is %ld-%ld\n", timeSinceStart.tv_sec, (long int)((long double)timeSinceStart.tv_nsec * 1e-6));
+    double currentTime = yarp::os::Time::now();
+
+    double timeSinceStart = currentTime - firstTime;
+    mexPrintf("Time is %lf\n", timeSinceStart);
     
     //compute diff time
-    timespec diffTime = computeDiffTime(previousTime, currentTime);
-    mexPrintf("%ld-%ld - %ld-%ld => %ld-%ld\n", currentTime.tv_sec, currentTime.tv_nsec, previousTime.tv_sec, previousTime.tv_nsec, diffTime.tv_sec, diffTime.tv_nsec);
-    diffTime.tv_sec = threadPeriod->tv_sec - diffTime.tv_sec;
-    diffTime.tv_nsec = threadPeriod->tv_nsec - diffTime.tv_nsec;
+    double diffTime = currentTime - previousTime;
+    mexPrintf("%lf - %lf => %lf\n", currentTime, previousTime, diffTime);
+    diffTime = threadPeriod - diffTime;
     
 
     //sleep for the remaining time
-    timespec unsleptAmount;
-    mexPrintf("Sleeping for %ld[s]-%ld[ms]-%ld[us]\n", diffTime.tv_sec, (diffTime.tv_nsec/1000000), (diffTime.tv_nsec/1000));
+    mexPrintf("Sleeping for %lf[s]\n", diffTime);
 //     diffTime.tv_sec = 0;
 //     diffTime.tv_nsec = 600e+6;
     
 //     timespec tempPrev, tempAfter;
 //     returnValue = clock_gettime(CLOCK_REALTIME, &tempPrev);
-    returnValue = nanosleep(&diffTime, &unsleptAmount);
+    yarp::os::Time::delay(diffTime);
 //     returnValue = clock_gettime(CLOCK_REALTIME, &tempAfter);
 //     timespec tempDiff = computeDiffTime(tempPrev, tempAfter);
 //     mexPrintf("----------------TEMP%ld-%ld\n", tempDiff.tv_sec, tempDiff.tv_nsec);
-    
-    if (returnValue < 0) {
-        //an error occurred
-        //TODO: handle this case
-        mexPrintf("Waken up\n");
-        mexPrintf("Remaining %ld-%ld\n", unsleptAmount.tv_sec, unsleptAmount.tv_nsec);
-    }
-    else 
-        mexPrintf("Correctly waken up\n");
-    
-    
+
     previousTime = currentTime;
 
 }
 
 static void mdlTerminate(SimStruct *S)
 {
-    timespec *threadPeriod = (timespec*)ssGetPWorkValue(S, 0);
-    if (threadPeriod) {
-        free(threadPeriod);
-        threadPeriod = NULL;
-    }
+    UNUSED_ARG(S);
 }
 
 /*
