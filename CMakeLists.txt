@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
+project(WBI-Toolbox)
 
 #On new versions of Clang, MATLAB requires C++11.
 #I enable it on all Clangs
