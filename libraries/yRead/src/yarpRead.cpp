@@ -99,7 +99,7 @@ static void mdlInitializeSizes(SimStruct *S)
     for (int i = 0; i < SIZE_READING_PORT; i++)
     {
         ssSetOutputPortWidth   (S, i, 1);
-        ssSetOutputPortDataType(S, i, 0);
+        ssSetOutputPortDataType(S, i, SS_DOUBLE);
     }
     
     
@@ -223,7 +223,7 @@ static void mdlStart(SimStruct *S)
     cout << "Timestamp? : " << timestamp << endl;
     ssGetIWork(S)[1] = timestamp;
     
-    Network::connect(port_name,toPortName);
+    fprintf(stderr, "Connecting '%s' to '%s': result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
 }
 
 // Function: mdlOutputs =======================================================
@@ -259,6 +259,9 @@ static void mdlOutputs(SimStruct *S, int_T tid)
             }
         }
     }
+//     else {
+//       fprintf(stderr,"Cannot read port %s\n", toPort->getName().c_str());
+//     }
 }
 
 static void mdlTerminate(SimStruct *S)
