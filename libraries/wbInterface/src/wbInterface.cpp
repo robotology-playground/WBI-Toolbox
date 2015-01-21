@@ -440,8 +440,8 @@ Vector robotStatus::getEEWrench() {
     return EEWrench;
 }
 //=========================================================================================================================
-bool robotStatus::setCtrlMode (ControlMode ctrl_mode, Vector* reference) {
-    if (wbInterface->setControlMode (ctrl_mode, reference != 0 ? reference->data() : 0)) {
+bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
+    if (wbInterface->setControlMode (ctrl_mode)) {
         return true;
     } else {
         fprintf (stderr, "ERR [robotStatus::setCtrlMode] >> Control mode could not be set\n");
@@ -449,7 +449,7 @@ bool robotStatus::setCtrlMode (ControlMode ctrl_mode, Vector* reference) {
     }
 }
 //=========================================================================================================================
-bool robotStatus::setCtrlMode(ControlMode ctrl_mode, Vector* reference, int dof, double constRefSpeed)
+bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpeed)
 {
     if(ctrl_mode == wbi::CTRL_MODE_POS && dof > 0) {
         Vector refSpeed (dof, constRefSpeed);
@@ -458,7 +458,13 @@ bool robotStatus::setCtrlMode(ControlMode ctrl_mode, Vector* reference, int dof,
             return false;
         }
     }
-    return setCtrlMode(ctrl_mode, reference);
+
+    if (!wbInterface->setControlMode (ctrl_mode)) {
+        fprintf (stderr, "[ERR] robotStatus::setCtrlMode : Position mode could not be set\n");
+        return false;
+    } else {
+        return true;
+    }
 }
 
 //=========================================================================================================================
@@ -1344,33 +1350,34 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
         
         if (btype == VELOCITY_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL, &refTmp)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL)) {
                 fprintf(stderr, "[ERR] Error sending velocity reference\n");
                 ssSetErrorStatus (S, "[ERR] Error sending velocity reference");
                 return;
             }
         }
         if (btype == POSITION_DIRECT_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_DIRECT_POSITION, &refTmp)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_DIRECT_POSITION)) {
                 fprintf(stderr, "[ERR] Error sending position direct references\n" );
                 ssSetErrorStatus(S, "[ERR] Error sending position direct references");
                 return;
             }
         }
         if (btype == POSITION_CONTROL_REF_BLOCK) {
-            if(!robot->setCtrlMode (wbi::CTRL_MODE_POS, &refTmp, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
+            if(!robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
                 fprintf(stderr,"[ERR] Error setting position control mode\n");
                 ssSetErrorStatus(S, "[ERR] Error setting position control mode");
                 return;
             }
         }
         if (btype == TORQUE_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_TORQUE, &refTmp)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_TORQUE)) {
                 fprintf(stderr, "[ERR] Error sending toruqe control references \n");
                 ssSetErrorStatus(S, "[ERR] Error sending toruqe control references");
                 return;
             }
         }
+        robot->setRefDes (refTmp);
     }
 
 
@@ -1835,7 +1842,7 @@ static void mdlTerminate (SimStruct* S) {
             maxJntLimits = (double*)ssGetPWork(S)[2];
             yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[3];
 
-            robot->setCtrlMode(wbi::CTRL_MODE_POS, 0, ROBOT_DOF, CTRL_DEG2RAD * 0.0);
+            robot->setCtrlMode(wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD * 0.0);
             printf ("ctrl mode set\n");
             delete robot;
             printf ("robot deleted\n");
@@ -1870,6 +1877,5 @@ static void mdlTerminate (SimStruct* S) {
 #else
 #include "cg_sfun.h"       /* Code generation registration function */
 #endif
-
 
 

@@ -210,8 +210,8 @@ public:
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
-    bool                setCtrlMode (wbi::ControlMode ctrl_mode, yarp::sig::Vector* reference = 0);
-    bool                setCtrlMode (wbi::ControlMode ctrl_mode, yarp::sig::Vector* reference, int dof, double constRefSpeed);
+    bool                setCtrlMode (wbi::ControlMode ctrl_mode);
+    bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
     void                setRefDes (yarp::sig::Vector refDes);
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
     bool                dynamicsMassMatrix (double* qrad_input);
