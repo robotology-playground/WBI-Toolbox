@@ -47,6 +47,7 @@ add_subdirectory(yRead)
 add_subdirectory(yWrite)
 add_subdirectory(softRealTime)
 add_subdirectory(ySynchronizer)
+add_subdirectory(realTimeSynchronizer)
 
 set(WBI-TOOLBOX_SHARE_DIR "${CMAKE_INSTALL_PREFIX}/share/WBI-Toolbox")
 set(WBI-TOOLBOX_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../")
