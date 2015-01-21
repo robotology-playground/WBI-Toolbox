@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
+project(WBI-Toolbox)
 
 option(CODYCO_USES_URDFDOM "Compile WBI-Toolbox with URDF support" TRUE)
 option(CODYCO_ICUBWBI_USE_EXTERNAL_TORQUE_CONTROL "Compile yarpwholebodyinterface to use JTC external torque control" FALSE)
