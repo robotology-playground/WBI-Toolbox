@@ -45,8 +45,8 @@ static void mdlInitializeSizes(SimStruct *S)
     if (!ssSetNumOutputPorts(S, 0)) return;
 
     ssSetNumSampleTimes(S, 1);
-    ssSetNumRWork(S, 1);
-    ssSetNumIWork(S, 0);
+    ssSetNumRWork(S, 2);
+    ssSetNumIWork(S, 1);
     ssSetNumPWork(S, 0);
     ssSetNumModes(S, 0);
     ssSetNumNonsampledZCs(S, 0);
@@ -76,25 +76,32 @@ static void mdlStart(SimStruct *S)
     }
     //use this period
     ssSetRWorkValue(S, 0, *threadPeriodInput);
+    ssSetIWorkValue(S, 0, 0); //counter
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    static double previousTime = yarp::os::Time::now();
+    int_T counter = ssGetIWorkValue(S, 0);
+    double initialTime = 0;
+    if (counter == 0) {
+        initialTime = yarp::os::Time::now();
+        ssSetRWorkValue(S, 1, initialTime);
+    } else {
+        initialTime = ssGetRWorkValue(S, 1);
+    }
     double threadPeriod = ssGetRWorkValue(S, 0);
 
     //read current time
-    double currentTime = yarp::os::Time::now();
+    double currentTime = yarp::os::Time::now() - initialTime;
+    double desiredTime = counter * threadPeriod;
 
-    //compute diff time
-    double diffTime = currentTime - previousTime;
-    diffTime = threadPeriod - diffTime;
+    double sleepPeriod = desiredTime - currentTime;
 
     //sleep for the remaining time
-    if (diffTime > 0)
-        yarp::os::Time::delay(diffTime);
+    if (sleepPeriod > 0)
+        yarp::os::Time::delay(sleepPeriod);
 
-    previousTime = yarp::os::Time::now();
+    ssSetIWorkValue(S, 0, counter + 1);
 }
 
 static void mdlTerminate(SimStruct *S)
