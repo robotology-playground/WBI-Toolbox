@@ -46,7 +46,7 @@
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
 
-#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface_jtc.ini"
+#define DEFAULT_CONFIG_FILE "yarpWholeBodyInterface.ini"
 #define DEFAULT_WBIT_CONTEXT "wbit"
 
 // Need to include simstruc.h for the definition of the SimStruct and its associated macro definitions.
@@ -210,7 +210,7 @@ public:
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
-    bool                setCtrlMode (wbi::ControlMode ctrl_mode);
+    bool                setCtrlMode (wbi::ControlMode ctrl_mode, yarp::sig::Vector *references = 0);
     bool                setCtrlMode (wbi::ControlMode ctrl_mode, int dof, double constRefSpeed);
     void                setRefDes (yarp::sig::Vector refDes);
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);

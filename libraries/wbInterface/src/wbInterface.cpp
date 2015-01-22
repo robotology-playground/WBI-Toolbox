@@ -440,8 +440,8 @@ Vector robotStatus::getEEWrench() {
     return EEWrench;
 }
 //=========================================================================================================================
-bool robotStatus::setCtrlMode (ControlMode ctrl_mode) {
-    if (wbInterface->setControlMode (ctrl_mode)) {
+bool robotStatus::setCtrlMode (ControlMode ctrl_mode, Vector *references) {
+    if (wbInterface->setControlMode (ctrl_mode, (references ? references->data() : 0))) {
         return true;
     } else {
         fprintf (stderr, "ERR [robotStatus::setCtrlMode] >> Control mode could not be set\n");
@@ -459,18 +459,13 @@ bool robotStatus::setCtrlMode(ControlMode ctrl_mode, int dof, double constRefSpe
         }
     }
 
-    if (!wbInterface->setControlMode (ctrl_mode)) {
-        fprintf (stderr, "[ERR] robotStatus::setCtrlMode : Position mode could not be set\n");
-        return false;
-    } else {
-        return true;
-    }
+    return setCtrlMode(ctrl_mode);
 }
 
 //=========================================================================================================================
 void robotStatus::setRefDes (Vector refDes) {
 #ifdef DEBUG
-    fprintf (stderr, "robotStatus::setdqDes >> control reference to be sent is: \n%s\n", refDes.toString().c_str());
+    fprintf (stderr, "robotStatus::setRefDes >> control reference to be sent is: \n%s\n", refDes.toString().c_str());
 #endif
     if (!wbInterface->setControlReference (refDes.data()))
         fprintf (stderr, "ERR [robotStatus::setRefDes] control reference could not be set.\n");
@@ -1350,14 +1345,14 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
         
         if (btype == VELOCITY_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL, &refTmp)) {
                 fprintf(stderr, "[ERR] Error sending velocity reference\n");
                 ssSetErrorStatus (S, "[ERR] Error sending velocity reference");
                 return;
             }
         }
         if (btype == POSITION_DIRECT_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_DIRECT_POSITION)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_DIRECT_POSITION, &refTmp)) {
                 fprintf(stderr, "[ERR] Error sending position direct references\n" );
                 ssSetErrorStatus(S, "[ERR] Error sending position direct references");
                 return;
@@ -1371,7 +1366,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             }
         }
         if (btype == TORQUE_CONTROL_REF_BLOCK) {
-            if (!robot->setCtrlMode (wbi::CTRL_MODE_TORQUE)) {
+            if (!robot->setCtrlMode (wbi::CTRL_MODE_TORQUE, &refTmp)) {
                 fprintf(stderr, "[ERR] Error sending toruqe control references \n");
                 ssSetErrorStatus(S, "[ERR] Error sending toruqe control references");
                 return;
