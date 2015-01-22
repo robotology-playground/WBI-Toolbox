@@ -1,10 +1,10 @@
 %WBC ASW
  clear all
  
-setenv('YARP_ROBOT_NAME', 'iCubGenova03');
+setenv('YARP_ROBOT_NAME', 'iCubGenova01');
 robotName = 'icub';
 localName = 'balancing';
-ROBOT_DOF = 15;
+ROBOT_DOF = 23;
 
 
 % Controller period
@@ -38,7 +38,7 @@ gainMomentum           = 1 ;
 
 
 % 
-impTorso            = [   80    20   10
+impTorso            = [   60    20   10
                            0     0    0]; 
 impArms             = [ 8    8    8   8   
                         0    0    0   0   ];
@@ -67,10 +67,15 @@ kdLegs             = [ 1     1     1     1     1     1];
 kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1,:)
                        kdTorso(1,:),kdArms(1,:),kdArms(1,:),kdLegs(1,:),kdLegs(1,:)]*0;
 
-directionOfOscillation = [0;1;0];
-referenceParams        = [0.05 0.25];  %referenceParams(1) = amplitude of ascillations in meters
-                                       %referenceParams(2) = frequency of ascillations in hertz
-
+                   
+DEMO_LEFT_AND_RIGHT = 0;
+if (DEMO_LEFT_AND_RIGHT == 1)
+    directionOfOscillation = [0;1;0];
+    referenceParams        = [0.05 0.25];  %referenceParams(1) = amplitude of ascillations in meters
+else                                      %referenceParams(2) = frequency of ascillations in hertz
+    directionOfOscillation = [0;1;0];
+    referenceParams        = [0.0  0.0];  %referenceParams(1) = amplitude of ascillations in meters
+end
 %% Parameters for QP
 number_of_feet_on_ground = 2;
 init_conditions_QP   = zeros(6*number_of_feet_on_ground,1);
