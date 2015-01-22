@@ -122,27 +122,31 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
           ResourceFinder rf;
           rf.setVerbose (true);
           rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
-          //TODO In this deafult context I should find the right configuration files per robot... Remember to add
-//           rf.setDefaultContext (DEFAULT_WBIT_CONTEXT);
+          rf.setDefaultContext (DEFAULT_WBI_T_CONTEXT);
 
           //NOTE We call rf.configure() this way since we don't have a command line to read commands from
+          //  rf gets configured with WBI-T options only!! options for yarpWholeBodyInterface are loaded later below.
           if (!rf.configure (0, 0)) {
             fprintf(stderr,"ResourceFinder could not be configured\n");
             return false;
           }
 
-          std::string wbiConfFile = rf.findFile(DEFAULT_CONFIG_FILE);
-          fprintf(stderr,"robotStatus::robotConfig >> wbiConfFile is: %s\n",wbiConfFile.c_str());
-          if(!yarpWbiOptions->fromConfigFile(wbiConfFile)){
-            fprintf(stderr,"ERR [robotStatus::robotConfig] An error occurred while interpreting the list of properties. \n");
+          //BEGINS yarpWholeBodyInterface options configuration
+          ConstString wbiConfFileName = rf.find("wbi_config_file").asString();
+          std::string wbiConfFileFullPath = rf.findFile(wbiConfFileName);
+          fprintf(stderr,"robotStatus::robotConfig >> wbiConfFileFullPath is: %s\n",wbiConfFileFullPath.c_str());
+          if(!yarpWbiOptions->fromConfigFile(wbiConfFileFullPath)){
+            fprintf(stderr,"ERR [robotStatus::robotConfig] An error occurred while interpreting the list of properties for yarpWholeBodyInterface. \n");
             return false;
           }
           else{
-            fprintf(stderr,"[robotStatus::robotConfig] List of properties was interpreted correctly\n");
+            fprintf(stderr,"[robotStatus::robotConfig] List of properties for yarpWholeBodyInterface was interpreted correctly\n");
           }
-
-          // Overwrite robotName by what the user inputs from MATLAB's command line
-          yarpWbiOptions->put("robot", robotStatus::robotName);
+          //ENDS yarpWholeBodyInterface options configuration
+          
+          // First add WBI-T options that were read by rf, then overwrite robot and localName by what the user inputs from MATLAB's command line
+          yarpWbiOptions->fromString(rf.toString(),false);          
+          yarpWbiOptions->put("robot",     robotStatus::robotName);
           yarpWbiOptions->put("localName", robotStatus::moduleName);
 
           ConstString robotNamefromConfigFile               = yarpWbiOptions->find ("robot").asString();
@@ -150,11 +154,11 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
           std::string worldRefFrame                         = yarpWbiOptions->find ("worldRefFrame").asString();
           std::string robotMainJointsListNameFromConfigFile = yarpWbiOptions->find ("wbi_id_list").asString();
 
-        if (rf.check ("robot_fixed")) {
-            if (rf.find ("robot_fixed").isBool())
-                robot_fixed = rf.find ("robot_fixed").asBool();
+        if (yarpWbiOptions->check ("robot_fixed")) {
+            if (yarpWbiOptions->find ("robot_fixed").isBool())
+                robot_fixed = yarpWbiOptions->find ("robot_fixed").asBool();
             else {
-                fprintf (stderr, "ERR [robotStatus::robotConfig] Wrong robot_fixed in the config file!\n");
+                fprintf (stderr, "ERR [robotStatus::robotConfig] Wrong robot_fixed format in the config file!\n");
                 return false;
             }
         } else {
@@ -838,27 +842,33 @@ static void mdlInitializeSizes (SimStruct* S) {
     //NOTE This resource finder takes the right parameters from configuration file and passes them to a PWork vector.
     ResourceFinder rf;
     rf.setVerbose (false);
-    rf.setDefaultConfigFile ("yarpWholeBodyInterface.ini");
-    rf.setDefaultContext ("iCubGenova03");
+    rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
+    rf.setDefaultContext (DEFAULT_WBI_T_CONTEXT);
 
     if (!rf.configure (0, 0)) {
       printf("Problems in the configuration of the ResourceFinder\n");
       printf("[ERR] mdlInitializeSizes: It was not possible to configure the ResourceFinder\n");
-      ssSetErrorStatus(S,"It was not possible to configure the ResourceFinder");
+      ssSetErrorStatus(S,"It was not possible to configure the ResourceFinder to  obtain ROBOT_DOF");
       return;
     }
 
+    //BEGINS yarpWholeBodyInterface options configuration
     yarp::os::Property yarpWbiOptions;
-    std::string wbiConfFile = rf.findFile(DEFAULT_CONFIG_FILE);
-    if (!yarpWbiOptions.fromConfigFile(wbiConfFile)) {
-      printf("[ERR] mdlInitializeSizes: impossible to read from configuration file. Maybe yarpWholeBodyInterface was not installed?\n");
-      ssSetErrorStatus(S, "impossible to read from configuration file. Maybe yarpWholeBodyInterface was not installed? or the configuration file is empty.");
-      return;
+    ConstString wbiConfFileName = rf.find("wbi_config_file").asString();
+    fprintf(stderr, "mdlInitializeSizes >> wbiConfFileName %s \n", wbiConfFileName.c_str());
+    std::string wbiConfFileFullPath = rf.findFile(wbiConfFileName);
+    fprintf(stderr,"mdlInitializeSizes >> wbiConfFileFullPath is: %s\n",wbiConfFileFullPath.c_str());
+    if(!yarpWbiOptions.fromConfigFile(wbiConfFileFullPath)){
+        fprintf(stderr,"ERR mdlInitializeSizes >> An error occurred while interpreting the list of properties for yarpWholeBodyInterface. \n");
+        ssSetErrorStatus(S, "mdlInitializeSizes >> An error occurred while interpreting the list of properties for yarpWholeBodyInterface.");
+        return;
     }
-
-    ConstString robotNamefromConfigFile = yarpWbiOptions.find ("robotName").asString();
-    ConstString localNamefromConfigFile = yarpWbiOptions.find ("localName").asString();
-    std::string worldRefFrame           = yarpWbiOptions.find ("worldRefFrame").asString();
+    else{
+        fprintf(stderr,"mdlInitializeSizes >> List of properties for yarpWholeBodyInterface was interpreted correctly\n");
+    }
+    yarpWbiOptions.fromString(rf.toString(), false);
+    //ENDS yarpWholeBodyInterface options configuration
+    
     std::string robotMainJointsListNameFromConfigFile = yarpWbiOptions.find ("wbi_id_list").asString();
 
     // Extracting DOF from joints defined in config file.
@@ -866,7 +876,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     if( !loadIdListFromConfig(robotMainJointsListNameFromConfigFile,yarpWbiOptions,RobotDynamicModelJoints) )
     {
         fprintf(stderr, "[ERR] mdlInitializeSizes: impossible to load wbiId joint list with name %s\n",robotMainJointsListNameFromConfigFile.c_str());
-        ssSetErrorStatus(S, "impossible to load wbiId joint list");
+        ssSetErrorStatus(S, "mdlInitializeSizes >> Impossible to load wbiId joint list");
         return;
     }
 
