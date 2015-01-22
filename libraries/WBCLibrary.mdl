@@ -20,9 +20,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jan 21 18:32:32 2015"
-  RTWModifiedTimeStamp	  343765952
-  ModelVersionFormat	  "1.%<AutoIncrement:227>"
+  LastModifiedDate	  "Thu Jan 22 09:23:33 2015"
+  RTWModifiedTimeStamp	  343819413
+  ModelVersionFormat	  "1.%<AutoIncrement:228>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -810,7 +810,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "273"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1467"
+    SIDHighWatermark	    "1469"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -1071,17 +1071,20 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "Subsystem"
-	  SID			  "1466"
+	  Name			  "Real Time Synchronizer"
+	  SID			  "1468"
 	  Ports			  []
-	  Position		  [95, 285, 220, 320]
-	  ZOrder		  15
+	  Position		  [115, 260, 240, 295]
+	  ZOrder		  16
+	  ForegroundColor	  "white"
+	  BackgroundColor	  "gray"
+	  DropShadow		  on
 	  ShowName		  off
 	  Priority		  "-10"
 	  RequestExecContextInheritance	off
 	  MaskDescription	  "This block slows down the simulation trying to match the period specified as parameter (in secon"
 	  "ds).\nThe bigger the period the more probable is that Simulink can remain synched with it.\n\n\n"
-	  MaskPromptString	  "ThreadPeriod"
+	  MaskPromptString	  "Thread Period"
 	  MaskStyleString	  "edit"
 	  MaskVariables		  "threadPeriod=@1;"
 	  MaskTunableValueString  "on"
@@ -1094,9 +1097,9 @@ Library {
 	  MaskIconRotate	  "none"
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
-	  MaskValueString	  "0.01"
+	  MaskValueString	  "Ts"
 	  System {
-	    Name		    "Subsystem"
+	    Name		    "Real Time Synchronizer"
 	    Location		    [100, 100, 900, 600]
 	    Open		    off
 	    ModelBrowserVisibility  off
@@ -1113,12 +1116,12 @@ Library {
 	    Block {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
-	      SID		      "1467"
+	      SID		      "1469"
 	      Ports		      []
 	      Position		      [20, 20, 160, 60]
 	      ZOrder		      1
 	      FunctionName	      "realTimeSynchronizer"
-	      Parameters	      "0.01"
+	      Parameters	      "threadPeriod"
 	      EnableBusSupport	      off
 	    }
 	  }
@@ -12627,7 +12630,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.226"
+		  LibraryVersion	  "1.227"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -12643,7 +12646,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.226"
+		  LibraryVersion	  "1.227"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -12659,7 +12662,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.226"
+		  LibraryVersion	  "1.227"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -12675,7 +12678,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.226"
+		  LibraryVersion	  "1.227"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -12691,7 +12694,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.226"
+		  LibraryVersion	  "1.227"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -15198,7 +15201,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.226"
+	      LibraryVersion	      "1.227"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15212,7 +15215,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.226"
+	      LibraryVersion	      "1.227"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15237,7 +15240,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.226"
+	      LibraryVersion	      "1.227"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15251,7 +15254,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.226"
+	      LibraryVersion	      "1.227"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15369,7 +15372,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.226"
+	      LibraryVersion	      "1.227"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"

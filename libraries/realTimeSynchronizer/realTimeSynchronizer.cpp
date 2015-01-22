@@ -1,6 +1,15 @@
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME  realTimeSynchronizer
 
+//accessors macro
+#define setCounter(S_, counter_) ssSetIWorkValue(S_, 0, counter_)
+#define getCounter(S_) ssGetIWorkValue(S_, 0)
+#define getInitialTime(S_) ssGetRWorkValue(S_, 1)
+#define setInitialTime(S_, initialTime_) ssSetRWorkValue(S_, 1, initialTime_)
+#define getThreadPeriod(S_) ssGetRWorkValue(S_, 0)
+#define setThreadPeriod(S_, threadPeriod_) ssSetRWorkValue(S_, 0, threadPeriod_)
+
+
 #include <stdlib.h>
 /*
  * Need to include simstruc.h for the definition of the SimStruct and
@@ -69,27 +78,27 @@ static void mdlStart(SimStruct *S)
 {
     yarp::os::Time::turboBoost();
     //read the thread period parameter
-    double* threadPeriodInput = mxGetPr(ssGetSFcnParam(S, 0));
-    if (!threadPeriodInput || *threadPeriodInput <= 0) {
+    double* threadPeriod = mxGetPr(ssGetSFcnParam(S, 0));
+    if (!threadPeriod || *threadPeriod <= 0) {
         ssSetErrorStatus(S, "Thread period has not been specified.");
         return;
     }
     //use this period
-    ssSetRWorkValue(S, 0, *threadPeriodInput);
-    ssSetIWorkValue(S, 0, 0); //counter
+    setThreadPeriod(S, *threadPeriod);
+    setCounter(S, 0);
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
-    int_T counter = ssGetIWorkValue(S, 0);
+    int_T counter = getCounter(S);
     double initialTime = 0;
     if (counter == 0) {
         initialTime = yarp::os::Time::now();
-        ssSetRWorkValue(S, 1, initialTime);
+        setInitialTime(S, initialTime);
     } else {
-        initialTime = ssGetRWorkValue(S, 1);
+        initialTime = getInitialTime(S);
     }
-    double threadPeriod = ssGetRWorkValue(S, 0);
+    double threadPeriod = getThreadPeriod(S);
 
     //read current time
     double currentTime = yarp::os::Time::now() - initialTime;
@@ -101,7 +110,7 @@ static void mdlOutputs(SimStruct *S, int_T tid)
     if (sleepPeriod > 0)
         yarp::os::Time::delay(sleepPeriod);
 
-    ssSetIWorkValue(S, 0, counter + 1);
+    setCounter(S, counter + 1);
 }
 
 static void mdlTerminate(SimStruct *S)
