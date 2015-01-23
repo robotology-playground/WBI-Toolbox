@@ -42,7 +42,7 @@ impTorso            = [   60    20   10
                            0     0    0]; 
 impArms             = [ 8    8    8   8   
                         0    0    0   0   ];
-impLegs             = [35   70    0      350    350  10
+impLegs             = [ 35    0    0      350    350  10
                          0    0   0        0      0   0]; 
 impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
 increasingRatesImp  = [impTorso(2,:),impArms(2,:),impArms(2,:),impLegs(2,:),impLegs(2,:)];
