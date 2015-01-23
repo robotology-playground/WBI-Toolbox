@@ -11,7 +11,8 @@ find_package(YARP        REQUIRED)
 find_package(Matlab	 REQUIRED)
 
 if(MATLAB_FOUND)
-        message(STATUS "Matlab was found!! The configuration may continue")
+        
+        message(STATUS "Matlab ${MATLAB_VERSION} was found!! The configuration may continue")
         set(MATLAB_LIBRARIES
                 ${MATLAB_MEX_LIBRARY}
                 ${MATLAB_MX_LIBRARY}
@@ -61,5 +62,10 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/../startup_wbitoolbox.m DESTINATION ${
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/images         DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../share/tools DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/slblocks.m DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.mdl DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.slx DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+#if MAJOR >= 2014 && MINOR >= b
+if (${MATLAB_RELEASE_MAJOR} GREATER "2013" AND ${MATLAB_RELEASE_MINOR} STRGREATER "a")
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.slx DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+else()
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/WBCLibrary.mdl DESTINATION ${WBI-TOOLBOX_SHARE_DIR})
+endif()
+
