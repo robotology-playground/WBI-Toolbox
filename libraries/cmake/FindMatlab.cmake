@@ -237,9 +237,21 @@ IF(NOT MATLAB_ROOT)
         ${MATLAB_MX_LIBRARY}
         ${MATLAB_ENG_LIBRARY}
     )
-
+    
     IF(MATLAB_INCLUDE_DIR AND MATLAB_LIBRARIES)
         SET(MATLAB_FOUND 1)
+        # Find version
+        # One way is to launch matlab from command line and get the Release
+        # matlab -nojvm -r version('-release')
+        # or parse the correct path
+        IF(WIN32)
+        ELSE()
+            string(REGEX MATCH "R[0-9]+." MATLAB_RELEASE ${MATLAB_ROOT})
+            string(REGEX MATCH "R([0-9]+)(.)" MATLAB_SPLIT_RELEASE ${MATLAB_RELEASE})
+            SET(MATLAB_RELEASE_MAJOR ${CMAKE_MATCH_1})
+            SET(MATLAB_RELEASE_MINOR ${CMAKE_MATCH_2})
+        ENDIF()
+        
     ENDIF(MATLAB_INCLUDE_DIR AND MATLAB_LIBRARIES)
 
     MARK_AS_ADVANCED(

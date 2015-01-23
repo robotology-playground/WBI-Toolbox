@@ -62,6 +62,8 @@ int  counterClass::count          = 0;
 bool robotStatus::robot_fixed     = false;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
+Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
+Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
 robotStatus::robotStatus() {
     creationCounter++;
@@ -230,9 +232,14 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
           // Put robot in position mode so that in won't fall at startup assuming it's balanced in its startup position
           fprintf (stderr, "[robotStatus::robotConfig] About to set control mode\n");
           if(!setCtrlMode (CTRL_MODE_POS)) {
-          fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
-          return false;
+              fprintf(stderr,"[robotStatus::robotConfig] Position control mode could not be set\n");
+              return false;
           }
+
+        minJointLimits.resize(ROBOT_DOF);
+        maxJointLimits.resize(ROBOT_DOF);
+        wbInterface->getJointLimits(minJointLimits.data(), maxJointLimits.data());
+
       }
 
     // Initializing private variables. This must be done regardless of the new creation of wbInterface
@@ -730,15 +737,13 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
 }
 //=========================================================================================================================
 /** Returns joints limits in radians.*/
-bool robotStatus::getJointLimits (double* qminLims, double* qmaxLims, const int jnt) {
-    bool ans = false;
-    if (!wbInterface->getJointLimits (qminLims, qmaxLims, jnt)) {
-        fprintf (stderr, "ERR [robotStatus::getJointLimits] wbInterface->getJointLimits failed\n");
-        return ans;
-    } else {
-        ans = true;
-        return ans;
-    }
+bool robotStatus::getJointLimits (Eigen::Ref<Eigen::VectorXd> minLimits, Eigen::Ref<Eigen::VectorXd> maxLimits) {
+    if (minLimits.size() != robotStatus::minJointLimits.size()
+        || maxLimits.size() != robotStatus::maxJointLimits.size())
+        return false;
+    minLimits = robotStatus::minJointLimits;
+    maxLimits = robotStatus::maxJointLimits;
+    return true;
 }
 //==========================================================================================================================
 bool robotStatus::robotEEWrenches (wbi::ID LID) {
@@ -931,7 +936,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetNumSampleTimes (S, 1);
 
     // Reserve place for C++ object
-    ssSetNumPWork (S, 4);
+    ssSetNumPWork (S, 2);
 
     ssSetNumDWork (S, 2);
     ssSetDWorkWidth (S, 0, 1);
@@ -1143,7 +1148,7 @@ static void mdlStart (SimStruct* S) {
 
     yarp::os::Property* yarpWbiOptions;
     yarpWbiOptions = new yarp::os::Property;
-    ssGetPWork(S)[3] = yarpWbiOptions;
+    ssGetPWork(S)[1] = yarpWbiOptions;
     
     bool res = robot->robotConfig(yarpWbiOptions);
 
@@ -1162,23 +1167,6 @@ static void mdlStart (SimStruct* S) {
         ssSetErrorStatus (S, "ERR [mdlStart] in robotInit. \n");
         return;
     }
-
-    int ROBOT_DOF = robotStatus::getRobotDOF();
-    double* minJntLimits = new double[ROBOT_DOF];
-    double* maxJntLimits = new double[ROBOT_DOF];
-
-    if (!robot->getJointLimits (&minJntLimits[0], &maxJntLimits[0], -1)) {
-        ssSetErrorStatus (S, "ERR [mdlOutput] Joint limits could not be computed\n");
-        return;
-    }
-
-#ifdef DEBUG
-    printf ("got limits right\n");
-#endif
-
-    ssGetPWork (S) [1] = &minJntLimits[0];
-    ssGetPWork (S) [2] = &maxJntLimits[0];
-
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
     fprintf (stderr, "mdlStart >> FINISHED\n\n");
@@ -1591,27 +1579,15 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // min/max joint limits
     if (btype == JOINT_LIMITS_BLOCK) {
-        double* minJntLimits = 0;// new double[ROBOT_DOF];
-        double* maxJntLimits = 0; //new double[ROBOT_DOF];
-        // Gets joint limits for the entire body since we're still using ROBOT_DOF as default
-        if (!ssGetPWork (S) [1] & !ssGetPWork (S) [2]) {
-            ssSetErrorStatus (S, "ERR [mdlOutput] Joint limits could not be computed\n");
-            return;
-        } else {
-#ifdef DEBUG
-//             fprintf(stderr,"minJntLimits are: \n%s\n maxJntLimits are: \n%s\n", minJntLimits.toString().c_str(), maxJntLimits.toString().c_str());
-#endif
-            minJntLimits = (double*) ssGetPWork (S) [1];
-            maxJntLimits = (double*) ssGetPWork (S) [2];
-            real_T* pY11 = (real_T*) ssGetOutputPortSignal (S, 10);
-            real_T* pY12 = (real_T*) ssGetOutputPortSignal (S, 11);
-            for (int_T j = 0; j < ssGetOutputPortWidth (S, 10); j++) {
-                pY11[j] = minJntLimits[j];
-            }
-            for (int_T j = 0; j < ssGetOutputPortWidth (S, 11); j++) {
-                pY12[j] = maxJntLimits[j];
-            }
-        }
+        real_T* pY11 = (real_T*) ssGetOutputPortSignal (S, 10);
+        real_T* pY12 = (real_T*) ssGetOutputPortSignal (S, 11);
+
+        Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > minLimits(pY11, ssGetOutputPortWidth (S, 10));
+        Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > maxLimits(pY12, ssGetOutputPortWidth (S, 11));
+        if (!robot->getJointLimits(minLimits, maxLimits))
+            mexPrintf("Cannot retrieve joint limits\n");
+
+
     }
 
     // angular momentumminJntLimits
@@ -1652,7 +1628,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     // This block will retrieve force/torque estimates at the end effectors of the arms and legs of the robot
     if (btype == FORCE_TORQUE_ESTIMATE_BLOCK) {
       // Retrieve
-      yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [3];
+      yarp::os::Property* yarpWbiOptions = (yarp::os::Property*) ssGetPWork (S) [1];
       IDList jointIdLIst;
       std::string requestedJointIdList;
       wbi:ID LID; // Initializing in case we go default
@@ -1841,35 +1817,21 @@ static void mdlTerminate (SimStruct* S) {
         fprintf (stderr, "mdlTerminate >> Inside robot object %p \n", robot);
         if (robot->decreaseCounter() == 0) {
             int ROBOT_DOF = robotStatus::getRobotDOF();
-            double*      minJntLimits = 0;//new double[ROBOT_DOF];
-            double*      maxJntLimits = 0;//new double[ROBOT_DOF];
-            minJntLimits = (double*)ssGetPWork(S)[1];
-            maxJntLimits = (double*)ssGetPWork(S)[2];
-            yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[3];
+            yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[1];
 
             robot->setCtrlMode(wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD * 0.0);
             printf ("ctrl mode set\n");
             delete robot;
             printf ("robot deleted\n");
-            if (minJntLimits)
-                delete[] minJntLimits;
-            printf ("minJntLimits deleted\n");
-            if (maxJntLimits)
-                delete[] maxJntLimits;
-            printf ("maxJntLimits deleted\n");
             if (yarpWbiOptions)
                 delete yarpWbiOptions;
             printf ("yarpWbiOptions deleted\n");
             robotStatus::resetCounter();
             robot          = NULL;
-            minJntLimits   = NULL;
-            maxJntLimits   = NULL;
             yarpWbiOptions = NULL;
             printf ("all variables set to NULL\n");
             ssSetPWorkValue (S, 0, NULL);
             ssSetPWorkValue (S, 1, NULL);
-            ssSetPWorkValue (S, 2, NULL);
-            ssSetPWorkValue (S, 3, NULL);
         }
     }
     Network::fini();

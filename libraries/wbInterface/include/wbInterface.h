@@ -57,7 +57,6 @@ class wholeBodyInterface;
 }
 
 typedef Eigen::Matrix<double, 7, 1>  Vector7d;
-const int Dynamic = -1;
 // a Jacobian is 6 rows and N columns
 // typedef Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>           JacobianMatrix;
 static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
@@ -141,7 +140,7 @@ private:
     yarp::sig::Vector       tauJ_out;
 
     /** General Jacobian matrix initialized depending on the link for which the Jacobian is then needed.*/
-    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>  jacobianMatrix;
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>  jacobianMatrix;
 
     /** rotation to align foot Z axis with gravity, Ha=[0 0 1 0; 0 -1 0 0; 1 0 0 0; 0 0 0 1] */
     wbi::Frame              Ha;
@@ -169,7 +168,7 @@ private:
 
     /** Mass matrix N+6xN+6 */
     // N+6 x N+6 mass matrix
-    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>         massMatrix;
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>         massMatrix;
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
@@ -179,6 +178,9 @@ private:
 
     /*Robot DOF read from configuration file*/
     static int              ROBOT_DOF;
+
+    static Eigen::VectorXd         minJointLimits;
+    static Eigen::VectorXd         maxJointLimits;
 
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -206,7 +208,7 @@ public:
     bool                robotJntAccelerations (bool blockingRead);
     bool                robotJntTorques (bool blockingRead);
     yarp::sig::Vector   forwardKinematics (int& linkId);
-    Eigen::Matrix<double, 6, Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
@@ -218,10 +220,10 @@ public:
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
     bool                robotBaseVelocity();
     bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
-    Eigen::Matrix<double, Dynamic, Dynamic, Eigen::RowMajor>& getMassMatrix();
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
-    bool                getJointLimits (double* qminLims, double* qmaxLims, const int jnt);
+    bool                getJointLimits (Eigen::Ref<Eigen::VectorXd> minLimits, Eigen::Ref<Eigen::VectorXd> maxLimits);
     bool                centroidalMomentum (double* qrad_input, double* dq_input, double* h);
     bool                robotEEWrenches (wbi::ID LID);
     yarp::sig::Vector   getEEWrench();
