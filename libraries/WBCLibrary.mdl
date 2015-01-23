@@ -2,7 +2,7 @@ Library {
   Name			  "WBCLibrary"
   Version		  7.9
   MdlSubVersion		  0
-  SavedCharacterEncoding  "US-ASCII"
+  SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -18,11 +18,11 @@ Library {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "makaveli"
+  LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Jan 22 09:23:33 2015"
-  RTWModifiedTimeStamp	  343819413
-  ModelVersionFormat	  "1.%<AutoIncrement:228>"
+  LastModifiedDate	  "Fri Jan 23 16:46:23 2015"
+  RTWModifiedTimeStamp	  343932383
+  ModelVersionFormat	  "1.%<AutoIncrement:229>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -91,13 +91,13 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      6
+      $ObjectID		      7
       Version		      "1.12.0"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  7
+	  $ObjectID		  8
 	  Version		  "1.12.0"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
@@ -132,7 +132,7 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  8
+	  $ObjectID		  9
 	  Version		  "1.12.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -164,7 +164,7 @@ Library {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  9
+	  $ObjectID		  10
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
@@ -220,7 +220,7 @@ Library {
 	  UseIntDivNetSlope	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  10
+	  $ObjectID		  11
 	  Version		  "1.12.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -308,7 +308,7 @@ Library {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  11
+	  $ObjectID		  12
 	  Version		  "1.12.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -345,7 +345,7 @@ Library {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  12
+	  $ObjectID		  13
 	  Version		  "1.12.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -360,7 +360,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  13
+	  $ObjectID		  14
 	  Version		  "1.12.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -375,7 +375,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  14
+	  $ObjectID		  15
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
@@ -444,7 +444,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      15
+	      $ObjectID		      16
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
@@ -509,7 +509,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      16
+	      $ObjectID		      17
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
@@ -588,7 +588,7 @@ Library {
 	  }
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.12.0"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -796,7 +796,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [1382, 59, 2662, 759]
+    Location		    [1424, 87, 2704, 787]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -4118,7 +4118,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyModel"
-	Location		[11, 44, 1291, 744]
+	Location		[1424, 87, 2704, 787]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -9304,7 +9304,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Jacobians"
-	    Location		    [11, 44, 1291, 749]
+	    Location		    [1424, 87, 2704, 787]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -9349,7 +9349,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Center of Mass Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9364,7 +9364,7 @@ Library {
 		ZoomFactor		"100"
 		Block {
 		  BlockType		  SubSystem
-		  Name			  "Right Foot \nJacobian1"
+		  Name			  "COM Jacobian"
 		  SID			  "321"
 		  Ports			  [0, 1]
 		  Position		  [25, 29, 70, 51]
@@ -9372,8 +9372,8 @@ Library {
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
 		  System {
-		    Name		    "Right Foot \nJacobian1"
-		    Location		    [8, 44, 1419, 2293]
+		    Name		    "COM Jacobian"
+		    Location		    [1424, 87, 2704, 787]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -9436,7 +9436,7 @@ Library {
 		    Position		    [65, 505, 95, 535]
 		    ZOrder		    -5
 		    ShowName		    off
-		    Value		    "zeros(ROBOT_DOF,1)"
+		    Value		    "zeros(ROBOT_DOF+6,1)"
 		    OutDataTypeStr	    "double"
 		    SampleTime		    "Ts"
 		    }
@@ -9719,7 +9719,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "Right Foot \nJacobian1"
+		  SrcBlock		  "COM Jacobian"
 		  SrcPort		  1
 		  DstBlock		  "rs1"
 		  DstPort		  1
@@ -9764,7 +9764,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Foot Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10172,7 +10172,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Hand Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10585,7 +10585,7 @@ Library {
 	      MaskValueString	      "robotName|localName|base_link"
 	      System {
 		Name			"Link Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10994,7 +10994,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Foot Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11018,7 +11018,7 @@ Library {
 		  RequestExecContextInheritance	off
 		  System {
 		    Name		    "Right Foot \nJacobian"
-		    Location		    [135, 44, 1546, 1671]
+		    Location		    [1424, 87, 2704, 787]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11411,7 +11411,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Hand Jacobian"
-		Location		[11, 44, 1291, 749]
+		Location		[1424, 87, 2704, 787]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -12630,7 +12630,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.227"
+		  LibraryVersion	  "1.228"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -12646,7 +12646,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.227"
+		  LibraryVersion	  "1.228"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -12662,7 +12662,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.227"
+		  LibraryVersion	  "1.228"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -12678,7 +12678,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.227"
+		  LibraryVersion	  "1.228"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -12694,7 +12694,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.227"
+		  LibraryVersion	  "1.228"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -15201,7 +15201,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.227"
+	      LibraryVersion	      "1.228"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15215,7 +15215,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.227"
+	      LibraryVersion	      "1.228"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15240,7 +15240,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.227"
+	      LibraryVersion	      "1.228"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15254,7 +15254,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.227"
+	      LibraryVersion	      "1.228"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15372,7 +15372,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.227"
+	      LibraryVersion	      "1.228"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
