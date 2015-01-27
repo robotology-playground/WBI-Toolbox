@@ -1,5 +1,10 @@
 %WBC ASW
 clear all
+setenv('YARP_ROBOT_NAME','icubGazeboSim');
+ROBOT_DOF=25;
+localName='simulink';
+robotName='icubGazeboSim';
+Ts=0.010;
 
 % Controller period
 Ts                = 0.01; 
