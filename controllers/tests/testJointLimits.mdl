@@ -1,5 +1,5 @@
 Model {
-  Name			  "COMPoseTesting"
+  Name			  "testJointLimits"
   Version		  7.9
   MdlSubVersion		  0
   SavedCharacterEncoding  "UTF-8"
@@ -7,20 +7,9 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.35"
+    ComputedModelVersion    "1.4"
     NumModelReferences	    0
     NumTestPointedSignals   0
-  }
-  slprops.hdlmdlprops {
-    $PropName		    "HDLParams"
-    $ObjectID		    1
-    Array {
-      Type		      "Cell"
-      Dimension		      2
-      Cell		      "HDLSubsystem"
-      Cell		      "COMPose"
-      PropName		      "mdlProps"
-    }
   }
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -31,21 +20,23 @@ Model {
   MinMaxOverflowArchiveMode "Overwrite"
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
-  Created		  "Fri Jan 17 17:13:37 2014"
+  InitFcn		  "setenv('YARP_ROBOT_NAME', 'icubGazeboSim');\nrobotName='icubGazeboSim';\nlocalName='simulink';\nROBOT_DO"
+  "F=25;\nTs=0.010;"
+  Created		  "Thu Jan 22 14:38:30 2015"
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Jan 27 12:21:36 2015"
-  RTWModifiedTimeStamp	  344262096
-  ModelVersionFormat	  "1.%<AutoIncrement:35>"
+  LastModifiedDate	  "Tue Jan 27 12:26:18 2015"
+  RTWModifiedTimeStamp	  344262378
+  ModelVersionFormat	  "1.%<AutoIncrement:4>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
   LibraryLinkDisplay	  "disabled"
   WideLines		  off
-  ShowLineDimensions	  on
+  ShowLineDimensions	  off
   ShowPortDataTypes	  off
   ShowDesignRanges	  off
   ShowLoopsOnError	  on
@@ -74,14 +65,14 @@ Model {
   TryForcingSFcnDF	  off
   Object {
     $PropName		    "DataLoggingOverride"
-    $ObjectID		    7
+    $ObjectID		    6
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
-    model_		    "COMPoseTesting"
+    model_		    "testJointLimits"
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
-      Cell		      "COMPoseTesting"
+      Cell		      "testJointLimits"
       PropName		      "logAsSpecifiedByModels_"
     }
     Array {
@@ -133,16 +124,16 @@ Model {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      8
+      $ObjectID		      7
       Version		      "1.12.0"
       Array {
 	Type			"Handle"
-	Dimension		9
+	Dimension		8
 	Simulink.SolverCC {
-	  $ObjectID		  9
+	  $ObjectID		  8
 	  Version		  "1.12.0"
 	  StartTime		  "0.0"
-	  StopTime		  "10"
+	  StopTime		  "inf"
 	  AbsTol		  "auto"
 	  FixedStep		  "Ts"
 	  InitialStep		  "auto"
@@ -174,7 +165,7 @@ Model {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  10
+	  $ObjectID		  9
 	  Version		  "1.12.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -187,7 +178,7 @@ Model {
 	  SaveFinalState	  off
 	  SaveCompleteFinalSimState off
 	  SaveFormat		  "Array"
-	  SignalLoggingSaveFormat "ModelDataLogs"
+	  SignalLoggingSaveFormat "Dataset"
 	  SaveOutput		  on
 	  SaveState		  off
 	  SignalLogging		  on
@@ -206,7 +197,7 @@ Model {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  11
+	  $ObjectID		  10
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
@@ -238,7 +229,7 @@ Model {
 	  EnableMemcpy		  on
 	  MemcpyThreshold	  64
 	  PassReuseOutputArgsAs	  "Structure reference"
-	  ExpressionDepthLimit	  2147483647
+	  ExpressionDepthLimit	  128
 	  FoldNonRolledExpr	  on
 	  LocalBlockOutputs	  on
 	  RollThreshold		  5
@@ -262,7 +253,7 @@ Model {
 	  UseIntDivNetSlope	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  12
+	  $ObjectID		  11
 	  Version		  "1.12.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -277,8 +268,8 @@ Model {
 	  SaveWithDisabledLinksMsg "warning"
 	  SaveWithParameterizedLinksMsg	"warning"
 	  CheckSSInitialOutputMsg on
-	  UnderspecifiedInitializationDetection	"Classic"
-	  MergeDetectMultiDrivingBlocksExec "none"
+	  UnderspecifiedInitializationDetection	"Simplified"
+	  MergeDetectMultiDrivingBlocksExec "error"
 	  CheckExecutionContextPreStartOutputMsg off
 	  CheckExecutionContextRuntimeOutputMsg	off
 	  SignalResolutionControl "UseLocalSettings"
@@ -333,7 +324,7 @@ Model {
 	  ModelReferenceDataLoggingMessage "warning"
 	  ModelReferenceSymbolNameMessage "warning"
 	  ModelReferenceExtraNoncontSigs "error"
-	  StateNameClashWarn	  "warning"
+	  StateNameClashWarn	  "none"
 	  SimStateInterfaceChecksumMismatchMsg "warning"
 	  SimStateOlderReleaseMsg "error"
 	  InitInArrayFormatMsg	  "warning"
@@ -350,7 +341,7 @@ Model {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  13
+	  $ObjectID		  12
 	  Version		  "1.12.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -387,7 +378,7 @@ Model {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  14
+	  $ObjectID		  13
 	  Version		  "1.12.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -402,7 +393,7 @@ Model {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  15
+	  $ObjectID		  14
 	  Version		  "1.12.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -417,20 +408,26 @@ Model {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  16
+	  $ObjectID		  15
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
-	    Dimension		    9
+	    Dimension		    15
 	    Cell		    "IncludeHyperlinkInReport"
 	    Cell		    "GenerateTraceInfo"
 	    Cell		    "GenerateTraceReport"
 	    Cell		    "GenerateTraceReportSl"
 	    Cell		    "GenerateTraceReportSf"
 	    Cell		    "GenerateTraceReportEml"
+	    Cell		    "PortableWordSizes"
 	    Cell		    "GenerateWebview"
 	    Cell		    "GenerateCodeMetricsReport"
 	    Cell		    "GenerateCodeReplacementReport"
+	    Cell		    "GenerateErtSFunction"
+	    Cell		    "CreateSILPILBlock"
+	    Cell		    "CodeExecutionProfiling"
+	    Cell		    "CodeProfilingSaveOptions"
+	    Cell		    "CodeProfilingInstrumentation"
 	    PropName		    "DisabledProps"
 	  }
 	  SystemTargetFile	  "grt.tlc"
@@ -486,12 +483,13 @@ Model {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      17
+	      $ObjectID		      16
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
-		Dimension		21
+		Dimension		24
 		Cell			"IgnoreCustomStorageClasses"
+		Cell			"ParameterTuningSideEffectCode"
 		Cell			"IgnoreTestpoints"
 		Cell			"InsertBlockDesc"
 		Cell			"InsertPolySpaceComments"
@@ -501,6 +499,7 @@ Model {
 		Cell			"DefineNamingRule"
 		Cell			"SignalNamingRule"
 		Cell			"ParamNamingRule"
+		Cell			"InternalIdentifier"
 		Cell			"InlinedPrmAccess"
 		Cell			"CustomSymbolStr"
 		Cell			"CustomSymbolStrGlobalVar"
@@ -511,6 +510,7 @@ Model {
 		Cell			"CustomSymbolStrBlkIO"
 		Cell			"CustomSymbolStrTmpVar"
 		Cell			"CustomSymbolStrMacro"
+		Cell			"CustomSymbolStrUtil"
 		Cell			"ReqsInCode"
 		PropName		"DisabledProps"
 	      }
@@ -551,26 +551,24 @@ Model {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      18
+	      $ObjectID		      17
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
-		Dimension		16
+		Dimension		14
 		Cell			"GeneratePreprocessorConditionals"
 		Cell			"IncludeMdlTerminateFcn"
-		Cell			"MultiInstanceERTCode"
 		Cell			"SuppressErrorStatus"
 		Cell			"ERTCustomFileBanners"
 		Cell			"GenerateSampleERTMain"
 		Cell			"GenerateTestInterfaces"
 		Cell			"ModelStepFunctionPrototypeControlCompliant"
-		Cell			"SupportNonInlinedSFcns"
-		Cell			"PortableWordSizes"
+		Cell			"MultiInstanceERTCode"
 		Cell			"PurelyIntegerCode"
 		Cell			"SupportComplex"
 		Cell			"SupportAbsoluteTime"
 		Cell			"SupportContinuousTime"
-		Cell			"CPPClassGenCompliant"
+		Cell			"SupportNonInlinedSFcns"
 		Cell			"CombineOutputUpdateFcns"
 		PropName		"DisabledProps"
 	      }
@@ -630,30 +628,17 @@ Model {
 	    PropName		    "Components"
 	  }
 	}
-	hdlcoderui.hdlcc {
-	  $ObjectID		  19
-	  Version		  "1.12.0"
-	  Description		  "HDL Coder custom configuration component"
-	  Name			  "HDL Coder"
-	  Array {
-	    Type		    "Cell"
-	    Dimension		    1
-	    Cell		    " "
-	    PropName		    "HDLConfigFile"
-	  }
-	  HDLCActiveTab		  "0"
-	}
 	PropName		"Components"
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    [ 1861, 26, 2963, 790 ]  
+      ConfigPrmDlgPosition    [ 133, 54, 1235, 743 ]  
     }
     PropName		    "ConfigurationSets"
   }
   Simulink.ConfigSet {
     $PropName		    "ActiveConfigurationSet"
-    $ObjectID		    8
+    $ObjectID		    7
   }
   ExplicitPartitioning	  off
   BlockDefaults {
@@ -696,38 +681,10 @@ Model {
       Lockdown		      off
       SampleTime	      "-1"
     }
-    Block {
-      BlockType		      Scope
-      ModelBased	      off
-      TickLabels	      "OneTimeTick"
-      ZoomMode		      "on"
-      Grid		      "on"
-      TimeRange		      "auto"
-      YMin		      "-5"
-      YMax		      "5"
-      SaveToWorkspace	      off
-      SaveName		      "ScopeData"
-      DataFormat	      "Array"
-      LimitDataPoints	      on
-      MaxDataPoints	      "5000"
-      Decimation	      "1"
-      SampleInput	      off
-      SampleTime	      "-1"
-    }
-    Block {
-      BlockType		      Selector
-      NumberOfDimensions      "1"
-      IndexMode		      "One-based"
-      InputPortWidth	      "-1"
-      SampleTime	      "-1"
-      IndexOptions	      "Index vector (dialog)"
-      Indices		      "1"
-      OutputSizes	      "1"
-    }
   }
   System {
-    Name		    "COMPoseTesting"
-    Location		    [1529, 247, 2816, 962]
+    Name		    "testJointLimits"
+    Location		    [441, 51, 1241, 766]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -739,94 +696,54 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "186"
+    ZoomFactor		    "264"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "104"
-    Block {
-      BlockType		      Scope
-      Name		      "COM Pos"
-      SID		      "19"
-      Ports		      [1]
-      Position		      [350, 84, 380, 116]
-      ZOrder		      -16
-      Floating		      off
-      Location		      [558, 234, 1280, 535]
-      Open		      off
-      NumInputPorts	      "1"
-      ZoomMode		      "xonly"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      List {
-	ListType		ScopeGraphics
-	FigureColor		"[0.5 0.5 0.5]"
-	AxesColor		"[0 0 0]"
-	AxesTickColor		"[1 1 1]"
-	LineColors		"[1 1 0;1 0 1;0 1 1;1 0 0;0 1 0;0 0 1]"
-	LineStyles		"-|-|-|-|-|-"
-	LineWidths		"[0.5 0.5 0.5 0.5 0.5 0.5]"
-	MarkerStyles		"none|none|none|none|none|none"
-      }
-      ShowLegends	      off
-      TimeRange		      "500"
-      YMin		      "-0.07"
-      YMax		      "0.07"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Reference
-      Name		      "COMFwdKin "
-      SID		      "103"
-      Ports		      [0, 1]
-      Position		      [100, 78, 175, 122]
-      ZOrder		      3
-      BackgroundColor	      "[0.243000, 0.074000, 0.972000]"
-      LibraryVersion	      "1.228"
-      SourceBlock	      "WBCLibrary/wholeBodyModel/Forward Kinematics/COMFwdKin "
-      SourceType	      "Center of Mass Forward Kinematics"
-      robotName		      "robotName"
-      localName		      "localName"
-    }
+    SIDHighWatermark	    "3"
     Block {
       BlockType		      Display
       Name		      "Display"
-      SID		      "104"
+      SID		      "2"
       Ports		      [1]
-      Position		      [350, 20, 440, 50]
-      ZOrder		      4
+      Position		      [290, 35, 380, 85]
+      ZOrder		      2
       Decimation	      "1"
     }
     Block {
-      BlockType		      Selector
-      Name		      "Selector"
-      SID		      "16"
-      Ports		      [1, 1]
-      Position		      [215, 81, 255, 119]
-      ZOrder		      -17
-      InputPortWidth	      "7"
-      Indices		      "[1:2]"
+      BlockType		      Display
+      Name		      "Display1"
+      SID		      "3"
+      Ports		      [1]
+      Position		      [290, 115, 375, 175]
+      ZOrder		      3
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "Joint Limits"
+      SID		      "1"
+      Ports		      [0, 2]
+      Position		      [110, 58, 175, 102]
+      ZOrder		      1
+      BackgroundColor	      "[1.000000, 0.202946, 0.028293]"
+      LibraryVersion	      "1.228"
+      SourceBlock	      "WBCLibrary/wholeBodyModel/Joint Limits"
+      SourceType	      "Joint Limits"
+      robotName		      "robotName"
+      localName		      "localName"
     }
     Line {
-      SrcBlock		      "COMFwdKin "
+      SrcBlock		      "Joint Limits"
       SrcPort		      1
-      DstBlock		      "Selector"
+      Points		      [63, 0; 0, -10]
+      DstBlock		      "Display"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Selector"
-      SrcPort		      1
-      Points		      [50, 0]
-      Branch {
-	Points			[0, -65]
-	DstBlock		"Display"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"COM Pos"
-	DstPort			1
-      }
+      SrcBlock		      "Joint Limits"
+      SrcPort		      2
+      Points		      [63, 0; 0, 55]
+      DstBlock		      "Display1"
+      DstPort		      1
     }
   }
 }
