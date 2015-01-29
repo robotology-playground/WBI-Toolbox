@@ -1,5 +1,5 @@
 ![](http://drive.google.com/uc?export=view&id=0B6zDGh11iY6oc0gtM0lMdDNweWM)
-Whole Body Interface Toolbox (WBI-Toolbox) - A Simulink Wrapper for Whole Body Control
+Whole Body Interface Toolbox (WBI-Toolbox v0.2) - A Simulink Wrapper for Whole Body Control
 -------------------------------------------------------------
 
 
@@ -67,7 +67,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 ###### Compiling the Toolbox MEX Files
 The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). This is the easiest and recommended way to do so. In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
-- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation.
+- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. **If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation**.
 
 - **Compiling the WBI Toolbox.** To compile the WBI Toolbox via `codyco-superbuild`, you first need to configure the latter with CMake. A few flags need to be taken into account in order to do this. In particular if you want to use the Gazebo simulator please do:
 
@@ -76,7 +76,7 @@ The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/r
    cmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
 ```
 When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type `c` to configure until no stars (*) show up and `g` to generate. Finally, to compile type `make`.
-After this step all the subprojects will be installed inside the `build/install` directory. In order to use use it you will have to adjust some environment variables in your `~/.bashrc`
+After this step all the subprojects will be installed inside the `$CODYCO_SUPERBUILD_DIR/install` directory. In order to use use it you will have to adjust some environment variables in your `~/.bashrc`
 
 ```bash
 export PATH=$PATH:${CODYCO_SUPERBUILD_DIR}/install/bin/
@@ -86,9 +86,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CODYCO_SUPERBUILD_DIR}/install/lib/
 **Note: For more information on how to compile or update `codyco-superbuild` go to http://goo.gl/aU6EjH**
 
 ###### Installing the WBI-Toolbox
-- **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/main/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. By default it updates MATLAB's path by creating a `pathdef.m` file in your user startup folder e.g. `~/Documents/MATLAB` by default. To avoid problems when launching MATLAB from terminal you should **make sure you are in your startup directory**. In case the script fails for permission reasons, it will provide you with further instructions on how to manually solve the problem.
+- **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/main/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way, after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. By default it updates MATLAB's path by creating a `pathdef.m` file in your user startup folder e.g. `~/Documents/MATLAB` by default. To avoid problems when launching MATLAB from terminal you should **make sure you are in your startup directory**. In case the script fails for permission reasons, it will provide you with further instructions on how to manually solve the problem.
 
-If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and that for the Toolbox itself, i.e. `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` by doing
+If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and the one for the Toolbox itself, i.e. `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` by doing
 
 ```bash
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/mex])
@@ -135,23 +135,14 @@ Then looking for the variable `LDPATH_SUFFIX` and assign to every instance the c
 ```
 
 The error message you get in this case might look something like:
+```bash
 Library not loaded: libyarpwholeBodyinterface.0.0.1.dylib
 Referenced from:
 ${CODYCO_SUPERBUILD_DIR}/install/mex/robotState.mexmaci64
+```
 
 ###### Notes on configuration files
-Internally, the toolbox uses YARP's ResourceFinder (http://goo.gl/4zAS6r). When you compile the WBI-Toolbox, default .ini files will be generated for iCubGenova01, iCubGenova03, iCubDarmstadt01 and icubGazeboSim. These .ini files can be found in `${CODYCO_SUPERBUILD_ROOT}/codyco/WBIToolbox/libraries/wbInterface/conf/wbit` and contain the following parameters later used by the underlying Whole Body Interface:
-
-- **robot**     :     [string] robot name (i.e. icubGazeboSim, iCubGenova01, etc).
-- **local**     :     [string] prefix of the YARP ports that the WBI will open.
-- **headV**     :     [int]    head version of your robot.
-- **legsV**     :     [int]    legs version of your robot.
-- **feetFT**    :     [bool]   is the robot endowed with force/torque sensors for its feet?
-- **uses_urdf** :     [bool]   is your robot fixed to root or standing on the floor? (for icubGazeboSim this would mean whether you are using the `iCub (fixed)` or `iCub` models)
-- **urdf**      :     [string] location of the urdf model of the robot to be used.
-
-If you wish to change any of the default values you should do it in `${CODYCO_SUPERBUILD_ROOT}/main/build/install/share/codyco/contexts/wbit/` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). Remember that these configuration files will be overwritten everytime you install the WBIToolbox. To generate default .ini files for a different robot, head to `${CODYCO_SUPERBUILD_ROOT}/main/WBIToolbox/libraries/wbInterface/conf/wbit/CMakeTmp` and add your new .ini.in file.
-
+If you wish to change any of the default values of the toolbox's configuration file you should do it in `${CODYCO_SUPERBUILD_DIR}/install/share/codyco/contexts/wholeBodyInterfaceToolbox` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). Remember that these configuration files will be overwritten everytime you install the WBIToolbox.
 
 ###### Using the Toolbox and current controllers
 Before using or creating a new model keep in mind that WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to Simulation > Configuration Parameters > Solver you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
