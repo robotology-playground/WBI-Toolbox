@@ -37,6 +37,9 @@ function template() {
 	- *YARP_DATA_DIRS:* \``echo $YARP_DATA_DIRS`\`
 	- *YARP_ROBOT_NAME:* \``echo $YARP_ROBOT_NAME`\`
 	- *Yarp Installation:* \``which yarpserver`\`
+	- *LD_LIBRARY_PATH:*\``echo $LD_LIBRARY_PATH`\`
+	- *LD_PRELOAD:*\``echo $DYLD_INSERT_LIBRARIES`\`
+	- *DYLD_INSERT_LIBRARIES:*\``echo $DYLD_INSERT_LIBRARIES`\`
 EOM
 }
 
@@ -55,9 +58,18 @@ echo ""
 
 issue_url=$(format_issue_url "${issue_title}" "$(template)")
 
-if which xdg-open 2>/dev/null >/dev/null ; then
-	read -p "Would you like to launch this report in your browser? [Y|n]: Please Enter a Message: `echo $'\n> '`" reply
-	if [ "${launch_now}" != "n" -a "${launch_now}" != "N" ]; then
-		xdg-open "${issue_url}"
+if [[ $OSTYPE  == "linux-gnu" ]]; then
+	if which xdg-open 2>/dev/null >/dev/null ; then
+		read -p "To finish filing this issue it will be launched on your preferred browser. Do you want to proceed? [Y|n]: `echo $'\n> '`" reply
+		if [ "${launch_now}" != "n" -a "${launch_now}" != "N" ]; then
+			xdg-open "${issue_url}"
+		fi
+	fi
+elif [[ $OSTYPE == "darwin"* ]]; then
+	if which open 2>/dev/null >/dev/null ; then
+		read -p "To finish filing this issue it will be launched on your preferred browser. Do you want to proceed? [Y|n]: `echo $'\n> '`" reply
+		if [ "${launch_now}" != "n" -a "${launch_now}" != "N" ]; then
+			open "${issue_url}"
+		fi
 	fi
 fi
