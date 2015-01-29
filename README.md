@@ -29,6 +29,14 @@ Shall you find any issue or problem, please feel free to submit an issue with th
 
 This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
 
+- [Main Goal](https://github.com/robotology-playground/WBI-Toolbox#main-goal)
+- [Requirements](https://github.com/robotology-playground/WBI-Toolbox#requirements)
+- [Compilation](https://github.com/robotology-playground/WBI-Toolbox#compiling-the-toolbox-mex-files)
+- [Installation](https://github.com/robotology-playground/WBI-Toolbox#installing-the-wbi-toolbox)
+- [Working from the build tree](https://github.com/robotology-playground/WBI-Toolbox#working-from-the-build-tree)
+- [Notes on Configuration Files](https://github.com/robotology-playground/WBI-Toolbox#notes-on-configuration-files)
+- [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox-and-current-controllers)
+- [iCub joints ordering](https://github.com/robotology-playground/WBI-Toolbox#details-on-icub-joints-ordering-in-wbi-toolbox)
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=jaTEbCsFp_M
