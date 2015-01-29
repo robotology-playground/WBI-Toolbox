@@ -38,7 +38,7 @@ function template() {
 	- *YARP_ROBOT_NAME:* \``echo $YARP_ROBOT_NAME`\`
 	- *Yarp Installation:* \``which yarpserver`\`
 	- *LD_LIBRARY_PATH:*\``echo $LD_LIBRARY_PATH`\`
-	- *LD_PRELOAD:*\``echo $DYLD_INSERT_LIBRARIES`\`
+	- *LD_PRELOAD:*\``echo $LD_PRELOAD`\`
 	- *DYLD_INSERT_LIBRARIES:*\``echo $DYLD_INSERT_LIBRARIES`\`
 EOM
 }
