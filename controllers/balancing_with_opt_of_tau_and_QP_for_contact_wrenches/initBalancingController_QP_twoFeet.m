@@ -8,9 +8,10 @@ ROBOT_DOF = 23;
 
 
 % Controller period
-Ts                = 0.01;
-simulationTime    = inf;
-noOscillationTime = 0;
+Ts                  = 0.01;
+simulationTime      = inf;
+noOscillationTime   = 0;
+DEMO_LEFT_AND_RIGHT = 0;
  
 % Controller gains for convergence of the desired centroidal momentum. 
 % The first three elements are the Proportional, Intagral, and the Derivative
@@ -62,7 +63,6 @@ kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1
                        kdTorso(1,:),kdArms(1,:),kdArms(1,:),kdLegs(1,:),kdLegs(1,:)]*0;
 
                    
-DEMO_LEFT_AND_RIGHT = 1;
 if (DEMO_LEFT_AND_RIGHT == 1)
     directionOfOscillation = [0;1;0];
     referenceParams        = [0.03 0.1];  %referenceParams(1) = amplitude of ascillations in meters

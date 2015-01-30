@@ -30,7 +30,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-10.0, 19.0, 1700.0, 1041.0]
+      Location		      [1.0, 59.0, 1680.0, 991.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -63,10 +63,10 @@ Model {
 	  $ObjectID		  6
 	  IsActive		  [1]
 	  ViewObjType		  "SimulinkSubsys"
-	  LoadSaveID		  "736"
+	  LoadSaveID		  "61"
 	  Extents		  [1449.0, 846.0]
-	  ZoomFactor		  [0.74]
-	  Offset		  [0.0, -1.9189189189191893]
+	  ZoomFactor		  [0.8628691983122363]
+	  Offset		  [770.35941320293409, 253.77506112469439]
 	}
 	PropName		"EditorsInfo"
       }
@@ -78,7 +78,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "pucci"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jan 28 14:35:56 2015"
+  LastModifiedDate	  "Thu Jan 29 09:51:07 2015"
   RTWModifiedTimeStamp	  344356552
   ModelVersionFormat	  "1.%<AutoIncrement:1849>"
   ConfigurationManager	  "none"
@@ -1044,7 +1044,7 @@ Model {
   }
   System {
     Name		    "balancingController_QP_twoFeet"
-    Location		    [0, 91, 1676, 1048]
+    Location		    [-10, 27, 1690, 1068]
     Open		    on
     ModelBrowserVisibility  on
     ModelBrowserWidth	    200
@@ -1101,8 +1101,8 @@ Model {
       }
       System {
 	Name			"Subsystem"
-	Location		[-10, 19, 1690, 1060]
-	Open			off
+	Location		[1, 59, 1681, 1050]
+	Open			on
 	ModelBrowserVisibility	on
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2997,8 +2997,8 @@ Model {
 	  }
 	  System {
 	    Name		    "controller_QP"
-	    Location		    [-10, 19, 1690, 1060]
-	    Open		    on
+	    Location		    [1, 59, 1681, 1050]
+	    Open		    off
 	    ModelBrowserVisibility  on
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"

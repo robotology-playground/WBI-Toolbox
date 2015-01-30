@@ -8,9 +8,8 @@ ROBOT_DOF = 23;
 
 % Controller period
 Ts             = 0.01; 
-simulationTime = inf;
  
-DEMO_MOVING_LEG_AND_ARMS = 1;
+DEMO_MOVING_LEG_AND_ARMS = 0;
 % Controller gains for convergence of the desired centroidal momentum. 
 % The first three elements are the Proportional, Intagral, and the Derivative
 % gains taking place in xComDDStart, i.e. 
@@ -22,7 +21,7 @@ DEMO_MOVING_LEG_AND_ARMS = 1;
 %
 % hwDot = -Gains(4)*hw  
 
-gainsPCOM                 = diag([120  140 120]);
+gainsPCOM                 = diag([120  140 120]);  
 gainsICOM                 = diag([  0    0   0]);
 gainsDCOM                 = diag([  1    1   1]);
 
@@ -36,22 +35,8 @@ gainMomentum              = 1 ;
 % Impadances acting in the null space of the desired contact forces 
 
 if (DEMO_MOVING_LEG_AND_ARMS == 0)
-    impTorso            = [  20    20   20
-                              0     0    0]; 
-
-    impArms             = [ 13  13   13   5  
-                            0    0    0   0              ];
-
-    impLeftLeg          = [ 70   70 650     300      0   0
-                             0    0   0       0      0   0]; 
-
-    impRightLeg         = [ 20   20  20      10     10   10
-                             0    0   0       0      0   0];
-    amplitudesOscillationsOnOneFoot   = zeros(1,ROBOT_DOF);
-    frequenciesOscillationsOnOneFoot  = zeros(1,ROBOT_DOF);
-                         
-else
-    impTorso            = [  70    20   50
+    simulationTime = inf;
+    impTorso            = [  40    40   40
                               0     0    0]; 
 
     impArms             = [ 13  13   13   10  
@@ -63,15 +48,32 @@ else
     impRightLeg         = [ 40   40  20      10     10   10
                              0    0   0       0      0   0];
                          
+    amplitudesOscillationsOnOneFoot   = zeros(1,ROBOT_DOF);
+    frequenciesOscillationsOnOneFoot  = zeros(1,ROBOT_DOF);
+                         
+else
+    simulationTime      = 60;
+    impTorso            = [  60    60   60
+                              0     0    0]; 
+
+    impArms             = [ 13  13   13   10  
+                            0    0    0   0              ];
+
+    impLeftLeg          = [ 90  110 650     300      0   0
+                             0    0   0       0      0   0]; 
+
+    impRightLeg         = [ 70   70  20      10     10   10
+                             0    0   0       0      0   0];
+                         
     amplTorso            = [ 10  10   10 ]; 
-    amplArms             = [  0   0    0   0];
+    amplArms             = [ 30  30    0   0];
     amplLeftLeg          = [  0   0    0   0   0   0]; 
-    amplRightLeg         = [ 25  25   25  15   0   0];
+    amplRightLeg         = [ 30  25   25  15   0   0];
 
     freqTorso            = [ 0.0  0.0  0.0]; 
     freqArms             = [ 0.0  0.0  0.0  0.0];
     freqLeftLeg          = [ 0.0  0.0  0.0  0.0  0.0  0.0]; 
-    freqRightLeg         = [ 0.2  0.2  0.0  0.0  0.0  0.0]; %[ 0.0  0.3  0.0  0.0  0.0  0.0];
+    freqRightLeg         = [ 0.1  0.0  0.0  0.0  0.0  0.0]; %[ 0.0  0.3  0.0  0.0  0.0  0.0];
 
     amplitudesOscillationsOnOneFoot   = [amplTorso,amplArms,amplArms,amplLeftLeg,amplRightLeg];
     frequenciesOscillationsOnOneFoot  = [freqTorso,freqArms,freqArms,freqLeftLeg,freqRightLeg];

@@ -40,25 +40,19 @@ gainMomentum           = 1 ;
 % 
 impTorso            = [   60    20   10
                            0     0    0]; 
-impArms             = [ 8    8    8   8   
+impArms             = [ 8    8    8  12   
                         0    0    0   0   ];
-impLegs             = [ 35    0    0      350    350  10
+impLegs             = [ 35   10    0      350    350  10
                          0    0   0        0      0   0]; 
 impedances          = [impTorso(1,:),impArms(1,:),impArms(1,:),impLegs(1,:),impLegs(1,:)];
 increasingRatesImp  = [impTorso(2,:),impArms(2,:),impArms(2,:),impLegs(2,:),impLegs(2,:)];
 impedencesSat       = [80   100    400];
-% 
-% impTorso            = [  70    20   10
-%                            0     0    0]; 
-% impArms             = [ 8    8    8   8   8
-%                         0    0    0   0   0];
-% impLegs             = [35   70    0    300    300  10
-%                          0    0   0     1000   1000  0]; 
+
 
 
 kpTorso            =   [ 30   30    30]; 
-kpArms             =   [200  200   200   200   ];
-kpLegs             =   [ 35   70    20   300   100  10]; 
+kpArms             =   [ 50   50    50   50   ]*4;
+kpLegs             =   [ 35   70    20   500   100  10]; 
 
 kdTorso            = [ 1     1     1]; 
 kdArms             = [ 1     1     1     1      ];
@@ -68,10 +62,10 @@ kPandD_Postural    = [ kpTorso(1,:),kpArms(1,:),kpArms(1,:),kpLegs(1,:),kpLegs(1
                        kdTorso(1,:),kdArms(1,:),kdArms(1,:),kdLegs(1,:),kdLegs(1,:)]*0;
 
                    
-DEMO_LEFT_AND_RIGHT = 0;
+DEMO_LEFT_AND_RIGHT = 1;
 if (DEMO_LEFT_AND_RIGHT == 1)
     directionOfOscillation = [0;1;0];
-    referenceParams        = [0.05 0.25];  %referenceParams(1) = amplitude of ascillations in meters
+    referenceParams        = [0.03 0.1];  %referenceParams(1) = amplitude of ascillations in meters
 else                                      %referenceParams(2) = frequency of ascillations in hertz
     directionOfOscillation = [0;1;0];
     referenceParams        = [0.0  0.0];  %referenceParams(1) = amplitude of ascillations in meters
