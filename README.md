@@ -27,7 +27,7 @@ Shall you find any issue or problem, please feel free to submit an issue with th
 -------------------------------------------------------------------------------------------------------------
 
 
-This document contains basic instructions on how to install this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox and runs at a 10ms rate!
+This document contains instructions on how to install and use this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox running at a 10ms rate!
 
 - [Main Goal](https://github.com/robotology-playground/WBI-Toolbox#main-goal)
 - [Requirements](https://github.com/robotology-playground/WBI-Toolbox#requirements)
@@ -51,7 +51,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 
 ###### Requirements
-* Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a, R2013a, R2012a/b, R2011a)
+* Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a/b, R2013a/b, R2012a/b)
 * Simulink Toolboxes: Simulink Coder.
 * YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
 * CoDyCo (https://github.com/robotology-playground/codyco-superbuild)
@@ -65,7 +65,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 **Note: The following instructions are for Linux distributions, but it works similarly on the other operating systems.**
 
 ###### Compiling the Toolbox MEX Files
-The WBI-Toolbox can be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). This is the easiest and recommended way to do so. In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
+The WBI-Toolbox must be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
 - **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. **If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation**.
 
