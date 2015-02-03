@@ -3,18 +3,6 @@ Whole Body Interface Toolbox (WBI-Toolbox v0.2) - A Simulink Wrapper for Whole B
 -------------------------------------------------------------
 
 
-* As usual, launch a `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
-* Open MATLAB (hoping you have installed the Toolbox as stated in the rest of this README), and open `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/controllers/tests/COMPoseTesting`. This model consists of a single `COMFwdKin` block that retrieves the center of mass of the robot. 
-* Before running the simulation, set the following variables in the MATLAB command line:
-   * `robotName`     = `'icubGazeboSim'` (or `icub` if you're gonna use the real robot)
-   * `localName` = `'simulink'`      (or whatever you like)
-   * `Ts`        =  `0.10`           (for example)
-   * `ROBOT_DOF` =  `25`             (in the case of `icub`/`icubGazeboSim`. For `iCubHeidelberg01` it's 15 e.g.)
-* At this point you can run your simulation.
-
--------------------------------------------------------------------------------------------------------------
-
-
 This document contains instructions on how to install and use this toolbox, *tips and tricks* to do so and a walkthrough to get you started using it. Simulink blocks consist of S-functions (http://goo.gl/1GuHVd) which allow C/C++ user specific code compiled as Matlab Executable (MEX) files, thus extending the capabilities of the Simulink environment. In other words, MEX files have been created linking YARP, iCub, **iDynTree** (a more efficient and generic YARP-based robot dynamics library than its predecessor iDyn - http://goo.gl/BnGzKr) and CoDyCo, wrapping the **Whole Body Interface** described in http://goo.gl/dBWO3k. The following video shows CoDyCo's 1st year results on iCub in which the top level controller has been implemented with the WBI-Toolbox running at a 10ms rate!
 
 - [Main Goal](https://github.com/robotology-playground/WBI-Toolbox#main-goal)
