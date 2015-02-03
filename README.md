@@ -3,16 +3,6 @@ Whole Body Interface Toolbox (WBI-Toolbox v0.2) - A Simulink Wrapper for Whole B
 -------------------------------------------------------------
 
 
-To illustrate the process of using the WBI-Toolbox, let us try to run the model `$CODYCO_SUPERBUILD_DIR/main/WBIToolbox/controllers/tests/COMPoseTesting.mdl` with iCub on the Gazebo simulator. 
-* First make sure the following are in their `master` branch whenever it applies:
-    * `codyco-superbuild`
-    * `iDynTree`
-    * `wholeBodyInterface`
-    * `yarpWholeBodyInterface`
-    * `WBIToolbox`
-* In the new version (v0.2) of the toolbox you first need to define the environmental variable `YARP_ROBOT_NAME` in `~/.bashrc` with the actual name of your robot, e.g. `$YARP_ROBOT_NAME=icubGazeboSim`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `$YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
-For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This allows the WBI-Toolbox to be used not only with `iCubGenova0X`. It has been tested so far with `iCubHeidelberg01` and `COMAN`.
-
 * As usual, launch a `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
 * Open MATLAB (hoping you have installed the Toolbox as stated in the rest of this README), and open `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/controllers/tests/COMPoseTesting`. This model consists of a single `COMFwdKin` block that retrieves the center of mass of the robot. 
 * Before running the simulation, set the following variables in the MATLAB command line:
@@ -21,9 +11,7 @@ For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This al
    * `Ts`        =  `0.10`           (for example)
    * `ROBOT_DOF` =  `25`             (in the case of `icub`/`icubGazeboSim`. For `iCubHeidelberg01` it's 15 e.g.)
 * At this point you can run your simulation.
-* **IMPORTANT** For your simulations you might want to drop into your simulink model the `ySynchronizer` block which will synchronize the simulation time with the yarp time, given a specified period `Ts`. For this to work you need to first define the environmental variable `$YARP_CLOCK=/clock`, launch `yarpserver` and finally gazebo as `gazebo -s libgazebo_yarp_clock.so` (remember to update your `gazebo-yarp-plugins` repository with the latest version). The rest works as usual. 
 
-Shall you find any issue or problem, please feel free to submit an issue with the proper label and it will be addressed as soon as possible.
 -------------------------------------------------------------------------------------------------------------
 
 
@@ -109,14 +97,12 @@ Instead you have to manually add the following directories to your MATLAB's path
     addpath([getenv(WBI_TOOLBOX_SOURCES_DIR)  /libraries/images])
 ```
 
-
-- **Finding robots' configuration files** Each robot that can be used through the Toolbox has its own configuration file. In order for WBI-Toolbox to find them your `YARP_DATA_DIRS` environmental variable **should include your CoDyCo `/share` directory** where CoDyCo contexts can be found. If you locally installed CoDyCo, it should be enough to append the following location:
+- **Robots' configuration files** Each robot that can be used through the Toolbox has its own configuration file. In order for WBI-Toolbox to find them your `YARP_DATA_DIRS` environmental variable **should include your CoDyCo `/share` directory** where CoDyCo contexts can be found. If you locally installed CoDyCo, it should be enough to append the following location:
 `$CODYCO_SUPERBUILD_DIR/install/share/codyco` to `YARP_DATA_DIRS` in your bashrc as:
 
 ```bash
    export YARP_DATA_DIRS=${YARP_DATA_DIRS}:${CODYCO_SUPERBUILD_DIR}/install/share/codyco
 ```
-
 - **Problems finding libraries and libstdc++.** In case Matlab has trouble finding a specific library, a workaround is to launch it preloading the variable `LD_PRELOAD` (or `DYLD_INSERT_LIBRARIES` on Mac OS X) with the location of the missing library. On Linux you might also have trouble with libstdc++.so since Matlab comes with its own. To use your system's libstdc++ you would need to launch Matlab something like (replace with your system's libstdc++ library):
 
 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19   matlab`
@@ -144,18 +130,55 @@ ${CODYCO_SUPERBUILD_DIR}/install/mex/robotState.mexmaci64
 ###### Notes on configuration files
 If you wish to change any of the default values of the toolbox's configuration file you should do it in `${CODYCO_SUPERBUILD_DIR}/install/share/codyco/contexts/wholeBodyInterfaceToolbox` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). Remember that these configuration files will be overwritten everytime you install the WBIToolbox.
 
-###### Using the Toolbox and current controllers
-Before using or creating a new model keep in mind that WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to Simulation > Configuration Parameters > Solver you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
+In v0.2 the **source default** configuration file can be found in: https://github.com/robotology-playground/WBI-Toolbox/blob/master/libraries/wbInterface/conf/wholeBodyInterfaceToolbox/wholeBodyInterfaceToolbox.ini. In the previous version (v0.1) these options were mixed in the robot-specific configuration files installed with `yarpWholeBodyInterface`. Since they are unrelated, we decided to create an independent configuration file. This file is then installed as:
 
-To start dragging and dropping blocks from the Toolbox open Simulink and you should find it under `Whole Body Interface Toolbox` or you can open it from the `/controllers` directory typing `WBCLibrary`.
+`$CODYCO_SUPERBUILD_DIR/install/share/codyco/contexts/wholeBodyInterfaceToolbox/wholeBodyInterfaceToolbox.ini`
 
-All blocks need three basic parameters in order to start. These are: `robotName`, `localName` and `Ts`. These variables can be set in your Matlab command window or in your personal configuration script.
+which by default contains the following pairs:
 
-Our most recent controllers and other Simulink diagrams can be found in `${CODYCO_SUPERBUILD_ROOT}/main/WBIToolbox/controllers`. In there you can find:
+```bash 
+robot          icubGazeboSim
+localName      simulink
+worldRefFrame  l_sole
+robot_fixed    true
+wbi_id_list    ROBOT_TORQUE_CONTROL_JOINTS
+wbi_config_file yarpWholeBodyInterface.ini
+```
+Where
 
-- **wholeBodyImpedance/impedanceControl.mdl** This is a whole body impedance controller which puts all joints in impedance control mode where the equilibrium pose is the initial configuration before running the controller. You can additionally perturb the system applying external wrenches on the robot links. Go to a terminal and enter `yarp rpc /icubGazeboSim/applyExternalWrench/rpc:i` then type `help` for additional information on how to apply wrenches on the robot and thus test its compliant behavior.
+`robot` indicates whether you are using the real platform (`icub`) or the simulator (`icubGazeboSim`)
+`localName` corresponds to the name prefix of the ports that will be opened by the interface.
+`worldRefFrame` Indicates which reference frame in the robot structure is used as the world reference frame for all the computations.
+`robot_fixed` Tells the interface whether the robot is 'impaled' to a fixed virtual base attached to the origin of the `root` of the robot. (more info: http://eris.liralab.it/wiki/ICubForwardKinematics)
+`wbi_id_list` List of parts to use for the robot defined through the environmental variable `YARP_ROBOT_NAME` (e.g. `iCubGenova01`) as defined in: https://github.com/robotology-playground/yarp-wholebodyinterface/tree/master/app/robots.
+`wbi_config_file` Name of the configuration file of the `yarpWholeBodyInterface` used by the Toolbox.
 
-- **torqueBalancingV2/balancingController.mdl**  This is the latest torque based iCub's COM controller. The one used for the video in the beginning of this document.
+**You should change the default options in the installed file** and not the source one.
+
+
+###### Using the Toolbox
+**What robot are you using?**
+In the newest version (v0.2) of the toolbox you first need to define the environmental variable `YARP_ROBOT_NAME` in `~/.bashrc` with the actual name of your robot, e.g. `export YARP_ROBOT_NAME="icubGazeboSim"`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
+For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This allows the WBI-Toolbox to be used not only with `iCubGenova0X`. It has been tested so far with `iCubHeidelberg01` and `COMAN`.
+
+**yarpserver and Gazebo**
+First launch `yarpserver` and open `gazebo` with the `iCub` model or any of its variants.
+
+**Creating a model**
+Before using or creating a new model keep in mind that WBI-Toolbox is discrete in principle and your simulation should be discrete as well. By going to `Simulation > Configuration Parameters > Solver` you should change the solver options to `Fixed Step` and use a `discrete (no continuous states)` solver.
+
+To start dragging and dropping blocks from the Toolbox open Simulink and search for `Whole Body Interface Toolbox` in the libraries tree.
+
+**Right before running your model**
+All blocks **need** three basic parameters in order to start. These are: `robotName`, `localName` and `Ts`. These variables can be set in your Matlab command window or in your personal configuration script.
+- `robotName` Corresponds to the real name of the robot, e.g. `iCubGenova01`, `iCubHeidelberg01`, `COMAN` or `icubGazeboSim`. 
+- `localName` prefix of the ports that will be opened by the interface.
+- `Ts` Thread rate.
+- `ROBOT_DOF` (temporary) Number of DOF that should coincide with the number of parts of the list name specified in `wholeBodyInterfaceToolbox.ini` (25 in the case of `icub`/`icubGazeboSim`, while for `iCubHeidelberg01` it would be 15).
+
+In particular, the values for `robotName` and `localName` overwrite those in `wholeBodyInterfaceToolbox.ini`.
+
+**IMPORTANT** For your simulations you might want to drop into your simulink model the `ySynchronizer` block which will synchronize the simulation time with the yarp time, given a specified period `Ts`. For this to work you need to first define the environmental variable `$YARP_CLOCK=/clock`, launch `yarpserver` and finally gazebo as `gazebo -s libgazebo_yarp_clock.so` (remember to update your `gazebo-yarp-plugins` repository with the latest version). The rest works as usual. 
 
 ###### Details on iCub joints ordering in WBI Toolbox  
 If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
