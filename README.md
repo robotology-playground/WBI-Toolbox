@@ -22,11 +22,11 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 
 
-###### Main Goal ######
+#### Main Goal
 > The library should allow non-programming experts or those researchers just getting acquainted with Whole Body Control to more easily deploy controllers either on simulation or a real YARP-based robotic platform, as well as to analyze their performance and take advantage of the innumerable MATLAB and Simulink toolboxes. We like to call it "rapid controller prototyping" after which a proper YARP module should be made for hard real time performance and final deployment.
 
 
-###### Requirements
+#### Requirements
 * Matlab V. 7.1+ and Simulink (Tested with Matlab R2014a/b, R2013a/b, R2012a/b)
 * Simulink Toolboxes: Simulink Coder.
 * YARP (https://github.com/robotology/yarp) **-IMPORTANT-** Please compile as shared library. Currently a default yarp configuration option.
@@ -40,7 +40,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 
 **Note: The following instructions are for Linux distributions, but it works similarly on the other operating systems.**
 
-###### Compiling the Toolbox MEX Files
+#### Compiling the Toolbox MEX Files
 The WBI-Toolbox must be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
 - **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. **If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation**.
@@ -61,7 +61,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${CODYCO_SUPERBUILD_DIR}/install/lib/
 
 **Note: For more information on how to compile or update `codyco-superbuild` go to http://goo.gl/aU6EjH**
 
-###### Installing the WBI-Toolbox
+#### Installing the WBI-Toolbox
 - **Installation.** There are a number of ways to install the Toolbox. They all consist in ensuring that the MEX files you just compiled are found in MATLAB's path, along with the Toolbox itself and its icons. We try to make your life easier and prepared an installation script that can be found under the name `startup_wbitoolbox.m` in `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` which automatically takes into account where you installed the WBIToolbox as specified by the variable `CMAKE_INSTALL_PREFIX`. You can see the default value of this variable by going to `${CODYCO_SUPERBUILD_DIR}/main/WBIToolbox` and typing `ccmake ./` to see the CMake default options for the Toolbox. In this way, after compilation, running `startup_wbitoolbox.m` should automatically add the desired directories to MATLAB's path. By default it updates MATLAB's path by creating a `pathdef.m` file in your user startup folder e.g. `~/Documents/MATLAB` by default. To avoid problems when launching MATLAB from terminal you should **make sure you are in your startup directory**. In case the script fails for permission reasons, it will provide you with further instructions on how to manually solve the problem.
 
 If for some reason the installation fails or you want to do this manually, the directories you need to add to the path are `${CODYCO_SUPERBUILD_DIR}/install/mex` (assuming the default CMake installation directory) and the one for the Toolbox itself, i.e. `${CODYCO_SUPERBUILD_DIR}/install/share/WBI-Toolbox` by doing
@@ -76,7 +76,7 @@ You can also create a .m file with these two lines and launch MATLAB from termin
     matlab -r yourStartupFile
 ```
 
-###### Working from the build tree
+#### Working from the build tree
 If you prefer to work from the build tree (for example you are not using the `codyco-superbuild` and you are not installing the library) you cannot use the provided script as it assumes the install directories.
 Instead you have to manually add the following directories to your MATLAB's path
 ```bash
@@ -115,7 +115,7 @@ Referenced from:
 ${CODYCO_SUPERBUILD_DIR}/install/mex/robotState.mexmaci64
 ```
 
-###### Notes on configuration files
+#### Notes on configuration files
 If you wish to change any of the default values of the toolbox's configuration file you should do it in `${CODYCO_SUPERBUILD_DIR}/install/share/codyco/contexts/wholeBodyInterfaceToolbox` (assuming you left the default installation directory of the WBI Toolbox, otherwise look for the corresponding `contexts` directory). Remember that these configuration files will be overwritten everytime you install the WBIToolbox.
 
 In v0.2 the **source default** configuration file can be found in: https://github.com/robotology-playground/WBI-Toolbox/blob/master/libraries/wbInterface/conf/wholeBodyInterfaceToolbox/wholeBodyInterfaceToolbox.ini. In the previous version (v0.1) these options were mixed in the robot-specific configuration files installed with `yarpWholeBodyInterface`. Since they are unrelated, we decided to create an independent configuration file. This file is then installed as:
@@ -144,7 +144,7 @@ Where
 **You should change the default options in the installed file** and not the source one.
 
 
-###### Using the Toolbox
+#### Using the Toolbox
 **What robot are you using?**
 In the newest version (v0.2) of the toolbox you first need to define the environmental variable `YARP_ROBOT_NAME` in `~/.bashrc` with the actual name of your robot, e.g. `export YARP_ROBOT_NAME="icubGazeboSim"`. If you were to use the real robot, say `iCubGenova03`, then you assign this name to `YARP_ROBOT_NAME`. **Rationale:** Since now `yarpWholeBodyInterface` uses the `ResourceFinder` to find configuration files in your system, one of the data directories where it will search is `robots/$YARP_ROBOT_NAME`. Therefore, after you *install* `yarpWholeBodyInterface`, the default configuration files in it will be copied to `CODYCO_SUPERBUILD_DIR/install/share/codyco/robots` where you will find all the available robots. :warning: **Please note that if you compile `yarpWholeBodyInterface` (by say, doing `make` in `$CODYCO_SUPERBUILD_DIR/libraries/yarpWholeBodyInterface`) with the flag `CODYCO_INSTALL_ALL_ROBOTS=OFF` and no environmental variable `YARP_ROBOT_NAME` defined, you won't have installed any of these configuration files.** 
 For more info: http://eris.liralab.it/yarpdoc/resource_finder_spec.html. This allows the WBI-Toolbox to be used not only with `iCubGenova0X`. It has been tested so far with `iCubHeidelberg01` and `COMAN`.
@@ -168,8 +168,8 @@ In particular, the values for `robotName` and `localName` overwrite those in `wh
 
 **IMPORTANT** For your simulations you might want to drop into your simulink model the `ySynchronizer` block which will synchronize the simulation time with the yarp time, given a specified period `Ts`. For this to work you need to first define the environmental variable `$YARP_CLOCK=/clock`, launch `yarpserver` and finally gazebo as `gazebo -s libgazebo_yarp_clock.so` (remember to update your `gazebo-yarp-plugins` repository with the latest version). The rest works as usual. 
 
-###### Details on iCub joints ordering in WBI Toolbox  
+#### Details on iCub joints ordering in WBI Toolbox  
 If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
 
-###### Tested OS
-Linux, Windows, MAC OS X
+#### Tested OS
+Linux, MAC OS X, Windows
