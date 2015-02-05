@@ -45,6 +45,7 @@
 #include <Eigen/Core>                           // import most common Eigen types
 #include <Eigen/SVD>
 #include <wbi/wbi.h>
+#include <yarp/os/Log.h>
 
 #define DEFAULT_CONFIG_FILE "wholeBodyInterfaceToolbox.ini"
 #define DEFAULT_WBI_T_CONTEXT "wholeBodyInterfaceToolbox"

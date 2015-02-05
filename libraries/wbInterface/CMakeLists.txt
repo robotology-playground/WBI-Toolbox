@@ -104,13 +104,4 @@ file(GLOB localContext ${CMAKE_CURRENT_SOURCE_DIR}/conf/wholeBodyInterfaceToolbo
 yarp_install(FILES       ${localContext}
 	     DESTINATION ${CODYCO_CONTEXTS_INSTALL_DIR}/${simContext})
 
-# Variable to be used when configuring the .ini files below
-# set(LOCAL_CONTEXT ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit)
-
-# # This helps with the generation of correct .ini files platform independently
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/icubGazeboSim.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/icubGazeboSim.ini)
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubGenova01.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubGenova01.ini)
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubGenova03.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubGenova03.ini)
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/CMakeTmp/iCubDarmstadt01.ini.in ${CMAKE_CURRENT_SOURCE_DIR}/conf/wbit/iCubDarmstadt01.ini)
-
 install(TARGETS ${PROJECTNAME} DESTINATION mex)
