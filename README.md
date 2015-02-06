@@ -13,6 +13,7 @@ This document contains instructions on how to install and use this toolbox, *tip
 - [Notes on Configuration Files](https://github.com/robotology-playground/WBI-Toolbox#notes-on-configuration-files)
 - [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox)
 - [iCub joints ordering](https://github.com/robotology-playground/WBI-Toolbox#details-on-icub-joints-ordering-in-wbi-toolbox)
+- [Existing models](https://github.com/robotology-playground/WBI-Toolbox#existing-models)
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=jaTEbCsFp_M
