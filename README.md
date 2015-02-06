@@ -11,7 +11,7 @@ This document contains instructions on how to install and use this toolbox, *tip
 - [Installation](https://github.com/robotology-playground/WBI-Toolbox#installing-the-wbi-toolbox)
 - [Working from the build tree](https://github.com/robotology-playground/WBI-Toolbox#working-from-the-build-tree)
 - [Notes on Configuration Files](https://github.com/robotology-playground/WBI-Toolbox#notes-on-configuration-files)
-- [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox-and-current-controllers)
+- [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox)
 - [iCub joints ordering](https://github.com/robotology-playground/WBI-Toolbox#details-on-icub-joints-ordering-in-wbi-toolbox)
 
 <p align="center">
@@ -43,7 +43,7 @@ alt="iCub balancing via external force control" width="480" height="360" border=
 #### Compiling the Toolbox MEX Files
 The WBI-Toolbox must be compiled through the CoDyCo project (https://github.com/robotology-playground/codyco-superbuild). In the following steps assume that `$CODYCO_SUPERBUILD_DIR` points to the `/build` directory of your CoDyCo installation and `$CODYCO_SUPERBUILD_ROOT` to the corresponding root directory. In case you are using the simulator, make sure that the iCub models are being loaded and the `gazebo_yarp_plugins` properly working. This is easy to verify as you need only to launch a `yarpserver` followed by Gazebo and load the desired model, be it iCub (fixed) or iCub. If the robot does not fall under the effect of gravity, it means the plugins are working and you can go ahead with the installation of the Toolbox.
 
-- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. **If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of you Matlab installation**.
+- **Check the Matlab configuration.** Before going ahead with the compilation of the library, make sure that you have MATLAB and Simulink properly installed and running. Then, check that the MEX compiler for MATLAB is setup and working. For this you can try compiling some of the MATLAB C code examples as described in [http://www.mathworks.com/help/matlab/ref/mex.html#btz1tb5-12]. **If you installed Matlab in a location different from the default one, please set an environmental variable called either `MATLABDIR` or `MATLAB_DIR` with the root of your Matlab installation**, e.g. add a line to your `~/.bashrc` such as: `export MATLAB_DIR=/usr/local/bin/matlab`
 
 - **Compiling the WBI Toolbox.** To compile the WBI Toolbox via `codyco-superbuild`, you first need to configure the latter with CMake. A few flags need to be taken into account in order to do this. In particular if you want to use the Gazebo simulator please do:
 
@@ -167,6 +167,9 @@ All blocks **need** three basic parameters in order to start. These are: `robotN
 In particular, the values for `robotName` and `localName` overwrite those in `wholeBodyInterfaceToolbox.ini`.
 
 **IMPORTANT** For your simulations you might want to drop into your simulink model the `ySynchronizer` block which will synchronize the simulation time with the yarp time, given a specified period `Ts`. For this to work you need to first define the environmental variable `$YARP_CLOCK=/clock`, launch `yarpserver` and finally gazebo as `gazebo -s libgazebo_yarp_clock.so` (remember to update your `gazebo-yarp-plugins` repository with the latest version). The rest works as usual. 
+
+#### Existing models
+**All Simulink models and controllers have been moved to https://github.com/robotology-playground/WBI-Toolbox-controllers and removed from WBI-Toolbox**. In order to get them you need to update codyco-superbuild to the most recent version, configure it with CMake activating the flag `CODYCO_USES_WBI_TOOLBOX_CONTROLLERS` (`OFF` by default) and build the whole thing as usual. After doing so, a new directory will show up in `$CODYCO_SUPERBUILD_ROOT/main` called `WBIToolboxControllers` with all the models previously found in the WBI-Toolbox. To use them, just move to this particular directory from within Matlab.
 
 #### Details on iCub joints ordering in WBI Toolbox  
 If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
