@@ -16,9 +16,9 @@ This document contains instructions on how to install and use this toolbox, *tip
 - [Existing models](https://github.com/robotology-playground/WBI-Toolbox#existing-models)
 
 <p align="center">
-<a href="https://www.youtube.com/watch?v=jaTEbCsFp_M
-" target="_blank"><img src="http://img.youtube.com/vi/jaTEbCsFp_M/0.jpg" 
-alt="iCub balancing via external force control" width="480" height="360" border="10" /></a>
+<a href="https://www.youtube.com/watch?v=VrPBSSQEr3A
+" target="_blank"><img src="http://img.youtube.com/vi/VrPBSSQEr3A/0.jpg" 
+alt="iCub balancing on one foot via external force control and interacting with humans" width="480" height="360" border="10" /></a>
 </p>
 
 
