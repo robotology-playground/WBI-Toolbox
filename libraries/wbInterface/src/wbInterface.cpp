@@ -434,6 +434,14 @@ Vector robotStatus::getJntAccelerations() {
     return  ddqJ;
 }
 //=========================================================================================================================
+const Eigen::VectorXd & robotStatus::getMinJntPositions() {
+    return robotStatus::minJointLimits;
+}
+//=========================================================================================================================
+const Eigen::VectorXd & robotStatus::getMaxJntPositions() {
+    return robotStatus::maxJointLimits;
+}
+//=========================================================================================================================
 Vector robotStatus::getJntTorques() {
     return tauJ;
 }
@@ -1548,13 +1556,13 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
         Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > minLimits(pY11, ssGetOutputPortWidth (S, 10));
         Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > maxLimits(pY12, ssGetOutputPortWidth (S, 11));
-        if (    minLimits.size() != robotStatus::minJointLimits.size()
-             || maxLimits.size() != robotStatus::maxJointLimits.size()) {
+        if (    minLimits.size() != robot->getMinJntPositions().size()
+             || maxLimits.size() != robot->getMaxJntPositions().size()) {
 
             mexPrintf("Cannot retrieve joint limits\n");
         } else {
-            minLimits = robotStatus::minJointLimits;
-            maxLimits = robotStatus::maxJointLimits;
+            minLimits = robot->getMinJntPositions();
+            maxLimits = robot->getMaxJntPositions();
         }
 
     }
