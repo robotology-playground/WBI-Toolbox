@@ -180,10 +180,10 @@ private:
     /*Robot DOF read from configuration file*/
     static int              ROBOT_DOF;
 
+public:
     static Eigen::VectorXd         minJointLimits;
     static Eigen::VectorXd         maxJointLimits;
 
-public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     wbi::wholeBodyInterface* wbInterface;
     // Temporal container to copy wbInterface object for other copies of this module
@@ -224,7 +224,6 @@ public:
     Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
-    bool                getJointLimits (Eigen::Ref<Eigen::VectorXd> minLimits, Eigen::Ref<Eigen::VectorXd> maxLimits);
     bool                centroidalMomentum (double* qrad_input, double* dq_input, double* h);
     bool                robotEEWrenches (wbi::ID LID);
     yarp::sig::Vector   getEEWrench();
