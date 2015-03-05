@@ -147,9 +147,9 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
             yInfo("[robotStatus::robotConfig] List of properties for yarpWholeBodyInterface was interpreted correctly\n");
           }
           //ENDS yarpWholeBodyInterface options configuration
-          
+
           // First add WBI-T options that were read by rf, then overwrite robot and localName by what the user inputs from MATLAB's command line
-          yarpWbiOptions->fromString(rf.toString(),false);          
+          yarpWbiOptions->fromString(rf.toString(),false);
           yarpWbiOptions->put("robot",     robotStatus::robotName);
           yarpWbiOptions->put("localName", robotStatus::moduleName);
 
@@ -432,6 +432,14 @@ VectorXd& robotStatus::getJntVelocities() {
 //=========================================================================================================================
 Vector robotStatus::getJntAccelerations() {
     return  ddqJ;
+}
+//=========================================================================================================================
+const Eigen::VectorXd & robotStatus::getMinJntPositions() {
+    return robotStatus::minJointLimits;
+}
+//=========================================================================================================================
+const Eigen::VectorXd & robotStatus::getMaxJntPositions() {
+    return robotStatus::maxJointLimits;
 }
 //=========================================================================================================================
 Vector robotStatus::getJntTorques() {
@@ -726,16 +734,6 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
     }
     return ans;
 }
-//=========================================================================================================================
-/** Returns joints limits in radians.*/
-bool robotStatus::getJointLimits (Eigen::Ref<Eigen::VectorXd> minLimits, Eigen::Ref<Eigen::VectorXd> maxLimits) {
-    if (minLimits.size() != robotStatus::minJointLimits.size()
-        || maxLimits.size() != robotStatus::maxJointLimits.size())
-        return false;
-    minLimits = robotStatus::minJointLimits;
-    maxLimits = robotStatus::maxJointLimits;
-    return true;
-}
 //==========================================================================================================================
 bool robotStatus::robotEEWrenches (wbi::ID LID) {
     bool ans = false;
@@ -864,7 +862,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     }
     yarpWbiOptions.fromString(rf.toString(), false);
     //ENDS yarpWholeBodyInterface options configuration
-    
+
     std::string robotMainJointsListNameFromConfigFile = yarpWbiOptions.find ("wbi_id_list").asString();
 
     // Extracting DOF from joints defined in config file.
@@ -1110,17 +1108,17 @@ static void mdlStart (SimStruct* S) {
     }
     //save robot pointer
     ssGetPWork(S)[0] = robot;
-    
+
     yInfo("[mdlStart] An object robot of type wholeBodyInterface has been created\n");
     yInfo("[mdlStart] About to configure robot \n");
     robot->setmoduleName (local_name);
     robot->setRobotName (robot_name);
     robot->setParamLink (param_link_name);
-    
+
     yarp::os::Property* yarpWbiOptions;
     yarpWbiOptions = new yarp::os::Property;
     ssGetPWork(S)[1] = yarpWbiOptions;
-    
+
     bool res = robot->robotConfig(yarpWbiOptions);
 
     if (res)
@@ -1132,7 +1130,7 @@ static void mdlStart (SimStruct* S) {
     }
 
     res = res && robot->robotInit (static_cast<int> (block_type), static_cast<int> (*uPtrs[0]));
-    
+
     if (res == true)
         yInfo("[mdlStart] Succesfully exited robotInit.\n");
     else {
@@ -1288,7 +1286,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             yError("[mdlOutputs] No body part has been specified to compute jacobians\n");
         }
         robot->getLinkId (linkName, lid);
-        
+
         real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
         //serialize matrix into vector
         int_T portSize = ssGetOutputPortWidth(S, 3);
@@ -1297,7 +1295,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             yError("[mdlOutputs] Jacobian has wrong size: Port: %d\n", portSize);
             return;
         }
-        
+
         Eigen::Map<Eigen::Matrix<real_T, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
         outputSignal = robot->jacobian(lid);
 #ifdef DEBUG
@@ -1315,7 +1313,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
             refTmp (j) = (*uPtrs1[j]);
         }
-        
+
         if (btype == VELOCITY_CONTROL_REF_BLOCK) {
             if (!robot->setCtrlMode (wbi::CTRL_MODE_VEL, &refTmp)) {
                 yError( "[mdlOutputs] Error sending velocity reference\n");
@@ -1558,9 +1556,14 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
         Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > minLimits(pY11, ssGetOutputPortWidth (S, 10));
         Eigen::Map<Eigen::Matrix<real_T, Eigen::Dynamic, 1> > maxLimits(pY12, ssGetOutputPortWidth (S, 11));
-        if (!robot->getJointLimits(minLimits, maxLimits))
-            mexPrintf("Cannot retrieve joint limits\n");
+        if (    minLimits.size() != robot->getMinJntPositions().size()
+             || maxLimits.size() != robot->getMaxJntPositions().size()) {
 
+            mexPrintf("Cannot retrieve joint limits\n");
+        } else {
+            minLimits = robot->getMinJntPositions();
+            maxLimits = robot->getMaxJntPositions();
+        }
 
     }
 
@@ -1710,11 +1713,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         yDebug("Parametric Jacobian will be computed for linkName: %s\n", linkName);
 #endif
         robot->getLinkId (linkName, lid);
-        
+
         real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
         Eigen::Map<Eigen::Matrix<real_T, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
         outputSignal = robot->jacobian(lid);
-        
+
 #ifdef DEBUG
         yDebug("[mdlOutputs] Jacobians Computed Succesfully. Jacobian is: \n");
 #endif
