@@ -2,7 +2,7 @@ Library {
   Name			  "WBCLibrary"
   Version		  7.9
   MdlSubVersion		  0
-  SavedCharacterEncoding  "UTF-8"
+  SavedCharacterEncoding  "US-ASCII"
   LibraryType		  "BlockLibrary"
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -18,11 +18,11 @@ Library {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "jorhabib"
+  LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Jan 28 17:24:51 2015"
-  RTWModifiedTimeStamp	  344366691
-  ModelVersionFormat	  "1.%<AutoIncrement:231>"
+  LastModifiedDate	  "Wed Mar 18 20:08:10 2015"
+  RTWModifiedTimeStamp	  348610090
+  ModelVersionFormat	  "1.%<AutoIncrement:233>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -796,7 +796,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [1691, 205, 2971, 905]
+    Location		    [0, 42, 1280, 742]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -810,7 +810,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "258"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1469"
+    SIDHighWatermark	    "1497"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -829,7 +829,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Utilities"
-	Location		[1686, 134, 2966, 834]
+	Location		[0, 42, 1280, 742]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -842,6 +842,492 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"194"
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "23-DoFs WBI to YARP"
+	  SID			  "1485"
+	  Ports			  [1, 5]
+	  Position		  [450, 281, 560, 349]
+	  ZOrder		  19
+	  BackgroundColor	  "lightBlue"
+	  DropShadow		  on
+	  RequestExecContextInheritance	off
+	  MaskDescription	  "This is a 23-DoF iCub specific block that swaps first and third joints of the iCub torso from a "
+	  "WBI whole body state reading."
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "23-DoFs WBI to YARP"
+	    Location		    [100, 78, 900, 600]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "80"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "WBI Ordered"
+	      SID		      "1486"
+	      Position		      [25, 148, 55, 162]
+	      ZOrder		      14
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector"
+	      SID		      "1487"
+	      Ports		      [1, 1]
+	      Position		      [150, 21, 190, 59]
+	      ZOrder		      11
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[1:3]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector1"
+	      SID		      "1488"
+	      Ports		      [1, 1]
+	      Position		      [175, 81, 215, 119]
+	      ZOrder		      10
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[4:7]"
+	      Port {
+		PortNumber		1
+		Name			"leftArm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector2"
+	      SID		      "1489"
+	      Ports		      [1, 1]
+	      Position		      [175, 146, 215, 184]
+	      ZOrder		      9
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[8:11]"
+	      Port {
+		PortNumber		1
+		Name			"rightArm"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector3"
+	      SID		      "1490"
+	      Ports		      [1, 1]
+	      Position		      [175, 211, 215, 249]
+	      ZOrder		      8
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[12:17]"
+	      Port {
+		PortNumber		1
+		Name			"leftLeg"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector4"
+	      SID		      "1491"
+	      Ports		      [1, 1]
+	      Position		      [175, 281, 215, 319]
+	      ZOrder		      7
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[18:23]"
+	      Port {
+		PortNumber		1
+		Name			"rightLeg"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector6"
+	      SID		      "1492"
+	      Ports		      [1, 1]
+	      Position		      [220, 21, 260, 59]
+	      ZOrder		      13
+	      InputPortWidth	      "3"
+	      Indices		      "[3 2 1]"
+	      Port {
+		PortNumber		1
+		Name			"torso"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "torso"
+	      SID		      "1493"
+	      Position		      [330, 33, 360, 47]
+	      ZOrder		      15
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "leftArm"
+	      SID		      "1494"
+	      Position		      [330, 93, 360, 107]
+	      ZOrder		      16
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "rightArm"
+	      SID		      "1495"
+	      Position		      [330, 158, 360, 172]
+	      ZOrder		      17
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "leftLeg"
+	      SID		      "1496"
+	      Position		      [330, 223, 360, 237]
+	      ZOrder		      18
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "rightLeg"
+	      SID		      "1497"
+	      Position		      [330, 293, 360, 307]
+	      ZOrder		      19
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Selector"
+	      SrcPort		      1
+	      DstBlock		      "Selector6"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "torso"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Selector6"
+	      SrcPort		      1
+	      DstBlock		      "torso"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "WBI Ordered"
+	      SrcPort		      1
+	      Points		      [75, 0]
+	      Branch {
+		Points			[0, -55]
+		Branch {
+		  DstBlock		  "Selector"
+		  DstPort		  1
+		}
+		Branch {
+		  DstBlock		  "Selector1"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		Points			[0, 10]
+		Branch {
+		  DstBlock		  "Selector2"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 65]
+		  Branch {
+		    Points		    [0, 70]
+		    DstBlock		    "Selector4"
+		    DstPort		    1
+		  }
+		  Branch {
+		    DstBlock		    "Selector3"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      Name		      "leftArm"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Selector1"
+	      SrcPort		      1
+	      DstBlock		      "leftArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "rightArm"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Selector2"
+	      SrcPort		      1
+	      DstBlock		      "rightArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "leftLeg"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Selector3"
+	      SrcPort		      1
+	      DstBlock		      "leftLeg"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "rightLeg"
+	      Labels		      [1, 1]
+	      SrcBlock		      "Selector4"
+	      SrcPort		      1
+	      DstBlock		      "rightLeg"
+	      DstPort		      1
+	    }
+	  }
+	  RTWSystemCode		  "Auto"
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  MaskHideContents	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "25-DoFs WBI to yarp"
+	  SID			  "730"
+	  Ports			  [1, 5]
+	  Position		  [450, 167, 560, 253]
+	  ZOrder		  -7
+	  BackgroundColor	  "[0.180000, 0.348000, 0.600000]"
+	  RequestExecContextInheritance	off
+	  MaskType		  "WBI to YARP"
+	  MaskDescription	  "This is a 25-DOF iCub specific block that swaps first and third joints of the iCub torso from a "
+	  "WBI whole body state reading."
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "25-DoFs WBI to yarp"
+	    Location		    [0, 42, 1280, 742]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "WBI ordered"
+	      SID		      "731"
+	      Position		      [25, 145, 40, 175]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector"
+	      SID		      "732"
+	      Ports		      [1, 1]
+	      Position		      [85, 26, 125, 64]
+	      ZOrder		      -2
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[1:3]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector1"
+	      SID		      "733"
+	      Ports		      [1, 1]
+	      Position		      [110, 86, 150, 124]
+	      ZOrder		      -3
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[4:8]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector2"
+	      SID		      "734"
+	      Ports		      [1, 1]
+	      Position		      [110, 151, 150, 189]
+	      ZOrder		      -4
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[9:13]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector3"
+	      SID		      "735"
+	      Ports		      [1, 1]
+	      Position		      [110, 216, 150, 254]
+	      ZOrder		      -5
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[14:19]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector4"
+	      SID		      "736"
+	      Ports		      [1, 1]
+	      Position		      [110, 286, 150, 324]
+	      ZOrder		      -6
+	      InputPortWidth	      "ROBOT_DOF"
+	      Indices		      "[20:25]"
+	    }
+	    Block {
+	      BlockType		      Selector
+	      Name		      "Selector6"
+	      SID		      "1266"
+	      Ports		      [1, 1]
+	      Position		      [155, 26, 195, 64]
+	      ZOrder		      1
+	      InputPortWidth	      "3"
+	      Indices		      "[3 2 1]"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "torso"
+	      SID		      "738"
+	      Position		      [215, 38, 245, 52]
+	      ZOrder		      -8
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "leftArm"
+	      SID		      "739"
+	      Position		      [175, 98, 205, 112]
+	      ZOrder		      -9
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "rightArm"
+	      SID		      "740"
+	      Position		      [175, 163, 205, 177]
+	      ZOrder		      -10
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "leftLeg"
+	      SID		      "741"
+	      Position		      [175, 228, 205, 242]
+	      ZOrder		      -11
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "rightLeg"
+	      SID		      "742"
+	      Position		      [175, 298, 205, 312]
+	      ZOrder		      -12
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Selector1"
+	      SrcPort		      1
+	      DstBlock		      "leftArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector2"
+	      SrcPort		      1
+	      DstBlock		      "rightArm"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector3"
+	      SrcPort		      1
+	      DstBlock		      "leftLeg"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector4"
+	      SrcPort		      1
+	      DstBlock		      "rightLeg"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "WBI ordered"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      Branch {
+		Points			[0, -55]
+		Branch {
+		  DstBlock		  "Selector"
+		  DstPort		  1
+		}
+		Branch {
+		  DstBlock		  "Selector1"
+		  DstPort		  1
+		}
+	      }
+	      Branch {
+		Points			[0, 10]
+		Branch {
+		  DstBlock		  "Selector2"
+		  DstPort		  1
+		}
+		Branch {
+		  Points		  [0, 65]
+		  Branch {
+		    Points		    [0, 70]
+		    DstBlock		    "Selector4"
+		    DstPort		    1
+		  }
+		  Branch {
+		    DstBlock		    "Selector3"
+		    DstPort		    1
+		  }
+		}
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Selector"
+	      SrcPort		      1
+	      DstBlock		      "Selector6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Selector6"
+	      SrcPort		      1
+	      DstBlock		      "torso"
+	      DstPort		      1
+	    }
+	  }
+	  RTWSystemCode		  "Auto"
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  MaskHideContents	  off
+	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "DampPinv"
@@ -934,7 +1420,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1481"
+		SIDHighWatermark	"1497"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1224,7 +1710,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1481"
+		SIDHighWatermark	"1497"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1361,229 +1847,6 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
-	  Name			  "WBI to yarp"
-	  SID			  "730"
-	  Ports			  [1, 5]
-	  Position		  [450, 167, 560, 253]
-	  ZOrder		  -7
-	  BackgroundColor	  "[0.180000, 0.348000, 0.600000]"
-	  RequestExecContextInheritance	off
-	  MaskType		  "WBI to YARP"
-	  MaskDescription	  "This is a 25-DOF iCub specific block that swaps first and third joints of the iCub torso from a "
-	  "WBI whole body state reading."
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  on
-	  MaskIconRotate	  "none"
-	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
-	  System {
-	    Name		    "WBI to yarp"
-	    Location		    [1686, 134, 2966, 834]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "usletter"
-	    PaperUnits		    "inches"
-	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "WBI ordered"
-	      SID		      "731"
-	      Position		      [25, 145, 40, 175]
-	      ZOrder		      -1
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector"
-	      SID		      "732"
-	      Ports		      [1, 1]
-	      Position		      [85, 26, 125, 64]
-	      ZOrder		      -2
-	      InputPortWidth	      "ROBOT_DOF"
-	      Indices		      "[1:3]"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector1"
-	      SID		      "733"
-	      Ports		      [1, 1]
-	      Position		      [110, 86, 150, 124]
-	      ZOrder		      -3
-	      InputPortWidth	      "ROBOT_DOF"
-	      Indices		      "[4:8]"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector2"
-	      SID		      "734"
-	      Ports		      [1, 1]
-	      Position		      [110, 151, 150, 189]
-	      ZOrder		      -4
-	      InputPortWidth	      "ROBOT_DOF"
-	      Indices		      "[9:13]"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector3"
-	      SID		      "735"
-	      Ports		      [1, 1]
-	      Position		      [110, 216, 150, 254]
-	      ZOrder		      -5
-	      InputPortWidth	      "ROBOT_DOF"
-	      Indices		      "[14:19]"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector4"
-	      SID		      "736"
-	      Ports		      [1, 1]
-	      Position		      [110, 286, 150, 324]
-	      ZOrder		      -6
-	      InputPortWidth	      "ROBOT_DOF"
-	      Indices		      "[20:25]"
-	    }
-	    Block {
-	      BlockType		      Selector
-	      Name		      "Selector6"
-	      SID		      "1266"
-	      Ports		      [1, 1]
-	      Position		      [155, 26, 195, 64]
-	      ZOrder		      1
-	      InputPortWidth	      "3"
-	      Indices		      "[3 2 1]"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "torso"
-	      SID		      "738"
-	      Position		      [215, 38, 245, 52]
-	      ZOrder		      -8
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "leftArm"
-	      SID		      "739"
-	      Position		      [175, 98, 205, 112]
-	      ZOrder		      -9
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "rightArm"
-	      SID		      "740"
-	      Position		      [175, 163, 205, 177]
-	      ZOrder		      -10
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "leftLeg"
-	      SID		      "741"
-	      Position		      [175, 228, 205, 242]
-	      ZOrder		      -11
-	      Port		      "4"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "rightLeg"
-	      SID		      "742"
-	      Position		      [175, 298, 205, 312]
-	      ZOrder		      -12
-	      Port		      "5"
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      SrcBlock		      "Selector1"
-	      SrcPort		      1
-	      DstBlock		      "leftArm"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Selector2"
-	      SrcPort		      1
-	      DstBlock		      "rightArm"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Selector3"
-	      SrcPort		      1
-	      DstBlock		      "leftLeg"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Selector4"
-	      SrcPort		      1
-	      DstBlock		      "rightLeg"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "WBI ordered"
-	      SrcPort		      1
-	      Points		      [25, 0]
-	      Branch {
-		Points			[0, -55]
-		Branch {
-		  DstBlock		  "Selector"
-		  DstPort		  1
-		}
-		Branch {
-		  DstBlock		  "Selector1"
-		  DstPort		  1
-		}
-	      }
-	      Branch {
-		Points			[0, 10]
-		Branch {
-		  DstBlock		  "Selector2"
-		  DstPort		  1
-		}
-		Branch {
-		  Points		  [0, 65]
-		  Branch {
-		    Points		    [0, 70]
-		    DstBlock		    "Selector4"
-		    DstPort		    1
-		  }
-		  Branch {
-		    DstBlock		    "Selector3"
-		    DstPort		    1
-		  }
-		}
-	      }
-	    }
-	    Line {
-	      SrcBlock		      "Selector"
-	      SrcPort		      1
-	      DstBlock		      "Selector6"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Selector6"
-	      SrcPort		      1
-	      DstBlock		      "torso"
-	      DstPort		      1
-	    }
-	  }
-	  RTWSystemCode		  "Auto"
-	  MinAlgLoopOccurrences	  off
-	  PropExecContextOutsideSubsystem off
-	  FunctionWithSeparateData off
-	  Opaque		  off
-	  MaskHideContents	  off
-	}
-	Block {
-	  BlockType		  SubSystem
 	  Name			  "baseVelocity"
 	  SID			  "431"
 	  Ports			  [3, 1]
@@ -1677,7 +1940,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1481"
+		SIDHighWatermark	"1497"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -1994,7 +2257,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "holder\n"
-	    Location		    [8, 44, 1564, 2969]
+	    Location		    [0, 42, 1280, 742]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -2075,7 +2338,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1481"
+		SIDHighWatermark	"1497"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -2086,7 +2349,7 @@ Library {
 		}
 		Block {
 		  BlockType		  Inport
-		  Name			  "t"
+		  Name			  "unused"
 		  SID			  "1300::26"
 		  Position		  [20, 136, 40, 154]
 		  ZOrder		  12
@@ -2143,7 +2406,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  SrcBlock		  "t"
+		  SrcBlock		  "unused"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
 		  DstPort		  2
@@ -9350,7 +9613,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Center of Mass Jacobian"
-		Location		[1696, 144, 2954, 795]
+		Location		[0, 42, 1280, 742]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -12631,7 +12894,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.230"
+		  LibraryVersion	  "1.232"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -12647,7 +12910,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.230"
+		  LibraryVersion	  "1.232"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -12663,7 +12926,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.230"
+		  LibraryVersion	  "1.232"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -12679,7 +12942,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.230"
+		  LibraryVersion	  "1.232"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -12695,7 +12958,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.230"
+		  LibraryVersion	  "1.232"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  ""
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -15202,7 +15465,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.230"
+	      LibraryVersion	      "1.232"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15216,7 +15479,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.230"
+	      LibraryVersion	      "1.232"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15241,7 +15504,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.230"
+	      LibraryVersion	      "1.232"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15255,7 +15518,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.230"
+	      LibraryVersion	      "1.232"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15373,7 +15636,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.230"
+	      LibraryVersion	      "1.232"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
@@ -15480,6 +15743,7 @@ Stateflow {
     firstJunction	    7
     viewObj		    2
     machine		    1
+    toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -15504,8 +15768,8 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function s0 = fcn(s, t)\npersistent state\n%#codegen\n\n\nif isempty(state)\n    state = s;\n    "
-      "s\nend\n\ns0 = state;"
+      script		      "function s0 = fcn(s, ~)\npersistent state\n%#codegen\n\nif isempty(state)\n    state = s;\nend\n\n"
+      "s0 = state;"
       editorLayout	      "100 M4x1[10 5 700 500]"
     }
   }
@@ -15556,7 +15820,7 @@ Stateflow {
   data {
     id			    6
     ssIdNumber		    9
-    name		    "t"
+    name		    "unused"
     linkNode		    [2 5 0]
     scope		    INPUT_DATA
     machine		    1
