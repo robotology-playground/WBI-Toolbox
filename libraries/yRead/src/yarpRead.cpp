@@ -23,16 +23,18 @@
 #define S_FUNCTION_NAME yRead
 
 // PARAMETERS MASK
-#define NPARAMS 5                              // Number of input parameters
+#define NPARAMS 6                              // Number of input parameters
 
 #define PARAM_IDX_1 0                           // FROM port name
 #define PARAM_IDX_2 1                           // TO port name
 #define PARAM_IDX_3 2                           // Size of the port you're reading
 #define PARAM_IDX_4 3                           // boolean for blocking reading
 #define PARAM_IDX_5 4                           // boolean to stream timestamp
+#define PARAM_IDX_6 5                           // Autoconnect boolean
 #define SIZE_READING_PORT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_3))    // Get first input parameter from mask
 #define BLOCKING  mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4))
 #define TIMESTAMP mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5))
+#define AUTOCONNECT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_6))
 
 // Need to include simstruc.h for the definition of the SimStruct and
 // its associated macro definitions.
@@ -85,6 +87,7 @@ static void mdlInitializeSizes(SimStruct *S)
     // OUTPUTS
     int timestamp = (int) TIMESTAMP;
     int size_reading_port = (int) SIZE_READING_PORT;
+    int autoconnect = (int) AUTOCONNECT;
     if(!timestamp){
         cout<<"Yarp read block will have: " << SIZE_READING_PORT << "outputs" << endl;
         if (!ssSetNumOutputPorts(S,SIZE_READING_PORT)) return;
@@ -109,7 +112,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetNumPWork(S, 1);
 
     // IWork vector for booleans
-    ssSetNumIWork(S, 2);
+    ssSetNumIWork(S, 3);
 
     ssSetSimStateCompliance(S, USE_CUSTOM_SIM_STATE);
 
@@ -223,7 +226,16 @@ static void mdlStart(SimStruct *S)
     cout << "Timestamp? : " << timestamp << endl;
     ssGetIWork(S)[1] = timestamp;
     
-    fprintf(stderr, "Connecting '%s' to '%s': result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
+    int_T autoconnect = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_6));
+    cout << "Autoconnect? : " << autoconnect << endl;
+    ssGetIWork(S)[2] = autoconnect;
+    
+    if (autoconnect) {
+        fprintf(stderr, "Connecting '%s' to '%s' \n");
+        Network::connect(port_name, toPortName);
+    }
+    
+//     fprintf(stderr,"Result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
 }
 
 // Function: mdlOutputs =======================================================
