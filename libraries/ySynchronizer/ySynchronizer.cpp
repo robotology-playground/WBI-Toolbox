@@ -19,6 +19,8 @@
 #include <yarp/os/Network.h>
 #include <yarp/os/BufferedPort.h>
 #include <thrift/ClockServer.h>
+#include <yarp/os/LogStream.h>
+#include <yarp/os/Log.h>
 
 
 struct InternalData
@@ -59,7 +61,7 @@ static void mdlInitializeSizes(SimStruct *S)
                   SS_OPTION_PLACE_ASAP                   |   // This options makes the ySynchronizer execute AS SOON AS POSSIBLE
                   SS_OPTION_CALL_TERMINATE_ON_EXIT);
 
-    fprintf (stderr, "[mdlInitializeSizes] : Options set\n\n");
+    yDebug("[mdlInitializeSizes] Options set for ySynchronizer\n\n");
 
 }
 
@@ -77,9 +79,10 @@ static void mdlStart(SimStruct *S)
     flag[0] = 0;
 
     yarp::os::Network::init();
-    printf("YARP Network initialized\n");
+    yInfo("YARP Network initialized by ySynchronizer\n");
 
     if (!yarp::os::Network::checkNetwork() || !yarp::os::Network::initialized()) {
+        yError("[mdlStart] ySynchronizer did not find YARP server active\n");
         ssSetErrorStatus(S,"mdlStart >> YARP server wasn't found active!! \n");
         return;
     }
@@ -91,48 +94,42 @@ static void mdlStart(SimStruct *S)
     internalData->configuration.clientPortName = "/ySynchronizer/clock:o"; //compose this with the module name?
     internalData->configuration.serverPortName = "/clock/rpc";
 
-    bool resetTimeAtStart = false;
-
     double period = 0.01;
     //TODO read period from parameter here
 
     internalData->clientPort.open(internalData->configuration.clientPortName);
     if (!yarp::os::Network::connect(internalData->configuration.clientPortName, internalData->configuration.serverPortName)) {
-        fprintf(stderr,"mdlStart : ERR Problems connecting with /clock/rpc. Has gazebo been launched with the clock plugin?\n");
+        yError("mdlStart : ERR Problems connecting with /clock/rpc. Has gazebo been launched with the clock plugin?\n");
         ssSetErrorStatus(S, "Problems connecting with /clock/rpc. Has gazebo been launched with the clock plugin?");
     }
 
     internalData->clockServer.yarp().attachAsClient(internalData->clientPort);
 
     double stepSize = internalData->clockServer.getStepSize();
-    fprintf(stderr,"[ySynchronizer::mdlStart] >> clockServer client retrieved stepSize = %lf\n", stepSize);
+    yInfo("[ySynchronizer::mdlStart] >> clockServer client retrieved stepSize = %lf\n", stepSize);
 
-    //check if stepSize / period is an integer.
+    //check if stepSize/period is an integer.
     internalData->configuration.numberOfSteps = period / stepSize;
 
 //     internalData->clockServer.pauseSimulation();
-
-    if (resetTimeAtStart) {
-        internalData->clockServer.resetSimulationTime();
-    }
 
     ssGetPWork(S)[0] = internalData;
 
     // Initialization is over.
     flag[0]     = 1;
 
-    fprintf(stderr,"ySynchronizer::mdlStart >> Finished startup\n");
+    yInfo("ySynchronizer::mdlStart >> Finished startup\n");
 }
 
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
     InternalData *internalData = static_cast<InternalData*>(ssGetPWork(S)[0]);
-
     int_T* flag = (int_T*) ssGetDWork (S, 0);
     if (flag[0]) {
         // Pause only once in mdlOutputs
+        yInfo("[ySynhcronizer] PAUSED THE SIMULATION DURING THE FIRST SIMULATION LOOP\n");
         internalData->clockServer.pauseSimulation();
-        flag[0] = 0;
+        flag[0] = 0;    
     }
     internalData->clockServer.stepSimulationAndWait(internalData->configuration.numberOfSteps);
 }
@@ -142,10 +139,10 @@ static void mdlTerminate(SimStruct *S)
     if (ssGetNumPWork(S) > 0 && ssGetPWork(S)) {
         InternalData *internalData = static_cast<InternalData*>(ssGetPWork(S)[0]);
         if (internalData) {
-            fprintf(stderr,"mdlTerminate >> Before issuing continueSimulation command\n");
+            yInfo("[mdlTerminate][ySynchronizer] Before issuing continueSimulation command\n");
             internalData->clockServer.continueSimulation();
             if(!yarp::os::Network::disconnect(internalData->configuration.clientPortName, internalData->configuration.serverPortName)) {
-                fprintf(stderr,"mdlTerminate >> ySynchronizer: Could not disconnect src %s from dest %s \n", internalData->configuration.clientPortName.c_str(), internalData->configuration.serverPortName.c_str());
+                yError("[mdlTerminate][ySynchronizer] Could not disconnect src %s from dest %s \n", internalData->configuration.clientPortName.c_str(), internalData->configuration.serverPortName.c_str());
             }
             internalData->clientPort.close();
             delete internalData;
@@ -153,7 +150,7 @@ static void mdlTerminate(SimStruct *S)
         }
     }
     yarp::os::Network::fini();
-    fprintf(stderr,"mdlTerminate : ySynchronizer reached end of this simulation\n");
+    yInfo("[mdlTerminate][ySynchronizer] reached end of this simulation\n");
 }
 
 /*
