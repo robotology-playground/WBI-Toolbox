@@ -20,9 +20,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 30 15:29:40 2015"
-  RTWModifiedTimeStamp	  349630180
-  ModelVersionFormat	  "1.%<AutoIncrement:239>"
+  LastModifiedDate	  "Mon Mar 30 15:59:11 2015"
+  RTWModifiedTimeStamp	  349631951
+  ModelVersionFormat	  "1.%<AutoIncrement:240>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -796,7 +796,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [1819, 625, 3077, 1276]
+    Location		    [105, 115, 1363, 766]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -829,7 +829,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Utilities"
-	Location		[1896, 593, 3154, 1244]
+	Location		[105, 115, 1363, 766]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2675,19 +2675,19 @@ Library {
 	  Parameters		  "from,to,num,blocking,timestamp,autoconnect"
 	  EnableBusSupport	  off
 	  MaskType		  "yarp read"
-	  MaskDescription	  "This block behaves as the command 'yarp read'. By default it comes with the option 'Autoconnect'"
-	  " active, which means that the user can only specify the name of the port from which readings are desired, along wit"
-	  "h the size of the expected data (e.g. 3 when reading the torso state). When the user unchecks 'Autoconnect' a  new "
-	  "field called 'To' shows up, corresponding to a destination port which should be connected to the port specified in "
-	  "'From' by the user from command line by issuing 'yarp connect [from] [dest]'. Meaning that this block simply create"
-	  "s a port specified by the user without connecting it to the source. "
-	  MaskPromptString	  "From|To|Port size|Blocking reading|Stream time stamp|Autoconnect"
+	  MaskDescription	  "This block behaves as the command 'yarp read'. By default it has the option 'Autoconnect' active"
+	  ", which means that the user can only specify the name of the port from which readings are desired, along with the s"
+	  "ize of the expected data (e.g. 3 when reading the torso state). When the user unchecks 'Autoconnect' the field call"
+	  "ed 'Port name' shows up corresponding to the name of the port the block will create but won't connect to anything. "
+	  "At this point the output will be always zero, until the user connects it to some other port from command line by is"
+	  "suing 'yarp connect [from] [dest]'."
+	  MaskPromptString	  "From|Port name|Port size|Blocking reading|Stream time stamp|Autoconnect"
 	  MaskStyleString	  "edit,edit,edit,checkbox,checkbox,checkbox"
 	  MaskVariables		  "from=@1;to=@2;num=@3;blocking=@4;timestamp=@5;autoconnect=@6;"
 	  MaskTunableValueString  "on,on,on,on,on,on"
 	  MaskCallbackString	  "|||||autoconnect_val = get_param(gcb, 'Autoconnect');\nif(strcmp(autoconnect_val, 'on'))\n   "
 	  " set_param(gcb, 'MaskVisibilities',{'on';'off';'on';'on';'on';'on'});\nelse\n    set_param(gcb, 'MaskVisibilities',"
-	  "{'on';'on';'on';'on';'on';'on'});\nend"
+	  "{'off';'on';'on';'on';'on';'on'});\nend"
 	  MaskEnableString	  "on,on,on,on,on,on"
 	  MaskVisibilityString	  "on,off,on,on,on,on"
 	  MaskToolTipString	  "on,on,on,on,on,on"
@@ -12904,7 +12904,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.238"
+		  LibraryVersion	  "1.239"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -12921,7 +12921,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.238"
+		  LibraryVersion	  "1.239"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -12938,7 +12938,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.238"
+		  LibraryVersion	  "1.239"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -12955,7 +12955,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.238"
+		  LibraryVersion	  "1.239"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -12972,7 +12972,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.238"
+		  LibraryVersion	  "1.239"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -15480,7 +15480,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.238"
+	      LibraryVersion	      "1.239"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15494,7 +15494,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.238"
+	      LibraryVersion	      "1.239"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15519,7 +15519,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.238"
+	      LibraryVersion	      "1.239"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15533,7 +15533,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.238"
+	      LibraryVersion	      "1.239"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15651,7 +15651,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.238"
+	      LibraryVersion	      "1.239"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
