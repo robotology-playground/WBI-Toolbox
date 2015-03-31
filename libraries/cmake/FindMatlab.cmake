@@ -1156,8 +1156,8 @@ if(_numbers_of_matlab_roots EQUAL 0)
 
     # get the directory (the command below has to be run twice)
     # this will be the matlab root
-    get_filename_component(_matlab_current_location "${_matlab_current_location}" DIRECTORY)
-    get_filename_component(_matlab_current_location "${_matlab_current_location}" DIRECTORY) # Matlab should be in bin
+    get_filename_component(_matlab_current_location "${_matlab_current_location}" PATH)
+    get_filename_component(_matlab_current_location "${_matlab_current_location}" PATH) # Matlab should be in bin
 
     list(APPEND _matlab_possible_roots "NOTFOUND" ${_matlab_current_location})
 
