@@ -204,6 +204,7 @@ public:
     //This is especifically for the COM
     int                 getLinkId (const char* linkName);
     bool                world2baseRototranslation (double* q);
+    bool                updateWorld2BaseRotoTranslation();
     void                setWorldReferenceFrame(const char* wrf);
     bool                robotJntAngles (bool blockingRead);
     bool                robotJntVelocities (bool blockingRead);

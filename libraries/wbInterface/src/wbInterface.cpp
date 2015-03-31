@@ -69,7 +69,7 @@ Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
 robotStatus::robotStatus() {
     creationCounter++;
-    yInfo("[robotStatus::robotStatus] robotStatus class instantiated %d times", creationCounter);
+    yInfo("[robotStatus::robotStatus] robotStatus class instantiated %d times\n", creationCounter);
     wbInterface = NULL;
 }
 //=========================================================================================================================
@@ -82,7 +82,7 @@ robotStatus::~robotStatus() {
             yInfo ("[robotStatus::~robotStatus] wbInterface has been closed and deleted correctly. %d to go \n", creationCounter);
             wbInterface = NULL;
         } else {
-            yError ("[robotStatus::~robotStatus] wbInterface couldn't close correctly");
+            yError ("[robotStatus::~robotStatus] wbInterface couldn't close correctly\n");
         }
 
         tmpContainer = NULL;
@@ -261,8 +261,8 @@ bool robotStatus::robotInit (int btype, int link) {
     x_pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
 
 #ifdef DEBUG
-    yDebug("[DEBUGGING] Before resizing jacobianMatrix\n");
-    yDebug("[DEBUGGING] ROBOT_DOF is: %d\n", ROBOT_DOF);
+    yDebug("[robotStatus::robotInit] Before resizing jacobianMatrix\n");
+    yDebug("[robotStatus::robotInit] ROBOT_DOF is: %d\n", ROBOT_DOF);
 #endif
     jacobianMatrix.resize (Eigen::NoChange, ROBOT_DOF + 6);
 
@@ -377,7 +377,8 @@ bool robotStatus::robotJntTorques (bool blockingRead) {
 //=========================================================================================================================
 Vector robotStatus::forwardKinematics (int& linkId) {
     if (robotJntAngles (false)) {
-        if (world2baseRototranslation (qRad.data())) {
+//         if (world2baseRototranslation (qRad.data())) {
+        if (updateWorld2BaseRotoTranslation()) { 
             footLinkId = linkId;
 #ifdef DEBUG
             yDebug("[robotStatus::forwardKinematics] Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", footLinkId, x_pose.toString().c_str());
@@ -646,6 +647,16 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 bool robotStatus::robotBaseVelocity() {
 //       ans = wbInterface->getEstimate(ESTIMATE_BASE_VEL, )
     return true;
+}//========================================================================================================================
+bool robotStatus::updateWorld2BaseRotoTranslation() {
+    bool ans = false;
+    Vector tmpxBase(12);
+    if(!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, tmpxBase.data(), -1, false)) {
+        yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
+    }
+    xBase = Frame(tmpxBase.data());
+    ans = true;
+    return ans;
 }
 //=========================================================================================================================
 bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input) {
