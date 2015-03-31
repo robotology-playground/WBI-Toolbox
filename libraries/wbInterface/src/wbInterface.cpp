@@ -676,6 +676,16 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     }
     wbi::frameFromSerialization(basePositionSerialization.data(), xBase);
     return true;
+}//========================================================================================================================
+bool robotStatus::updateWorld2BaseRotoTranslation() {
+    bool ans = false;
+    Vector tmpxBase(12);
+    if(!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, tmpxBase.data(), -1, false)) {
+        yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
+    }
+    xBase = Frame(tmpxBase.data());
+    ans = true;
+    return ans;
 }
 //=========================================================================================================================
 bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input) {
