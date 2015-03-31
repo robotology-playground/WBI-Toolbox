@@ -231,8 +231,11 @@ static void mdlStart(SimStruct *S)
     ssGetIWork(S)[2] = autoconnect;
     
     if (autoconnect) {
-        fprintf(stderr, "Connecting '%s' to '%s' \n");
-        Network::connect(port_name, toPortName);
+        fprintf(stderr, "Connecting '%s' to '%s' \n", port_name, toPortName.c_str());
+        if(!Network::connect(port_name, toPortName)) {
+            printf("WBI-Toolbox failed connecting %s to %s \n", port_name, toPortName.c_str());
+            ssSetErrorStatus(S,"ERROR connecting ports!");
+        }
     }
     
 //     fprintf(stderr,"Result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));

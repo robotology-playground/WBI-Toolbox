@@ -7,9 +7,11 @@ PROJECT(realTimeSynchronizer)
 
 find_package(YARP REQUIRED) #This is for the Yarp OS library
 
-include_directories("${MATLAB_ROOT}/simulink/include")
-include_directories("${MATLAB_ROOT}/extern/include")
-include_directories(${MATLAB_INCLUDE_DIR})
+message("Propagated Matlab_ROOT_DIR for realTimeSynchronizer: " ${Matlab_ROOT_DIR})
+message("Propagated Matlab_INCLUDE_DIRS for realTimeSynchronizer: " ${Matlab_INCLUDE_DIRS})
+include_directories("${Matlab_ROOT_DIR}/simulink/include")
+include_directories("${Matlab_ROOT_DIR}/extern/include")
+include_directories(${Matlab_INCLUDE_DIRS})
 
 include_directories( ${YARP_INCLUDE_DIRS})
 
@@ -27,6 +29,12 @@ add_library(${PROJECT_NAME} SHARED realTimeSynchronizer.cpp)
 #Removing default dynamic library extensions (.dll for Windows, .so for UNIX) and prefixes (lib) otherwise automatically prepended to the mex file.
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX .${SFUNCTION_SUFFIX})
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
+
+# This seems to be the most reliable method to date to know installed Matlab arch 
+message("Propagated Matlab_MEXFILE_EXT for realTimeSynchronizer = ${Matlab_MEX_EXTENSION}")
+STRING(REGEX MATCH ..$ MATLAB_ARCH Matlab_MEX_EXTENSION 64)
+message("MATLAB VERSION IS ${MATLAB_ARCH}bits")
+
 
 #In the following specific flags will be set to ensure compliance with the default settings of Matlab's mex compiler
 if(WIN32)
@@ -52,7 +60,7 @@ elseif(WIN32)
 endif(WIN32)
 
 # Linking Libraries
-target_link_libraries(${PROJECT_NAME} ${MATLAB_LIBRARIES} ${YARP_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${Matlab_LIBRARIES} ${YARP_LIBRARIES})
 install(TARGETS ${PROJECT_NAME} DESTINATION mex)
 
 
