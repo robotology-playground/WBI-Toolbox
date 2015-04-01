@@ -343,6 +343,13 @@ void robotStatus::setWorldReferenceFrame (const char* wrf) {
 
 }
 //=========================================================================================================================
+wbi::Frame robotStatus::getWorld2BaseRotoTranslation() {
+    if(!updateWorld2BaseRotoTranslation()) {
+        yError("[robotStatus::getWorld2BaseRotoTranslation] world to base rototrans update was not possible \n");
+    }
+    return  xBase;
+}
+//=========================================================================================================================
 void robotStatus::setRobotDOF(int ROBOTDOF) {
   robotStatus::ROBOT_DOF = ROBOTDOF;
 }
@@ -405,7 +412,8 @@ Vector robotStatus::forwardKinematics (int& linkId) {
 //=========================================================================================================================
 Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian (int& lid) {
     if (robotJntAngles (false)) {
-        if (world2baseRototranslation (qRad.data())) {
+//         if (world2baseRototranslation (qRad.data())) {
+        if (updateWorld2BaseRotoTranslation()) {
             bool ans = wbInterface->computeJacobian (qRad.data(), xBase, lid, jacobianMatrix.data());
             if (ans) {
 #ifdef DEBUG
@@ -484,7 +492,8 @@ void robotStatus::setRefDes (Vector refDes) {
 //=========================================================================================================================
 bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tauJ_computed) {
     bool ans = false;
-    if (world2baseRototranslation (qrad_input)) {
+//     if (world2baseRototranslation (qrad_input)) {
+    if (updateWorld2BaseRotoTranslation()) { 
         Vector qrad_base (16);
         qrad_base.resize (16, 0.0);
         Vector dq_base (6)  ;
@@ -539,7 +548,8 @@ bool robotStatus::dynamicsMassMatrix (double* qrad_input) {
 #ifdef DEBUG
         yDebug("[robotStatus::dynamicsMassMatrix] robotJntAngles computed\n");
 #endif
-        if (world2baseRototranslation (qRad.data())) {
+//         if (world2baseRototranslation (qRad.data())) {
+         if (updateWorld2BaseRotoTranslation()) {
             Vector qrad_base (16);
             qrad_base.resize (16, 0.0);
             double* qrad_robot = &qrad_input[16];
@@ -599,7 +609,8 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 #ifdef DEBUG
             yDebug("[robotStatus::dynamicsGenBiasForces] robotJntVelocities computed for dynamicsGenBiasForces\n");
 #endif
-            if (world2baseRototranslation (qRad.data())) {
+//             if (world2baseRototranslation (qRad.data())) {
+            if (updateWorld2BaseRotoTranslation()) {
 #ifdef DEBUG
                 yDebug("[robotStatus::dynamicsGenBiasForces] world2baseRototranslation computed for dynamicsGenBiasForces\n");
 #endif
@@ -652,9 +663,19 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     bool ans = false;
     Vector tmpxBase(12);
     if(!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, tmpxBase.data(), -1, false)) {
-        yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
+       yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
+       return ans;
     }
-    xBase = Frame(tmpxBase.data());
+//     yInfo("Base Pose Estimate: %s\n", tmpxBase.toString().c_str());
+    wbi::Rotation tmpR = wbi::Rotation(tmpxBase[3], tmpxBase[4], tmpxBase[5],
+                                       tmpxBase[6], tmpxBase[7], tmpxBase[8],
+                                       tmpxBase[9], tmpxBase[10], tmpxBase[11]);
+    double tmpP[3] = {tmpxBase[0], tmpxBase[1], tmpxBase[2]};
+    xBase = Frame(tmpR, tmpP);
+//     yInfo("xBase from array\n %s \n", xBase.toString().c_str());
+    
+    xBase = Ha*xBase;
+//     yInfo("xBase from array after final rotation:\n %s \n", xBase.toString().c_str());
     ans = true;
     return ans;
 }
@@ -669,7 +690,8 @@ bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_inpu
 #ifdef DEBUG
             yDebug("[robotStatus::dynamicsDJd] robotJntVelocities computed for dynamicsDJdq\n");
 #endif
-            if (world2baseRototranslation (qRad.data())) {
+//             if (world2baseRototranslation (qRad.data())) {
+            if (updateWorld2BaseRotoTranslation()) {
                 footLinkId = linkId;
                 if (!robotBaseVelocity()) {
                     yError("[robotStatus::dynamicsDJdq] robotBaseVelocity failed in robotStatus::dynamicsDJd\n");
@@ -717,7 +739,9 @@ Vector robotStatus::getDJdq() {
 bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, double* h) {
     bool ans = false;
     if (robotJntAngles (false)) {
-        if (world2baseRototranslation (qRad.data())) {
+        //TODO world2baseRototranslation here should take qrad_input as input!!!!
+//         if (world2baseRototranslation (qRad.data())) {
+        if (updateWorld2BaseRotoTranslation()) {
 
             //Extract robot and base joint angles and velocities
             Vector qrad_base (16);
@@ -1777,6 +1801,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         for (int_T j = 0; j < ssGetOutputPortWidth (S, 6); j++) {
             pY7[j] = dJdq (j);
         }
+    }
+    
+    // Exposing world to base rototranslation
+    if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
+        wbi::Frame w2brotoTrans = robot->getWorld2BaseRotoTranslation();
     }
 
     if (TIMING) tend = Time::now();

@@ -83,7 +83,8 @@ enum BLOCK_TYPE {
     PARAM_FORWARD_KINEMATICS_BLOCK,
     PARAM_JACOBIANS_BLOCK,
     PARAM_DJ_DQ_BLOCK,
-    POSITION_DIRECT_CONTROL_REF_BLOCK
+    POSITION_DIRECT_CONTROL_REF_BLOCK,
+    WORLD_TO_BASE_ROTO_TRANSLATION
 };
 
 class robotStatus {
@@ -234,6 +235,7 @@ public:
     bool                addEstimate(wbi::ID LID);
     static void         setRobotDOF(int ROBOTDOF);
     static int          getRobotDOF();
+    wbi::Frame          getWorld2BaseRotoTranslation();
 };
 
 class counterClass {
