@@ -673,7 +673,6 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     double tmpP[3] = {tmpxBase[0], tmpxBase[1], tmpxBase[2]};
     xBase = Frame(tmpR, tmpP);
 //     yInfo("xBase from array\n %s \n", xBase.toString().c_str());
-    
     xBase = Ha*xBase;
 //     yInfo("xBase from array after final rotation:\n %s \n", xBase.toString().c_str());
     ans = true;
