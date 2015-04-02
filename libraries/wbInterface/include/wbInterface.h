@@ -83,7 +83,8 @@ enum BLOCK_TYPE {
     PARAM_FORWARD_KINEMATICS_BLOCK,
     PARAM_JACOBIANS_BLOCK,
     PARAM_DJ_DQ_BLOCK,
-    POSITION_DIRECT_CONTROL_REF_BLOCK
+    POSITION_DIRECT_CONTROL_REF_BLOCK,
+    WORLD_TO_BASE_ROTO_TRANSLATION
 };
 
 class robotStatus {
@@ -152,6 +153,8 @@ private:
     /** Floating base 3D rototranslation from world ot base.*/
     wbi::Frame              xBase;
 
+    yarp::sig::Vector       basePositionSerialization;
+
     /** Floating base velocity 6x1 */
     yarp::sig::Vector       dxB;
 
@@ -204,6 +207,7 @@ public:
     //This is especifically for the COM
     int                 getLinkId (const char* linkName);
     bool                world2baseRototranslation (double* q);
+    bool                updateWorld2BaseRotoTranslation();
     void                setWorldReferenceFrame(const char* wrf);
     bool                robotJntAngles (bool blockingRead);
     bool                robotJntVelocities (bool blockingRead);
@@ -233,6 +237,7 @@ public:
     bool                addEstimate(wbi::ID LID);
     static void         setRobotDOF(int ROBOTDOF);
     static int          getRobotDOF();
+    wbi::Frame          getWorld2BaseRotoTranslation();
 };
 
 class counterClass {
