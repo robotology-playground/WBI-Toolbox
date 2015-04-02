@@ -919,7 +919,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetInputPortDirectFeedThrough (S, 2, 1);
     ssSetInputPortDirectFeedThrough (S, 3, 1);
     ssSetInputPortDirectFeedThrough (S, 4, 1);
-    if (!ssSetNumOutputPorts (S, 13)) return;
+    if (!ssSetNumOutputPorts (S, 14)) return;
     ssSetOutputPortWidth (S, 0, ROBOT_DOF);                 // Robot joint angular positions in radians
     ssSetOutputPortWidth (S, 1, ROBOT_DOF);                 // Robot joint angular velocities in radians
     ssSetOutputPortWidth (S, 2, 7);                         // foot or COM pose from fwdKinematics.
@@ -933,6 +933,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetOutputPortWidth (S, 10, ROBOT_DOF);                // Min joint limits;
     ssSetOutputPortWidth (S, 11, ROBOT_DOF);                // Max joint limits;
     ssSetOutputPortWidth (S, 12, 6);                        //Centroidal momentum
+    ssSetOutputPortWidth (S, 13, 16);                       // World to Base
     ssSetOutputPortDataType (S, 0, 0);
     ssSetOutputPortDataType (S, 1, 0);
     ssSetOutputPortDataType (S, 2, 0);
@@ -946,6 +947,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetOutputPortDataType (S, 10, 0);
     ssSetOutputPortDataType (S, 11, 0);
     ssSetOutputPortDataType (S, 12, 0);
+    ssSetOutputPortDataType (S, 13, 0);
 
     ssSetNumSampleTimes (S, 1);
 
@@ -1796,6 +1798,8 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     // Exposing world to base rototranslation
     if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
         wbi::Frame w2brotoTrans = robot->getWorld2BaseRotoTranslation();
+        real_T* pY7 = ssGetOutputPortRealSignal(S, 13);
+        wbi::serializationFromFrame(w2brotoTrans, pY7);
     }
 
     if (TIMING) tend = Time::now();
