@@ -14,7 +14,7 @@ This document contains instructions on how to install and use this toolbox, *tip
 - [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox)
 - [iCub joints ordering](https://github.com/robotology-playground/WBI-Toolbox#details-on-icub-joints-ordering-in-wbi-toolbox)
 - [Existing models](https://github.com/robotology-playground/WBI-Toolbox#existing-models)
-- [Citing this work] 
+- [Citing this work](https://github.com/robotology-playground/WBI-Toolbox/blob/master/README.md#citing-this-work)
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=VrPBSSQEr3A
