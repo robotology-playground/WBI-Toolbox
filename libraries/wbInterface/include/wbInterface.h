@@ -153,6 +153,8 @@ private:
     /** Floating base 3D rototranslation from world ot base.*/
     wbi::Frame              xBase;
 
+    yarp::sig::Vector       basePositionSerialization;
+
     /** Floating base velocity 6x1 */
     yarp::sig::Vector       dxB;
 

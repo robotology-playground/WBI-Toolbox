@@ -67,7 +67,9 @@ int robotStatus::ROBOT_DOF = 0;
 Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
 Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
-robotStatus::robotStatus() {
+robotStatus::robotStatus()
+: basePositionSerialization(16, 0.0)
+{
     creationCounter++;
     yInfo("[robotStatus::robotStatus] robotStatus class instantiated %d times\n", creationCounter);
     wbInterface = NULL;
@@ -660,23 +662,12 @@ bool robotStatus::robotBaseVelocity() {
     return true;
 }//========================================================================================================================
 bool robotStatus::updateWorld2BaseRotoTranslation() {
-    bool ans = false;
-    Vector tmpxBase(12);
-    if(!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, tmpxBase.data(), -1, false)) {
-       yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
-       return ans;
+    if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
+        yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
+        return false;
     }
-//     yInfo("Base Pose Estimate: %s\n", tmpxBase.toString().c_str());
-    wbi::Rotation tmpR = wbi::Rotation(tmpxBase[3], tmpxBase[4], tmpxBase[5],
-                                       tmpxBase[6], tmpxBase[7], tmpxBase[8],
-                                       tmpxBase[9], tmpxBase[10], tmpxBase[11]);
-    double tmpP[3] = {tmpxBase[0], tmpxBase[1], tmpxBase[2]};
-    xBase = Frame(tmpR, tmpP);
-//     yInfo("xBase from array\n %s \n", xBase.toString().c_str());
-    xBase = Ha*xBase;
-//     yInfo("xBase from array after final rotation:\n %s \n", xBase.toString().c_str());
-    ans = true;
-    return ans;
+    wbi::frameFromSerialization(basePositionSerialization.data(), xBase);
+    return true;
 }
 //=========================================================================================================================
 bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input) {
