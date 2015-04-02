@@ -14,6 +14,7 @@ This document contains instructions on how to install and use this toolbox, *tip
 - [Using the Toolbox](https://github.com/robotology-playground/WBI-Toolbox#using-the-toolbox)
 - [iCub joints ordering](https://github.com/robotology-playground/WBI-Toolbox#details-on-icub-joints-ordering-in-wbi-toolbox)
 - [Existing models](https://github.com/robotology-playground/WBI-Toolbox#existing-models)
+- [Citing this work] 
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=VrPBSSQEr3A
@@ -174,6 +175,10 @@ In particular, the values for `robotName` and `localName` overwrite those in `wh
 
 #### Details on iCub joints ordering in WBI Toolbox  
 If you want more information about the serialization of the iCub joints used in the WBI-Toolbox, check [this wiki page](https://github.com/robotology-playground/WBI-Toolbox/wiki/Details-on-iCub-joints-ordering-in-WBI-Toolbox).
+
+#### Citing this work
+Eljaik J., del Prete, A., Traversaro, S., Randazzo, M., Nori, F.,: Whole Body Interface Toolbox (WBI-T):
+A Simulink Wrapper for Robot Whole Body Control. In: ICRA, Workshop on MATLAB/Simulink for Robotics, Education and Research. IEEE (2014). [Slides: http://goo.gl/2NnSrA]
 
 #### Tested OS
 Linux, MAC OS X, Windows
