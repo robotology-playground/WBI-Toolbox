@@ -41,7 +41,7 @@
 #include "simstruc.h"
 
 #define IS_PARAM_DOUBLE(pVal) (mxIsNumeric(pVal) && !mxIsLogical(pVal) &&\
-    !mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsDouble(pVal))
+!mxIsEmpty(pVal) && !mxIsSparse(pVal) && !mxIsComplex(pVal) && mxIsDouble(pVal))
 
 
 // Function: MDL_CHECK_PARAMETERS
@@ -104,12 +104,12 @@ static void mdlInitializeSizes(SimStruct *S)
         ssSetOutputPortWidth   (S, i, 1);
         ssSetOutputPortDataType(S, i, SS_DOUBLE);
     }
-    
-    
+
+
     ssSetNumSampleTimes(S, 1);
 
     // Reserve place for C++ object
-    ssSetNumPWork(S, 1);
+    ssSetNumPWork(S, 2);
 
     // IWork vector for booleans
     ssSetNumIWork(S, 3);
@@ -120,35 +120,36 @@ static void mdlInitializeSizes(SimStruct *S)
                  SS_OPTION_WORKS_WITH_CODE_REUSE |
                  SS_OPTION_EXCEPTION_FREE_CODE |
                  SS_OPTION_ALLOW_INPUT_SCALAR_EXPANSION |
-                 SS_OPTION_USE_TLC_WITH_ACCELERATOR);
+                 SS_OPTION_USE_TLC_WITH_ACCELERATOR |
+                 SS_OPTION_CALL_TERMINATE_ON_EXIT);
 
 }
 
 #if defined(MATLAB_MEX_FILE)
 # define MDL_SET_INPUT_PORT_WIDTH
-  static void mdlSetInputPortWidth(SimStruct *S, int_T port,
-                                    int_T inputPortWidth)
-  {
-      ssSetInputPortWidth(S,port,inputPortWidth);
-  }
+static void mdlSetInputPortWidth(SimStruct *S, int_T port,
+                                 int_T inputPortWidth)
+{
+    ssSetInputPortWidth(S,port,inputPortWidth);
+}
 # define MDL_SET_OUTPUT_PORT_WIDTH
 static void mdlSetOutputPortWidth(SimStruct *S, int_T port,
-                                 int_T outputPortWidth)
+                                  int_T outputPortWidth)
 {
     ssSetInputPortWidth(S,port,outputPortWidth);
 }
 
 
 # define MDL_SET_DEFAULT_PORT_DIMENSION_INFO
-  /* Function: mdlSetDefaultPortDimensionInfo ===========================================
-   * Abstract:
-   *   In case no ports were specified, the default is an input port of width 2
-   *   and an output port of width 1.
-   */
-  static void mdlSetDefaultPortDimensionInfo(SimStruct        *S)
-  {
-      ssSetInputPortWidth(S, 0, 1);
-  }
+/* Function: mdlSetDefaultPortDimensionInfo ===========================================
+ * Abstract:
+ *   In case no ports were specified, the default is an input port of width 2
+ *   and an output port of width 1.
+ */
+static void mdlSetDefaultPortDimensionInfo(SimStruct        *S)
+{
+    ssSetInputPortWidth(S, 0, 1);
+}
 #endif
 
 // Function: mdlInitializeSampleTimes =========================================
@@ -185,60 +186,68 @@ static void mdlStart(SimStruct *S)
         cout<<"YARP is running!!\n"<<endl;
 
     int_T buflen, status;
-    char *String;
+    char *buffer;
 
-    buflen = mxGetN((ssGetSFcnParam(S, PARAM_IDX_1)))*sizeof(mxChar)+1;
-    String = static_cast<char*>(mxMalloc(buflen));
-    status = mxGetString((ssGetSFcnParam(S, PARAM_IDX_1)),String,buflen);
+    buflen = (1 + mxGetN(ssGetSFcnParam(S, PARAM_IDX_1))) * sizeof(mxChar);
+    buffer = static_cast<char*>(mxMalloc(buflen));
+    status = mxGetString((ssGetSFcnParam(S, PARAM_IDX_1)), buffer, buflen);
     if (status) {
-        ssSetErrorStatus(S,"Cannot retrieve string from parameter 1!! \n");
-        return;
-    }
-    
-    char *port_name = String;				//FROM port name
-
-    buflen = mxGetN((ssGetSFcnParam(S, PARAM_IDX_2)))*sizeof(mxChar)+1;
-    String = static_cast<char*>(mxMalloc(buflen));
-    status = mxGetString((ssGetSFcnParam(S, PARAM_IDX_2)),String,buflen);
-    if (status) {
-        ssSetErrorStatus(S,"Cannot retrieve string from parameter 2!! \n");
+        ssSetErrorStatus(S,"Cannot retrieve string from parameter 1 (from)");
         return;
     }
 
-    char *toPort_name = String;
-    
+    char *port_name = buffer;				//FROM port name
+
+    buflen = (1 + mxGetN(ssGetSFcnParam(S, PARAM_IDX_2))) * sizeof(mxChar);
+    buffer = static_cast<char*>(mxMalloc(buflen));
+    status = mxGetString((ssGetSFcnParam(S, PARAM_IDX_2)), buffer, buflen);
+    if (status) {
+        ssSetErrorStatus(S,"Cannot retrieve string from parameter 2 (to)");
+        return;
+    }
+
+    char *toPort_name = buffer;
+
     // ######## CHECKING INPUT PARAMETERS ############
 
     BufferedPort<Vector> *toPort;
-    toPort = new BufferedPort<Vector>;
-    toPort->open(toPort_name);
+    //allocate memory using matlab memory management
+    toPort = static_cast<BufferedPort<Vector>*>(mxMalloc(sizeof(BufferedPort<Vector>)));
+    toPort = new (toPort) BufferedPort<Vector>();
+    ssGetPWork(S)[0] = toPort;
+
+    if (!toPort || !toPort->open(toPort_name)) {
+        ssSetErrorStatus(S,"Error while opening yarp port");
+        return;
+    }
     ConstString toPortName = toPort->getName();
     cout<<"[From] Port name will be: "<<port_name<<endl;
-    cout<<"[To] Port name will be:   "<<toPort->getName()<<endl;
+    cout<<"[To] Port name will be:   "<<toPortName<<endl;
 
-    ssGetPWork(S)[0] = toPort;
-    
     int_T blocking = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4));
     cout << "Blocking? : " << blocking << endl;
     ssGetIWork(S)[0] = blocking;
-    
+
     int_T timestamp = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5));
     cout << "Timestamp? : " << timestamp << endl;
     ssGetIWork(S)[1] = timestamp;
-    
+
     int_T autoconnect = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_6));
     cout << "Autoconnect? : " << autoconnect << endl;
     ssGetIWork(S)[2] = autoconnect;
-    
+
     if (autoconnect) {
-        fprintf(stderr, "Connecting '%s' to '%s' \n", port_name, toPortName.c_str());
+        fprintf(stderr, "Connecting '%s' to '%s'\n", port_name, toPortName.c_str());
         if(!Network::connect(port_name, toPortName)) {
-            printf("WBI-Toolbox failed connecting %s to %s \n", port_name, toPortName.c_str());
+            printf("WBI-Toolbox failed connecting %s to %s\n", port_name, toPortName.c_str());
             ssSetErrorStatus(S,"ERROR connecting ports!");
+            return;
         }
+        ssGetPWork(S)[1] = port_name;
     }
-    
-//     fprintf(stderr,"Result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
+    mxFree(toPort_name);
+
+    //     fprintf(stderr,"Result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
 }
 
 // Function: mdlOutputs =======================================================
@@ -255,13 +264,13 @@ static void mdlOutputs(SimStruct *S, int_T tid)
         if (TIMESTAMP) {
             yarp::os::Stamp timestamp;
             toPort->getEnvelope(timestamp);
-            
+
             int timestamp_index = SIZE_READING_PORT;
             real_T *pY1 = (real_T *) ssGetOutputPortSignal(S, timestamp_index);
             pY1[0] = (real_T)(timestamp.getCount());
             pY1[1] = (real_T)(timestamp.getTime());
         }
-        
+
         for (int i = 0; i < SIZE_READING_PORT; i++)
         {
             real_T *pY = (real_T *)ssGetOutputPortSignal(S,i);
@@ -274,23 +283,29 @@ static void mdlOutputs(SimStruct *S, int_T tid)
             }
         }
     }
-//     else {
-//       fprintf(stderr,"Cannot read port %s\n", toPort->getName().c_str());
-//     }
+    //     else {
+    //       fprintf(stderr,"Cannot read port %s\n", toPort->getName().c_str());
+    //     }
 }
 
 static void mdlTerminate(SimStruct *S)
 {
     // IF YOU FORGET TO DESTROY OBJECTS OR DEALLOCATE MEMORY, MATLAB WILL CRASH.
     // Retrieve and destroy C++ object
-     BufferedPort<Vector> *toPort = static_cast<BufferedPort<Vector>*>(ssGetPWork(S)[0]);
-     toPort->close();
-
-     if(ssGetPWork(S) != NULL){
-         ssSetPWorkValue(S,0,NULL);
-     }
-
-    Network::fini();
+    if (ssGetPWork(S)) { //This is not created in compilation
+        BufferedPort<Vector> *toPort = static_cast<BufferedPort<Vector>*>(ssGetPWork(S)[0]);
+        if (toPort) {
+            if (ssGetIWork(S)[2] && ssGetPWork(S)[1]) {
+                char * sourcePort = static_cast<char*>(ssGetPWork(S)[1]);
+                Network::disconnect(sourcePort, toPort->getName());
+                mxFree(ssGetPWork(S)[1]); //remove string
+            }
+            toPort->close();
+            toPort->~BufferedPort();
+            mxFree(toPort); //remove port
+        }
+        Network::fini();
+    }
     fprintf(stderr,"Everything was closed correctly\n");
 }
 
