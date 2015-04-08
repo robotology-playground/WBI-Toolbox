@@ -109,7 +109,7 @@ static void mdlInitializeSizes(SimStruct *S)
     ssSetNumSampleTimes(S, 1);
 
     // Reserve place for C++ object
-    ssSetNumPWork(S, 2);
+    ssSetNumPWork(S, 1);
 
     // IWork vector for booleans
     ssSetNumIWork(S, 3);
@@ -212,8 +212,7 @@ static void mdlStart(SimStruct *S)
 
     BufferedPort<Vector> *toPort;
     //allocate memory using matlab memory management
-    toPort = static_cast<BufferedPort<Vector>*>(mxMalloc(sizeof(BufferedPort<Vector>)));
-    toPort = new (toPort) BufferedPort<Vector>();
+    toPort = new BufferedPort<Vector>();
     ssGetPWork(S)[0] = toPort;
 
     if (!toPort || !toPort->open(toPort_name)) {
@@ -243,9 +242,9 @@ static void mdlStart(SimStruct *S)
             ssSetErrorStatus(S,"ERROR connecting ports!");
             return;
         }
-        ssGetPWork(S)[1] = port_name;
     }
     mxFree(toPort_name);
+    mxFree(port_name);
 
     //     fprintf(stderr,"Result %d\n", port_name, toPortName.c_str(), Network::connect(port_name,toPortName));
 }
@@ -295,14 +294,8 @@ static void mdlTerminate(SimStruct *S)
     if (ssGetPWork(S)) { //This is not created in compilation
         BufferedPort<Vector> *toPort = static_cast<BufferedPort<Vector>*>(ssGetPWork(S)[0]);
         if (toPort) {
-            if (ssGetIWork(S)[2] && ssGetPWork(S)[1]) {
-                char * sourcePort = static_cast<char*>(ssGetPWork(S)[1]);
-                Network::disconnect(sourcePort, toPort->getName());
-                mxFree(ssGetPWork(S)[1]); //remove string
-            }
             toPort->close();
-            toPort->~BufferedPort();
-            mxFree(toPort); //remove port
+            delete toPort; //remove port
         }
         Network::fini();
     }
