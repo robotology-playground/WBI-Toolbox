@@ -2688,7 +2688,7 @@ Library {
 	  MaskTunableValueString  "on,on,on,on,on,on"
 	  MaskCallbackString	  "|||||autoconnect_val = get_param(gcb, 'Autoconnect');\nif(strcmp(autoconnect_val, 'on'))\n   "
 	  " set_param(gcb, 'MaskVisibilities',{'on';'off';'on';'on';'on';'on'});\n    set_param(gcb, 'to', '''...''');\nelse\n"
-	  "    set_param(gcb, 'MaskVisibilities',{'off';'on';'on';'on';'on';'on'});\nend"
+	  "    set_param(gcb, 'MaskVisibilities',{'off';'on';'on';'on';'on';'on'});\n    set_param(gcb, 'from', '''...''');\nend"
 	  MaskEnableString	  "on,on,on,on,on,on"
 	  MaskVisibilityString	  "on,off,on,on,on,on"
 	  MaskToolTipString	  "on,on,on,on,on,on"
