@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2013 Robotics, Brain and Cognitive Sciences - Istituto Italiano di Tecnologia
- * Author: Jorhabib Eljaik Gomez
- * email: jorhabib.eljaik@iit.it
+ * Copyright (C) 2013-2015 Robotics, Brain and Cognitive Sciences - Istituto Italiano di Tecnologia
+ * Author: Jorhabib Eljaik Gomez, Francesco Romano
+ * email: jorhabib.eljaik@iit.it, francesco.romano@iit.it
  *
  * The development of this software was supported by the FP7 EU project
  * CoDyCo (No. 600716 ICT 2011.2.1 Cognitive Systems and Robotics (b))
@@ -17,7 +17,15 @@
  * Public License for more details
  */
 
-#include "yarpRead.h"
+#include <yarp/os/Network.h>
+#include <yarp/sig/Vector.h>
+#include <yarp/os/BufferedPort.h>
+#include <yarp/os/Stamp.h>
+
+using namespace yarp::sig;
+using namespace yarp::os;
+using namespace std;
+
 
 #define S_FUNCTION_LEVEL 2
 #define S_FUNCTION_NAME yarpRead

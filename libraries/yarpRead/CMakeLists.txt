@@ -8,10 +8,8 @@ PROJECT(yarpRead)
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")
 
 set(SRC src/yarpRead.cpp)
-set(HEADERS include/yarpRead.h)
 
 source_group("Source Files" FILES ${SRC})
-source_group("Header Files" FILES ${HEADERS})
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories("${Matlab_ROOT_DIR}/simulink/include")
@@ -28,7 +26,7 @@ set(SFUNCTION_SUFFIX ${Matlab_MEX_EXTENSION})
 #Adding files used for the generation of the dynamic library
 matlab_add_mex(
          NAME ${PROJECT_NAME}
-         SRC ${SRC} ${HEADERS}
+         SRC ${SRC}
          LINK_TO ${YARP_LIBRARIES}
      )
 
