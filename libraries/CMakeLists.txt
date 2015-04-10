@@ -48,6 +48,7 @@ add_install_rpath_support(BIN_DIRS ${CMAKE_INSTALL_PREFIX}/bin
 add_subdirectory(wbInterface)
 add_subdirectory(minJerkGenerator)
 add_subdirectory(yRead)
+add_subdirectory(yarpRead)
 add_subdirectory(yWrite)
 add_subdirectory(ySynchronizer)
 add_subdirectory(realTimeSynchronizer)
@@ -55,6 +56,9 @@ add_subdirectory(realTimeSynchronizer)
 set(WBI-TOOLBOX_SHARE_DIR "${CMAKE_INSTALL_PREFIX}/share/WBI-Toolbox")
 set(WBI-TOOLBOX_ROOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../")
 message("WBI-TOOLBOX_ROOT_DIR: " ${WBI-TOOLBOX_ROOT_DIR})
+
+##if you export the mdl / slx library, remeber to call this command in matlab before saving it
+# set_param(gcs, 'EnableLBRepository','on');
 
 # The following line is to properly configure the installation script of the toolbox
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../.startup_wbitoolbox.m.in ${CMAKE_CURRENT_SOURCE_DIR}/../startup_wbitoolbox.m)

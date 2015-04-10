@@ -4,7 +4,6 @@ Library {
   MdlSubVersion		  0
   SavedCharacterEncoding  "US-ASCII"
   LibraryType		  "BlockLibrary"
-  LockLinksToLibrary	  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -21,9 +20,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 08 11:18:43 2015"
-  RTWModifiedTimeStamp	  350392723
-  ModelVersionFormat	  "1.%<AutoIncrement:243>"
+  LastModifiedDate	  "Fri Apr 10 16:02:45 2015"
+  RTWModifiedTimeStamp	  350582565
+  ModelVersionFormat	  "1.%<AutoIncrement:249>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -92,13 +91,13 @@ Library {
     Type		    "Handle"
     Dimension		    1
     Simulink.ConfigSet {
-      $ObjectID		      7
+      $ObjectID		      6
       Version		      "1.12.0"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
-	  $ObjectID		  8
+	  $ObjectID		  7
 	  Version		  "1.12.0"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
@@ -133,7 +132,7 @@ Library {
 	  InsertRTBMode		  "Whenever possible"
 	}
 	Simulink.DataIOCC {
-	  $ObjectID		  9
+	  $ObjectID		  8
 	  Version		  "1.12.0"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
@@ -165,7 +164,7 @@ Library {
 	  Refine		  "1"
 	}
 	Simulink.OptimizationCC {
-	  $ObjectID		  10
+	  $ObjectID		  9
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
@@ -221,7 +220,7 @@ Library {
 	  UseIntDivNetSlope	  off
 	}
 	Simulink.DebuggingCC {
-	  $ObjectID		  11
+	  $ObjectID		  10
 	  Version		  "1.12.0"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
@@ -309,7 +308,7 @@ Library {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	}
 	Simulink.HardwareCC {
-	  $ObjectID		  12
+	  $ObjectID		  11
 	  Version		  "1.12.0"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
@@ -346,7 +345,7 @@ Library {
 	  ProdEqTarget		  on
 	}
 	Simulink.ModelReferenceCC {
-	  $ObjectID		  13
+	  $ObjectID		  12
 	  Version		  "1.12.0"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
@@ -361,7 +360,7 @@ Library {
 	  SupportModelReferenceSimTargetCustomCode off
 	}
 	Simulink.SFSimCC {
-	  $ObjectID		  14
+	  $ObjectID		  13
 	  Version		  "1.12.0"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
@@ -376,7 +375,7 @@ Library {
 	}
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
-	  $ObjectID		  15
+	  $ObjectID		  14
 	  Version		  "1.12.0"
 	  Array {
 	    Type		    "Cell"
@@ -445,7 +444,7 @@ Library {
 	    Type		    "Handle"
 	    Dimension		    2
 	    Simulink.CodeAppCC {
-	      $ObjectID		      16
+	      $ObjectID		      15
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
@@ -510,7 +509,7 @@ Library {
 	    }
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
-	      $ObjectID		      17
+	      $ObjectID		      16
 	      Version		      "1.12.0"
 	      Array {
 		Type			"Cell"
@@ -589,7 +588,7 @@ Library {
 	  }
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  18
+	  $ObjectID		  17
 	  Version		  "1.12.0"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -811,7 +810,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1498"
+    SIDHighWatermark	    "1500"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -830,7 +829,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Utilities"
-	Location		[15, 63, 1273, 714]
+	Location		[9, 59, 1267, 710]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -848,7 +847,7 @@ Library {
 	  Name			  "23-DoFs WBI to YARP"
 	  SID			  "1485"
 	  Ports			  [1, 5]
-	  Position		  [450, 281, 560, 349]
+	  Position		  [450, 161, 560, 239]
 	  ZOrder		  19
 	  BackgroundColor	  "lightBlue"
 	  DropShadow		  on
@@ -1111,7 +1110,7 @@ Library {
 	  Name			  "25-DoFs WBI to yarp"
 	  SID			  "730"
 	  Ports			  [1, 5]
-	  Position		  [450, 167, 560, 253]
+	  Position		  [290, 161, 400, 239]
 	  ZOrder		  -7
 	  BackgroundColor	  "[0.180000, 0.348000, 0.600000]"
 	  RequestExecContextInheritance	off
@@ -1421,7 +1420,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1498"
+		SIDHighWatermark	"1500"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1711,7 +1710,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1498"
+		SIDHighWatermark	"1500"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1847,6 +1846,46 @@ Library {
 	  MaskHideContents	  off
 	}
 	Block {
+	  BlockType		  S-Function
+	  Name			  "YARP Read"
+	  SID			  "1500"
+	  Ports			  [0, 2]
+	  Position		  [290, 83, 355, 127]
+	  ZOrder		  21
+	  ForegroundColor	  "[0.490196, 0.000000, 0.000000]"
+	  FunctionName		  "yarpRead"
+	  Parameters		  "portName,signalSize,blocking,timestamp,autoconnect"
+	  EnableBusSupport	  off
+	  MaskType		  "YARP Read"
+	  MaskDescription	  "This block behaves as the command 'yarp read'. \nBy default it has the option 'Autoconnect' acti"
+	  "ve, which means that the user \ncan only specify the name of the port ('Source Port Name') from which readings are "
+	  "desired,\nalong with the size of the expected data (e.g. 3 when reading the torso state).\nWhen the user unchecks '"
+	  "Autoconnect' 'Opened Port Name' field shows up \ncorresponding to the name of the port the block will create \nbut "
+	  "won't connect to anything. \nAt this point the output will be always zero, until the user connects it\nto some othe"
+	  "r port from command line by issuing 'yarp connect [from] [dest]'.\nIn this case an additional output, called 'signa"
+	  "l' will be added which will output\n1 if the port has received at least one data, or 0 otherwise.\n"
+	  MaskPromptString	  "Source Port Name|Port Size|Blocking read|Read Timestamp|Autoconnect"
+	  MaskStyleString	  "edit,edit,checkbox,checkbox,checkbox"
+	  MaskVariables		  "portName=@1;signalSize=@2;blocking=@3;timestamp=@4;autoconnect=@5;"
+	  MaskTunableValueString  "on,on,on,on,on"
+	  MaskCallbackString	  "||||autoconnect_val = get_param(gcb, 'Autoconnect');\nprompt_string = get_param(gcb, 'MaskPro"
+	  "mpts');\nif(strcmp(autoconnect_val, 'on'))\n    prompt_string{1} = 'Source Port Name';\nelse\n    prompt_string{1} "
+	  "= 'Opened Port Name';\nend\nset_param(gcb, 'MaskPrompts', prompt_string);\nclear autoconnect_val prompt_string"
+	  MaskEnableString	  "on,on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on,on"
+	  MaskSelfModifiable	  on
+	  MaskDisplay		  "port_label('output', 1, 'signal');\nportNumber = 1;\nif (timestamp)\n    portNumber = portNumber + "
+	  "1;\n    port_label('output', portNumber, 'timestamp');\nend\n\nif (~autoconnect)\n    portNumber = portNumber + 1;\n"
+	  "    port_label('output', portNumber, 'status');\nend\n\n"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "'/portName'|1|off|on|on"
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "baseVelocity"
 	  SID			  "431"
@@ -1941,7 +1980,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1498"
+		SIDHighWatermark	"1500"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -2105,7 +2144,7 @@ Library {
 	  Name			  "errors"
 	  SID			  "714"
 	  Ports			  [2, 2]
-	  Position		  [200, 168, 260, 212]
+	  Position		  [200, 163, 260, 207]
 	  ZOrder		  -9
 	  BackgroundColor	  "[0.300000, 0.580000, 1.000000]"
 	  RequestExecContextInheritance	off
@@ -2245,7 +2284,7 @@ Library {
 	  Name			  "holder\n"
 	  SID			  "1296"
 	  Ports			  [1, 1]
-	  Position		  [105, 169, 165, 211]
+	  Position		  [105, 162, 165, 208]
 	  ZOrder		  14
 	  BackgroundColor	  "[0.537255, 0.721569, 1.000000]"
 	  RequestExecContextInheritance	off
@@ -2339,7 +2378,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1498"
+		SIDHighWatermark	"1500"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -2485,7 +2524,7 @@ Library {
 	  Name			  "minJerkTrajGen"
 	  SID			  "25"
 	  Ports			  [2, 3]
-	  Position		  [595, 167, 700, 213]
+	  Position		  [595, 162, 700, 208]
 	  ZOrder		  -4
 	  BackgroundColor	  "[0.156255, 1.000000, 0.640991]"
 	  RequestExecContextInheritance	off
@@ -2669,19 +2708,20 @@ Library {
 	  Name			  "yarp read"
 	  SID			  "249"
 	  Ports			  [0, 3]
-	  Position		  [290, 83, 360, 127]
+	  Position		  [310, 268, 380, 312]
 	  ZOrder		  -5
 	  BackgroundColor	  "black"
 	  FunctionName		  "yRead"
 	  Parameters		  "from,to,num,blocking,timestamp,autoconnect"
 	  EnableBusSupport	  off
 	  MaskType		  "yarp read"
-	  MaskDescription	  "This block behaves as the command 'yarp read'. By default it has the option 'Autoconnect' active"
-	  ", which means that the user can only specify the name of the port from which readings are desired, along with the s"
-	  "ize of the expected data (e.g. 3 when reading the torso state). When the user unchecks 'Autoconnect' the field call"
-	  "ed 'Port name' shows up corresponding to the name of the port the block will create but won't connect to anything. "
-	  "At this point the output will be always zero, until the user connects it to some other port from command line by is"
-	  "suing 'yarp connect [from] [dest]'."
+	  MaskDescription	  "DEPRECATED\n\nPlease use the new YARP Read block.\nThis block will soon be removed from the Libr"
+	  "ary\n\nThis block behaves as the command 'yarp read'. By default it has the option 'Autoconnect' active, which mean"
+	  "s that the user can only specify the name of the port from which readings are desired, along with the size of the e"
+	  "xpected data (e.g. 3 when reading the torso state). When the user unchecks 'Autoconnect' the field called 'Port nam"
+	  "e' shows up corresponding to the name of the port the block will create but won't connect to anything. At this poin"
+	  "t the output will be always zero, until the user connects it to some other port from command line by issuing 'yarp "
+	  "connect [from] [dest]'."
 	  MaskPromptString	  "From|Port name|Port size|Blocking reading|Stream time stamp|Autoconnect"
 	  MaskStyleString	  "edit,edit,edit,checkbox,checkbox,checkbox"
 	  MaskVariables		  "from=@1;to=@2;num=@3;blocking=@4;timestamp=@5;autoconnect=@6;"
@@ -2705,13 +2745,14 @@ Library {
 	  Name			  "yarp to WBI"
 	  SID			  "721"
 	  Ports			  [5, 1]
-	  Position		  [290, 167, 405, 253]
+	  Position		  [470, 262, 585, 348]
 	  ZOrder		  -14
 	  BackgroundColor	  "[0.240000, 0.464000, 0.800000]"
 	  RequestExecContextInheritance	off
 	  MaskType		  "YARP to wbi"
-	  MaskDescription	  "This is a 25-DOF iCub specific block which swaps the readings of the first and third joint of th"
-	  "e torso to comply with WBI order."
+	  MaskDescription	  "DEPRECATED\n\nPlease use the explicit 25-DOF or the 23-DOF utility.\nThis block will soon be rem"
+	  "oved from the Library\n\nThis is a 25-DOF iCub specific block which swaps the readings of the first and third joint"
+	  " of the torso to comply with WBI order."
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
@@ -2861,7 +2902,7 @@ Library {
 	  Name			  "yarp write"
 	  SID			  "173"
 	  Ports			  [1]
-	  Position		  [195, 83, 260, 127]
+	  Position		  [200, 83, 265, 127]
 	  ZOrder		  -6
 	  BackgroundColor	  "black"
 	  RequestExecContextInheritance	off
@@ -2880,7 +2921,7 @@ Library {
 	  MaskValueString	  "'...'"
 	  System {
 	    Name		    "yarp write"
-	    Location		    [74, 44, 1478, 3344]
+	    Location		    [9, 59, 1267, 710]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13248,7 +13289,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.242"
+		  LibraryVersion	  "1.248"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -13265,7 +13306,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.242"
+		  LibraryVersion	  "1.248"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -13282,7 +13323,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.242"
+		  LibraryVersion	  "1.248"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -13299,7 +13340,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.242"
+		  LibraryVersion	  "1.248"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -13316,7 +13357,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.242"
+		  LibraryVersion	  "1.248"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -15824,7 +15865,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.242"
+	      LibraryVersion	      "1.248"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15838,7 +15879,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.242"
+	      LibraryVersion	      "1.248"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15863,7 +15904,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.242"
+	      LibraryVersion	      "1.248"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15877,7 +15918,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.242"
+	      LibraryVersion	      "1.248"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -15995,7 +16036,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.242"
+	      LibraryVersion	      "1.248"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
