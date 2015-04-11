@@ -656,11 +656,19 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
         return hterm;
     }
 }
+
 //=========================================================================================================================
-bool robotStatus::robotBaseVelocity() {
-//       ans = wbInterface->getEstimate(ESTIMATE_BASE_VEL, )
-    return true;
-}//========================================================================================================================
+bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
+    bool status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
+    if (status && baseVelocity) {
+        for (int i = 0; i < dxB.size(); i++) {
+            baseVelocity[i] = dxB[i];
+        }
+    }
+    return status;
+}
+
+//========================================================================================================================
 bool robotStatus::updateWorld2BaseRotoTranslation() {
     if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
         yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
@@ -932,7 +940,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetOutputPortWidth (S, 9, ROBOT_DOF);                 // Compute torques with inverse dynamics
     ssSetOutputPortWidth (S, 10, ROBOT_DOF);                // Min joint limits;
     ssSetOutputPortWidth (S, 11, ROBOT_DOF);                // Max joint limits;
-    ssSetOutputPortWidth (S, 12, 6);                        //Centroidal momentum
+    ssSetOutputPortWidth (S, 12, 6);                        //Centroidal momentum or base velocity estimation (depending on the block id)
     ssSetOutputPortWidth (S, 13, 16);                       // World to Base
     ssSetOutputPortDataType (S, 0, 0);
     ssSetOutputPortDataType (S, 1, 0);
@@ -1108,6 +1116,10 @@ static void mdlStart (SimStruct* S) {
     case 20:
         yInfo("[mdlOutputs] This block will set joint angles with the Position Direct control mode\n");
         break;
+    case BASE_VELOCITY_ESTIMATION:
+    case WORLD_TO_BASE_ROTO_TRANSLATION:
+            //just avoid the erro
+            break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
         ssSetErrorStatus (S, "[mdlOutputs] The type of this block has not been defined yet\n");
@@ -1800,6 +1812,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         wbi::Frame w2brotoTrans = robot->getWorld2BaseRotoTranslation();
         real_T* pY7 = ssGetOutputPortRealSignal(S, 13);
         wbi::serializationFromFrame(w2brotoTrans, pY7);
+    }
+
+    if (btype == BASE_VELOCITY_ESTIMATION) {
+        real_T* port12 = ssGetOutputPortRealSignal(S, 12);
+        robot->robotBaseVelocity(port12);
     }
 
     if (TIMING) tend = Time::now();

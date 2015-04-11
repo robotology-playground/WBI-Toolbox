@@ -84,7 +84,8 @@ enum BLOCK_TYPE {
     PARAM_JACOBIANS_BLOCK,
     PARAM_DJ_DQ_BLOCK,
     POSITION_DIRECT_CONTROL_REF_BLOCK,
-    WORLD_TO_BASE_ROTO_TRANSLATION
+    WORLD_TO_BASE_ROTO_TRANSLATION,
+    BASE_VELOCITY_ESTIMATION,
 };
 
 class robotStatus {
@@ -224,7 +225,7 @@ public:
     bool                inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tau_computed);
     bool                dynamicsMassMatrix (double* qrad_input);
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
-    bool                robotBaseVelocity();
+    bool                robotBaseVelocity(real_T *baseVelocity = NULL);
     bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
     Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();

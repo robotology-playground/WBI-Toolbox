@@ -20,9 +20,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 10 16:02:45 2015"
-  RTWModifiedTimeStamp	  350582565
-  ModelVersionFormat	  "1.%<AutoIncrement:249>"
+  LastModifiedDate	  "Sat Apr 11 10:43:54 2015"
+  RTWModifiedTimeStamp	  350649834
+  ModelVersionFormat	  "1.%<AutoIncrement:250>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -810,7 +810,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1500"
+    SIDHighWatermark	    "1545"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -1420,7 +1420,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1500"
+		SIDHighWatermark	"1545"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1710,7 +1710,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1500"
+		SIDHighWatermark	"1545"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1980,7 +1980,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1500"
+		SIDHighWatermark	"1545"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -2378,7 +2378,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1500"
+		SIDHighWatermark	"1545"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -12804,7 +12804,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyStates"
-	Location		[15, 63, 1273, 714]
+	Location		[9, 59, 1267, 710]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -12820,21 +12820,14 @@ Library {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Base Position"
-	  SID			  "1498"
+	  SID			  "1523"
 	  Ports			  [0, 1]
-	  Position		  [515, 128, 585, 172]
-	  ZOrder		  7
-	  BackgroundColor	  "[0.375000, 0.187500, 0.000000]"
-	  AncestorBlock		  "WBCLibrary/wholeBodyStates/Joint Angles"
-	  LibraryVersion	  "1.239"
+	  Position		  [510, 127, 585, 173]
+	  ZOrder		  31
 	  RequestExecContextInheritance	off
-	  MaskType		  "Base Position"
-	  MaskDescription	  "This block retrieves the position of the base with respect to the world reference frame\nspecifi"
-	  "ed in the wholebodyinterface configuration file.\n\nThe output is the serialization of the 4x4 homogenous transform"
-	  "ation matrix\nin row major order.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" for i"
-	  "Cub on Gazebo or \"iCubGenova0X\".\nlocalName: Prefix name of the ports opened by the underlying Whole Body Interfa"
-	  "ce, e.g. \"simulink\""
-	  MaskPromptString	  "robotName|localName"
+	  MaskType		  "Compute base Position"
+	  MaskDescription	  "Homogenous transformation (4x4) matrix serialized into a 16 dim vector (row wise)"
+	  MaskPromptString	  "Robot Name|Local Name"
 	  MaskStyleString	  "edit,edit"
 	  MaskVariables		  "robotName=@1;localName=@2;"
 	  MaskTunableValueString  "on,on"
@@ -12842,7 +12835,7 @@ Library {
 	  MaskEnableString	  "on,on"
 	  MaskVisibilityString	  "on,on"
 	  MaskToolTipString	  "on,on"
-	  MaskDisplay		  "disp('w^H_b')"
+	  MaskDisplay		  "disp('w^H_b')\n"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
 	  MaskIconRotate	  "none"
@@ -12851,7 +12844,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Base Position"
-	    Location		    [15, 63, 1273, 714]
+	    Location		    [609, 73, 1531, 727]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12863,61 +12856,13 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "101"
-	    SIDHighWatermark	    "1497"
-	    SIDPrevWatermark	    "1497"
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " "
-	      SID		      "1498:572"
-	      Position		      [320, 300, 340, 320]
-	      ZOrder		      -5
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "  "
-	      SID		      "1498:573"
-	      Position		      [320, 335, 340, 355]
-	      ZOrder		      -5
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "   "
-	      SID		      "1498:574"
-	      Position		      [320, 370, 340, 390]
-	      ZOrder		      -5
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "   1"
-	      SID		      "1498:1305"
-	      Position		      [320, 405, 340, 425]
-	      ZOrder		      4
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "   2"
-	      SID		      "1498:1306"
-	      Position		      [320, 440, 340, 460]
-	      ZOrder		      5
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "   3"
-	      SID		      "1498:1307"
-	      Position		      [320, 475, 340, 495]
-	      ZOrder		      6
-	      ShowName		      off
-	    }
+	    ZoomFactor		    "118"
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
-	      SID		      "1498:3"
-	      Position		      [65, 80, 95, 110]
-	      ZOrder		      -5
+	      SID		      "1524"
+	      Position		      [120, 45, 150, 75]
+	      ZOrder		      10
 	      ShowName		      off
 	      Value		      "0"
 	      OutDataTypeStr	      "int8"
@@ -12926,9 +12871,9 @@ Library {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
-	      SID		      "1498:468"
-	      Position		      [65, 170, 95, 200]
-	      ZOrder		      -5
+	      SID		      "1525"
+	      Position		      [120, 120, 150, 150]
+	      ZOrder		      11
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF,1)"
 	      OutDataTypeStr	      "double"
@@ -12937,9 +12882,9 @@ Library {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
-	      SID		      "1498:575"
-	      Position		      [65, 260, 95, 290]
-	      ZOrder		      -5
+	      SID		      "1526"
+	      Position		      [120, 195, 150, 225]
+	      ZOrder		      12
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF+16, 1)"
 	      OutDataTypeStr	      "double"
@@ -12948,9 +12893,9 @@ Library {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
-	      SID		      "1498:576"
-	      Position		      [65, 350, 95, 380]
-	      ZOrder		      -5
+	      SID		      "1527"
+	      Position		      [120, 270, 150, 300]
+	      ZOrder		      13
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF+6,1)"
 	      OutDataTypeStr	      "double"
@@ -12959,114 +12904,157 @@ Library {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
-	      SID		      "1498:577"
-	      Position		      [65, 440, 95, 470]
-	      ZOrder		      -5
+	      SID		      "1528"
+	      Position		      [120, 345, 150, 375]
+	      ZOrder		      14
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF+6,1)"
 	      OutDataTypeStr	      "double"
 	      SampleTime	      "Ts"
 	    }
 	    Block {
-	      BlockType		      Terminator
-	      Name		      "Jacobian"
-	      SID		      "1498:7"
-	      Position		      [320, 160, 340, 180]
-	      ZOrder		      -5
-	    }
-	    Block {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
-	      SID		      "1498:4"
-	      Ports		      [5, 13]
-	      Position		      [140, 52, 275, 498]
-	      ZOrder		      -5
-	      BackgroundColor	      "darkGreen"
+	      SID		      "1529"
+	      Ports		      [5, 14]
+	      Position		      [195, 22, 310, 393]
+	      ZOrder		      1
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotName,localName,linkName"
 	      EnableBusSupport	      off
-	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
+	      MaskPromptString	      "Robot Name|Local Name|Value|link name"
 	      MaskStyleString	      "edit,edit,edit,edit"
-	      MaskVariables	      "val=@1;robotname=@2;localname=@3;linkname=@4;"
+	      MaskVariables	      "robotName=@1;localName=@2;val=@3;linkName=@4;"
 	      MaskTunableValueString  "on,on,on,on"
 	      MaskCallbackString      "|||"
-	      MaskEnableString	      "on,on,on,on"
-	      MaskVisibilityString    "on,on,on,off"
+	      MaskEnableString	      "on,on,off,off"
+	      MaskVisibilityString    "on,on,off,off"
 	      MaskToolTipString	      "on,on,on,on"
+	      MaskDisplay	      "disp('w^H_b')\nport_label('output', 14, 'output');"
 	      MaskIconFrame	      on
 	      MaskIconOpaque	      on
 	      MaskIconRotate	      "none"
 	      MaskPortRotate	      "default"
 	      MaskIconUnits	      "autoscale"
-	      MaskValueString	      "0|robotName|localName|'na'"
+	      MaskValueString	      "robotName|localName|21|'na'"
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "dJ dq"
-	      SID		      "1498:260"
-	      Position		      [320, 265, 340, 285]
-	      ZOrder		      -5
+	      Name		      "Terminator"
+	      SID		      "1530"
+	      Position		      [375, 35, 395, 55]
+	      ZOrder		      15
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "getDq"
-	      SID		      "1498:5"
-	      Position		      [320, 90, 340, 110]
-	      ZOrder		      -5
+	      Name		      "Terminator1"
+	      SID		      "1531"
+	      Position		      [375, 60, 395, 80]
+	      ZOrder		      16
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "h"
-	      SID		      "1498:259"
-	      Position		      [320, 230, 340, 250]
-	      ZOrder		      -5
+	      Name		      "Terminator10"
+	      SID		      "1532"
+	      Position		      [375, 285, 395, 305]
+	      ZOrder		      25
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "massMatrix"
-	      SID		      "1498:258"
-	      Position		      [320, 195, 340, 215]
-	      ZOrder		      -5
+	      Name		      "Terminator11"
+	      SID		      "1533"
+	      Position		      [375, 310, 395, 330]
+	      ZOrder		      26
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "xFoot"
-	      SID		      "1498:6"
-	      Position		      [320, 125, 340, 145]
-	      ZOrder		      -5
+	      Name		      "Terminator12"
+	      SID		      "1534"
+	      Position		      [375, 335, 395, 355]
+	      ZOrder		      30
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "1535"
+	      Position		      [375, 85, 395, 105]
+	      ZOrder		      17
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "1536"
+	      Position		      [375, 110, 395, 130]
+	      ZOrder		      18
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "1537"
+	      Position		      [375, 135, 395, 155]
+	      ZOrder		      19
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "1538"
+	      Position		      [375, 160, 395, 180]
+	      ZOrder		      20
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "1539"
+	      Position		      [375, 185, 395, 205]
+	      ZOrder		      21
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator7"
+	      SID		      "1540"
+	      Position		      [375, 210, 395, 230]
+	      ZOrder		      22
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator8"
+	      SID		      "1541"
+	      Position		      [375, 235, 395, 255]
+	      ZOrder		      23
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator9"
+	      SID		      "1542"
+	      Position		      [375, 260, 395, 280]
+	      ZOrder		      24
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "qrad"
-	      SID		      "1498:8"
-	      Position		      [315, 58, 345, 72]
-	      ZOrder		      -9
+	      Name		      "w^H_b"
+	      SID		      "1543"
+	      Position		      [370, 363, 400, 377]
+	      ZOrder		      31
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
 	      DstBlock		      "S-Function"
-	      DstPort		      2
-	    }
-	    Line {
-	      Labels		      [0, 0]
-	      SrcBlock		      "S-Function"
-	      SrcPort		      2
-	      DstBlock		      "getDq"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      1
-	      DstBlock		      "qrad"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      3
-	      DstBlock		      "xFoot"
-	      DstPort		      1
+	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
@@ -13075,58 +13063,22 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      2
+	    }
+	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
-	      DstBlock		      "Jacobian"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      5
-	      DstBlock		      "massMatrix"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      6
-	      DstBlock		      "h"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      7
-	      DstBlock		      "dJ dq"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      8
-	      DstBlock		      " "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function"
-	      SrcPort		      9
-	      DstBlock		      "  "
+	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
-	      DstBlock		      "   "
+	      DstBlock		      "Terminator9"
 	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
-	      SrcPort		      1
-	      DstBlock		      "S-Function"
-	      DstPort		      3
-	    }
-	    Line {
-	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
-	      SrcPort		      1
-	      DstBlock		      "S-Function"
-	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
@@ -13136,21 +13088,448 @@ Library {
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
-	      SrcPort		      11
-	      DstBlock		      "   1"
+	      SrcPort		      13
+	      DstBlock		      "Terminator12"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      3
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      2
+	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
-	      DstBlock		      "   2"
+	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
-	      SrcPort		      13
-	      DstBlock		      "   3"
+	      SrcPort		      11
+	      DstBlock		      "Terminator10"
 	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      5
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      8
+	      DstBlock		      "Terminator7"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      6
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      9
+	      DstBlock		      "Terminator8"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      7
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      14
+	      DstBlock		      "w^H_b"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "1544"
+	      Name		      " "
+	      Position		      [23, 320]
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
+	    }
+	  }
+	  RTWSystemCode		  "Auto"
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  MaskHideContents	  off
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Base velocity"
+	  SID			  "1501"
+	  Ports			  [0, 1]
+	  Position		  [60, 197, 135, 243]
+	  ZOrder		  30
+	  RequestExecContextInheritance	off
+	  MaskType		  "Compute base velocity"
+	  MaskPromptString	  "Robot Name|Local Name"
+	  MaskStyleString	  "edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;"
+	  MaskTunableValueString  "on,on"
+	  MaskCallbackString	  "|"
+	  MaskEnableString	  "on,on"
+	  MaskVisibilityString	  "on,on"
+	  MaskToolTipString	  "on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "robotName|localName"
+	  System {
+	    Name		    "Base velocity"
+	    Location		    [9, 59, 1267, 710]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "118"
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
+	      SID		      "1502"
+	      Position		      [120, 45, 150, 75]
+	      ZOrder		      10
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "int8"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SID		      "1503"
+	      Position		      [120, 120, 150, 150]
+	      ZOrder		      11
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SID		      "1504"
+	      Position		      [120, 195, 150, 225]
+	      ZOrder		      12
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+16, 1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
+	      SID		      "1505"
+	      Position		      [120, 270, 150, 300]
+	      ZOrder		      13
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+6,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
+	      SID		      "1506"
+	      Position		      [120, 345, 150, 375]
+	      ZOrder		      14
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+6,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      S-Function
+	      Name		      "S-Function"
+	      SID		      "1507"
+	      Ports		      [5, 14]
+	      Position		      [195, 22, 310, 393]
+	      ZOrder		      1
+	      FunctionName	      "robotState"
+	      Parameters	      "val,robotName,localName,linkName"
+	      EnableBusSupport	      off
+	      MaskPromptString	      "Robot Name|Local Name|Value|link name"
+	      MaskStyleString	      "edit,edit,edit,edit"
+	      MaskVariables	      "robotName=@1;localName=@2;val=@3;linkName=@4;"
+	      MaskTunableValueString  "on,on,on,on"
+	      MaskCallbackString      "|||"
+	      MaskEnableString	      "on,on,off,off"
+	      MaskVisibilityString    "on,on,off,off"
+	      MaskToolTipString	      "on,on,on,on"
+	      MaskDisplay	      "disp('libRobotState')\nport_label('output', 13, 'output');"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskPortRotate	      "default"
+	      MaskIconUnits	      "autoscale"
+	      MaskValueString	      "robotName|localName|22|'na'"
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "1508"
+	      Position		      [375, 35, 395, 55]
+	      ZOrder		      15
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "1509"
+	      Position		      [375, 60, 395, 80]
+	      ZOrder		      16
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator10"
+	      SID		      "1510"
+	      Position		      [375, 285, 395, 305]
+	      ZOrder		      25
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator11"
+	      SID		      "1511"
+	      Position		      [375, 310, 395, 330]
+	      ZOrder		      26
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator13"
+	      SID		      "1512"
+	      Position		      [375, 360, 395, 380]
+	      ZOrder		      28
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "1513"
+	      Position		      [375, 85, 395, 105]
+	      ZOrder		      17
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "1514"
+	      Position		      [375, 110, 395, 130]
+	      ZOrder		      18
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "1515"
+	      Position		      [375, 135, 395, 155]
+	      ZOrder		      19
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "1516"
+	      Position		      [375, 160, 395, 180]
+	      ZOrder		      20
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "1517"
+	      Position		      [375, 185, 395, 205]
+	      ZOrder		      21
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator7"
+	      SID		      "1518"
+	      Position		      [375, 210, 395, 230]
+	      ZOrder		      22
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator8"
+	      SID		      "1519"
+	      Position		      [375, 235, 395, 255]
+	      ZOrder		      23
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator9"
+	      SID		      "1520"
+	      Position		      [375, 260, 395, 280]
+	      ZOrder		      24
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "base velocity"
+	      SID		      "1521"
+	      Position		      [370, 338, 400, 352]
+	      ZOrder		      29
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      4
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      10
+	      DstBlock		      "Terminator9"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      13
+	      DstBlock		      "base velocity"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      14
+	      DstBlock		      "Terminator13"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      3
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      2
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      12
+	      DstBlock		      "Terminator11"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      11
+	      DstBlock		      "Terminator10"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      5
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      8
+	      DstBlock		      "Terminator7"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      6
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      9
+	      DstBlock		      "Terminator8"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      7
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Annotation {
+	      SID		      "1522"
+	      Name		      " "
+	      Position		      [23, 320]
+	      HorizontalAlignment     "left"
+	      VerticalAlignment	      "top"
 	    }
 	  }
 	  RTWSystemCode		  "Auto"
@@ -13289,7 +13668,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.248"
+		  LibraryVersion	  "1.249"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -13306,7 +13685,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.248"
+		  LibraryVersion	  "1.249"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -13323,7 +13702,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.248"
+		  LibraryVersion	  "1.249"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -13340,7 +13719,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.248"
+		  LibraryVersion	  "1.249"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -13357,7 +13736,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.248"
+		  LibraryVersion	  "1.249"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -14159,7 +14538,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Angles"
-	    Location		    [15, 63, 1273, 714]
+	    Location		    [9, 59, 1267, 710]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15843,7 +16222,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "dq_b + dq_j"
-	    Location		    [1669, 44, 3225, 2969]
+	    Location		    [9, 59, 1267, 710]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15865,7 +16244,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.248"
+	      LibraryVersion	      "1.249"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -15879,7 +16258,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.248"
+	      LibraryVersion	      "1.249"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -15904,7 +16283,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.248"
+	      LibraryVersion	      "1.249"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -15918,7 +16297,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.248"
+	      LibraryVersion	      "1.249"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -16006,7 +16385,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "q_b + q_j"
-	    Location		    [1297, 44, 2708, 2293]
+	    Location		    [9, 59, 1267, 710]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16035,8 +16414,8 @@ Library {
 	      Ports		      [0, 1]
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
-	      BackgroundColor	      "[0.375000, 0.187500, 0.000000]"
-	      LibraryVersion	      "1.248"
+	      BackgroundColor	      "[0.376471, 0.188235, 0.000000]"
+	      LibraryVersion	      "1.249"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
