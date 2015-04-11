@@ -152,24 +152,15 @@ static void mdlInitializeSampleTimes(SimStruct *S)
 #define MDL_START
 static void mdlStart(SimStruct *S)
 {
-    // ######### YARP INITIALIZATION STUFF ##################
-    fprintf(stderr,"YARP NETWORK INITIALIZED\n");
-    Network yarp;
-
-    if (!yarp.checkNetwork()){
-        ssSetErrorStatus(S,"YARP server wasn't found active!! \n");
-        return;
-    }
-    else
-        cout<<"YARP is running!!\n"<<endl;
-
     // ######## CHECKING INPUT PARAMETERS ############
     int param_taskDOF     = static_cast<int>(mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_1)));
     double param_rate        = mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_2));
     double param_trajtime = static_cast<double>(mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_3)));
-    cout<<"BLOCK TASK DOF PARAMETER:  "<<param_taskDOF <<endl;
-    cout<<"SIMULATION RATE PARAMETER: "<<param_rate    <<endl;
-    cout<<"TRAJECTORY TIME PARAMETER: "<<param_trajtime<<endl;
+#ifndef NDEBUG
+    mexPrintf("BLOCK TASK DOF PARAMETER: %d\n", param_taskDOF);
+    mexPrintf("SIMULATION RATE PARAMETER: %lf\n", param_rate);
+    mexPrintf("TRAJECTORY TIME PARAMETER: %lf\n", param_trajtime);
+#endif
 
     // This will help determining the kind of minJerk Trajectory we'll be using
     real_T    *x = (real_T*) ssGetDWork(S,0);
@@ -180,7 +171,6 @@ static void mdlStart(SimStruct *S)
 
     // ############ MINIMUM JERK INITIALIZATION ###############
     minJerkTrajGenerator *minJerkTraj = new minJerkTrajGenerator(param_taskDOF);
-    fprintf(stderr,"An object minJerkTraj has been created\n");
 
     //############ DEALING WITH INPUT VALUES ###################
 //     // Reading all input ports
@@ -204,9 +194,7 @@ static void mdlStart(SimStruct *S)
     ssGetPWork(S)[0] = minJerkTraj;
     real_T    *flag = (real_T*) ssGetDWork(S,1);
     flag[0]         = 1;
-    
 
-    fprintf(stderr,"MDLSTART FINISHES HERE ... \n");
 }
 
 // Function: mdlOutputs =======================================================
