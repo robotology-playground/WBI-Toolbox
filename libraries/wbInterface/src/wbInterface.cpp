@@ -495,7 +495,7 @@ void robotStatus::setRefDes (Vector refDes) {
 bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double* ddq_input, double* tauJ_computed) {
     bool ans = false;
 //     if (world2baseRototranslation (qrad_input)) {
-    if (updateWorld2BaseRotoTranslation()) { 
+    if (updateWorld2BaseRotoTranslation() && robotBaseVelocity()) {
         Vector qrad_base (16);
         qrad_base.resize (16, 0.0);
         Vector dq_base (6)  ;
@@ -528,7 +528,7 @@ bool robotStatus::inverseDynamics (double* qrad_input, double* dq_input, double*
 #ifdef DEBUG
         yDebug("[robotStatus::inverseDynamics] Computing world to base rototranslation\n");
 #endif
-        ans = wbInterface->inverseDynamics (qrad_robot, xBase, dq_robot, dq_base.data(), ddq_robot, ddq_base.data(), grav.data(), tauJ_computed);
+        ans = wbInterface->inverseDynamics (qrad_robot, xBase, dq_robot, dxB.data(), ddq_robot, ddq_base.data(), grav.data(), tauJ_computed);
 #endif
 
 #ifdef DEBUG
@@ -639,7 +639,7 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
                     yDebug("[robotStatus::dynamicsGenBiasForces] dq_base: \n%s\n", dq_base.toString().c_str());
                     yDebug("[robotStatus::dynamicsGenBiasForces] grav: \n%s\n", grav.toString().c_str());
 #endif
-                    ans = wbInterface->computeGeneralizedBiasForces (qrad_robot, xBase, dq_robot, dq_base.data(), grav.data(), hterm.data());
+                    ans = wbInterface->computeGeneralizedBiasForces (qrad_robot, xBase, dq_robot, dxB.data(), grav.data(), hterm.data());
 #endif
                 }
             }
@@ -722,7 +722,7 @@ bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_inpu
 #endif
                 ans = wbInterface->computeDJdq (qrad_robot, qBaseFrame, dq_robot, dq_base.data(), footLinkId, dJdq.data());
 #else
-                ans = wbInterface->computeDJdq (qrad_robot, xBase, dq_robot, dq_base.data(), footLinkId, dJdq.data());
+                ans = wbInterface->computeDJdq (qrad_robot, xBase, dq_robot, dxB.data(), footLinkId, dJdq.data());
 #endif
             }
         }
@@ -739,7 +739,7 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
     if (robotJntAngles (false)) {
         //TODO world2baseRototranslation here should take qrad_input as input!!!!
 //         if (world2baseRototranslation (qRad.data())) {
-        if (updateWorld2BaseRotoTranslation()) {
+        if (updateWorld2BaseRotoTranslation() && robotBaseVelocity()) {
 
             //Extract robot and base joint angles and velocities
             Vector qrad_base (16);
@@ -761,7 +761,7 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
             #ifdef DEBUG
                 yDebug("[robotStatus::centroidalMomentum] Calling the main function \n");
             #endif
-            ans = wbInterface->computeCentroidalMomentum (qrad_robot, xBase, dq_robot, dq_base.data(), h);
+            ans = wbInterface->computeCentroidalMomentum (qrad_robot, xBase, dq_robot, dxB.data(), h);
 #endif
         }
     }
