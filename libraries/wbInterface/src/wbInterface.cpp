@@ -64,6 +64,7 @@ int  counterClass::count          = 0;
 bool robotStatus::robot_fixed     = false;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
+bool robotStatus::externalBasePoseComputation = false;
 Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
 Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
@@ -670,6 +671,14 @@ bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
 
 //========================================================================================================================
 bool robotStatus::updateWorld2BaseRotoTranslation() {
+    //base position is read from external block
+    std::cerr << "----------- Update Rototranslation ? \n";
+    if (externalBasePoseComputation) {     std::cerr << "-----------> EXTERNAL => doing nothing \n";
+        std::cerr << xBase.toString() << "\n";
+        return true;}
+    
+    std::cerr << "-----------> Internal \n";
+    
     if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
         yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
         return false;
@@ -793,6 +802,17 @@ bool robotStatus::addEstimate(wbi::ID LID) {
     else
         return false;
 }
+
+void robotStatus::setExternalBasePoseComputation(bool externalBasePoseComputation)
+{
+    robotStatus::externalBasePoseComputation = externalBasePoseComputation;
+}
+
+void robotStatus::setWorld2BaseHomogenousTransformation(wbi::Frame &frame)
+{
+    this->xBase = frame;
+}
+
 //------------------------------------------------------------------------------------------------------------------------//
 // END robotStatus implementation ----------------------------------------------------------------------------------------//
 //------------------------------------------------------------------------------------------------------------------------//
@@ -917,16 +937,20 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetInputPortWidth (S, 2, ROBOT_DOF + 16);             //INPUT for q (input angles different maybe from current ones)
     ssSetInputPortWidth (S, 3, ROBOT_DOF + 6);              //INPUT for dq (input joint velocities maybe different from current ones)
     ssSetInputPortWidth (S, 4, ROBOT_DOF + 6);              //INPUT for ddq (input joint accelerations maybe different from current ones)
+//    ssSetInputPortWidth (S, 5, 16);                         //INPUT for base pose
+    //Back compatibility: simply use port 2
     ssSetInputPortDataType (S, 0, SS_INT8);                 //Input data type
     ssSetInputPortDataType (S, 1, SS_DOUBLE);
     ssSetInputPortDataType (S, 2, SS_DOUBLE);
     ssSetInputPortDataType (S, 3, SS_DOUBLE);
     ssSetInputPortDataType (S, 4, SS_DOUBLE);
+//    ssSetInputPortDataType (S, 5, SS_DOUBLE);
     ssSetInputPortDirectFeedThrough (S, 0, 1);              //The input will be used in the output
     ssSetInputPortDirectFeedThrough (S, 1, 1);
     ssSetInputPortDirectFeedThrough (S, 2, 1);
     ssSetInputPortDirectFeedThrough (S, 3, 1);
     ssSetInputPortDirectFeedThrough (S, 4, 1);
+//    ssSetInputPortDirectFeedThrough (S, 5, 1);
     if (!ssSetNumOutputPorts (S, 14)) return;
     ssSetOutputPortWidth (S, 0, ROBOT_DOF);                 // Robot joint angular positions in radians
     ssSetOutputPortWidth (S, 1, ROBOT_DOF);                 // Robot joint angular velocities in radians
@@ -1117,8 +1141,9 @@ static void mdlStart (SimStruct* S) {
         yInfo("[mdlOutputs] This block will set joint angles with the Position Direct control mode\n");
         break;
     case BASE_VELOCITY_ESTIMATION:
+            break;
     case WORLD_TO_BASE_ROTO_TRANSLATION:
-            //just avoid the erro
+            robotStatus::setExternalBasePoseComputation(true);
             break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
@@ -1809,9 +1834,10 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     
     // Exposing world to base rototranslation
     if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
-        wbi::Frame w2brotoTrans = robot->getWorld2BaseRotoTranslation();
-        real_T* pY7 = ssGetOutputPortRealSignal(S, 13);
-        wbi::serializationFromFrame(w2brotoTrans, pY7);
+        real_T *baseInput = const_cast<real_T*>(ssGetInputPortRealSignal(S, 2));
+        wbi::Frame frame;
+        wbi::frameFromSerialization(baseInput, frame);
+        robot->setWorld2BaseHomogenousTransformation(frame);
     }
 
     if (btype == BASE_VELOCITY_ESTIMATION) {
