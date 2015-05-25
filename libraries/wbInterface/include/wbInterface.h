@@ -183,6 +183,8 @@ private:
 
     /*Robot DOF read from configuration file*/
     static int              ROBOT_DOF;
+    
+    static bool externalBasePoseComputation;
 
     static Eigen::VectorXd         minJointLimits;
     static Eigen::VectorXd         maxJointLimits;
@@ -239,6 +241,8 @@ public:
     static void         setRobotDOF(int ROBOTDOF);
     static int          getRobotDOF();
     wbi::Frame          getWorld2BaseRotoTranslation();
+    void setWorld2BaseHomogenousTransformation(wbi::Frame &frame);
+    static void setExternalBasePoseComputation(bool externalBasePoseComputation);
 };
 
 class counterClass {
