@@ -185,7 +185,7 @@ private:
     static int              ROBOT_DOF;
     
     static bool externalBasePoseComputation;
-
+    
     static Eigen::VectorXd         minJointLimits;
     static Eigen::VectorXd         maxJointLimits;
 

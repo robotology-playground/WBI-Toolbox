@@ -15,15 +15,15 @@ Library {
   "Actuators/setVelDes1||__slNewName__||WBCLibrary/wholeBodyActuators/Set Velocities||__slOldName__||WBCLibrary/wholeBo"
   "dyActuators/setVelDes||__slNewName__||WBCLibrary/wholeBodyActuators/Set Velocities"
   MaxMDLFileLineLength	  120
-  Created		  "Thu Feb 06 11:21:39 2014"
+  Created		  "Thu Feb 06 02:21:39 2014"
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon May 25 21:57:40 2015"
-  RTWModifiedTimeStamp	  354459460
-  ModelVersionFormat	  "1.%<AutoIncrement:253>"
+  LastModifiedDate	  "Mon May 25 23:26:17 2015"
+  RTWModifiedTimeStamp	  354497177
+  ModelVersionFormat	  "1.%<AutoIncrement:262>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,6 +716,10 @@ Library {
       InitialOutput	      "[]"
     }
     Block {
+      BlockType		      PermuteDimensions
+      Order		      "[2,1]"
+    }
+    Block {
       BlockType		      Product
       Inputs		      "2"
       Multiplication	      "Element-wise(.*)"
@@ -811,7 +815,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1570"
+    SIDHighWatermark	    "1574"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -1421,7 +1425,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1570"
+		SIDHighWatermark	"1574"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1711,7 +1715,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1570"
+		SIDHighWatermark	"1574"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1981,7 +1985,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1570"
+		SIDHighWatermark	"1574"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -2379,7 +2383,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1570"
+		SIDHighWatermark	"1574"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -13669,7 +13673,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.252"
+		  LibraryVersion	  "1.261"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -13686,7 +13690,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.252"
+		  LibraryVersion	  "1.261"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -13703,7 +13707,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.252"
+		  LibraryVersion	  "1.261"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -13720,7 +13724,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.252"
+		  LibraryVersion	  "1.261"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -13737,7 +13741,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.252"
+		  LibraryVersion	  "1.261"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -16228,23 +16232,22 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "92"
+	    ZoomFactor		    "86"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
 	      SID		      "1547"
-	      Position		      [20, 463, 50, 477]
+	      Position		      [20, 233, 50, 247]
 	      ZOrder		      28
 	      ShowName		      off
 	      IconDisplay	      "Signal name"
-	      PortDimensions	      "16"
 	      SampleTime	      "Ts"
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      " "
 	      SID		      "1548"
-	      Position		      [630, 280, 650, 300]
+	      Position		      [700, 280, 720, 300]
 	      ZOrder		      8
 	      ShowName		      off
 	    }
@@ -16252,7 +16255,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "  "
 	      SID		      "1549"
-	      Position		      [630, 315, 650, 335]
+	      Position		      [700, 315, 720, 335]
 	      ZOrder		      9
 	      ShowName		      off
 	    }
@@ -16260,7 +16263,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "   "
 	      SID		      "1550"
-	      Position		      [630, 350, 650, 370]
+	      Position		      [700, 350, 720, 370]
 	      ZOrder		      10
 	      ShowName		      off
 	    }
@@ -16268,7 +16271,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "   1"
 	      SID		      "1551"
-	      Position		      [630, 385, 650, 405]
+	      Position		      [700, 385, 720, 405]
 	      ZOrder		      22
 	      ShowName		      off
 	    }
@@ -16276,7 +16279,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "   2"
 	      SID		      "1552"
-	      Position		      [630, 420, 650, 440]
+	      Position		      [700, 420, 720, 440]
 	      ZOrder		      23
 	      ShowName		      off
 	    }
@@ -16284,7 +16287,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "   3"
 	      SID		      "1553"
-	      Position		      [630, 455, 650, 475]
+	      Position		      [700, 455, 720, 475]
 	      ZOrder		      24
 	      ShowName		      off
 	    }
@@ -16292,7 +16295,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "   4"
 	      SID		      "1554"
-	      Position		      [630, 485, 650, 505]
+	      Position		      [700, 485, 720, 505]
 	      ZOrder		      26
 	      ShowName		      off
 	    }
@@ -16300,7 +16303,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Constant"
 	      SID		      "1569"
-	      Position		      [20, 410, 125, 440]
+	      Position		      [90, 170, 195, 200]
 	      ZOrder		      30
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF,1)"
@@ -16309,7 +16312,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 	      SID		      "1555"
-	      Position		      [175, 45, 205, 75]
+	      Position		      [245, 45, 275, 75]
 	      ZOrder		      11
 	      ShowName		      off
 	      Value		      "0"
@@ -16320,7 +16323,7 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SID		      "1556"
-	      Position		      [175, 135, 205, 165]
+	      Position		      [245, 135, 275, 165]
 	      ZOrder		      12
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF,1)"
@@ -16329,20 +16332,9 @@ Library {
 	    }
 	    Block {
 	      BlockType		      Constant
-	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
-	      SID		      "1557"
-	      Position		      [175, 215, 205, 245]
-	      ZOrder		      13
-	      ShowName		      off
-	      Value		      "zeros(ROBOT_DOF+16, 1)"
-	      OutDataTypeStr	      "double"
-	      SampleTime	      "Ts"
-	    }
-	    Block {
-	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SID		      "1558"
-	      Position		      [175, 295, 205, 325]
+	      Position		      [245, 295, 275, 325]
 	      ZOrder		      14
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF+6,1)"
@@ -16353,8 +16345,19 @@ Library {
 	      BlockType		      Constant
 	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
 	      SID		      "1559"
-	      Position		      [175, 375, 205, 405]
+	      Position		      [245, 375, 275, 405]
 	      ZOrder		      15
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+6,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 5"
+	      SID		      "1571"
+	      Position		      [245, 455, 275, 485]
+	      ZOrder		      32
 	      ShowName		      off
 	      Value		      "zeros(ROBOT_DOF+6,1)"
 	      OutDataTypeStr	      "double"
@@ -16364,7 +16367,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "Jacobian"
 	      SID		      "1560"
-	      Position		      [630, 140, 650, 160]
+	      Position		      [700, 140, 720, 160]
 	      ZOrder		      16
 	      ShowName		      off
 	    }
@@ -16373,26 +16376,33 @@ Library {
 	      Name		      "Matrix\nConcatenate"
 	      SID		      "1570"
 	      Ports		      [2, 1]
-	      Position		      [150, 449, 205, 491]
+	      Position		      [220, 209, 275, 251]
 	      ZOrder		      31
 	      ShowName		      off
 	      ConcatenateDimension    "2"
+	    }
+	    Block {
+	      BlockType		      PermuteDimensions
+	      Name		      "Permute\nDimensions"
+	      SID		      "1574"
+	      Position		      [75, 218, 125, 262]
+	      ZOrder		      35
+	      ShowName		      off
 	    }
 	    Block {
 	      BlockType		      Reshape
 	      Name		      "Reshape"
 	      SID		      "1561"
 	      Ports		      [1, 1]
-	      Position		      [85, 458, 115, 482]
+	      Position		      [145, 228, 175, 252]
 	      ZOrder		      29
-	      OutputDimensionality    "Column vector (2-D)"
 	    }
 	    Block {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1562"
 	      Ports		      [6, 14]
-	      Position		      [240, 22, 395, 513]
+	      Position		      [310, 22, 465, 513]
 	      ZOrder		      1
 	      FunctionName	      "robotState"
 	      Parameters	      "val,robotname,localname,linkname"
@@ -16416,7 +16426,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "dJ dq"
 	      SID		      "1563"
-	      Position		      [630, 245, 650, 265]
+	      Position		      [700, 245, 720, 265]
 	      ZOrder		      17
 	      ShowName		      off
 	    }
@@ -16424,7 +16434,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "getDq"
 	      SID		      "1564"
-	      Position		      [630, 70, 650, 90]
+	      Position		      [700, 70, 720, 90]
 	      ZOrder		      18
 	      ShowName		      off
 	    }
@@ -16432,7 +16442,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "h"
 	      SID		      "1565"
-	      Position		      [630, 210, 650, 230]
+	      Position		      [700, 210, 720, 230]
 	      ZOrder		      19
 	      ShowName		      off
 	    }
@@ -16440,7 +16450,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "massMatrix"
 	      SID		      "1566"
-	      Position		      [630, 175, 650, 195]
+	      Position		      [700, 175, 720, 195]
 	      ZOrder		      20
 	      ShowName		      off
 	    }
@@ -16448,7 +16458,7 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "qrad"
 	      SID		      "1567"
-	      Position		      [630, 30, 650, 50]
+	      Position		      [700, 30, 720, 50]
 	      ZOrder		      25
 	      ShowName		      off
 	    }
@@ -16456,14 +16466,14 @@ Library {
 	      BlockType		      Terminator
 	      Name		      "xFoot"
 	      SID		      "1568"
-	      Position		      [630, 105, 650, 125]
+	      Position		      [700, 105, 720, 125]
 	      ZOrder		      21
 	      ShowName		      off
 	    }
 	    Line {
 	      SrcBlock		      "In1"
 	      SrcPort		      1
-	      DstBlock		      "Reshape"
+	      DstBlock		      "Permute\nDimensions"
 	      DstPort		      1
 	    }
 	    Line {
@@ -16576,7 +16586,7 @@ Library {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SrcBlock		      "Matrix\nConcatenate"
 	      SrcPort		      1
 	      DstBlock		      "S-Function"
 	      DstPort		      3
@@ -16594,23 +16604,29 @@ Library {
 	      DstPort		      5
 	    }
 	    Line {
-	      SrcBlock		      "Matrix\nConcatenate"
+	      SrcBlock		      "Reshape"
+	      SrcPort		      1
+	      Points		      [9, 0; 0, -20]
+	      DstBlock		      "Matrix\nConcatenate"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 5"
 	      SrcPort		      1
 	      DstBlock		      "S-Function"
 	      DstPort		      6
-	    }
-	    Line {
-	      SrcBlock		      "Reshape"
-	      SrcPort		      1
-	      Points		      [13, 0; 0, 10]
-	      DstBlock		      "Matrix\nConcatenate"
-	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
 	      Points		      [5, 0]
 	      DstBlock		      "Matrix\nConcatenate"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Permute\nDimensions"
+	      SrcPort		      1
+	      DstBlock		      "Reshape"
 	      DstPort		      1
 	    }
 	  }
@@ -16670,7 +16686,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.252"
+	      LibraryVersion	      "1.261"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -16684,7 +16700,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.252"
+	      LibraryVersion	      "1.261"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -16709,7 +16725,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.252"
+	      LibraryVersion	      "1.261"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -16723,7 +16739,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.252"
+	      LibraryVersion	      "1.261"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -16841,7 +16857,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.376471, 0.188235, 0.000000]"
-	      LibraryVersion	      "1.252"
+	      LibraryVersion	      "1.261"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"

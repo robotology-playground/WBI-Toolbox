@@ -675,7 +675,8 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     std::cerr << "----------- Update Rototranslation ? \n";
     if (externalBasePoseComputation) {     std::cerr << "-----------> EXTERNAL => doing nothing \n";
         std::cerr << xBase.toString() << "\n";
-        return true;}
+        return true;
+    }
     
     std::cerr << "-----------> Internal \n";
     
@@ -780,7 +781,7 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
 bool robotStatus::robotEEWrenches (wbi::ID LID) {
     bool ans = false;
     if (robotJntAngles (false)) {
-        if (world2baseRototranslation (qRad.data())) {
+//        if (world2baseRototranslation (qRad.data())) {
       //TODO yarpWholeBodyInterface still doesn't have the method setWorldBasePosition which is needed by wbi to estimate forces at the EE
 //             if ( ( (yarpWholeBodyInterface*) wbInterface)->setWorldBasePosition (xBase)) {
 //                 if (wbInterface->getEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID, EEWrench.data())) {
@@ -791,7 +792,7 @@ bool robotStatus::robotEEWrenches (wbi::ID LID) {
 //                     return ans;
 //                 }
 //             }
-        }
+//        }
     }
     return ans;
 }
@@ -1834,10 +1835,15 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     
     // Exposing world to base rototranslation
     if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
-        real_T *baseInput = const_cast<real_T*>(ssGetInputPortRealSignal(S, 2));
+        InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 2);
+        real_T basePoseBuffer[16];
+        for (int i = 0; i < 16; i++) {
+            basePoseBuffer[i] = *inputSignal[i];
+        }
         wbi::Frame frame;
-        wbi::frameFromSerialization(baseInput, frame);
+        wbi::frameFromSerialization(basePoseBuffer, frame);
         robot->setWorld2BaseHomogenousTransformation(frame);
+        std::cerr << "Transformed to: " << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
 
     if (btype == BASE_VELOCITY_ESTIMATION) {
