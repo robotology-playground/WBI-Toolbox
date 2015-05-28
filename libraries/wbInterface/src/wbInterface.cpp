@@ -58,10 +58,11 @@ using namespace yarpWbi;
 // START ROBOTSTATUS IMPLEMENTATION -------------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------------------------------//
 //These variables must be initialized in this .cpp file and in this particular way for being static member variables of a class
-int  robotStatus::creationCounter = 0;
-int* robotStatus::tmpContainer    = NULL;
-int  counterClass::count          = 0;
-bool robotStatus::robot_fixed     = false;
+int   robotStatus::creationCounter = 0;
+int*  robotStatus::tmpContainer    = NULL;
+int   counterClass::count          = 0;
+bool  robotStatus::robot_fixed     = false;
+Frame robotStatus::xBase           = Frame();
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
 bool robotStatus::externalBasePoseComputation = false;
@@ -672,9 +673,10 @@ bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
 //========================================================================================================================
 bool robotStatus::updateWorld2BaseRotoTranslation() {
     //base position is read from external block
-    std::cerr << "----------- Update Rototranslation ? \n";
-    if (externalBasePoseComputation) {     std::cerr << "-----------> EXTERNAL => doing nothing \n";
-        std::cerr << xBase.toString() << "\n";
+//     std::cerr << "----------- Update Rototranslation ? \n";
+    if (externalBasePoseComputation) {     
+//         std::cerr << "-----------> EXTERNAL => doing nothing \n";
+//         std::cerr << xBase.toString() << "\n";
         return true;
     }
     
@@ -1143,8 +1145,11 @@ static void mdlStart (SimStruct* S) {
         break;
     case BASE_VELOCITY_ESTIMATION:
             break;
-    case WORLD_TO_BASE_ROTO_TRANSLATION:
+    case SET_WORLD_TO_BASE_ROTO_TRANSLATION:
             robotStatus::setExternalBasePoseComputation(true);
+            break;
+    case GET_WORLD_TO_BASE_ROTO_TRANSLATION:
+        yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
             break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
@@ -1834,7 +1839,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
     
     // Exposing world to base rototranslation
-    if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
+    if (btype == SET_WORLD_TO_BASE_ROTO_TRANSLATION){
         InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 2);
         real_T basePoseBuffer[16];
         for (int i = 0; i < 16; i++) {
@@ -1842,9 +1847,19 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
         wbi::Frame frame;
         wbi::frameFromSerialization(basePoseBuffer, frame);
+        std::cerr << "Received: \n" << frame.toString() << "\n";
         robot->setWorld2BaseHomogenousTransformation(frame);
-        std::cerr << "Transformed to: " << robot->getWorld2BaseRotoTranslation().toString() << "\n";
+        std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
+    
+    if (btype == GET_WORLD_TO_BASE_ROTO_TRANSLATION){
+        wbi::Frame frame;
+        frame = robot->getWorld2BaseRotoTranslation();
+        std::cerr << "Get base frame: \n " << frame.toString() << "\n";
+        real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 13);
+        serializationFromFrame(frame, pY13);
+    }
+    
 
     if (btype == BASE_VELOCITY_ESTIMATION) {
         real_T* port12 = ssGetOutputPortRealSignal(S, 12);
