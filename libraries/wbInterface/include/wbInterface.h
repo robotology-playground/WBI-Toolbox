@@ -87,6 +87,7 @@ enum BLOCK_TYPE {
     SET_WORLD_TO_BASE_ROTO_TRANSLATION, //21
     BASE_VELOCITY_ESTIMATION,           //22
     GET_WORLD_TO_BASE_ROTO_TRANSLATION, //23
+    SET_WORLD_TO_BASE_VEL,              //24
 };
 
 class robotStatus {
@@ -186,6 +187,7 @@ private:
     static int              ROBOT_DOF;
     
     static bool externalBasePoseComputation;
+    static bool externalBaseVelComputation;
     
     static Eigen::VectorXd         minJointLimits;
     static Eigen::VectorXd         maxJointLimits;
@@ -243,7 +245,9 @@ public:
     static int          getRobotDOF();
     wbi::Frame          getWorld2BaseRotoTranslation();
     void setWorld2BaseHomogenousTransformation(wbi::Frame &frame);
+    void setBaseVelocity(yarp::sig::Vector baseVelBuffer);
     static void setExternalBasePoseComputation(bool externalBasePoseComputation);
+    static void setExternalBaseVelComputation(bool  externalBaseVelComputation);
 };
 
 class counterClass {

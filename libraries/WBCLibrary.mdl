@@ -24,7 +24,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 54.0, 1366.0, 714.0]
+      Location		      [0.0, 27.0, 1360.0, 741.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -47,9 +47,9 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"1523"
-	Extents			[1330.0, 603.0]
-	ZoomFactor		[1.18]
+	LoadSaveID		"176"
+	Extents			[1324.0, 603.0]
+	ZoomFactor		[2.18]
 	Offset			[0.0, 0.0]
       }
     }
@@ -60,9 +60,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "daniele"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 28 15:44:04 2015"
-  RTWModifiedTimeStamp	  354728565
-  ModelVersionFormat	  "1.%<AutoIncrement:265>"
+  LastModifiedDate	  "Thu May 28 18:26:39 2015"
+  RTWModifiedTimeStamp	  354738397
+  ModelVersionFormat	  "1.%<AutoIncrement:272>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -924,7 +924,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [0, 54, 1366, 768]
+    Location		    [6, 47, 1366, 788]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -938,7 +938,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1577"
+    SIDHighWatermark	    "1602"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -2469,9 +2469,10 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [90, 60, 120, 90]
 	      ZOrder		      10
-	      LibraryVersion	      "1.354"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
 	      SourceType	      "Compare To Constant"
+	      ContentPreviewEnabled   off
 	      relop		      "=="
 	      const		      "0"
 	      OutDataTypeStr	      "boolean"
@@ -4801,7 +4802,7 @@ Library {
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[62, 45, 1390, 980]
+	Location		[6, 47, 1366, 788]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -8142,8 +8143,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Forward Kinematics"
-	    Location		    [12, 45, 1439, 1251]
-	    Open		    off
+	    Location		    [0, 27, 1360, 768]
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -8154,7 +8155,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "196"
+	    ZoomFactor		    "218"
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "COMFwdKin "
@@ -9431,7 +9432,7 @@ Library {
 	      }
 	      System {
 		Name			"LinkFwdKin"
-		Location		[12, 45, 1465, 1437]
+		Location		[0, 27, 1372, 775]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9443,7 +9444,7 @@ Library {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"80"
+		ZoomFactor		"100"
 		SIDHighWatermark	"1445"
 		Block {
 		  BlockType		  Constant
@@ -14038,7 +14039,7 @@ Library {
       }
       System {
 	Name			"wholeBodyStates"
-	Location		[0, 54, 1366, 768]
+	Location		[0, 54, 1360, 768]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -14088,8 +14089,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Base Position"
-	    Location		    [0, 54, 1366, 768]
-	    Open		    on
+	    Location		    [0, 54, 1360, 768]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -15055,7 +15056,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.261"
+		  LibraryVersion	  "1.266"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -15072,7 +15073,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.261"
+		  LibraryVersion	  "1.266"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -15089,7 +15090,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.261"
+		  LibraryVersion	  "1.266"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -15106,7 +15107,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.261"
+		  LibraryVersion	  "1.266"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -15123,7 +15124,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.261"
+		  LibraryVersion	  "1.266"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -18371,9 +18372,10 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.261"
+	      LibraryVersion	      "1.266"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
+	      ContentPreviewEnabled   off
 	      robotName		      "robotName"
 	      localName		      "localName"
 	    }
@@ -18385,9 +18387,10 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.261"
+	      LibraryVersion	      "1.266"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
+	      ContentPreviewEnabled   off
 	      robotName		      "robotName"
 	      localName		      "localName"
 	    }
@@ -18410,9 +18413,10 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.261"
+	      LibraryVersion	      "1.266"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
+	      ContentPreviewEnabled   off
 	      robotName		      "robotName"
 	      localName		      "localName"
 	    }
@@ -18424,9 +18428,10 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.261"
+	      LibraryVersion	      "1.266"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
+	      ContentPreviewEnabled   off
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -18560,9 +18565,10 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.376471, 0.188235, 0.000000]"
-	      LibraryVersion	      "1.261"
+	      LibraryVersion	      "1.266"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
+	      ContentPreviewEnabled   off
 	      robotName		      "robotName"
 	      localName		      "localName"
 	    }
