@@ -389,14 +389,14 @@ bool robotStatus::robotJntTorques (bool blockingRead) {
 Vector robotStatus::forwardKinematics (int& linkId) {
     if (robotJntAngles (false)) {
 //         if (world2baseRototranslation (qRad.data())) {
-        if (updateWorld2BaseRotoTranslation()) { 
-            footLinkId = linkId;
+        if (updateWorld2BaseRotoTranslation()) { /*
+            footLinkId = linkId;*/
 #ifdef DEBUG
-            yDebug("[robotStatus::forwardKinematics] Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", footLinkId, x_pose.toString().c_str());
+            yDebug("[robotStatus::forwardKinematics] Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", linkId, x_pose.toString().c_str());
             yDebug("[robotStatus::forwardKinematics] and qRad: %s \n xBase: %s \n ",qRad.toString().c_str(), xBase.toString().c_str());
 #endif
 
-            bool ans = wbInterface->forwardKinematics (qRad.data(), xBase, footLinkId, x_pose.data());
+            bool ans = wbInterface->forwardKinematics (qRad.data(), xBase, linkId, x_pose.data());
             if (ans) {
 #ifdef DEBUG
                 yDebug("[robotStatus::forwardKinematics] Forward Kinematics computed \n");
@@ -661,6 +661,11 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 
 //=========================================================================================================================
 bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
+    if (externalBaseVelComputation) {     
+//         std::cerr << "-----------> EXTERNAL => doing nothing \n";
+//         std::cerr << xBase.toString() << "\n";
+        return true;
+    }
     bool status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
     if (status && baseVelocity) {
         for (int i = 0; i < dxB.size(); i++) {
@@ -680,7 +685,7 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
         return true;
     }
     
-    std::cerr << "-----------> Internal \n";
+//     std::cerr << "-----------> Internal \n";
     
     if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
         yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
@@ -809,11 +814,21 @@ bool robotStatus::addEstimate(wbi::ID LID) {
 void robotStatus::setExternalBasePoseComputation(bool externalBasePoseComputation)
 {
     robotStatus::externalBasePoseComputation = externalBasePoseComputation;
+}                
+
+void robotStatus::setExternalBaseVelComputation(bool externalBaseVelComputation)
+{
+    robotStatus::externalBaseVelComputation = externalBaseVelComputation;
 }
 
 void robotStatus::setWorld2BaseHomogenousTransformation(wbi::Frame &frame)
 {
     this->xBase = frame;
+}
+
+void robotStatus::setBaseVelocity( yarp::sig::Vector baseVelBuffer )
+{
+    this->dxB = baseVelBuffer;
 }
 
 //------------------------------------------------------------------------------------------------------------------------//
@@ -1147,6 +1162,9 @@ static void mdlStart (SimStruct* S) {
             break;
     case SET_WORLD_TO_BASE_ROTO_TRANSLATION:
             robotStatus::setExternalBasePoseComputation(true);
+            break;
+    case SET_WORLD_TO_BASE_VEL:
+            robotStatus::setExternalBaseVelComputation(true);
             break;
     case GET_WORLD_TO_BASE_ROTO_TRANSLATION:
         yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
@@ -1847,15 +1865,26 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
         wbi::Frame frame;
         wbi::frameFromSerialization(basePoseBuffer, frame);
-        std::cerr << "Received: \n" << frame.toString() << "\n";
+//         std::cerr << "Received: \n" << frame.toString() << "\n";
         robot->setWorld2BaseHomogenousTransformation(frame);
-        std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
+//         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
+    }
+    
+    if (btype == SET_WORLD_TO_BASE_VEL){
+        InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 3);
+        yarp::sig::Vector       dxBBuffer;
+        for (int i = 0; i < 6; i++) {
+            dxBBuffer[i] = *inputSignal[i];
+        }
+//         std::cerr << "Received: \n" << baseVelBuffer << "\n";
+        robot->setBaseVelocity(dxBBuffer);
+//         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
     
     if (btype == GET_WORLD_TO_BASE_ROTO_TRANSLATION){
         wbi::Frame frame;
         frame = robot->getWorld2BaseRotoTranslation();
-        std::cerr << "Get base frame: \n " << frame.toString() << "\n";
+//         std::cerr << "Get base frame: \n " << frame.toString() << "\n";
         real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 13);
         serializationFromFrame(frame, pY13);
     }
