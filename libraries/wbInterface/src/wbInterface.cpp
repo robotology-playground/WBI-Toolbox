@@ -68,6 +68,8 @@ yarp::sig::Vector robotStatus::dxB = temp;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
 bool robotStatus::externalBasePoseComputation = false;
+bool robotStatus::externalBaseVelComputation = false;
+yarp::sig::Vector tmp(6, 0.0); yarp::sig::Vector robotStatus::dxB = tmp;
 Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
 Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
@@ -825,12 +827,12 @@ void robotStatus::setExternalBaseVelComputation(bool externalBaseVelComputation)
 
 void robotStatus::setWorld2BaseHomogenousTransformation(wbi::Frame &frame)
 {
-    this->xBase = frame;
+    robotStatus::xBase = frame;
 }
 
 void robotStatus::setBaseVelocity( yarp::sig::Vector baseVelBuffer )
 {
-    this->dxB = baseVelBuffer;
+    robotStatus::dxB = baseVelBuffer;
 }
 
 //------------------------------------------------------------------------------------------------------------------------//

@@ -1,10 +1,9 @@
 Library {
   Name			  "WBCLibrary"
-  Version		  8.3
+  Version		  8.4
   MdlSubVersion		  0
   SavedCharacterEncoding  "UTF-8"
   LibraryType		  "BlockLibrary"
-  SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -24,7 +23,7 @@ Library {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [0.0, 27.0, 1360.0, 741.0]
+      Location		      [70.0, 43.0, 1307.0, 715.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -39,7 +38,7 @@ Library {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[0]
+	Visible			[1]
       }
       Object {
 	$PropName		"EditorsInfo"
@@ -47,9 +46,9 @@ Library {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"176"
-	Extents			[1324.0, 603.0]
-	ZoomFactor		[2.18]
+	LoadSaveID		"206"
+	Extents			[1249.0, 528.0]
+	ZoomFactor		[1.25]
 	Offset			[0.0, 0.0]
       }
     }
@@ -58,11 +57,11 @@ Library {
   Creator		  "jorhabib"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "daniele"
+  LastModifiedBy	  "jorhabib"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 28 18:26:39 2015"
-  RTWModifiedTimeStamp	  354738397
-  ModelVersionFormat	  "1.%<AutoIncrement:272>"
+  LastModifiedDate	  "Wed Jun 03 12:14:24 2015"
+  RTWModifiedTimeStamp	  355234442
+  ModelVersionFormat	  "1.%<AutoIncrement:278>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -80,6 +79,7 @@ Library {
   SortedOrder		  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
+  ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
@@ -112,6 +112,9 @@ Library {
   CovSFcnEnable		  off
   CovBoundaryAbsTol	  0.000010
   CovBoundaryRelTol	  0.010000
+  CovUseTimeInterval	  off
+  CovStartTime		  0
+  CovStopTime		  0
   ExtModeBatchMode	  off
   ExtModeEnableFloating	  on
   ExtModeTrigType	  "manual"
@@ -140,13 +143,13 @@ Library {
     Dimension		    1
     Simulink.ConfigSet {
       $ObjectID		      6
-      Version		      "1.14.2"
+      Version		      "1.14.3"
       Array {
 	Type			"Handle"
 	Dimension		9
 	Simulink.SolverCC {
 	  $ObjectID		  7
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  StartTime		  "0.0"
 	  StopTime		  "10.0"
 	  AbsTol		  "auto"
@@ -181,7 +184,7 @@ Library {
 	}
 	Simulink.DataIOCC {
 	  $ObjectID		  8
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  Decimation		  "1"
 	  ExternalInput		  "[t, u]"
 	  FinalStateName	  "xFinal"
@@ -214,7 +217,7 @@ Library {
 	}
 	Simulink.OptimizationCC {
 	  $ObjectID		  9
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    8
@@ -232,7 +235,7 @@ Library {
 	  BooleanDataType	  on
 	  ConditionallyExecuteInputs on
 	  InlineParams		  off
-	  UseIntDivNetSlope	  off
+	  UseDivisionForNetSlopeComputation "Off"
 	  UseFloatMulNetSlope	  off
 	  DefaultUnderspecifiedDataType	"double"
 	  UseSpecifiedMinMax	  off
@@ -274,7 +277,7 @@ Library {
 	}
 	Simulink.DebuggingCC {
 	  $ObjectID		  10
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  RTPrefix		  "error"
 	  ConsistencyChecking	  "none"
 	  ArrayBoundsChecking	  "none"
@@ -361,10 +364,11 @@ Library {
 	  SFUnconditionalTransitionShadowingDiag "warning"
 	  SFUndirectedBroadcastEventsDiag "warning"
 	  SFTransitionActionBeforeConditionDiag	"warning"
+	  IntegerSaturationMsg	  "warning"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  11
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  ProdBitPerChar	  8
 	  ProdBitPerShort	  16
 	  ProdBitPerInt		  32
@@ -405,7 +409,7 @@ Library {
 	}
 	Simulink.ModelReferenceCC {
 	  $ObjectID		  12
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  UpdateModelReferenceTargets "IfOutOfDateOrStructuralChange"
 	  CheckModelReferenceTargetMessage "error"
 	  EnableParallelModelReferenceBuilds off
@@ -420,7 +424,7 @@ Library {
 	}
 	Simulink.SFSimCC {
 	  $ObjectID		  13
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  SFSimEnableDebug	  on
 	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
@@ -436,7 +440,7 @@ Library {
 	Simulink.RTWCC {
 	  $BackupClass		  "Simulink.RTWCC"
 	  $ObjectID		  14
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  Array {
 	    Type		    "Cell"
 	    Dimension		    9
@@ -517,7 +521,7 @@ Library {
 	    Dimension		    2
 	    Simulink.CodeAppCC {
 	      $ObjectID		      15
-	      Version		      "1.14.2"
+	      Version		      "1.14.3"
 	      Array {
 		Type			"Cell"
 		Dimension		21
@@ -586,7 +590,7 @@ Library {
 	    Simulink.GRTTargetCC {
 	      $BackupClass	      "Simulink.TargetCC"
 	      $ObjectID		      16
-	      Version		      "1.14.2"
+	      Version		      "1.14.3"
 	      Array {
 		Type			"Cell"
 		Dimension		15
@@ -645,12 +649,14 @@ Library {
 	      SupportVariableSizeSignals off
 	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
+	      CastingMode	      "Nominal"
 	      MATLABClassNameForMDSCustomization "Simulink.SoftwareTarget.GRTCustomization"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
 	      AutosarCompliant	      off
 	      GRTInterface	      on
 	      GenerateAllocFcn	      off
+	      GenerateSharedConstants on
 	      UseMalloc		      off
 	      ExtMode		      off
 	      ExtModeStaticAlloc      off
@@ -671,7 +677,7 @@ Library {
 	}
 	hdlcoderui.hdlcc {
 	  $ObjectID		  17
-	  Version		  "1.14.2"
+	  Version		  "1.14.3"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
 	  Array {
@@ -924,7 +930,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [6, 47, 1366, 788]
+    Location		    [60, 55, 1367, 770]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -938,7 +944,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1602"
+    SIDHighWatermark	    "1627"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -1557,7 +1563,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1577"
+		SIDHighWatermark	"1580"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1578,20 +1584,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "107::1576"
+		  SID			  "107::1579"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  65
+		  ZOrder		  68
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "107::1575"
+		  SID			  "107::1578"
 		  Tag			  "Stateflow S-Function WBCLibrary 6"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  64
+		  ZOrder		  67
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -1605,9 +1611,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "107::1577"
+		  SID			  "107::1580"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  66
+		  ZOrder		  69
 		}
 		Block {
 		  BlockType		  Outport
@@ -1618,7 +1624,7 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  6
+		  ZOrder		  11
 		  SrcBlock		  "mat"
 		  SrcPort		  1
 		  Points		  [120, 0]
@@ -1626,7 +1632,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  12
 		  SrcBlock		  "sigma"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -1634,7 +1640,7 @@ Library {
 		}
 		Line {
 		  Name			  "DPinv"
-		  ZOrder		  8
+		  ZOrder		  13
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -1642,14 +1648,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  14
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  10
+		  ZOrder		  15
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -1829,7 +1835,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1577"
+		SIDHighWatermark	"1580"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1850,20 +1856,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "112::1576"
+		  SID			  "112::1579"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  65
+		  ZOrder		  68
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "112::1575"
+		  SID			  "112::1578"
 		  Tag			  "Stateflow S-Function WBCLibrary 7"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  64
+		  ZOrder		  67
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -1877,9 +1883,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "112::1577"
+		  SID			  "112::1580"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  66
+		  ZOrder		  69
 		}
 		Block {
 		  BlockType		  Outport
@@ -1890,7 +1896,7 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  6
+		  ZOrder		  11
 		  SrcBlock		  "mat"
 		  SrcPort		  1
 		  Points		  [120, 0]
@@ -1898,7 +1904,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  12
 		  SrcBlock		  "tol"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -1906,7 +1912,7 @@ Library {
 		}
 		Line {
 		  Name			  "TPinv"
-		  ZOrder		  8
+		  ZOrder		  13
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -1914,14 +1920,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  14
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  10
+		  ZOrder		  15
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2117,7 +2123,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1577"
+		SIDHighWatermark	"1580"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -2138,20 +2144,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1030::1576"
+		  SID			  "1030::1579"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  59
+		  ZOrder		  62
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1030::1575"
+		  SID			  "1030::1578"
 		  Tag			  "Stateflow S-Function WBCLibrary 2"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  58
+		  ZOrder		  61
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -2165,9 +2171,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1030::1577"
+		  SID			  "1030::1580"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  60
+		  ZOrder		  63
 		}
 		Block {
 		  BlockType		  Outport
@@ -2178,7 +2184,7 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  6
+		  ZOrder		  11
 		  SrcBlock		  "JcIn"
 		  SrcPort		  1
 		  Points		  [120, 0]
@@ -2186,7 +2192,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  12
 		  SrcBlock		  "qD"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2194,7 +2200,7 @@ Library {
 		}
 		Line {
 		  Name			  "y"
-		  ZOrder		  8
+		  ZOrder		  13
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2202,14 +2208,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  14
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  10
+		  ZOrder		  15
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -2506,7 +2512,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1577"
+		SIDHighWatermark	"1580"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -2527,20 +2533,20 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1300::1576"
+		  SID			  "1300::1579"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  53
+		  ZOrder		  56
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1300::1575"
+		  SID			  "1300::1578"
 		  Tag			  "Stateflow S-Function WBCLibrary 1"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  52
+		  ZOrder		  55
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
 		  EnableBusSupport	  off
@@ -2554,9 +2560,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1300::1577"
+		  SID			  "1300::1580"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  54
+		  ZOrder		  57
 		}
 		Block {
 		  BlockType		  Outport
@@ -2567,7 +2573,7 @@ Library {
 		  IconDisplay		  "Port number"
 		}
 		Line {
-		  ZOrder		  6
+		  ZOrder		  11
 		  SrcBlock		  "s"
 		  SrcPort		  1
 		  Points		  [120, 0]
@@ -2575,7 +2581,7 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  7
+		  ZOrder		  12
 		  SrcBlock		  "unused"
 		  SrcPort		  1
 		  DstBlock		  " SFunction "
@@ -2583,7 +2589,7 @@ Library {
 		}
 		Line {
 		  Name			  "s0"
-		  ZOrder		  8
+		  ZOrder		  13
 		  Labels		  [0, 0]
 		  SrcBlock		  " SFunction "
 		  SrcPort		  2
@@ -2591,14 +2597,14 @@ Library {
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  9
+		  ZOrder		  14
 		  SrcBlock		  " Demux "
 		  SrcPort		  1
 		  DstBlock		  " Terminator "
 		  DstPort		  1
 		}
 		Line {
-		  ZOrder		  10
+		  ZOrder		  15
 		  SrcBlock		  " SFunction "
 		  SrcPort		  1
 		  DstBlock		  " Demux "
@@ -4802,7 +4808,7 @@ Library {
       }
       System {
 	Name			"wholeBodyModel"
-	Location		[6, 47, 1366, 788]
+	Location		[60, 55, 1367, 770]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -8143,8 +8149,8 @@ Library {
 	  }
 	  System {
 	    Name		    "Forward Kinematics"
-	    Location		    [0, 27, 1360, 768]
-	    Open		    on
+	    Location		    [60, 55, 1367, 770]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -14039,8 +14045,8 @@ Library {
       }
       System {
 	Name			"wholeBodyStates"
-	Location		[0, 54, 1360, 768]
-	Open			off
+	Location		[70, 43, 1377, 758]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -18308,6 +18314,439 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "Set base velocity (w.r.t. world)"
+	  SID			  "1603"
+	  Ports			  [1]
+	  Position		  [330, 200, 440, 240]
+	  ZOrder		  33
+	  BackgroundColor	  "orange"
+	  RequestExecContextInheritance	off
+	  Object {
+	    $PropName		    "MaskObject"
+	    $ObjectID		    288
+	    $ClassName		    "Simulink.Mask"
+	    Type		    "Joint Angles"
+	    Description		    "This block retrieves the vector of robot joint angles in radians of dimensions ROBOT_DOFx1 (doe"
+	    "s not include the robot floating base).\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim"
+	    "\" for iCub on Gazebo or \"iCubGenova0X\".\nlocalName: Prefix name of the ports opened by the underlying Whole Bo"
+	    "dy Interface, e.g. \"simulink\""
+	    Display		    "disp('Base Velocity')"
+	    Array {
+	      Type		      "Simulink.MaskParameter"
+	      Dimension		      2
+	      Object {
+		$ObjectID		289
+		Type			"edit"
+		Name			"robotName"
+		Prompt			"robotName"
+		Value			"robotName"
+	      }
+	      Object {
+		$ObjectID		290
+		Type			"edit"
+		Name			"localName"
+		Prompt			"localName"
+		Value			"localName"
+	      }
+	      PropName		      "Parameters"
+	    }
+	  }
+	  System {
+	    Name		    "Set base velocity (w.r.t. world)"
+	    Location		    [69, 44, 1376, 759]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "101"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "vb"
+	      SID		      "1625"
+	      Position		      [35, 348, 65, 362]
+	      ZOrder		      9
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      " "
+	      SID		      "1604"
+	      Position		      [320, 280, 340, 300]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "  "
+	      SID		      "1605"
+	      Position		      [320, 310, 340, 330]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "   "
+	      SID		      "1606"
+	      Position		      [320, 340, 340, 360]
+	      ZOrder		      -5
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "   1"
+	      SID		      "1607"
+	      Position		      [320, 370, 340, 390]
+	      ZOrder		      4
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "   2"
+	      SID		      "1608"
+	      Position		      [320, 400, 340, 420]
+	      ZOrder		      5
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "   3"
+	      SID		      "1609"
+	      Position		      [320, 430, 340, 450]
+	      ZOrder		      6
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "   4"
+	      SID		      "1623"
+	      Position		      [320, 460, 340, 480]
+	      ZOrder		      7
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
+	      SID		      "1610"
+	      Position		      [65, 80, 95, 110]
+	      ZOrder		      -5
+	      ShowName		      off
+	      Value		      "0"
+	      OutDataTypeStr	      "int8"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SID		      "1611"
+	      Position		      [65, 170, 95, 200]
+	      ZOrder		      -5
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SID		      "1612"
+	      Position		      [65, 260, 95, 290]
+	      ZOrder		      -5
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+16, 1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
+	      SID		      "1627"
+	      Position		      [35, 385, 65, 415]
+	      ZOrder		      11
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF, 1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
+	      SID		      "1614"
+	      Position		      [65, 440, 95, 470]
+	      ZOrder		      -5
+	      ShowName		      off
+	      Value		      "zeros(ROBOT_DOF+6,1)"
+	      OutDataTypeStr	      "double"
+	      SampleTime	      "Ts"
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Jacobian"
+	      SID		      "1615"
+	      Position		      [320, 160, 340, 180]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      "1626"
+	      Ports		      [2, 1]
+	      Position		      [100, 346, 105, 384]
+	      ZOrder		      10
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      S-Function
+	      Name		      "S-Function"
+	      SID		      "1616"
+	      Ports		      [5, 14]
+	      Position		      [140, 52, 275, 498]
+	      ZOrder		      -5
+	      BackgroundColor	      "darkGreen"
+	      FunctionName	      "robotState"
+	      Parameters	      "val,robotname,localname,linkname"
+	      EnableBusSupport	      off
+	      Object {
+		$PropName		"MaskObject"
+		$ObjectID		291
+		$ClassName		"Simulink.Mask"
+		Array {
+		  Type			  "Simulink.MaskParameter"
+		  Dimension		  4
+		  Object {
+		    $ObjectID		    292
+		    Type		    "edit"
+		    Name		    "val"
+		    Prompt		    "Value"
+		    Value		    "24"
+		  }
+		  Object {
+		    $ObjectID		    293
+		    Type		    "edit"
+		    Name		    "robotname"
+		    Prompt		    "Robot Name (icub - icubSim)"
+		    Value		    "robotName"
+		  }
+		  Object {
+		    $ObjectID		    294
+		    Type		    "edit"
+		    Name		    "localname"
+		    Prompt		    "Module Name"
+		    Value		    "localName"
+		  }
+		  Object {
+		    $ObjectID		    295
+		    Type		    "edit"
+		    Name		    "linkname"
+		    Prompt		    "Link Name"
+		    Value		    "'na'"
+		    Visible		    "off"
+		  }
+		  PropName		  "Parameters"
+		}
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "dJ dq"
+	      SID		      "1617"
+	      Position		      [320, 250, 340, 270]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "getDq"
+	      SID		      "1618"
+	      Position		      [320, 100, 340, 120]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "getDq1"
+	      SID		      "1624"
+	      Position		      [320, 70, 340, 90]
+	      ZOrder		      8
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "h"
+	      SID		      "1619"
+	      Position		      [320, 220, 340, 240]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "massMatrix"
+	      SID		      "1620"
+	      Position		      [320, 190, 340, 210]
+	      ZOrder		      -5
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "xFoot"
+	      SID		      "1621"
+	      Position		      [320, 130, 340, 150]
+	      ZOrder		      -5
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      2
+	      Labels		      [0, 0]
+	      SrcBlock		      "S-Function"
+	      SrcPort		      2
+	      DstBlock		      "getDq"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      20
+	      SrcBlock		      "S-Function"
+	      SrcPort		      1
+	      DstBlock		      "getDq1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "S-Function"
+	      SrcPort		      3
+	      DstBlock		      "xFoot"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      5
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      6
+	      SrcBlock		      "S-Function"
+	      SrcPort		      4
+	      DstBlock		      "Jacobian"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      7
+	      SrcBlock		      "S-Function"
+	      SrcPort		      5
+	      DstBlock		      "massMatrix"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      8
+	      SrcBlock		      "S-Function"
+	      SrcPort		      6
+	      DstBlock		      "h"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      9
+	      SrcBlock		      "S-Function"
+	      SrcPort		      7
+	      DstBlock		      "dJ dq"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      10
+	      SrcBlock		      "S-Function"
+	      SrcPort		      8
+	      DstBlock		      " "
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      11
+	      SrcBlock		      "S-Function"
+	      SrcPort		      9
+	      DstBlock		      "  "
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      12
+	      SrcBlock		      "S-Function"
+	      SrcPort		      10
+	      DstBlock		      "   "
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      13
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      3
+	    }
+	    Line {
+	      ZOrder		      15
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      5
+	    }
+	    Line {
+	      ZOrder		      16
+	      SrcBlock		      "S-Function"
+	      SrcPort		      11
+	      DstBlock		      "   1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      17
+	      SrcBlock		      "S-Function"
+	      SrcPort		      12
+	      DstBlock		      "   2"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      18
+	      SrcBlock		      "S-Function"
+	      SrcPort		      13
+	      DstBlock		      "   3"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      19
+	      SrcBlock		      "S-Function"
+	      SrcPort		      14
+	      DstBlock		      "   4"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      38
+	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
+	      SrcPort		      1
+	      Points		      [13, 0; 0, -25]
+	      DstBlock		      "Mux"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      39
+	      SrcBlock		      "vb"
+	      SrcPort		      1
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      40
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      4
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "dq_b + dq_j"
 	  SID			  "1407"
 	  Ports			  [0, 1]
@@ -18316,7 +18755,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    288
+	    $ObjectID		    296
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Floating base velocity + robot joint velocities"
 	    Description		    "This block retrieves the robot joint velocities plus the virtual floating base joint velocities"
@@ -18325,21 +18764,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		289
+		$ObjectID		297
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		290
+		$ObjectID		298
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
 		Value			"localName"
 	      }
 	      Object {
-		$ObjectID		291
+		$ObjectID		299
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts "
@@ -18501,7 +18940,7 @@ Library {
 	  RequestExecContextInheritance	off
 	  Object {
 	    $PropName		    "MaskObject"
-	    $ObjectID		    292
+	    $ObjectID		    300
 	    $ClassName		    "Simulink.Mask"
 	    Type		    "Floating Base + Roobot Joints"
 	    Description		    "This block retrieves a vector of size (ROBOT_DOF + 6) with the robot joint angles and the virtu"
@@ -18510,21 +18949,21 @@ Library {
 	      Type		      "Simulink.MaskParameter"
 	      Dimension		      3
 	      Object {
-		$ObjectID		293
+		$ObjectID		301
 		Type			"edit"
 		Name			"robotName"
 		Prompt			"Robot name"
 		Value			"robotName"
 	      }
 	      Object {
-		$ObjectID		294
+		$ObjectID		302
 		Type			"edit"
 		Name			"localName"
 		Prompt			"Local name"
 		Value			"localName"
 	      }
 	      Object {
-		$ObjectID		295
+		$ObjectID		303
 		Type			"edit"
 		Name			"Ts"
 		Prompt			"Ts"
@@ -18621,7 +19060,7 @@ Library {
     Annotation {
       SID		      "1213"
       Name		      "WHOLE BODY INTERFACE TOOLBOX"
-      Position		      [241, 157, 456, 174]
+      Position		      [241, 157, 456, 173]
       InternalMargins	      [0, 0, 0, 0]
       FixedHeight	      off
       FixedWidth	      off
@@ -18649,7 +19088,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow Version 8.1 (R2014a) dated Feb  7 2014, 22:23:55
+#   Stateflow 80000001
 #
 #
 Stateflow {
@@ -18657,9 +19096,10 @@ Stateflow {
     id			    1
     name		    "WBCLibrary"
     created		    "06-Feb-2014 11:51:26"
+    locked		    1
     isLibrary		    1
     firstTarget		    34
-    sfVersion		    76014001.002
+    sfVersion		    80000001
   }
   chart {
     id			    2
@@ -18672,6 +19112,7 @@ Stateflow {
     firstJunction	    7
     viewObj		    2
     machine		    1
+    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    9
     decomposition	    CLUSTER_CHART
@@ -18818,6 +19259,7 @@ Stateflow {
     firstJunction	    15
     viewObj		    10
     machine		    1
+    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    7
     decomposition	    CLUSTER_CHART
@@ -18958,6 +19400,7 @@ Stateflow {
     firstJunction	    23
     viewObj		    18
     machine		    1
+    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
@@ -19100,6 +19543,7 @@ Stateflow {
     firstJunction	    31
     viewObj		    26
     machine		    1
+    locked		    1
     toolbarMode		    LIBRARY_TOOLBAR
     ssIdHighWaterMark	    8
     decomposition	    CLUSTER_CHART
