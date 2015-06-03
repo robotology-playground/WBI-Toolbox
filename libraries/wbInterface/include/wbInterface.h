@@ -159,7 +159,7 @@ private:
     yarp::sig::Vector       basePositionSerialization;
 
     /** Floating base velocity 6x1 */
-    yarp::sig::Vector       dxB;
+    static yarp::sig::Vector       dxB;
 
     /** Floating base acceleration 6x1*/
     yarp::sig::Vector       ddxB;
