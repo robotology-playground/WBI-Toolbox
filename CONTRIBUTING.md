@@ -4,10 +4,11 @@ To make this script executable, move to `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox
 
 # Notes on the Toolbox library
 In order to properly modify the Toolbox remember the procedure is as follows:
-- Move to `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/libraries.
+- Point to `$CODYCO_SUPERBUILD_ROOT/main/WBIToolbox/libraries.
 - Open from Matlab the file `WBCLibrary.mdl/slx`.
 - Unlock the library by doing `Diagram > Unlock Library`.
-- Modify as you please.
+- If you want to create a new block, the best way is to copy and paste an existing one in the desired sublibrary.
+- We now need to break the link  between this copied block and its parent by doing: `Diagram > Disable Link` followed by `Diagram > Break Link`. At this point the block is unlicked from its parent and all the modifications for the new block can be done.
 - Save your modifications.
 - Export the library to `Matlab R2012a` with the `mdl` extension and save the `slx` version for `Matlab R2014a+`.
 - Commit your changes with a meaningful commit message.
