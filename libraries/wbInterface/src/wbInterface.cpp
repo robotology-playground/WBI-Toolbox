@@ -63,8 +63,6 @@ int*  robotStatus::tmpContainer    = NULL;
 int   counterClass::count          = 0;
 bool  robotStatus::robot_fixed     = false;
 Frame             robotStatus::xBase = Frame();
-yarp::sig::Vector temp(6, 0.0);
-yarp::sig::Vector robotStatus::dxB = temp;
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
 bool robotStatus::externalBasePoseComputation = false;
@@ -665,12 +663,10 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 
 //=========================================================================================================================
 bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
-    if (externalBaseVelComputation) {     
-//         std::cerr << "-----------> EXTERNAL => doing nothing \n";
-//         std::cerr << xBase.toString() << "\n";
-        return true;
+    bool status = true;
+    if (!externalBaseVelComputation) {     
+        status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
     }
-    bool status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
     if (status && baseVelocity) {
         for (int i = 0; i < dxB.size(); i++) {
             baseVelocity[i] = dxB[i];
