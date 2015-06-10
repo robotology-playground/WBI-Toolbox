@@ -179,7 +179,7 @@ private:
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
-
+    
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
     static bool             robot_fixed;
 
@@ -244,10 +244,15 @@ public:
     static void         setRobotDOF(int ROBOTDOF);
     static int          getRobotDOF();
     wbi::Frame          getWorld2BaseRotoTranslation();
-    static void         setWorld2BaseHomogenousTransformation(wbi::Frame &frame);
-    static void         setBaseVelocity(yarp::sig::Vector baseVelBuffer);
+    static void         setWorld2BaseHomogenousTransformation(const wbi::Frame &frame);
+    static void         setBaseVelocity(const yarp::sig::Vector& baseVelBuffer);
     static void         setExternalBasePoseComputation(bool externalBasePoseComputation);
     static void         setExternalBaseVelComputation(bool  externalBaseVelComputation);
+    
+    
+    /* Buffers */
+    yarp::sig::Vector       sixDimBuffer;
+
 };
 
 class counterClass {

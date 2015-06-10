@@ -67,7 +67,7 @@ yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
 bool robotStatus::externalBasePoseComputation = false;
 bool robotStatus::externalBaseVelComputation = false;
-yarp::sig::Vector tmp(6, 0.0); yarp::sig::Vector robotStatus::dxB = tmp;
+yarp::sig::Vector robotStatus::dxB(6, 0.0);
 Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
 Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
@@ -294,7 +294,8 @@ bool robotStatus::robotInit (int btype, int link) {
     Ha.R = Rotation (0, 0, 1, 0, -1, 0, 1, 0, 0);
 
     EEWrench.resize (6, 0);
-
+    sixDimBuffer.resize(6, 0.0);
+    
     massMatrix.resize(ROBOT_DOF + 6, ROBOT_DOF + 6);
 
     yInfo("[robotStatus::robotInit] Finished robotInit\n");
@@ -679,9 +680,7 @@ bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
 bool robotStatus::updateWorld2BaseRotoTranslation() {
     //base position is read from external block
 //     std::cerr << "----------- Update Rototranslation ? \n";
-    if (externalBasePoseComputation) {     
-//         std::cerr << "-----------> EXTERNAL => doing nothing \n";
-//         std::cerr << xBase.toString() << "\n";
+    if (externalBasePoseComputation) {
         return true;
     }
     
@@ -821,12 +820,12 @@ void robotStatus::setExternalBaseVelComputation(bool externalBaseVelComputation)
     robotStatus::externalBaseVelComputation = externalBaseVelComputation;
 }
 
-void robotStatus::setWorld2BaseHomogenousTransformation(wbi::Frame &frame)
+void robotStatus::setWorld2BaseHomogenousTransformation(const wbi::Frame &frame)
 {
     robotStatus::xBase = frame;
 }
 
-void robotStatus::setBaseVelocity( yarp::sig::Vector baseVelBuffer )
+void robotStatus::setBaseVelocity(const yarp::sig::Vector& baseVelBuffer)
 {
     robotStatus::dxB = baseVelBuffer;
 }
@@ -1872,12 +1871,11 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     
     if (btype == SET_WORLD_TO_BASE_VEL){
         InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 3);
-        yarp::sig::Vector       dxBBuffer;
         for (int i = 0; i < 6; i++) {
-            dxBBuffer[i] = *inputSignal[i];
+            robot->sixDimBuffer[i] = *inputSignal[i];
         }
 //         std::cerr << "Received: \n" << baseVelBuffer << "\n";
-        robot->setBaseVelocity(dxBBuffer);
+        robot->setBaseVelocity(robot->sixDimBuffer);
 //         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
     
