@@ -63,29 +63,31 @@ typedef Eigen::Matrix<double, 7, 1>  Vector7d;
 static const Vector7d  DEFAULT_X_LINK_SIZE = Vector7d::Constant (0.0);
 
 enum BLOCK_TYPE {
-    JOINT_ANGLES_BLOCK = 0,
-    JOINT_VELOCITIES_BLOCK,
-    FORWARD_KINEMATICS_OF_LINK_BLOCK,
-    JACOBIANS_OF_LINK_BLOCK,
-    VELOCITY_CONTROL_REF_BLOCK,
-    POSITION_CONTROL_REF_BLOCK,
-    TORQUE_CONTROL_REF_BLOCK,
-    GENERALIZED_BIAS_FORCES_BLOCK,
-    MASS_MATRIX_BLOCK,
-    DJ_DQ_BLOCK,
-    JOINT_ACCELERATIONS_BLOCK,
-    JOINT_TORQUES_BLOCK,
-    INVERSE_DYNAMICS_BLOCK,
-    JOINT_LIMITS_BLOCK,
-    CENTROIDAL_MOMENTUM_BLOCK,
-    FORCE_TORQUE_ESTIMATE_BLOCK,
-    SET_WORLD_REF_FRAME_BLOCK,
-    PARAM_FORWARD_KINEMATICS_BLOCK,
-    PARAM_JACOBIANS_BLOCK,
-    PARAM_DJ_DQ_BLOCK,
-    POSITION_DIRECT_CONTROL_REF_BLOCK,
-    WORLD_TO_BASE_ROTO_TRANSLATION,
-    BASE_VELOCITY_ESTIMATION,
+    JOINT_ANGLES_BLOCK = 0,             // 0
+    JOINT_VELOCITIES_BLOCK,             // 1
+    FORWARD_KINEMATICS_OF_LINK_BLOCK,   // 2
+    JACOBIANS_OF_LINK_BLOCK,            // 3
+    VELOCITY_CONTROL_REF_BLOCK,         // 4
+    POSITION_CONTROL_REF_BLOCK,         // 5
+    TORQUE_CONTROL_REF_BLOCK,           // 6
+    GENERALIZED_BIAS_FORCES_BLOCK,      // 7
+    MASS_MATRIX_BLOCK,                  // 8
+    DJ_DQ_BLOCK,                        // 9
+    JOINT_ACCELERATIONS_BLOCK,          //10
+    JOINT_TORQUES_BLOCK,                //11
+    INVERSE_DYNAMICS_BLOCK,             //12
+    JOINT_LIMITS_BLOCK,                 //13
+    CENTROIDAL_MOMENTUM_BLOCK,          //14
+    FORCE_TORQUE_ESTIMATE_BLOCK,        //15
+    SET_WORLD_REF_FRAME_BLOCK,          //16
+    PARAM_FORWARD_KINEMATICS_BLOCK,     //17
+    PARAM_JACOBIANS_BLOCK,              //18
+    PARAM_DJ_DQ_BLOCK,                  //19
+    POSITION_DIRECT_CONTROL_REF_BLOCK,  //20
+    SET_WORLD_TO_BASE_ROTO_TRANSLATION, //21
+    BASE_VELOCITY_ESTIMATION,           //22
+    GET_WORLD_TO_BASE_ROTO_TRANSLATION, //23
+    SET_WORLD_TO_BASE_VEL               //24
 };
 
 class robotStatus {
@@ -152,12 +154,12 @@ private:
     wbi::Frame              H_base_wrfLink;
 
     /** Floating base 3D rototranslation from world ot base.*/
-    wbi::Frame              xBase;
+    static wbi::Frame              xBase;
 
     yarp::sig::Vector       basePositionSerialization;
 
     /** Floating base velocity 6x1 */
-    yarp::sig::Vector       dxB;
+    static yarp::sig::Vector       dxB;
 
     /** Floating base acceleration 6x1*/
     yarp::sig::Vector       ddxB;
@@ -177,13 +179,16 @@ private:
 
     /** End effector wrench */
     yarp::sig::Vector       EEWrench;
-
+    
     /** Flag defining whether the robot is fixed on its pole (true) or standing on the ground (false)**/
     static bool             robot_fixed;
 
     /*Robot DOF read from configuration file*/
     static int              ROBOT_DOF;
-
+    
+    static bool externalBasePoseComputation;
+    static bool externalBaseVelComputation;
+    
     static Eigen::VectorXd         minJointLimits;
     static Eigen::VectorXd         maxJointLimits;
 
@@ -239,6 +244,15 @@ public:
     static void         setRobotDOF(int ROBOTDOF);
     static int          getRobotDOF();
     wbi::Frame          getWorld2BaseRotoTranslation();
+    static void         setWorld2BaseHomogenousTransformation(const wbi::Frame &frame);
+    static void         setBaseVelocity(const yarp::sig::Vector& baseVelBuffer);
+    static void         setExternalBasePoseComputation(bool externalBasePoseComputation);
+    static void         setExternalBaseVelComputation(bool  externalBaseVelComputation);
+    
+    
+    /* Buffers */
+    yarp::sig::Vector       sixDimBuffer;
+
 };
 
 class counterClass {

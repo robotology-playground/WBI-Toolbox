@@ -58,12 +58,16 @@ using namespace yarpWbi;
 // START ROBOTSTATUS IMPLEMENTATION -------------------------------------------------------------------------------------//
 //-----------------------------------------------------------------------------------------------------------------------//
 //These variables must be initialized in this .cpp file and in this particular way for being static member variables of a class
-int  robotStatus::creationCounter = 0;
-int* robotStatus::tmpContainer    = NULL;
-int  counterClass::count          = 0;
-bool robotStatus::robot_fixed     = false;
+int   robotStatus::creationCounter = 0;
+int*  robotStatus::tmpContainer    = NULL;
+int   counterClass::count          = 0;
+bool  robotStatus::robot_fixed     = false;
+Frame robotStatus::xBase           = Frame();
 yarp::os::ConstString robotStatus::worldRefFrame = "l_sole";
 int robotStatus::ROBOT_DOF = 0;
+bool robotStatus::externalBasePoseComputation = false;
+bool robotStatus::externalBaseVelComputation = false;
+yarp::sig::Vector robotStatus::dxB(6, 0.0);
 Eigen::VectorXd robotStatus::minJointLimits = Eigen::VectorXd::Zero(0);
 Eigen::VectorXd robotStatus::maxJointLimits = Eigen::VectorXd::Zero(0);
 
@@ -290,7 +294,8 @@ bool robotStatus::robotInit (int btype, int link) {
     Ha.R = Rotation (0, 0, 1, 0, -1, 0, 1, 0, 0);
 
     EEWrench.resize (6, 0);
-
+    sixDimBuffer.resize(6, 0.0);
+    
     massMatrix.resize(ROBOT_DOF + 6, ROBOT_DOF + 6);
 
     yInfo("[robotStatus::robotInit] Finished robotInit\n");
@@ -387,14 +392,14 @@ bool robotStatus::robotJntTorques (bool blockingRead) {
 Vector robotStatus::forwardKinematics (int& linkId) {
     if (robotJntAngles (false)) {
 //         if (world2baseRototranslation (qRad.data())) {
-        if (updateWorld2BaseRotoTranslation()) { 
-            footLinkId = linkId;
+        if (updateWorld2BaseRotoTranslation()) { /*
+            footLinkId = linkId;*/
 #ifdef DEBUG
-            yDebug("[robotStatus::forwardKinematics] Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", footLinkId, x_pose.toString().c_str());
+            yDebug("[robotStatus::forwardKinematics] Forward kinematics will be computed with LinkId: %d and x_pose: %s \n", linkId, x_pose.toString().c_str());
             yDebug("[robotStatus::forwardKinematics] and qRad: %s \n xBase: %s \n ",qRad.toString().c_str(), xBase.toString().c_str());
 #endif
 
-            bool ans = wbInterface->forwardKinematics (qRad.data(), xBase, footLinkId, x_pose.data());
+            bool ans = wbInterface->forwardKinematics (qRad.data(), xBase, linkId, x_pose.data());
             if (ans) {
 #ifdef DEBUG
                 yDebug("[robotStatus::forwardKinematics] Forward Kinematics computed \n");
@@ -659,7 +664,10 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 
 //=========================================================================================================================
 bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
-    bool status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
+    bool status = true;
+    if (!externalBaseVelComputation) {     
+        status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
+    }
     if (status && baseVelocity) {
         for (int i = 0; i < dxB.size(); i++) {
             baseVelocity[i] = dxB[i];
@@ -670,6 +678,14 @@ bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
 
 //========================================================================================================================
 bool robotStatus::updateWorld2BaseRotoTranslation() {
+    //base position is read from external block
+//     std::cerr << "----------- Update Rototranslation ? \n";
+    if (externalBasePoseComputation) {
+        return true;
+    }
+    
+//     std::cerr << "-----------> Internal \n";
+    
     if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
         yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
         return false;
@@ -771,7 +787,7 @@ bool robotStatus::centroidalMomentum (double* qrad_input, double* dq_input, doub
 bool robotStatus::robotEEWrenches (wbi::ID LID) {
     bool ans = false;
     if (robotJntAngles (false)) {
-        if (world2baseRototranslation (qRad.data())) {
+//        if (world2baseRototranslation (qRad.data())) {
       //TODO yarpWholeBodyInterface still doesn't have the method setWorldBasePosition which is needed by wbi to estimate forces at the EE
 //             if ( ( (yarpWholeBodyInterface*) wbInterface)->setWorldBasePosition (xBase)) {
 //                 if (wbInterface->getEstimate (ESTIMATE_EXTERNAL_FORCE_TORQUE, LID, EEWrench.data())) {
@@ -782,7 +798,7 @@ bool robotStatus::robotEEWrenches (wbi::ID LID) {
 //                     return ans;
 //                 }
 //             }
-        }
+//        }
     }
     return ans;
 }
@@ -793,6 +809,27 @@ bool robotStatus::addEstimate(wbi::ID LID) {
     else
         return false;
 }
+
+void robotStatus::setExternalBasePoseComputation(bool externalBasePoseComputation)
+{
+    robotStatus::externalBasePoseComputation = externalBasePoseComputation;
+}                
+
+void robotStatus::setExternalBaseVelComputation(bool externalBaseVelComputation)
+{
+    robotStatus::externalBaseVelComputation = externalBaseVelComputation;
+}
+
+void robotStatus::setWorld2BaseHomogenousTransformation(const wbi::Frame &frame)
+{
+    robotStatus::xBase = frame;
+}
+
+void robotStatus::setBaseVelocity(const yarp::sig::Vector& baseVelBuffer)
+{
+    robotStatus::dxB = baseVelBuffer;
+}
+
 //------------------------------------------------------------------------------------------------------------------------//
 // END robotStatus implementation ----------------------------------------------------------------------------------------//
 //------------------------------------------------------------------------------------------------------------------------//
@@ -917,16 +954,20 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetInputPortWidth (S, 2, ROBOT_DOF + 16);             //INPUT for q (input angles different maybe from current ones)
     ssSetInputPortWidth (S, 3, ROBOT_DOF + 6);              //INPUT for dq (input joint velocities maybe different from current ones)
     ssSetInputPortWidth (S, 4, ROBOT_DOF + 6);              //INPUT for ddq (input joint accelerations maybe different from current ones)
+//    ssSetInputPortWidth (S, 5, 16);                         //INPUT for base pose
+    //Back compatibility: simply use port 2
     ssSetInputPortDataType (S, 0, SS_INT8);                 //Input data type
     ssSetInputPortDataType (S, 1, SS_DOUBLE);
     ssSetInputPortDataType (S, 2, SS_DOUBLE);
     ssSetInputPortDataType (S, 3, SS_DOUBLE);
     ssSetInputPortDataType (S, 4, SS_DOUBLE);
+//    ssSetInputPortDataType (S, 5, SS_DOUBLE);
     ssSetInputPortDirectFeedThrough (S, 0, 1);              //The input will be used in the output
     ssSetInputPortDirectFeedThrough (S, 1, 1);
     ssSetInputPortDirectFeedThrough (S, 2, 1);
     ssSetInputPortDirectFeedThrough (S, 3, 1);
     ssSetInputPortDirectFeedThrough (S, 4, 1);
+//    ssSetInputPortDirectFeedThrough (S, 5, 1);
     if (!ssSetNumOutputPorts (S, 14)) return;
     ssSetOutputPortWidth (S, 0, ROBOT_DOF);                 // Robot joint angular positions in radians
     ssSetOutputPortWidth (S, 1, ROBOT_DOF);                 // Robot joint angular velocities in radians
@@ -1117,8 +1158,15 @@ static void mdlStart (SimStruct* S) {
         yInfo("[mdlOutputs] This block will set joint angles with the Position Direct control mode\n");
         break;
     case BASE_VELOCITY_ESTIMATION:
-    case WORLD_TO_BASE_ROTO_TRANSLATION:
-            //just avoid the erro
+            break;
+    case SET_WORLD_TO_BASE_ROTO_TRANSLATION:
+            robotStatus::setExternalBasePoseComputation(true);
+            break;
+    case SET_WORLD_TO_BASE_VEL:
+            robotStatus::setExternalBaseVelComputation(true);
+            break;
+    case GET_WORLD_TO_BASE_ROTO_TRANSLATION:
+        yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
             break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
@@ -1808,11 +1856,37 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
     }
     
     // Exposing world to base rototranslation
-    if (btype == WORLD_TO_BASE_ROTO_TRANSLATION){
-        wbi::Frame w2brotoTrans = robot->getWorld2BaseRotoTranslation();
-        real_T* pY7 = ssGetOutputPortRealSignal(S, 13);
-        wbi::serializationFromFrame(w2brotoTrans, pY7);
+    if (btype == SET_WORLD_TO_BASE_ROTO_TRANSLATION){
+        InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 2);
+        real_T basePoseBuffer[16];
+        for (int i = 0; i < 16; i++) {
+            basePoseBuffer[i] = *inputSignal[i];
+        }
+        wbi::Frame frame;
+        wbi::frameFromSerialization(basePoseBuffer, frame);
+//         std::cerr << "Received: \n" << frame.toString() << "\n";
+        robot->setWorld2BaseHomogenousTransformation(frame);
+//         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
+    
+    if (btype == SET_WORLD_TO_BASE_VEL){
+        InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 3);
+        for (int i = 0; i < 6; i++) {
+            robot->sixDimBuffer[i] = *inputSignal[i];
+        }
+//         std::cerr << "Received: \n" << baseVelBuffer << "\n";
+        robot->setBaseVelocity(robot->sixDimBuffer);
+//         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
+    }
+    
+    if (btype == GET_WORLD_TO_BASE_ROTO_TRANSLATION){
+        wbi::Frame frame;
+        frame = robot->getWorld2BaseRotoTranslation();
+//         std::cerr << "Get base frame: \n " << frame.toString() << "\n";
+        real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 13);
+        serializationFromFrame(frame, pY13);
+    }
+    
 
     if (btype == BASE_VELOCITY_ESTIMATION) {
         real_T* port12 = ssGetOutputPortRealSignal(S, 12);
