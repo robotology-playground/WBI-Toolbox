@@ -118,6 +118,9 @@ int robotStatus::decreaseCounter() {
 //=========================================================================================================================
 void robotStatus::resetCounter() {
     creationCounter = 0;
+    //reset static variables
+    robotStatus::externalBasePoseComputation = false;
+    robotStatus::externalBaseVelComputation = false;
 }
 //=========================================================================================================================
 bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
@@ -1913,7 +1916,6 @@ static void mdlTerminate (SimStruct* S) {
 #ifdef DEBUG
     yDebug("[mdlTerminate] robot pointer: %p\n", robot);
 #endif
-
 
     if (robot != NULL) {
         yInfo("[mdlTerminate] Inside robot object %p \n", robot);
