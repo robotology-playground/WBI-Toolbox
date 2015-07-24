@@ -31,17 +31,19 @@ using namespace std;
 #define S_FUNCTION_NAME yarpRead
 
 // PARAMETERS MASK
-#define NPARAMS 5                              // Number of input parameters
+#define NPARAMS 6                              // Number of input parameters
 
 #define PARAM_IDX_1 0                           // port name
 #define PARAM_IDX_2 1                           // Size of the port you're reading
 #define PARAM_IDX_3 2                           // boolean for blocking reading
 #define PARAM_IDX_4 3                           // boolean to stream timestamp
 #define PARAM_IDX_5 4                           // Autoconnect boolean
+#define PARAM_IDX_6 5                           // Error on missing port if autoconnect is on boolean
 #define GET_OPT_SIGNAL_SIZE mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_2))    // Get first input parameter from mask
 #define GET_OPT_BLOCKING  mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_3))
 #define GET_OPT_TIMESTAMP mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_4))
 #define GET_OPT_AUTOCONNECT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_5))
+#define GET_OPT_ERROR_ON_MISSING_PORT mxGetScalar(ssGetSFcnParam(S,PARAM_IDX_6))
 
 // Need to include simstruc.h for the definition of the SimStruct and
 // its associated macro definitions.
@@ -178,6 +180,7 @@ static void mdlStart(SimStruct *S)
 #endif
 
     int_T autoconnect = GET_OPT_AUTOCONNECT;
+    int_T errorOnMissingPort = GET_OPT_ERROR_ON_MISSING_PORT;
 #ifndef NDEBUG
     mexPrintf("Autoconnect option is %d\n", autoconnect);
 #endif
@@ -236,7 +239,9 @@ static void mdlStart(SimStruct *S)
     if (autoconnect) {
         if (!Network::connect(sourcePortName, port->getName())) {
             mexPrintf("Failed to connect %s to %s\n", sourcePortName.c_str(), port->getName().c_str());
-            ssSetErrorStatus(S,"ERROR connecting ports!");
+            if (errorOnMissingPort) {
+                ssSetErrorStatus(S,"ERROR connecting ports!");
+            }
             return;
         }
 #ifndef NDEBUG
