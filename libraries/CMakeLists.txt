@@ -8,7 +8,6 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # MATLAB and YARP is searched before adding the different modules because they will be used by all of them
 find_package(YARP        REQUIRED)
-set(MATLAB_ADDITIONAL_VERSIONS "R2014b=8.4")
 find_package(Matlab	 REQUIRED
                          MX_LIBRARY
                          ENG_LIBRARY)

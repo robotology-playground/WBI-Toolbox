@@ -5,7 +5,7 @@ mexDir     = [installDir, filesep, 'mex'];
 shareDir   = '@WBI-TOOLBOX_SHARE_DIR@';
 imgDir     = [shareDir, filesep, 'images'];
 toolsDir   = [shareDir, filesep, 'tools'];
-robotsDir  = genpath([installDir, '/../../libraries/yarpWholeBodyInterface/app/robots'])
+% robotsDir  = genpath([installDir, '/../../libraries/yarpWholeBodyInterface/app/robots'])
 
 if exist(mexDir, 'dir')
     addpath(mexDir);
@@ -23,7 +23,7 @@ if exist(toolsDir, 'dir')
     addpath(toolsDir);
 end
 
-addpath(robotsDir);
+% addpath(robotsDir);
 
 fileDir = userpath;
 pathSeparatorLocation = strfind(fileDir, pathsep);
