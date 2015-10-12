@@ -71,7 +71,7 @@ If for some reason the installation fails or you want to do this manually, the d
 ```bash
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/mex])
     addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox])
-    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox/img])
+    addpath([getenv(CODYCO_SUPERBUILD_DIR)  /install/share/WBI-Toolbox/images])
 ```
 You can also create a .m file with these two lines and launch MATLAB from terminal as:
 ```bash
