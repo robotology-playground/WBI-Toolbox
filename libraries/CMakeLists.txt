@@ -8,6 +8,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # MATLAB and YARP is searched before adding the different modules because they will be used by all of them
 find_package(YARP        REQUIRED)
+
+# Fail if YARP is not compiled as shared library
+# see https://github.com/robotology/codyco-modules/issues/44
+if(NOT ${YARP_IS_SHARED_LIBRARY})
+     message(FATAL_ERROR "YARP was found, but it was compiled as static library. A shared library version of YARP is required.")
+endif()
+
 find_package(Matlab	 REQUIRED
                          MX_LIBRARY
                          ENG_LIBRARY)
