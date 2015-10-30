@@ -14,6 +14,7 @@ find_package(TinyXML                REQUIRED)
 find_package(iDynTree               REQUIRED)
 find_package(wholeBodyInterface     REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
+find_package(codycoCommons 0.1 REQUIRED)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${YARP_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ICUB_MODULE_PATH})
@@ -97,6 +98,7 @@ endif(WIN32)
 target_link_libraries(${PROJECTNAME}
 ${wholeBodyInterface_LIBRARIES}
 ${yarpWholeBodyInterface_LIBRARIES}
+${codycoCommons_LIBRARIES}
 ${iDynTree_LIBRARIES}
 ${YARP_LIBRARIES}
 ${Matlab_LIBRARIES}

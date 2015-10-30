@@ -4,6 +4,7 @@ Library {
   MdlSubVersion		  0
   SavedCharacterEncoding  "US-ASCII"
   LibraryType		  "BlockLibrary"
+  LockLinksToLibrary	  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
   DisableAllScopes	  off
@@ -20,9 +21,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "makaveli"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Jul 24 11:06:19 2015"
-  RTWModifiedTimeStamp	  359636779
-  ModelVersionFormat	  "1.%<AutoIncrement:281>"
+  LastModifiedDate	  "Fri Oct 30 09:45:49 2015"
+  RTWModifiedTimeStamp	  368099149
+  ModelVersionFormat	  "1.%<AutoIncrement:288>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -40,7 +41,6 @@ Library {
   SortedOrder		  off
   ExecutionContextIcon	  off
   ShowLinearizationAnnotations on
-  ShowMarkup		  on
   BlockNameDataTip	  off
   BlockParametersDataTip  off
   BlockDescriptionStringDataTip	off
@@ -197,13 +197,10 @@ Library {
 	  MemcpyThreshold	  64
 	  PassReuseOutputArgsAs	  "Structure reference"
 	  ExpressionDepthLimit	  2147483647
-	  FoldNonRolledExpr	  on
 	  LocalBlockOutputs	  on
 	  RollThreshold		  5
-	  SystemCodeInlineAuto	  off
 	  StateBitsets		  off
 	  DataBitsets		  off
-	  UseTempVars		  off
 	  ZeroExternalMemoryAtStartup on
 	  ZeroInternalMemoryAtStartup on
 	  InitFltsAndDblsToZero	  off
@@ -216,7 +213,6 @@ Library {
 	  BufferReusableBoundary  on
 	  SimCompilerOptimization "Off"
 	  AccelVerboseBuild	  off
-	  ParallelExecutionInRapidAccelerator on
 	  UseIntDivNetSlope	  off
 	}
 	Simulink.DebuggingCC {
@@ -248,7 +244,6 @@ Library {
 	  IgnoredZcDiagnostic	  "warning"
 	  SolverPrmCheckMsg	  "warning"
 	  InheritedTsInSrcMsg	  "warning"
-	  DiscreteInheritContinuousMsg "warning"
 	  MultiTaskDSMMsg	  "error"
 	  MultiTaskCondExecSysMsg "error"
 	  MultiTaskRateTransMsg	  "error"
@@ -276,17 +271,15 @@ Library {
 	  UnconnectedOutputMsg	  "warning"
 	  UnconnectedLineMsg	  "warning"
 	  SFcnCompatibilityMsg	  "none"
-	  FrameProcessingCompatibilityMsg "warning"
+	  FrameProcessingCompatibilityMsg "error"
 	  UniqueDataStoreMsg	  "none"
 	  BusObjectLabelMismatch  "warning"
 	  RootOutportRequireBusObject "warning"
 	  AssertControl		  "UseLocalSettings"
-	  EnableOverflowDetection off
 	  ModelReferenceIOMsg	  "none"
 	  ModelReferenceMultiInstanceNormalModeStructChecksumCheck "error"
 	  ModelReferenceVersionMismatchMessage "none"
 	  ModelReferenceIOMismatchMessage "none"
-	  ModelReferenceCSMismatchMessage "none"
 	  UnknownTsInhSupMsg	  "warning"
 	  ModelReferenceDataLoggingMessage "warning"
 	  ModelReferenceSymbolNameMessage "warning"
@@ -298,7 +291,6 @@ Library {
 	  StrictBusMsg		  "ErrorLevel1"
 	  BusNameAdapt		  "WarnAndRepair"
 	  NonBusSignalsTreatedAsBus "none"
-	  LoggingUnavailableSignals "error"
 	  BlockIODiagnostic	  "none"
 	  SFUnusedDataAndEventsDiag "warning"
 	  SFUnexpectedBacktrackingDiag "warning"
@@ -306,6 +298,7 @@ Library {
 	  SFNoUnconditionalDefaultTransitionDiag "warning"
 	  SFTransitionOutsideNaturalParentDiag "warning"
 	  SFUnconditionalTransitionShadowingDiag "warning"
+	  ModelReferenceCSMismatchMessage "none"
 	}
 	Simulink.HardwareCC {
 	  $ObjectID		  11
@@ -337,7 +330,6 @@ Library {
 	  TargetIntDivRoundTo	  "Undefined"
 	  TargetEndianess	  "Unspecified"
 	  TargetWordSize	  32
-	  TargetTypeEmulationWarnSuppressLevel 0
 	  TargetPreprocMaxBitsSint 32
 	  TargetPreprocMaxBitsUint 32
 	  TargetHWDeviceType	  "Specified"
@@ -362,12 +354,8 @@ Library {
 	Simulink.SFSimCC {
 	  $ObjectID		  13
 	  Version		  "1.12.0"
-	  SFSimEnableDebug	  on
-	  SFSimOverflowDetection  on
 	  SFSimEcho		  on
-	  SimBlas		  on
 	  SimCtrlC		  on
-	  SimExtrinsic		  on
 	  SimIntegrity		  on
 	  SimUseLocalCustomCode	  off
 	  SimParseCustomCode	  on
@@ -407,39 +395,23 @@ Library {
 	  TLCDebug		  off
 	  TLCCoverage		  off
 	  TLCAssert		  off
-	  ProcessScriptMode	  "Default"
-	  ConfigurationMode	  "Optimized"
-	  ProcessScript		  ""
-	  ConfigurationScript	  ""
-	  ConfigAtBuild		  off
 	  RTWUseLocalCustomCode	  off
 	  RTWUseSimCustomCode	  off
-	  CustomSourceCode	  ""
-	  CustomHeaderCode	  ""
-	  CustomInclude		  ""
-	  CustomSource		  ""
-	  CustomLibrary		  ""
-	  CustomInitializer	  ""
-	  CustomTerminator	  ""
 	  IncludeHyperlinkInReport off
 	  LaunchReport		  off
 	  TargetLang		  "C"
 	  IncludeBusHierarchyInRTWFileBlockHierarchyMap	off
-	  IncludeERTFirstTime	  off
 	  GenerateTraceInfo	  off
 	  GenerateTraceReport	  off
 	  GenerateTraceReportSl	  off
 	  GenerateTraceReportSf	  off
 	  GenerateTraceReportEml  off
-	  GenerateCodeInfo	  off
 	  GenerateWebview	  off
 	  GenerateCodeMetricsReport off
 	  GenerateCodeReplacementReport	off
 	  RTWCompilerOptimization "Off"
 	  RTWCustomCompilerOptimizations ""
 	  CheckMdlBeforeBuild	  "Off"
-	  CustomRebuildMode	  "OnUpdate"
-	  DataInitializer	  ""
 	  Array {
 	    Type		    "Handle"
 	    Dimension		    2
@@ -564,7 +536,6 @@ Library {
 	      SupportContinuousTime   on
 	      SupportNonInlinedSFcns  on
 	      SupportVariableSizeSignals off
-	      EnableShiftOperators    on
 	      ParenthesesLevel	      "Nominal"
 	      ModelStepFunctionPrototypeControlCompliant off
 	      CPPClassGenCompliant    on
@@ -588,7 +559,7 @@ Library {
 	  }
 	}
 	hdlcoderui.hdlcc {
-	  $ObjectID		  17
+	  $ObjectID		  18
 	  Version		  "1.12.0"
 	  Description		  "HDL Coder custom configuration component"
 	  Name			  "HDL Coder"
@@ -758,7 +729,6 @@ Library {
       FunctionName	      "system"
       SFunctionModules	      "''"
       PortCounts	      "[]"
-      SFunctionDeploymentMode off
     }
     Block {
       BlockType		      Selector
@@ -766,9 +736,6 @@ Library {
       IndexMode		      "One-based"
       InputPortWidth	      "-1"
       SampleTime	      "-1"
-      IndexOptions	      "Index vector (dialog)"
-      Indices		      "1"
-      OutputSizes	      "1"
     }
     Block {
       BlockType		      SubSystem
@@ -790,7 +757,6 @@ Library {
       DataTypeOverrideAppliesTo	"AllNumericTypes"
       MinMaxOverflowLogging   "UseLocalSettings"
       SFBlockType	      "NONE"
-      Variant		      off
       GeneratePreprocessorConditionals off
     }
     Block {
@@ -815,7 +781,7 @@ Library {
   }
   System {
     Name		    "WBCLibrary"
-    Location		    [0, 29, 1280, 744]
+    Location		    [624, 76, 1967, 1002]
     Open		    off
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -829,7 +795,7 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "251"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "1627"
+    SIDHighWatermark	    "1648"
     Block {
       BlockType		      SubSystem
       Name		      "Utilities"
@@ -840,6 +806,7 @@ Library {
       ForegroundColor	      "white"
       DropShadow	      on
       RequestExecContextInheritance off
+      Variant		      off
       MaskDisplay	      "image(imread('utilities.png'))"
       MaskIconFrame	      on
       MaskIconOpaque	      on
@@ -848,7 +815,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"Utilities"
-	Location		[0, 29, 1280, 744]
+	Location		[624, 76, 1967, 1002]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -860,7 +827,7 @@ Library {
 	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
-	ZoomFactor		"166"
+	ZoomFactor		"208"
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "23-DoFs WBI to YARP"
@@ -871,6 +838,7 @@ Library {
 	  BackgroundColor	  "lightBlue"
 	  DropShadow		  on
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDescription	  "This is a 23-DoF iCub specific block that swaps first and third joints of the iCub torso from a "
 	  "WBI whole body state reading."
 	  MaskIconFrame		  on
@@ -909,7 +877,9 @@ Library {
 	      Position		      [150, 21, 190, 59]
 	      ZOrder		      11
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[1:3]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -919,7 +889,9 @@ Library {
 	      Position		      [175, 81, 215, 119]
 	      ZOrder		      10
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[4:7]"
+	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"leftArm"
@@ -935,7 +907,9 @@ Library {
 	      Position		      [175, 146, 215, 184]
 	      ZOrder		      9
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[8:11]"
+	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"rightArm"
@@ -951,7 +925,9 @@ Library {
 	      Position		      [175, 211, 215, 249]
 	      ZOrder		      8
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[12:17]"
+	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"leftLeg"
@@ -967,7 +943,9 @@ Library {
 	      Position		      [175, 281, 215, 319]
 	      ZOrder		      7
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[18:23]"
+	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"rightLeg"
@@ -983,7 +961,9 @@ Library {
 	      Position		      [220, 21, 260, 59]
 	      ZOrder		      13
 	      InputPortWidth	      "3"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[3 2 1]"
+	      OutputSizes	      "1"
 	      Port {
 		PortNumber		1
 		Name			"torso"
@@ -1133,6 +1113,7 @@ Library {
 	  ZOrder		  -7
 	  BackgroundColor	  "[0.180000, 0.348000, 0.600000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "WBI to YARP"
 	  MaskDescription	  "This is a 25-DOF iCub specific block that swaps first and third joints of the iCub torso from a "
 	  "WBI whole body state reading."
@@ -1172,7 +1153,9 @@ Library {
 	      Position		      [85, 26, 125, 64]
 	      ZOrder		      -2
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[1:3]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -1182,7 +1165,9 @@ Library {
 	      Position		      [110, 86, 150, 124]
 	      ZOrder		      -3
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[4:8]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -1192,7 +1177,9 @@ Library {
 	      Position		      [110, 151, 150, 189]
 	      ZOrder		      -4
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[9:13]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -1202,7 +1189,9 @@ Library {
 	      Position		      [110, 216, 150, 254]
 	      ZOrder		      -5
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[14:19]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -1212,7 +1201,9 @@ Library {
 	      Position		      [110, 286, 150, 324]
 	      ZOrder		      -6
 	      InputPortWidth	      "ROBOT_DOF"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[20:25]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Selector
@@ -1222,7 +1213,9 @@ Library {
 	      Position		      [155, 26, 195, 64]
 	      ZOrder		      1
 	      InputPortWidth	      "3"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[3 2 1]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -1356,6 +1349,7 @@ Library {
 	  ZOrder		  -1
 	  BackgroundColor	  "[0.848000, 0.128048, 0.320035]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskPromptString	  "Tolerance"
 	  MaskStyleString	  "edit"
 	  MaskVariables		  "tol=@1;"
@@ -1414,6 +1408,7 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
 	      MaskSelfModifiable      on
@@ -1439,7 +1434,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1627"
+		SIDHighWatermark	"1648"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1460,22 +1455,23 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "107::1579"
+		  SID			  "107::1585"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  68
+		  ZOrder		  74
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "107::1578"
+		  SID			  "107::1584"
 		  Tag			  "Stateflow S-Function WBCLibrary 6"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  67
+		  ZOrder		  73
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
@@ -1487,9 +1483,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "107::1580"
+		  SID			  "107::1586"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  69
+		  ZOrder		  75
 		}
 		Block {
 		  BlockType		  Outport
@@ -1587,6 +1583,7 @@ Library {
 	  ShowName		  off
 	  Priority		  "-10"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDescription	  "This block slows down the simulation trying to match the period specified as parameter (in secon"
 	  "ds).\nThe bigger the period the more probable is that Simulink can remain synched with it.\n\n\n"
 	  MaskPromptString	  "Thread Period"
@@ -1627,6 +1624,7 @@ Library {
 	      ZOrder		      1
 	      FunctionName	      "realTimeSynchronizer"
 	      Parameters	      "threadPeriod"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	  }
@@ -1646,6 +1644,7 @@ Library {
 	  ZOrder		  -3
 	  BackgroundColor	  "[0.534601, 0.470279, 1.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskPromptString	  "Tolerance"
 	  MaskStyleString	  "edit"
 	  MaskVariables		  "tol=@1;"
@@ -1704,6 +1703,7 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
 	      MaskSelfModifiable      on
@@ -1729,7 +1729,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1627"
+		SIDHighWatermark	"1648"
 		Block {
 		  BlockType		  Inport
 		  Name			  "mat"
@@ -1750,22 +1750,23 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "112::1579"
+		  SID			  "112::1585"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  68
+		  ZOrder		  74
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "112::1578"
+		  SID			  "112::1584"
 		  Tag			  "Stateflow S-Function WBCLibrary 7"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  67
+		  ZOrder		  73
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
@@ -1777,9 +1778,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "112::1580"
+		  SID			  "112::1586"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  69
+		  ZOrder		  75
 		}
 		Block {
 		  BlockType		  Outport
@@ -1874,6 +1875,7 @@ Library {
 	  ForegroundColor	  "[0.490196, 0.000000, 0.000000]"
 	  FunctionName		  "yarpRead"
 	  Parameters		  "portName,signalSize,blocking,timestamp,autoconnect,errorOnConnection"
+	  SFunctionDeploymentMode off
 	  EnableBusSupport	  off
 	  MaskType		  "YARP Read"
 	  MaskDescription	  "This block behaves as the command 'yarp read'. \nBy default it has the option 'Autoconnect' acti"
@@ -1915,6 +1917,7 @@ Library {
 	  ZOrder		  -8
 	  BackgroundColor	  "[0.753334, 1.000000, 0.112472]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "baseVelocity"
 	  MaskDescription	  "This block computes the velocity of the floating base of a bipedal robot"
 	  MaskIconFrame		  on
@@ -1976,6 +1979,7 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
 	      MaskSelfModifiable      on
@@ -2001,7 +2005,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1627"
+		SIDHighWatermark	"1648"
 		Block {
 		  BlockType		  Inport
 		  Name			  "JcIn"
@@ -2022,22 +2026,23 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1030::1579"
+		  SID			  "1030::1585"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  62
+		  ZOrder		  68
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1030::1578"
+		  SID			  "1030::1584"
 		  Tag			  "Stateflow S-Function WBCLibrary 2"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  61
+		  ZOrder		  67
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
@@ -2049,9 +2054,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1030::1580"
+		  SID			  "1030::1586"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  63
+		  ZOrder		  69
 		}
 		Block {
 		  BlockType		  Outport
@@ -2169,6 +2174,7 @@ Library {
 	  ZOrder		  -9
 	  BackgroundColor	  "[0.300000, 0.580000, 1.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Errors"
 	  MaskDescription	  "Computes two kinds of errors. The first is just the difference between x\nand y while the second"
 	  " is the ratio (x-y)/y."
@@ -2309,6 +2315,7 @@ Library {
 	  ZOrder		  14
 	  BackgroundColor	  "[0.537255, 0.721569, 1.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Holder"
 	  MaskDescription	  "This block holds the first input value during the simulation."
 	  MaskIconFrame		  on
@@ -2353,7 +2360,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [90, 60, 120, 90]
 	      ZOrder		      10
-	      LibraryVersion	      "1.354"
+	      LibraryVersion	      "1.358"
 	      SourceBlock	      "simulink/Logic and Bit\nOperations/Compare\nTo Constant"
 	      SourceType	      "Compare To Constant"
 	      relop		      "=="
@@ -2374,6 +2381,7 @@ Library {
 	      TreatAsAtomicUnit	      on
 	      RequestExecContextInheritance off
 	      SFBlockType	      "MATLAB Function"
+	      Variant		      off
 	      MaskType		      "Stateflow"
 	      MaskDescription	      "Embedded MATLAB block"
 	      MaskSelfModifiable      on
@@ -2399,7 +2407,7 @@ Library {
 		TiledPageScale		1
 		ShowPageBoundaries	off
 		ZoomFactor		"100"
-		SIDHighWatermark	"1627"
+		SIDHighWatermark	"1648"
 		Block {
 		  BlockType		  Inport
 		  Name			  "s"
@@ -2420,22 +2428,23 @@ Library {
 		Block {
 		  BlockType		  Demux
 		  Name			  " Demux "
-		  SID			  "1300::1579"
+		  SID			  "1300::1585"
 		  Ports			  [1, 1]
 		  Position		  [270, 230, 320, 270]
-		  ZOrder		  56
+		  ZOrder		  62
 		  Outputs		  "1"
 		}
 		Block {
 		  BlockType		  S-Function
 		  Name			  " SFunction "
-		  SID			  "1300::1578"
+		  SID			  "1300::1584"
 		  Tag			  "Stateflow S-Function WBCLibrary 1"
 		  Ports			  [2, 2]
 		  Position		  [180, 100, 230, 160]
-		  ZOrder		  55
+		  ZOrder		  61
 		  FunctionName		  "sf_sfun"
 		  PortCounts		  "[2 2]"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  Port {
 		    PortNumber		    2
@@ -2447,9 +2456,9 @@ Library {
 		Block {
 		  BlockType		  Terminator
 		  Name			  " Terminator "
-		  SID			  "1300::1580"
+		  SID			  "1300::1586"
 		  Position		  [460, 241, 480, 259]
-		  ZOrder		  57
+		  ZOrder		  63
 		}
 		Block {
 		  BlockType		  Outport
@@ -2549,6 +2558,7 @@ Library {
 	  ZOrder		  -4
 	  BackgroundColor	  "[0.156255, 1.000000, 0.640991]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "minJerkTrajGen  "
 	  MaskDescription	  "This block wraps the minJerkTrajGen class from iCub::ctrl::minJerkTrajGen.\n\nThe min jerk traje"
 	  "ctory is approximated using a 3rd order LTI dynamical system (for more details see Pattacini2010). Position, veloci"
@@ -2610,6 +2620,7 @@ Library {
 	      BackgroundColor	      "yellow"
 	      FunctionName	      "minJerkGenerator"
 	      Parameters	      "dim, rate, tt"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Trajectory dimension (int)|Simulation rate (int) [ms]|Trajectory time [s]"
 	      MaskStyleString	      "edit,edit,edit"
@@ -2702,6 +2713,7 @@ Library {
 	  ShowName		  off
 	  FunctionName		  "ySynchronizer"
 	  Parameters		  "rate"
+	  SFunctionDeploymentMode off
 	  EnableBusSupport	  off
 	  MaskType		  "ySynchronizer"
 	  MaskDescription	  "Slows down the simulation and synchronizes all blocks with Yarp time.\nThis block takes two inpu"
@@ -2734,6 +2746,7 @@ Library {
 	  BackgroundColor	  "black"
 	  FunctionName		  "yRead"
 	  Parameters		  "from,to,num,blocking,timestamp,autoconnect"
+	  SFunctionDeploymentMode off
 	  EnableBusSupport	  off
 	  MaskType		  "yarp read"
 	  MaskDescription	  "DEPRECATED\n\nPlease use the new YARP Read block.\nThis block will soon be removed from the Libr"
@@ -2770,6 +2783,7 @@ Library {
 	  ZOrder		  -14
 	  BackgroundColor	  "[0.240000, 0.464000, 0.800000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "YARP to wbi"
 	  MaskDescription	  "DEPRECATED\n\nPlease use the explicit 25-DOF or the 23-DOF utility.\nThis block will soon be rem"
 	  "oved from the Library\n\nThis is a 25-DOF iCub specific block which swaps the readings of the first and third joint"
@@ -2858,7 +2872,9 @@ Library {
 	      ZOrder		      1
 	      ShowName		      off
 	      InputPortWidth	      "3"
+	      IndexOptions	      "Index vector (dialog)"
 	      Indices		      "[3 2 1]"
+	      OutputSizes	      "1"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -2927,6 +2943,7 @@ Library {
 	  ZOrder		  -6
 	  BackgroundColor	  "black"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskPromptString	  "Specify port name starting with \"/\" e.g. '/port/input:i'"
 	  MaskStyleString	  "edit"
 	  MaskVariables		  "port_name=@1;"
@@ -2972,6 +2989,7 @@ Library {
 	      ZOrder		      -5
 	      FunctionName	      "yWrite"
 	      Parameters	      "port_name"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Line {
@@ -3006,6 +3024,7 @@ Library {
       ForegroundColor	      "white"
       DropShadow	      on
       RequestExecContextInheritance off
+      Variant		      off
       MaskDisplay	      "image(imread('wholeBodyActuators.png'),'center')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
@@ -3014,7 +3033,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyActuators"
-	Location		[12, 45, 1417, 1202]
+	Location		[624, 76, 1967, 1002]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3036,6 +3055,7 @@ Library {
 	  ZOrder		  -17
 	  BackgroundColor	  "[0.854902, 0.239216, 0.133333]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskPromptString	  "Control Mode"
 	  MaskStyleString	  "popup(Position|Velocity|Torque)"
 	  MaskVariables		  "ctrlMode=&1;"
@@ -3060,7 +3080,7 @@ Library {
 	  MaskValueString	  "Velocity"
 	  System {
 	    Name		    "ControlMode"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3099,6 +3119,7 @@ Library {
 	  ZOrder		  -18
 	  BackgroundColor	  "[0.855000, 0.450000, 0.133000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Set Joint Angles"
 	  MaskDescription	  "This block sets all join ts in position control mode and sets the input angular position referen"
 	  "ce.\n\nInput: Vector of ROBOT_DOF joint angular positions.\n\nParameters:\nrobotName: Name of the target robot, e.g"
@@ -3120,7 +3141,7 @@ Library {
 	  MaskValueString	  "5|robotName|localName"
 	  System {
 	    Name		    "Set Angles"
-	    Location		    [12, 45, 1439, 1251]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3188,12 +3209,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "397"
-	      Ports		      [5, 13]
-	      Position		      [90, 35, 200, 365]
+	      Ports		      [5, 14]
+	      Position		      [90, 37, 200, 368]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotName,localName,'na'"
+	      Parameters	      "val,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -3303,108 +3325,126 @@ Library {
 	    Line {
 	      SrcBlock		      "RightFoot"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "q_j"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator4"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator12"
 	      DstPort		      1
 	    }
@@ -3425,6 +3465,7 @@ Library {
 	  ZOrder		  1
 	  BackgroundColor	  "[0.831373, 0.274510, 0.200000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Set Velocities"
 	  MaskDescription	  "This block sets all the robot joints to velocity control mode and sets the input velocity refere"
 	  "nce.\n\nInput: Vector of ROBOT_DOF joint velocities.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"ic"
@@ -3446,7 +3487,7 @@ Library {
 	  MaskValueString	  "20|robotName|localName"
 	  System {
 	    Name		    "Set Angles (Direct)"
-	    Location		    [12, 45, 1439, 1251]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3514,12 +3555,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1452"
-	      Ports		      [5, 13]
-	      Position		      [140, 48, 290, 572]
+	      Ports		      [5, 14]
+	      Position		      [140, 50, 290, 575]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -3661,18 +3703,21 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
@@ -3715,6 +3760,7 @@ Library {
 	    Line {
 	      SrcBlock		      "q_j"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
@@ -3740,6 +3786,7 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
@@ -3759,6 +3806,337 @@ Library {
 	}
 	Block {
 	  BlockType		  SubSystem
+	  Name			  "Set PID Gains"
+	  SID			  "1628"
+	  Ports			  [1]
+	  Position		  [55, 146, 130, 184]
+	  ZOrder		  2
+	  ForegroundColor	  "[0.301961, 0.301961, 0.301961]"
+	  BackgroundColor	  "[0.976471, 0.784314, 0.043137]"
+	  RequestExecContextInheritance	off
+	  Variant		  off
+	  MaskType		  "Set Pid Gains"
+	  MaskDescription	  "This block sets the low level (torque for now) gains.\nGains files are specified in a bottle-lik"
+	  "e list in the \n'Torque PID Option List' block parameter.\nIf only one file is specified, the gains are loaded at s"
+	  "tartup of the model.\nIf more the one file is specified then the input signal specifies the index\n(one based) of t"
+	  "he set to be loaded.\n\nDuring termination the gains are unloaded and the original ones are restored."
+	  MaskPromptString	  "Robot Name|Local Name|Torque PID Option list"
+	  MaskStyleString	  "edit,edit,edit"
+	  MaskVariables		  "robotName=@1;localName=@2;bottleOption=@3;"
+	  MaskTunableValueString  "on,on,on"
+	  MaskCallbackString	  "||"
+	  MaskEnableString	  "on,on,on"
+	  MaskVisibilityString	  "on,on,on"
+	  MaskToolTipString	  "on,on,on"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "robotName|localName|'()'"
+	  System {
+	    Name		    "Set PID Gains"
+	    Location		    [1139, 101, 2310, 1132]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "145"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Gains Index"
+	      SID		      "1629"
+	      Position		      [15, 58, 45, 72]
+	      ZOrder		      20
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      "1630"
+	      Position		      [10, 135, 45, 165]
+	      ZOrder		      21
+	      Value		      "zeros(ROBOT_DOF, 1)"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant1"
+	      SID		      "1631"
+	      Position		      [10, 305, 45, 335]
+	      ZOrder		      22
+	      Value		      "zeros(ROBOT_DOF + 6, 1)"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant2"
+	      SID		      "1632"
+	      Position		      [10, 390, 45, 420]
+	      ZOrder		      23
+	      Value		      "zeros(ROBOT_DOF + 6, 1)"
+	    }
+	    Block {
+	      BlockType		      Constant
+	      Name		      "Constant3"
+	      SID		      "1633"
+	      Position		      [10, 220, 45, 250]
+	      ZOrder		      24
+	      Value		      "zeros(ROBOT_DOF + 16, 1)"
+	    }
+	    Block {
+	      BlockType		      S-Function
+	      Name		      "S-Function"
+	      SID		      "1634"
+	      Ports		      [5, 14]
+	      Position		      [110, 24, 220, 446]
+	      ZOrder		      1
+	      FunctionName	      "robotState"
+	      Parameters	      "25,robotName,localName,'na',bottleOption"
+	      SFunctionDeploymentMode off
+	      EnableBusSupport	      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator"
+	      SID		      "1635"
+	      Position		      [285, 30, 305, 50]
+	      ZOrder		      2
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator1"
+	      SID		      "1636"
+	      Position		      [285, 60, 305, 80]
+	      ZOrder		      3
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator10"
+	      SID		      "1637"
+	      Position		      [285, 330, 305, 350]
+	      ZOrder		      12
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator11"
+	      SID		      "1638"
+	      Position		      [285, 360, 305, 380]
+	      ZOrder		      13
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator12"
+	      SID		      "1639"
+	      Position		      [285, 390, 305, 410]
+	      ZOrder		      14
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator13"
+	      SID		      "1640"
+	      Position		      [285, 420, 305, 440]
+	      ZOrder		      15
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator2"
+	      SID		      "1641"
+	      Position		      [285, 90, 305, 110]
+	      ZOrder		      4
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator3"
+	      SID		      "1642"
+	      Position		      [285, 120, 305, 140]
+	      ZOrder		      5
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator4"
+	      SID		      "1643"
+	      Position		      [285, 150, 305, 170]
+	      ZOrder		      6
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator5"
+	      SID		      "1644"
+	      Position		      [285, 180, 305, 200]
+	      ZOrder		      7
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator6"
+	      SID		      "1645"
+	      Position		      [285, 210, 305, 230]
+	      ZOrder		      8
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator7"
+	      SID		      "1646"
+	      Position		      [285, 240, 305, 260]
+	      ZOrder		      9
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator8"
+	      SID		      "1647"
+	      Position		      [285, 270, 305, 290]
+	      ZOrder		      10
+	      ShowName		      off
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      "Terminator9"
+	      SID		      "1648"
+	      Position		      [285, 300, 305, 320]
+	      ZOrder		      11
+	      ShowName		      off
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      3
+	      DstBlock		      "Terminator2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      12
+	      DstBlock		      "Terminator11"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      4
+	      DstBlock		      "Terminator3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      8
+	      DstBlock		      "Terminator7"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      10
+	      DstBlock		      "Terminator9"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      13
+	      DstBlock		      "Terminator12"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      11
+	      DstBlock		      "Terminator10"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      14
+	      DstBlock		      "Terminator13"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Constant1"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      9
+	      DstBlock		      "Terminator8"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      7
+	      DstBlock		      "Terminator6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      5
+	      DstBlock		      "Terminator4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Constant3"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Gains Index"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Constant2"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      1
+	      DstBlock		      "Terminator"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      2
+	      DstBlock		      "Terminator1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "S-Function"
+	      SrcPort		      6
+	      DstBlock		      "Terminator5"
+	      DstPort		      1
+	    }
+	  }
+	  RTWSystemCode		  "Auto"
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  MaskHideContents	  off
+	}
+	Block {
+	  BlockType		  SubSystem
 	  Name			  "Set Torques"
 	  SID			  "405"
 	  Ports			  [1]
@@ -3766,6 +4144,7 @@ Library {
 	  ZOrder		  -19
 	  BackgroundColor	  "[0.941000, 0.415000, 0.192000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Set Joint Torques   "
 	  MaskDescription	  "This block sets all joints in torque control mode and sets the input joint reference torques vec"
 	  "tor.\n\nInput: Vector of ROBOT_DOF joint torques.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubG"
@@ -3787,7 +4166,7 @@ Library {
 	  MaskValueString	  "6|robotName|localName"
 	  System {
 	    Name		    "Set Torques"
-	    Location		    [12, 45, 1439, 1251]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -3855,12 +4234,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "408"
-	      Ports		      [5, 13]
-	      Position		      [110, 33, 200, 367]
+	      Ports		      [5, 14]
+	      Position		      [110, 35, 200, 370]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotName,localName,'na'"
+	      Parameters	      "val,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -3970,108 +4350,126 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator4"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "tau_j"
 	      SrcPort		      1
+	      Points		      [30, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "RightFoot"
 	      SrcPort		      1
+	      Points		      [30, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SrcPort		      1
+	      Points		      [30, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 	      SrcPort		      1
+	      Points		      [30, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
+	      Points		      [30, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator12"
 	      DstPort		      1
 	    }
@@ -4092,6 +4490,7 @@ Library {
 	  ZOrder		  -18
 	  BackgroundColor	  "[0.976000, 0.635000, 0.140000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Set Velocities"
 	  MaskDescription	  "This block sets all the robot joints to velocity control mode and sets the input velocity refere"
 	  "nce.\n\nInput: Vector of ROBOT_DOF joint velocities.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"ic"
@@ -4113,7 +4512,7 @@ Library {
 	  MaskValueString	  "4|robotName|localName"
 	  System {
 	    Name		    "Set Velocities"
-	    Location		    [12, 45, 1439, 1251]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -4125,7 +4524,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "80"
+	    ZoomFactor		    "400"
 	    Block {
 	      BlockType		      Inport
 	      Name		      "dq_j"
@@ -4181,12 +4580,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "230"
-	      Ports		      [5, 13]
-	      Position		      [140, 48, 290, 572]
+	      Ports		      [5, 14]
+	      Position		      [140, 50, 290, 575]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -4316,6 +4716,7 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
@@ -4341,6 +4742,7 @@ Library {
 	    Line {
 	      SrcBlock		      "dq_j"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
@@ -4383,18 +4785,21 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
@@ -4447,6 +4852,7 @@ Library {
       ForegroundColor	      "white"
       DropShadow	      on
       RequestExecContextInheritance off
+      Variant		      off
       MaskDisplay	      "image(imread('wholeBodyModel.png'),'center')"
       MaskIconFrame	      on
       MaskIconOpaque	      on
@@ -4455,7 +4861,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyModel"
-	Location		[60, 55, 1367, 770]
+	Location		[624, 76, 1967, 1002]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -4477,6 +4883,7 @@ Library {
 	  ZOrder		  -1
 	  DropShadow		  on
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDisplay		  "image(imread('Dynamics.png'))"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
@@ -4485,7 +4892,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Dynamics"
-	    Location		    [12, 45, 1439, 1251]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -4507,6 +4914,7 @@ Library {
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.035294, 0.219608, 0.396078]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Centroidal Momentum"
 	      MaskDescription	      "This block retrieves the robot 6-element centroidal momentum (3 values for linear moment"
 	      "um and 3 for angular momentum) with respect to the world reference frame.\n\nInputs:  \nq, the robot joint angl"
@@ -4532,7 +4940,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Cent Momentum"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4576,11 +4984,12 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "1012"
-		  Ports			  [5, 13]
-		  Position		  [120, 26, 220, 354]
+		  Ports			  [5, 14]
+		  Position		  [120, 28, 220, 357]
 		  ZOrder		  -5
 		  FunctionName		  "robotState"
-		  Parameters		  "14,robotName,localName,'na'"
+		  Parameters		  "14,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -4712,108 +5121,126 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "H"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "dummy3"
 		  SrcPort		  1
+		  Points		  [45, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [45, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [45, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "dummy"
 		  SrcPort		  1
+		  Points		  [45, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "RightFoot"
 		  SrcPort		  1
+		  Points		  [45, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
@@ -4834,6 +5261,7 @@ Library {
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.287374, 0.000000, 1.000000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Inverse Dynamics"
 	      MaskDescription	      "This block retrieves the robot joint torques based on kinematic information using the dy"
 	      "namical model of the robot, i.e.\n\nM(q)*ddq + h(q,dq)*dq = genTau\n\nInputs:  \nq, the robot joint angles incl"
@@ -4859,7 +5287,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Inverse Dynamics"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -4924,11 +5352,12 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "527"
-		  Ports			  [5, 13]
-		  Position		  [100, 29, 215, 371]
+		  Ports			  [5, 14]
+		  Position		  [100, 31, 215, 374]
 		  ZOrder		  -5
 		  FunctionName		  "robotState"
-		  Parameters		  "12,robotName,localName,'na'"
+		  Parameters		  "12,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -5038,108 +5467,126 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "genTau"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "Constant"
 		  SrcPort		  1
+		  Points		  [25, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "Constant2"
 		  SrcPort		  1
+		  Points		  [25, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [25, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [25, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "ddq"
 		  SrcPort		  1
+		  Points		  [25, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
@@ -5160,6 +5607,7 @@ Library {
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.850000, 0.010000, 0.698000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Generalized Bias Forces"
 	      MaskDescription	      "This block retrieves the generalied bias forces of the robot.\n\nInputs:  \nq, the robot"
 	      " joint angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectori"
@@ -5184,7 +5632,7 @@ Library {
 	      MaskValueString	      "7|robotName|localName"
 	      System {
 		Name			"computeh"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5281,12 +5729,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "363"
-		  Ports			  [5, 13]
-		  Position		  [95, 18, 210, 362]
+		  Ports			  [5, 14]
+		  Position		  [95, 20, 210, 365]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,'na'"
+		  Parameters		  "val,robotname,localname,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -5364,108 +5813,126 @@ Library {
 		Line {
 		  SrcBlock		  "Constant"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "Constant1"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "h1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "h2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "h3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "h4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "  "
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  " "
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "h5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "h6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "  1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "Constant4"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "h7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "h8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "  2"
 		  DstPort		  1
 		}
@@ -5486,6 +5953,7 @@ Library {
 	      ZOrder		      -4
 	      BackgroundColor	      "[0.662196, 0.000000, 1.000000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "dJ*dq Left Arm"
 	      MaskDescription	      "This block retrieves the product dJ*dq for the left arm.\n\nInputs:  \nq, the robot join"
 	      "t angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectorized h"
@@ -5510,7 +5978,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq LeftArm"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5554,12 +6022,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "1143"
-		  Ports			  [5, 13]
-		  Position		  [90, 32, 195, 368]
+		  Ports			  [5, 14]
+		  Position		  [90, 34, 195, 371]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "val,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -5691,108 +6160,126 @@ Library {
 		Line {
 		  SrcBlock		  "dummy3"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "LeftFoot"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "dummy"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  "dJdqLA"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
@@ -5813,6 +6300,7 @@ Library {
 	      ZOrder		      -5
 	      BackgroundColor	      "[0.662196, 0.000000, 1.000000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "dJ*dq Left Foot"
 	      MaskDescription	      "This block retrieves the product dJ*dq for the left foot.\n\nInputs:  \nq, the robot joi"
 	      "nt angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectorized "
@@ -5837,7 +6325,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq LeftFoot"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -5880,12 +6368,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "447"
-		  Ports			  [5, 13]
-		  Position		  [95, 30, 200, 370]
+		  Ports			  [5, 14]
+		  Position		  [95, 32, 200, 373]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "val,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -6017,108 +6506,126 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  "dJdqLF"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "dummy"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "LeftFoot"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "dummy3"
 		  SrcPort		  1
+		  Points		  [20, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
@@ -6140,6 +6647,7 @@ Library {
 	      ForegroundColor	      "[1.000000, 0.011765, 0.917647]"
 	      BackgroundColor	      "[0.705882, 0.537255, 0.996078]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "dJ*dq Right Foot"
 	      MaskDescription	      "This block retrieves the product dJ*dq for the specified link.\n\nInputs:  \nq, the robo"
 	      "t joint angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vector"
@@ -6167,7 +6675,7 @@ Library {
 	      MaskValueString	      "19|robotName|localName|base_link"
 	      System {
 		Name			"dJ*dq Link"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6179,7 +6687,7 @@ Library {
 		TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
 		TiledPageScale		1
 		ShowPageBoundaries	off
-		ZoomFactor		"100"
+		ZoomFactor		"80"
 		SIDHighWatermark	"1445"
 		Block {
 		  BlockType		  Inport
@@ -6217,7 +6725,8 @@ Library {
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,LinkName"
+		  Parameters		  "val,robotName,localName,LinkName,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -6471,6 +6980,7 @@ Library {
 	      ZOrder		      -6
 	      BackgroundColor	      "[0.501000, 0.015000, 0.850000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "dJ*dq Right Arm"
 	      MaskDescription	      "This block retrieves the product dJ*dq for the right arm.\n\nInputs:  \nq, the robot joi"
 	      "nt angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectorized "
@@ -6495,7 +7005,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq RightArm"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6539,12 +7049,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "1159"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [90, 26, 195, 434]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "val,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -6694,18 +7205,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
@@ -6724,60 +7238,70 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJdqRA"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 15]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
@@ -6798,6 +7322,7 @@ Library {
 	      ZOrder		      -7
 	      BackgroundColor	      "[0.501961, 0.015686, 0.850980]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "dJ*dq Right Foot"
 	      MaskDescription	      "This block retrieves the product dJ*dq for the right foot.\n\nInputs:  \nq, the robot jo"
 	      "int angles including the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectorized"
@@ -6822,7 +7347,7 @@ Library {
 	      MaskValueString	      "9|robotName|localName"
 	      System {
 		Name			"dJ*dq RightFoot"
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -6866,12 +7391,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "375"
-		  Ports			  [5, 13]
-		  Position		  [90, 26, 185, 384]
+		  Ports			  [5, 14]
+		  Position		  [90, 28, 185, 387]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotName,localName,'na'"
+		  Parameters		  "val,robotName,localName,'na',''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -7003,108 +7529,126 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  4
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 10]
 		  DstBlock		  "dJdqRF"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "dummy"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  2
 		}
 		Line {
 		  SrcBlock		  "RightFoot"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator7"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator8"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "q"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  3
 		}
 		Line {
 		  SrcBlock		  "dq"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  4
 		}
 		Line {
 		  SrcBlock		  "dummy3"
 		  SrcPort		  1
+		  Points		  [15, 0]
 		  DstBlock		  "S-Function"
 		  DstPort		  5
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator9"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator10"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 10]
 		  DstBlock		  "Terminator11"
 		  DstPort		  1
 		}
@@ -7125,6 +7669,7 @@ Library {
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.970000, 0.060000, 0.376000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Mass Matrix"
 	      MaskDescription	      "This block retrieves the full robot mass matrix.\n\nInput:  q, the robot joint angles in"
 	      "cluding the floating base. Vector of size (ROBOT_DOF+16). The floating base part is the vectorized homogeneous "
@@ -7148,7 +7693,7 @@ Library {
 	      MaskValueString	      "8|robotName|localName"
 	      System {
 		Name			"massMatrix"
-		Location		[1264, 45, 2723, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7187,9 +7732,10 @@ Library {
 		  Position		  [70, 48, 150, 132]
 		  ZOrder		  -24
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "massMatrix"
-		    Location		    [1264, 45, 2723, 2529]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -7254,12 +7800,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "349"
-		    Ports		    [5, 13]
+		    Ports		    [5, 14]
 		    Position		    [90, 15, 195, 425]
 		    ZOrder		    -5
 		    BackgroundColor	    "green"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,'na'"
+		    Parameters		    "val,robotname,localname,'na',''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    }
 		    Block {
@@ -7369,42 +7916,49 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator5"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    4
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    5
+		    Points		    [0, 15]
 		    DstBlock		    "massMatrix"
 		    DstPort		    1
 		    }
@@ -7423,18 +7977,21 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator6"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator7"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator8"
 		    DstPort		    1
 		    }
@@ -7459,18 +8016,21 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator9"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator10"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator11"
 		    DstPort		    1
 		    }
@@ -7533,6 +8093,7 @@ Library {
 	  ZOrder		  -17
 	  DropShadow		  on
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDisplay		  "image(imread('forwardKinematics.png'))"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
@@ -7541,7 +8102,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Forward Kinematics"
-	    Location		    [60, 55, 1367, 770]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -7553,7 +8114,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "218"
+	    ZoomFactor		    "215"
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "COMFwdKin "
@@ -7563,6 +8124,7 @@ Library {
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.243000, 0.074000, 0.972000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Center of Mass Forward Kinematics"
 	      MaskDescription	      "This block retrieves the position of the robot Center of Mass (CoM) with respect to the "
 	      "specified world reference frame and computed via forward kinematics.\n\nParameters:\nrobotName: Name of the tar"
@@ -7584,7 +8146,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"COMFwdKin "
-		Location		[12, 45, 1471, 2529]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -7663,12 +8225,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "279"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [130, 53, 255, 507]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,linkname"
+		  Parameters		  "val,robotname,localname,linkname,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  MaskPromptString	  "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		  MaskStyleString	  "edit,edit,edit,edit"
@@ -7797,12 +8360,14 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, -5]
 		  DstBlock		  "xCOM"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, -15]
 		  DstBlock		  "qrad"
 		  DstPort		  1
 		}
@@ -7810,6 +8375,7 @@ Library {
 		  Labels		  [0, 0]
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, -10]
 		  DstBlock		  "getDq"
 		  DstPort		  1
 		}
@@ -7822,36 +8388,42 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 5]
 		  DstBlock		  "massMatrix"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJ dq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 20]
 		  DstBlock		  "dJ dq1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 25]
 		  DstBlock		  "dJ dq2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 30]
 		  DstBlock		  "dJ dq3"
 		  DstPort		  1
 		}
@@ -7876,18 +8448,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 35]
 		  DstBlock		  "dJ dq4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 40]
 		  DstBlock		  "dJ dq5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 45]
 		  DstBlock		  "dJ dq6"
 		  DstPort		  1
 		}
@@ -7908,6 +8483,7 @@ Library {
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.031000, 0.800000, 0.970000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Left Foot Forward Kinematics"
 	      MaskDescription	      "This block retrieves the position of the robot's left foot (its reference frame) with re"
 	      "spect to the specified world reference frame via forward kinematics.\n\nParameters:\nrobotName: Name of the tar"
@@ -7929,7 +8505,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"LeftFootFwdKin"
-		Location		[504, 45, 1753, 1546]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8007,12 +8583,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "307"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [140, 55, 275, 495]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,linkname"
+		  Parameters		  "val,robotname,localname,linkname,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  MaskPromptString	  "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		  MaskStyleString	  "edit,edit,edit,edit"
@@ -8140,12 +8717,14 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, -5]
 		  DstBlock		  "xLeftFoot"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, -15]
 		  DstBlock		  "qrad"
 		  DstPort		  1
 		}
@@ -8153,6 +8732,7 @@ Library {
 		  Labels		  [0, 0]
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, -10]
 		  DstBlock		  "getDq"
 		  DstPort		  1
 		}
@@ -8165,18 +8745,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 5]
 		  DstBlock		  "massMatrix"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJ dq"
 		  DstPort		  1
 		}
@@ -8201,36 +8784,42 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 20]
 		  DstBlock		  "dJ dq1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 25]
 		  DstBlock		  "dJ dq2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 30]
 		  DstBlock		  "dJ dq3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 35]
 		  DstBlock		  "dJ dq4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 40]
 		  DstBlock		  "dJ dq5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 45]
 		  DstBlock		  "dJ dq6"
 		  DstPort		  1
 		}
@@ -8251,6 +8840,7 @@ Library {
 	      ZOrder		      -3
 	      BackgroundColor	      "[0.031000, 0.800000, 0.970000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Left Hand Forward Kinematics"
 	      MaskDescription	      "This block retrieves the position of the robot's left hand (its reference frame) with re"
 	      "spect to the specified world reference frame via forward kinematics.\n\nParameters:\nrobotName: Name of the tar"
@@ -8272,7 +8862,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"LeftHandFwdKin"
-		Location		[504, 45, 1753, 1546]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8352,12 +8942,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "1085"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [140, 51, 250, 489]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,linkname"
+		  Parameters		  "val,robotname,localname,linkname,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  MaskPromptString	  "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		  MaskStyleString	  "edit,edit,edit,edit"
@@ -8491,18 +9082,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 30]
 		  DstBlock		  "dJ dq3"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 25]
 		  DstBlock		  "dJ dq2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 20]
 		  DstBlock		  "dJ dq1"
 		  DstPort		  1
 		}
@@ -8521,12 +9115,14 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, -5]
 		  DstBlock		  "xLeftHand"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, -15]
 		  DstBlock		  "qrad"
 		  DstPort		  1
 		}
@@ -8534,6 +9130,7 @@ Library {
 		  Labels		  [0, 0]
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, -10]
 		  DstBlock		  "getDq"
 		  DstPort		  1
 		}
@@ -8546,36 +9143,42 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 5]
 		  DstBlock		  "massMatrix"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJ dq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 35]
 		  DstBlock		  "dJ dq4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 40]
 		  DstBlock		  "dJ dq5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 45]
 		  DstBlock		  "dJ dq6"
 		  DstPort		  1
 		}
@@ -8597,6 +9200,7 @@ Library {
 	      ForegroundColor	      "blue"
 	      BackgroundColor	      "[0.882353, 0.945098, 1.000000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Link's Forward Kinematics"
 	      MaskDescription	      "This block retrieves the cartesian position of the specified link with respect to the sp"
 	      "ecified world reference frame and computed via forward kinematics.\n\nParameters:\nrobotName: Name of the targe"
@@ -8625,7 +9229,7 @@ Library {
 	      MaskValueString	      "robotName|localName|base_link"
 	      System {
 		Name			"LinkFwdKin"
-		Location		[0, 27, 1372, 775]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -8710,7 +9314,8 @@ Library {
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "17,robotname,localname,LinkName"
+		  Parameters		  "17,robotname,localname,LinkName,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		}
 		Block {
@@ -8935,6 +9540,7 @@ Library {
 	      ZOrder		      -3
 	      BackgroundColor	      "[0.074000, 0.349000, 0.941000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Right Foot Forward Kinematics"
 	      MaskDescription	      "This block retrieves the position of the robot's right foot (its reference frame) with r"
 	      "espect to the specified world reference frame via forward kinematics.\n\nParameters:\nrobotName: Name of the ta"
@@ -8956,7 +9562,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"RightFootFwdKin"
-		Location		[504, 45, 1753, 1546]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9036,12 +9642,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "296"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [110, 49, 250, 491]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,linkname"
+		  Parameters		  "val,robotname,localname,linkname,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  MaskPromptString	  "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		  MaskStyleString	  "edit,edit,edit,edit"
@@ -9157,18 +9764,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJ dq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 5]
 		  DstBlock		  "massMatrix"
 		  DstPort		  1
 		}
@@ -9182,18 +9792,21 @@ Library {
 		  Labels		  [0, 0]
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, -10]
 		  DstBlock		  "getDq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, -15]
 		  DstBlock		  "qrad"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, -5]
 		  DstBlock		  "xRightFoot"
 		  DstPort		  1
 		}
@@ -9212,18 +9825,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 20]
 		  DstBlock		  "dJ dq1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 25]
 		  DstBlock		  "dJ dq2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 30]
 		  DstBlock		  "dJ dq3"
 		  DstPort		  1
 		}
@@ -9248,18 +9864,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 35]
 		  DstBlock		  "dJ dq4"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 40]
 		  DstBlock		  "dJ dq5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 45]
 		  DstBlock		  "dJ dq6"
 		  DstPort		  1
 		}
@@ -9280,6 +9899,7 @@ Library {
 	      ZOrder		      -3
 	      BackgroundColor	      "[0.074000, 0.349000, 0.941000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Right Hand Forward Kinematics"
 	      MaskDescription	      "This block retrieves the position of the robot's right hand (its reference frame) with r"
 	      "espect to the specified world reference frame via forward kinematics.\n\nParameters:\nrobotName: Name of the ta"
@@ -9301,7 +9921,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"RightHandFwdKin"
-		Location		[504, 45, 1753, 1546]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9381,12 +10001,13 @@ Library {
 		  BlockType		  S-Function
 		  Name			  "S-Function"
 		  SID			  "1068"
-		  Ports			  [5, 13]
+		  Ports			  [5, 14]
 		  Position		  [140, 51, 255, 489]
 		  ZOrder		  -5
 		  BackgroundColor	  "darkGreen"
 		  FunctionName		  "robotState"
-		  Parameters		  "val,robotname,localname,linkname"
+		  Parameters		  "val,robotname,localname,linkname,''"
+		  SFunctionDeploymentMode off
 		  EnableBusSupport	  off
 		  MaskPromptString	  "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		  MaskStyleString	  "edit,edit,edit,edit"
@@ -9502,18 +10123,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  7
+		  Points		  [0, 15]
 		  DstBlock		  "dJ dq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  6
+		  Points		  [0, 10]
 		  DstBlock		  "h"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  5
+		  Points		  [0, 5]
 		  DstBlock		  "massMatrix"
 		  DstPort		  1
 		}
@@ -9527,18 +10151,21 @@ Library {
 		  Labels		  [0, 0]
 		  SrcBlock		  "S-Function"
 		  SrcPort		  2
+		  Points		  [0, -10]
 		  DstBlock		  "getDq"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  1
+		  Points		  [0, -15]
 		  DstBlock		  "qrad"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  3
+		  Points		  [0, -5]
 		  DstBlock		  "xRightHand"
 		  DstPort		  1
 		}
@@ -9557,18 +10184,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  8
+		  Points		  [0, 20]
 		  DstBlock		  "dJ dq1"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  9
+		  Points		  [0, 25]
 		  DstBlock		  "dJ dq2"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  10
+		  Points		  [0, 30]
 		  DstBlock		  "dJ dq3"
 		  DstPort		  1
 		}
@@ -9593,18 +10223,21 @@ Library {
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  12
+		  Points		  [0, 40]
 		  DstBlock		  "dJ dq5"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  13
+		  Points		  [0, 45]
 		  DstBlock		  "dJ dq6"
 		  DstPort		  1
 		}
 		Line {
 		  SrcBlock		  "S-Function"
 		  SrcPort		  11
+		  Points		  [0, 35]
 		  DstBlock		  "dJ dq4"
 		  DstPort		  1
 		}
@@ -9633,6 +10266,7 @@ Library {
 	  ZOrder		  -3
 	  DropShadow		  on
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDisplay		  "image(imread('jacobian.png'))"
 	  MaskIconFrame		  on
 	  MaskIconOpaque	  on
@@ -9641,7 +10275,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Jacobians"
-	    Location		    [93, 45, 1421, 980]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -9663,6 +10297,7 @@ Library {
 	      ZOrder		      -3
 	      BackgroundColor	      "[0.000000, 0.910000, 0.177000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Center of Mass Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the Center of Mass (CoM) of the robot and t"
 	      "akes into account the floating base of the robot.\n\nThis Jacobian matrix can be decomposed by the contribution"
@@ -9686,7 +10321,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Center of Mass Jacobian"
-		Location		[12, 45, 1340, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -9708,9 +10343,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "COM Jacobian"
-		    Location		    [1390, 45, 2718, 980]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -9781,12 +10417,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "324"
-		    Ports		    [5, 13]
-		    Position		    [140, 46, 270, 574]
+		    Ports		    [5, 14]
+		    Position		    [140, 48, 270, 577]
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,linkname"
+		    Parameters		    "val,robotname,localname,linkname,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -9916,18 +10553,21 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator5"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 10]
 		    DstBlock		    "Terminator4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    5
+		    Points		    [0, 5]
 		    DstBlock		    "massMatrix"
 		    DstPort		    1
 		    }
@@ -9935,24 +10575,28 @@ Library {
 		    Labels		    [0, 0]
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, -10]
 		    DstBlock		    "dqRad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, -15]
 		    DstBlock		    "qRad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, -5]
 		    DstBlock		    "x"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 		    SrcPort		    1
+		    Points		    [25, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    1
 		    }
@@ -9965,60 +10609,70 @@ Library {
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 		    SrcPort		    1
+		    Points		    [25, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    2
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 20]
 		    DstBlock		    "massMatrix1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 25]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 30]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 		    SrcPort		    1
+		    Points		    [25, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    3
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 		    SrcPort		    1
+		    Points		    [25, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    4
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
 		    SrcPort		    1
+		    Points		    [25, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    5
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 35]
 		    DstBlock		    "massMatrix2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 40]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 45]
 		    DstBlock		    "Terminator6"
 		    DstPort		    1
 		    }
@@ -10078,6 +10732,7 @@ Library {
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Left Foot Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the left foot of the robot and takes into a"
 	      "ccount the floating base of the robot.\n\nThis Jacobian matrix can be decomposed by the contribution of each li"
@@ -10101,7 +10756,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Foot Jacobian"
-		Location		[1390, 45, 2718, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10123,9 +10778,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Left Foot \nJacobian"
-		    Location		    [101, 45, 1560, 1907]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -10137,7 +10793,7 @@ Library {
 		    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 		    TiledPageScale	    1
 		    ShowPageBoundaries	    off
-		    ZoomFactor		    "100"
+		    ZoomFactor		    "80"
 		    Block {
 		    BlockType		    Constant
 		    Name		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
@@ -10195,12 +10851,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "137"
-		    Ports		    [5, 13]
-		    Position		    [140, 47, 275, 433]
+		    Ports		    [5, 14]
+		    Position		    [140, 49, 275, 436]
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,linkname"
+		    Parameters		    "val,robotname,localname,linkname,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -10324,6 +10981,7 @@ Library {
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 		    SrcPort		    1
+		    Points		    [35, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    2
 		    }
@@ -10331,30 +10989,35 @@ Library {
 		    Labels		    [0, 0]
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, -15]
 		    DstBlock		    "dqrad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, -20]
 		    DstBlock		    "qrad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, -10]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 		    SrcPort		    1
+		    Points		    [35, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    4
+		    Points		    [0, -5]
 		    DstBlock		    "Jacobian"
 		    DstPort		    1
 		    }
@@ -10367,66 +11030,77 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 5]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 10]
 		    DstBlock		    "dqrad1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 15]
 		    DstBlock		    "massMatrix1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 20]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 25]
 		    DstBlock		    "dqrad2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 		    SrcPort		    1
+		    Points		    [35, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    3
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 		    SrcPort		    1
+		    Points		    [35, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    4
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
 		    SrcPort		    1
+		    Points		    [35, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    5
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 30]
 		    DstBlock		    "dqrad3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 35]
 		    DstBlock		    "dqrad4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 40]
 		    DstBlock		    "dqrad5"
 		    DstPort		    1
 		    }
@@ -10486,6 +11160,7 @@ Library {
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Left Hand Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the left hand of the robot and takes into a"
 	      "ccount the floating base of the robot.\n\nThis Jacobian matrix can be decomposed by the contribution of each li"
@@ -10509,7 +11184,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Left Hand Jacobian"
-		Location		[1390, 45, 2718, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10531,9 +11206,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Left Hand \nJacobian"
-		    Location		    [101, 45, 1560, 1907]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -10604,12 +11280,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "1124"
-		    Ports		    [5, 13]
+		    Ports		    [5, 14]
 		    Position		    [120, 49, 270, 501]
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,linkname"
+		    Parameters		    "val,robotname,localname,linkname,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -10751,36 +11428,42 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 30]
 		    DstBlock		    "dqrad2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 25]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 20]
 		    DstBlock		    "massMatrix1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 15]
 		    DstBlock		    "dqrad1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 10]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    5
+		    Points		    [0, 5]
 		    DstBlock		    "massMatrix"
 		    DstPort		    1
 		    }
@@ -10799,12 +11482,14 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, -5]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, -15]
 		    DstBlock		    "qrad"
 		    DstPort		    1
 		    }
@@ -10812,6 +11497,7 @@ Library {
 		    Labels		    [0, 0]
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, -10]
 		    DstBlock		    "dqrad"
 		    DstPort		    1
 		    }
@@ -10824,18 +11510,21 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 45]
 		    DstBlock		    "dqrad3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 40]
 		    DstBlock		    "Terminator4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 35]
 		    DstBlock		    "massMatrix2"
 		    DstPort		    1
 		    }
@@ -10896,6 +11585,7 @@ Library {
 	      ForegroundColor	      "[0.000000, 0.666667, 0.000000]"
 	      BackgroundColor	      "[0.682353, 0.866667, 0.768627]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Left Foot Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the specified link of the robot taking into"
 	      " account its floating base, with respect to the world reference frame.\n\nThis Jacobian matrix can be decompose"
@@ -10922,7 +11612,7 @@ Library {
 	      MaskValueString	      "robotName|localName|base_link"
 	      System {
 		Name			"Link Jacobian"
-		Location		[1390, 45, 2718, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -10945,9 +11635,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Link Jacobian"
-		    Location		    [101, 45, 1560, 1907]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11022,7 +11713,8 @@ Library {
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,LinkName"
+		    Parameters		    "val,robotname,localname,LinkName,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -11308,6 +12000,7 @@ Library {
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Right Foot Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the right foot of the robot and takes into "
 	      "account the floating base of the robot.\n\nThis Jacobian matrix can be decomposed by the contribution of each l"
@@ -11331,7 +12024,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Foot Jacobian"
-		Location		[1390, 45, 2718, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11353,9 +12046,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Right Foot \nJacobian"
-		    Location		    [1390, 45, 2718, 980]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11426,12 +12120,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "149"
-		    Ports		    [5, 13]
+		    Ports		    [5, 14]
 		    Position		    [140, 50, 280, 460]
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,linkname"
+		    Parameters		    "val,robotname,localname,linkname,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -11569,6 +12264,7 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    4
+		    Points		    [0, 15]
 		    DstBlock		    "Jacobian"
 		    DstPort		    1
 		    }
@@ -11581,12 +12277,14 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, 15]
 		    DstBlock		    "x"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, 15]
 		    DstBlock		    "qRad"
 		    DstPort		    1
 		    }
@@ -11594,42 +12292,49 @@ Library {
 		    Labels		    [0, 0]
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, 15]
 		    DstBlock		    "dqRad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    5
+		    Points		    [0, 15]
 		    DstBlock		    "massMatrix"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator5"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
@@ -11654,18 +12359,21 @@ Library {
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator6"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator7"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator8"
 		    DstPort		    1
 		    }
@@ -11725,6 +12433,7 @@ Library {
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      MaskType		      "Right Hand Jacobian"
 	      MaskDescription	      "This block retrieves the Jacobian matrix for the right hand of the robot and takes into "
 	      "account the floating base of the robot.\n\nThis Jacobian matrix can be decomposed by the contribution of each l"
@@ -11748,7 +12457,7 @@ Library {
 	      MaskValueString	      "robotName|localName"
 	      System {
 		Name			"Right Hand Jacobian"
-		Location		[1390, 45, 2718, 980]
+		Location		[624, 76, 1967, 1002]
 		Open			off
 		ModelBrowserVisibility	off
 		ModelBrowserWidth	200
@@ -11770,9 +12479,10 @@ Library {
 		  ZOrder		  -1
 		  BackgroundColor	  "[1.000000, 0.566599, 0.544887]"
 		  RequestExecContextInheritance	off
+		  Variant		  off
 		  System {
 		    Name		    "Right Hand\nJacobian"
-		    Location		    [12, 45, 1471, 2529]
+		    Location		    [624, 76, 1967, 1002]
 		    Open		    off
 		    ModelBrowserVisibility  off
 		    ModelBrowserWidth	    200
@@ -11843,12 +12553,13 @@ Library {
 		    BlockType		    S-Function
 		    Name		    "S-Function"
 		    SID			    "1102"
-		    Ports		    [5, 13]
-		    Position		    [120, 52, 255, 518]
+		    Ports		    [5, 14]
+		    Position		    [120, 54, 255, 521]
 		    ZOrder		    -5
 		    BackgroundColor	    "darkGreen"
 		    FunctionName	    "robotState"
-		    Parameters		    "val,robotname,localname,linkname"
+		    Parameters		    "val,robotname,localname,linkname,''"
+		    SFunctionDeploymentMode off
 		    EnableBusSupport	    off
 		    MaskPromptString	    "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 		    MaskStyleString	    "edit,edit,edit,edit"
@@ -11980,54 +12691,63 @@ Library {
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
 		    SrcPort		    1
+		    Points		    [15, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    5
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 		    SrcPort		    1
+		    Points		    [15, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    4
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 2"
 		    SrcPort		    1
+		    Points		    [15, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    3
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    10
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator3"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    9
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator2"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    8
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator1"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    7
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator5"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    6
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator4"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    5
+		    Points		    [0, 15]
 		    DstBlock		    "massMatrix"
 		    DstPort		    1
 		    }
@@ -12035,54 +12755,63 @@ Library {
 		    Labels		    [0, 0]
 		    SrcBlock		    "S-Function"
 		    SrcPort		    2
+		    Points		    [0, 15]
 		    DstBlock		    "dqRad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    1
+		    Points		    [0, 15]
 		    DstBlock		    "qRad"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    3
+		    Points		    [0, 15]
 		    DstBlock		    "x"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians "
 		    SrcPort		    1
+		    Points		    [15, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    4
+		    Points		    [0, 15]
 		    DstBlock		    "Jacobian"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 		    SrcPort		    1
+		    Points		    [15, 0]
 		    DstBlock		    "S-Function"
 		    DstPort		    2
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    11
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator6"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    12
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator7"
 		    DstPort		    1
 		    }
 		    Line {
 		    SrcBlock		    "S-Function"
 		    SrcPort		    13
+		    Points		    [0, 15]
 		    DstBlock		    "Terminator8"
 		    DstPort		    1
 		    }
@@ -12150,6 +12879,7 @@ Library {
 	  ZOrder		  -19
 	  BackgroundColor	  "[1.000000, 0.202946, 0.028293]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Limits"
 	  MaskDescription	  "Retrieves the upper and lower limits of all joint angles.\n\nOutput: qMin [ROBOT_DOFx1], qMax [R"
 	  "OBOT_DOFx1]\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" for iCub on Gazebo or \"iCu"
@@ -12170,7 +12900,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Limits"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12182,7 +12912,7 @@ Library {
 	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
+	    ZoomFactor		    "125"
 	    Block {
 	      BlockType		      Constant
 	      Name		      "Constant"
@@ -12242,11 +12972,12 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "964"
-	      Ports		      [5, 13]
-	      Position		      [100, 28, 250, 412]
+	      Ports		      [5, 14]
+	      Position		      [100, 30, 250, 415]
 	      ZOrder		      -5
 	      FunctionName	      "robotState"
-	      Parameters	      "13,robotName,localName,'na'"
+	      Parameters	      "13,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -12357,42 +13088,49 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 35]
 	      DstBlock		      "qMax"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 30]
 	      DstBlock		      "qMin"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 25]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 20]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 15]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 5]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
@@ -12405,60 +13143,70 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, -5]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, -10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, -15]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, -20]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant4"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "Constant3"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 40]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
@@ -12479,6 +13227,7 @@ Library {
 	  ZOrder		  1
 	  BackgroundColor	  "orange"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Change World Reference Frame    "
 	  MaskDescription	  "The world reference frame used in simulation is attached to a robot link specified by the user. "
 	  "The default link to be used is specified in the .ini files of simulated robot. \n\nThis block changes the world ref"
@@ -12503,7 +13252,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Set World Ref Frame"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12572,11 +13321,12 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1221"
-	      Ports		      [5, 13]
-	      Position		      [100, 28, 245, 412]
+	      Ports		      [5, 14]
+	      Position		      [100, 30, 245, 415]
 	      ZOrder		      -5
 	      FunctionName	      "robotState"
-	      Parameters	      "16,robotName,localName,'na'"
+	      Parameters	      "16,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -12686,54 +13436,63 @@ Library {
 	    Line {
 	      SrcBlock		      "link"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Constant3"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Constant4"
 	      SrcPort		      1
+	      Points		      [25, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, -20]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, -15]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, -10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, -5]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
@@ -12746,48 +13505,56 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 5]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 15]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 20]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 25]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 30]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 35]
 	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 40]
 	      DstBlock		      "Terminator12"
 	      DstPort		      1
 	    }
@@ -12817,6 +13584,7 @@ Library {
       ForegroundColor	      "white"
       DropShadow	      on
       RequestExecContextInheritance off
+      Variant		      off
       MaskDisplay	      "image(imread('wholeBodyStates.png'),'center');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
@@ -12825,7 +13593,7 @@ Library {
       MaskIconUnits	      "autoscale"
       System {
 	Name			"wholeBodyStates"
-	Location		[70, 43, 1350, 758]
+	Location		[624, 76, 1967, 1002]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -12846,6 +13614,7 @@ Library {
 	  Position		  [510, 127, 585, 173]
 	  ZOrder		  31
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Compute base Position"
 	  MaskDescription	  "Homogenous transformation (4x4) matrix serialized into a 16 dim vector (row wise)"
 	  MaskPromptString	  "Robot Name|Local Name"
@@ -12865,7 +13634,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Base Position"
-	    Location		    [0, 54, 1360, 768]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -12960,7 +13729,8 @@ Library {
 	      Position		      [195, 22, 310, 393]
 	      ZOrder		      1
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotName,localName,linkName"
+	      Parameters	      "val,robotName,localName,linkName,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Robot Name|Local Name|Value|link name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -13239,6 +14009,7 @@ Library {
 	  Position		  [60, 197, 135, 243]
 	  ZOrder		  30
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Compute base velocity"
 	  MaskPromptString	  "Robot Name|Local Name"
 	  MaskStyleString	  "edit,edit"
@@ -13256,7 +14027,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Base velocity"
-	    Location		    [12, 45, 1318, 931]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13332,7 +14103,8 @@ Library {
 	      Position		      [195, 22, 310, 393]
 	      ZOrder		      1
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotName,localName,linkName"
+	      Parameters	      "val,robotName,localName,linkName,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Robot Name|Local Name|Value|link name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -13600,6 +14372,7 @@ Library {
 	  ZOrder		  -1
 	  BackgroundColor	  "[1.000000, 0.723000, 0.446000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Dummy Joint Torques"
 	  MaskDescription	  "[Only with the Gazebo simulator] This block retrieves the robot joint torques as published by Ga"
 	  "zebo on the corresponding yarp ports. The output is a vector of dimensions ROBOT_DOFx1\n\nParameters:\nrobotName: N"
@@ -13622,7 +14395,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "DUMMY Joint Torques"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -13643,6 +14416,7 @@ Library {
 	      Position		      [25, 29, 65, 111]
 	      ZOrder		      -1
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      System {
 		Name			"tau from ports"
 		Location		[12, 45, 1471, 2529]
@@ -13720,7 +14494,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 116, 95, 184]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.280"
+		  LibraryVersion	  "1.287"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_arm/analog:o/torques']"
@@ -13737,7 +14511,7 @@ Library {
 		  Ports			  [0, 5]
 		  Position		  [25, 201, 95, 269]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.280"
+		  LibraryVersion	  "1.287"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_arm/analog:o/torques']"
@@ -13754,7 +14528,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 286, 95, 354]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.280"
+		  LibraryVersion	  "1.287"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/left_leg/analog:o/torques']"
@@ -13771,7 +14545,7 @@ Library {
 		  Ports			  [0, 6]
 		  Position		  [25, 371, 95, 439]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.280"
+		  LibraryVersion	  "1.287"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/right_leg/analog:o/torques']"
@@ -13788,7 +14562,7 @@ Library {
 		  Ports			  [0, 3]
 		  Position		  [25, 26, 95, 94]
 		  ZOrder		  -5
-		  LibraryVersion	  "1.280"
+		  LibraryVersion	  "1.287"
 		  SourceBlock		  "WBCLibrary/Utilities/yarp read"
 		  SourceType		  "yarp read"
 		  from			  "['/' robotName '/torso/analog:o/torques']"
@@ -14039,6 +14813,7 @@ Library {
 	      Position		      [110, 27, 225, 113]
 	      ZOrder		      -2
 	      RequestExecContextInheritance off
+	      Variant		      off
 	      System {
 		Name			"yarp to WBI"
 		Location		[12, 45, 1616, 3205]
@@ -14117,7 +14892,9 @@ Library {
 		  Position		  [85, 14, 140, 46]
 		  ZOrder		  -7
 		  InputPortWidth	  "3"
+		  IndexOptions		  "Index vector (dialog)"
 		  Indices		  "[3 2 1]"
+		  OutputSizes		  "1"
 		}
 		Block {
 		  BlockType		  Outport
@@ -14238,6 +15015,7 @@ Library {
 	  ZOrder		  -2
 	  BackgroundColor	  "[0.893000, 0.628791, 0.326838]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Accelerations"
 	  MaskDescription	  "This block retrieves the robot joint angular accelerations in rad/s^2 as a vector of dimensions "
 	  "ROBOT_DOFx1 (does not include the robot floating base).\n\nParameters:\nrobotName: Name of the target robot, e.g. \""
@@ -14260,7 +15038,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Accelerations"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14332,11 +15110,12 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "561"
-	      Ports		      [5, 13]
-	      Position		      [115, 29, 235, 361]
+	      Ports		      [5, 14]
+	      Position		      [115, 31, 235, 364]
 	      ZOrder		      -5
 	      FunctionName	      "robotState"
-	      Parameters	      "10,robotName,localName,'na'"
+	      Parameters	      "10,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -14446,108 +15225,126 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 10]
 	      DstBlock		      "ddqJ"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator4"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant4"
 	      SrcPort		      1
+	      Points		      [35, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "Constant3"
 	      SrcPort		      1
+	      Points		      [35, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
+	      Points		      [35, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
+	      Points		      [35, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
+	      Points		      [35, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
@@ -14568,6 +15365,7 @@ Library {
 	  ZOrder		  -1
 	  BackgroundColor	  "[0.375000, 0.187500, 0.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Angles"
 	  MaskDescription	  "This block retrieves the vector of robot joint angles in radians of dimensions ROBOT_DOFx1 (does"
 	  " not include the robot floating base).\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" "
@@ -14590,7 +15388,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Angles"
-	    Location		    [12, 45, 1318, 931]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -14715,12 +15513,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "4"
-	      Ports		      [5, 13]
+	      Ports		      [5, 14]
 	      Position		      [140, 52, 275, 498]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -14790,18 +15589,21 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, -10]
 	      DstBlock		      "getDq"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, -15]
 	      DstBlock		      "qrad"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, -5]
 	      DstBlock		      "xFoot"
 	      DstPort		      1
 	    }
@@ -14820,36 +15622,42 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 5]
 	      DstBlock		      "massMatrix"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "h"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 20]
 	      DstBlock		      " "
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 25]
 	      DstBlock		      "  "
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 30]
 	      DstBlock		      "   "
 	      DstPort		      1
 	    }
@@ -14874,18 +15682,21 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 35]
 	      DstBlock		      "   1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 40]
 	      DstBlock		      "   2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 45]
 	      DstBlock		      "   3"
 	      DstPort		      1
 	    }
@@ -14906,6 +15717,7 @@ Library {
 	  ZOrder		  -4
 	  BackgroundColor	  "[1.000000, 0.634000, 0.268000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Torques"
 	  MaskDescription	  "This block retrieves the robot joint torques in N/m as a vector of dimensions ROBOT_DOFx1. These"
 	  " torques are different from the ones obtained with Dynamics/Inverse Dynamics as they take into account external app"
@@ -14929,7 +15741,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Torques"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15001,11 +15813,12 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "544"
-	      Ports		      [5, 13]
-	      Position		      [115, 29, 230, 371]
+	      Ports		      [5, 14]
+	      Position		      [115, 31, 230, 374]
 	      ZOrder		      -5
 	      FunctionName	      "robotState"
-	      Parameters	      "11,robotName,localName,'na'"
+	      Parameters	      "11,robotName,localName,'na',''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	    }
 	    Block {
@@ -15115,108 +15928,126 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator8"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator4"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 10]
 	      DstBlock		      "tauJ"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant4"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
 	    Line {
 	      SrcBlock		      "Constant3"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Constant1"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Constant2"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
 	      SrcPort		      1
+	      Points		      [20, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator9"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 10]
 	      DstBlock		      "Terminator11"
 	      DstPort		      1
 	    }
@@ -15237,6 +16068,7 @@ Library {
 	  ZOrder		  -2
 	  BackgroundColor	  "[0.634000, 0.401533, 0.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Velocities"
 	  MaskDescription	  "This block retrieves the robot joint angular velocities in rad/s as a vector of dimensions ROBOT"
 	  "_DOFx1 (does not include the robot floating base).\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icub"
@@ -15259,7 +16091,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Joint Velocities"
-	    Location		    [12, 45, 1471, 2529]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15338,12 +16170,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "16"
-	      Ports		      [5, 13]
+	      Ports		      [5, 14]
 	      Position		      [140, 53, 255, 447]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -15466,18 +16299,21 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 15]
 	      DstBlock		      "dq"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 15]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 15]
 	      DstBlock		      "xFoot"
 	      DstPort		      1
 	    }
@@ -15490,42 +16326,49 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 15]
 	      DstBlock		      "Jacobian"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 15]
 	      DstBlock		      "massMatrix"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 15]
 	      DstBlock		      "h"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq3"
 	      DstPort		      1
 	    }
@@ -15550,18 +16393,21 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq4"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq6"
 	      DstPort		      1
 	    }
@@ -15582,6 +16428,7 @@ Library {
 	  ZOrder		  -1
 	  BackgroundColor	  "[0.375000, 0.187500, 0.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Left Leg End Effector Wrench"
 	  MaskDescription	  "This block retrieves an estimate of the wrench at the end-effector of the left leg of the robot."
 	  " Returns a 6x1 [force torque] vector.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" f"
@@ -15603,7 +16450,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Left leg EE Wrench"
-	    Location		    [438, 45, 1687, 1546]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -15723,12 +16570,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1182"
-	      Ports		      [5, 13]
+	      Ports		      [5, 14]
 	      Position		      [140, 52, 285, 498]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -15809,36 +16657,42 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 30]
 	      DstBlock		      "   "
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 25]
 	      DstBlock		      "  "
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 20]
 	      DstBlock		      " "
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 15]
 	      DstBlock		      "LL EEWrench"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 10]
 	      DstBlock		      "h"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 5]
 	      DstBlock		      "massMatrix"
 	      DstPort		      1
 	    }
@@ -15857,12 +16711,14 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, -5]
 	      DstBlock		      "xFoot"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, -15]
 	      DstBlock		      "qrad"
 	      DstPort		      1
 	    }
@@ -15870,6 +16726,7 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, -10]
 	      DstBlock		      "getDq"
 	      DstPort		      1
 	    }
@@ -15882,18 +16739,21 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 35]
 	      DstBlock		      " 1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 40]
 	      DstBlock		      "  1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 45]
 	      DstBlock		      "   1"
 	      DstPort		      1
 	    }
@@ -15914,6 +16774,7 @@ Library {
 	  ZOrder		  -2
 	  BackgroundColor	  "[0.634000, 0.401533, 0.000000]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Right Leg End Effector Wrench"
 	  MaskDescription	  "This block retrieves an estimate of the wrench at the end-effector of the right leg of the robot"
 	  ". Returns a 6x1 [force torque] vector.\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" "
@@ -15935,7 +16796,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Right leg EE Wrench"
-	    Location		    [504, 45, 1753, 1546]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16012,12 +16873,13 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1196"
-	      Ports		      [5, 13]
+	      Ports		      [5, 14]
 	      Position		      [140, 50, 260, 450]
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -16151,42 +17013,49 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      10
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq3"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      9
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq2"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      8
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq1"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      7
+	      Points		      [0, 15]
 	      DstBlock		      "RL EEWrench"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      6
+	      Points		      [0, 15]
 	      DstBlock		      "h"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      5
+	      Points		      [0, 15]
 	      DstBlock		      "massMatrix"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      4
+	      Points		      [0, 15]
 	      DstBlock		      "Jacobian"
 	      DstPort		      1
 	    }
@@ -16199,12 +17068,14 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      3
+	      Points		      [0, 15]
 	      DstBlock		      "xFoot"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      1
+	      Points		      [0, 15]
 	      DstBlock		      "Terminator"
 	      DstPort		      1
 	    }
@@ -16212,6 +17083,7 @@ Library {
 	      Labels		      [0, 0]
 	      SrcBlock		      "S-Function"
 	      SrcPort		      2
+	      Points		      [0, 15]
 	      DstBlock		      "Terminator1"
 	      DstPort		      1
 	    }
@@ -16224,18 +17096,21 @@ Library {
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      13
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq6"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      12
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq5"
 	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "S-Function"
 	      SrcPort		      11
+	      Points		      [0, 15]
 	      DstBlock		      "dJ dq4"
 	      DstPort		      1
 	    }
@@ -16256,6 +17131,7 @@ Library {
 	  ZOrder		  32
 	  BackgroundColor	  "[0.866667, 0.325490, 0.039216]"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskDescription	  "Set base pose (w.r.t world frame).\nRequired a 4x4 matrix representing the homogeneous transform"
 	  "ation between \nthe frame of the base of the robot and the world frame.\ni.e. on the top left corner the 3x3 rotati"
 	  "on matrix, and in the top \nright-most column the 3x1 position vector."
@@ -16267,7 +17143,7 @@ Library {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Set base pose (w.r.t. world)"
-	    Location		    [6, 54, 1372, 768]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16448,11 +17324,12 @@ Library {
 	      BlockType		      S-Function
 	      Name		      "S-Function"
 	      SID		      "1562"
-	      Ports		      [6, 14]
+	      Ports		      [5, 14]
 	      Position		      [310, 22, 465, 513]
 	      ZOrder		      1
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "block type|robot name|local name|link name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -16610,6 +17487,7 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 1"
 	      SrcPort		      1
+	      Points		      [15, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      2
 	    }
@@ -16622,18 +17500,21 @@ Library {
 	    Line {
 	      SrcBlock		      "Matrix\nConcatenate"
 	      SrcPort		      1
+	      Points		      [15, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      3
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 3"
 	      SrcPort		      1
+	      Points		      [15, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 4"
 	      SrcPort		      1
+	      Points		      [15, 0]
 	      DstBlock		      "S-Function"
 	      DstPort		      5
 	    }
@@ -16646,8 +17527,7 @@ Library {
 	    Line {
 	      SrcBlock		      "Input Param. for\nforwardKinematics\nand \ncomputeJacobians 5"
 	      SrcPort		      1
-	      DstBlock		      "S-Function"
-	      DstPort		      6
+	      Points		      [30, 0]
 	    }
 	    Line {
 	      SrcBlock		      "Constant"
@@ -16679,6 +17559,7 @@ Library {
 	  ZOrder		  33
 	  BackgroundColor	  "orange"
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Joint Angles"
 	  MaskDescription	  "This block retrieves the vector of robot joint angles in radians of dimensions ROBOT_DOFx1 (does"
 	  " not include the robot floating base).\n\nParameters:\nrobotName: Name of the target robot, e.g. \"icubGazeboSim\" "
@@ -16701,7 +17582,7 @@ Library {
 	  MaskValueString	  "robotName|localName"
 	  System {
 	    Name		    "Set base velocity (w.r.t. world)"
-	    Location		    [69, 44, 1376, 759]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -16858,7 +17739,8 @@ Library {
 	      ZOrder		      -5
 	      BackgroundColor	      "darkGreen"
 	      FunctionName	      "robotState"
-	      Parameters	      "val,robotname,localname,linkname"
+	      Parameters	      "val,robotname,localname,linkname,''"
+	      SFunctionDeploymentMode off
 	      EnableBusSupport	      off
 	      MaskPromptString	      "Value|Robot Name (icub - icubSim)|Module Name|Link Name"
 	      MaskStyleString	      "edit,edit,edit,edit"
@@ -17061,6 +17943,7 @@ Library {
 	  Position		  [390, 133, 440, 167]
 	  ZOrder		  6
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Floating base velocity + robot joint velocities"
 	  MaskDescription	  "This block retrieves the robot joint velocities plus the virtual floating base joint velocities."
 	  "\n\nReturns a vector of size (ROBOT_DOF + 6)."
@@ -17080,7 +17963,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "dq_b + dq_j"
-	    Location		    [12, 45, 1318, 931]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -17102,7 +17985,7 @@ Library {
 	      ZOrder		      41
 	      BackgroundColor	      "[0.732000, 0.463600, 0.000000]"
 	      ShowName		      off
-	      LibraryVersion	      "1.280"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Velocities"
 	      SourceType	      "Joint Velocities"
 	      robotName		      "robotName"
@@ -17116,7 +17999,7 @@ Library {
 	      Position		      [65, 93, 140, 137]
 	      ZOrder		      -1
 	      BackgroundColor	      "[0.047000, 0.909000, 0.803000]"
-	      LibraryVersion	      "1.280"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Left Foot Jacobian"
 	      SourceType	      "Left Foot Jacobian"
 	      robotName		      "robotName"
@@ -17141,7 +18024,7 @@ Library {
 	      Position		      [70, 28, 140, 72]
 	      ZOrder		      -2
 	      BackgroundColor	      "[0.000000, 1.000000, 0.533000]"
-	      LibraryVersion	      "1.280"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "WBCLibrary/wholeBodyModel/Jacobians/Right Foot Jacobian"
 	      SourceType	      "Right Foot Jacobian"
 	      robotName		      "robotName"
@@ -17155,7 +18038,7 @@ Library {
 	      Position		      [180, 68, 290, 112]
 	      ZOrder		      -14
 	      BackgroundColor	      "[0.753334, 1.000000, 0.112472]"
-	      LibraryVersion	      "1.280"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "WBCLibrary/Utilities/baseVelocity"
 	      SourceType	      "baseVelocity"
 	    }
@@ -17224,6 +18107,7 @@ Library {
 	  Position		  [295, 134, 345, 166]
 	  ZOrder		  5
 	  RequestExecContextInheritance	off
+	  Variant		  off
 	  MaskType		  "Floating Base + Roobot Joints"
 	  MaskDescription	  "This block retrieves a vector of size (ROBOT_DOF + 6) with the robot joint angles and the virtua"
 	  "l floating base joint angles."
@@ -17243,7 +18127,7 @@ Library {
 	  MaskValueString	  "robotName|localName|Ts"
 	  System {
 	    Name		    "q_b + q_j"
-	    Location		    [12, 45, 1318, 931]
+	    Location		    [624, 76, 1967, 1002]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -17273,7 +18157,7 @@ Library {
 	      Position		      [20, 63, 90, 107]
 	      ZOrder		      1
 	      BackgroundColor	      "[0.376471, 0.188235, 0.000000]"
-	      LibraryVersion	      "1.280"
+	      LibraryVersion	      "1.287"
 	      SourceBlock	      "WBCLibrary/wholeBodyStates/Joint Angles"
 	      SourceType	      "Joint Angles"
 	      robotName		      "robotName"
@@ -17357,7 +18241,7 @@ Library {
 }
 #Finite State Machines
 #
-#   Stateflow 80000001
+#   Stateflow 80000006
 #
 #
 Stateflow {

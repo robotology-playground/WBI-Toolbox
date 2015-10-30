@@ -23,14 +23,17 @@
 #include "wbInterface.h"
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/os/LogStream.h>
+#include <codyco/PidList.h>
+#include "SetPIDBlock.h"
 
 // MASK PARAMETERS --------------------------------------
-#define NPARAMS            4                                // Number of input parameters
+#define NPARAMS            5                                // Number of input parameters
 #define BLOCK_TYPE_IDX     0                                // Index number for first input parameter
 #define BLOCK_TYPE_PARAM ssGetSFcnParam(S,BLOCK_TYPE_IDX)   // Get first input parameter from mask
 #define STRING_PARAM_IDX   1
 #define LOCAL_PARAM_IDX    2
 #define LINKNAME_PARAM_IDX 3
+#define ADDITIONAL_PARAM_IDX 4
 // END MASK PARAMETERS -----------------------------------
 
 #define VERBOSE   0
@@ -131,18 +134,7 @@ bool robotStatus::robotConfig (yarp::os::Property* yarpWbiOptions) {
         yDebug("[robotStatus::robotConfig] Copying wholeBodyInterface POINTER!\n");
 #endif
     } else {
-          //NOTE The following ResourceFinder will look for the file DEFAULT_CONFIG_FILE in app/robots/$YARP_ROBOT_NAME
-          ResourceFinder rf;
-          rf.setVerbose (true);
-          rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
-          rf.setDefaultContext (DEFAULT_WBI_T_CONTEXT);
-
-          //NOTE We call rf.configure() this way since we don't have a command line to read commands from
-          //  rf gets configured with WBI-T options only!! options for yarpWholeBodyInterface are loaded later below.
-          if (!rf.configure (0, 0)) {
-            yError("[robotStatus::robotConfig] ResourceFinder could not be configured\n");
-            return false;
-          }
+          ResourceFinder &rf = ResourceFinder::getResourceFinderSingleton();
 
           //BEGINS yarpWholeBodyInterface options configuration
           ConstString wbiConfFileName = rf.find("wbi_config_file").asString();
@@ -907,7 +899,7 @@ static void mdlInitializeSizes (SimStruct* S) {
 #endif
 
     //NOTE This resource finder takes the right parameters from configuration file and passes them to a PWork vector.
-    ResourceFinder rf;
+    ResourceFinder &rf = ResourceFinder::getResourceFinderSingleton();
     rf.setVerbose (false);
     rf.setDefaultConfigFile (DEFAULT_CONFIG_FILE);
     rf.setDefaultContext (DEFAULT_WBI_T_CONTEXT);
@@ -1004,7 +996,7 @@ static void mdlInitializeSizes (SimStruct* S) {
     ssSetNumSampleTimes (S, 1);
 
     // Reserve place for C++ object
-    ssSetNumPWork (S, 2);
+    ssSetNumPWork (S, 3);
 
     ssSetNumDWork (S, 2);
     ssSetDWorkWidth (S, 0, 1);
@@ -1086,6 +1078,15 @@ static void mdlStart (SimStruct* S) {
     yInfo("[mdlStart] The link passed for parametric blocks is: %s\n", cString);
     std::string param_link_name (cString);
     mxFree (cString);
+    cString = 0;
+
+    cString = mxArrayToString (ssGetSFcnParam (S, ADDITIONAL_PARAM_IDX));
+    if (!cString) {
+        ssSetErrorStatus (S, "[mdlStart] Cannot retrieve string from parameter 5.\n");
+        return;
+    }
+    std::string additionalParameter(cString);
+    mxFree(cString);
     cString = 0;
 
     // This will help determining the kind of block we'll be using
@@ -1171,6 +1172,8 @@ static void mdlStart (SimStruct* S) {
     case GET_WORLD_TO_BASE_ROTO_TRANSLATION:
         yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
             break;
+    case SET_PIDS:
+            break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
         ssSetErrorStatus (S, "[mdlOutputs] The type of this block has not been defined yet\n");
@@ -1228,6 +1231,34 @@ static void mdlStart (SimStruct* S) {
         yError("[mdlStart] in robotInit\n");
         return;
     }
+
+    switch (static_cast<int> (block_type)) {
+        case SET_PIDS:
+        {
+            //get
+            Value value;
+            value.fromString(additionalParameter.c_str());
+            wbitoolbox::PidMap *pids = new wbitoolbox::PidMap();
+            res =  res && wbitoolbox::loadGainsFromValue(value, *pids, *((yarpWbi::yarpWholeBodyInterface*)robot->wbInterface));
+            if (!res) {
+                delete pids; pids = 0;
+                yError("Error while loading PIDs configuration");
+                ssSetErrorStatus (S, "Error while loading PIDs configuration");
+            } else {
+                yInfo("Loaded PIDs configuration");
+            }
+            ssGetPWork(S)[2] = pids;
+            int_T* info = (int_T*)ssGetDWork(S, 1);
+            info[0] = -1;
+        }
+            break;
+        default:
+            break;
+            yError("This type of block has not been defined yet\n");
+            ssSetErrorStatus (S, "[mdlOutputs] The type of this block has not been defined yet\n");
+    }
+
+
 
     //--------------GLOBAL VARIABLES INITIALIZATION --------------
     yInfo("[mdlStart] FINISHED\n\n");
@@ -1332,7 +1363,9 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             linkName = "head";
             break;
         default:
+            linkName = "";
             yError("[mdlOutputs] No body part has been specified to compute forward kinematics\n");
+            break;
         }
         // Retrieve link id
         robot->getLinkId (linkName, lid);
@@ -1896,6 +1929,27 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->robotBaseVelocity(port12);
     }
 
+    if (btype == SET_PIDS) {
+        int_T* info = (int_T*)ssGetDWork(S, 1);
+        int_T lastGainIndex = info[0];
+        wbitoolbox::PidMap *pids = (wbitoolbox::PidMap*)ssGetPWork(S)[2];
+        if (pids) {
+            //First case: only one element
+            if (lastGainIndex == -1 && pids->size() == 2) {
+                //just switch to the only existing set
+                wbitoolbox::setCurrentGains(*pids, wbitoolbox::TorquePIDDefaultKey, *((yarpWbi::yarpWholeBodyInterface*)robot->wbInterface));
+                info[0] = 0;
+            } else {
+                InputPtrsType      u     = ssGetInputPortSignalPtrs(S, 0);
+                InputInt8PtrsType  uPtrs = (InputInt8PtrsType)u;
+                if (*uPtrs[0] != lastGainIndex) {
+                    wbitoolbox::setCurrentGains(*pids, *uPtrs[0], *((yarpWbi::yarpWholeBodyInterface*)robot->wbInterface));
+                    info[0] = *uPtrs[0];
+                }
+            }
+        }
+    }
+
     if (TIMING) tend = Time::now();
     if (TIMING) yDebug("[mdlOutputs] Time elapsed: %f \n", tend - tinit);
 
@@ -1919,6 +1973,16 @@ static void mdlTerminate (SimStruct* S) {
 
     if (robot != NULL) {
         yInfo("[mdlTerminate] Inside robot object %p \n", robot);
+
+        real_T* block_type = (real_T*) ssGetDWork (S, 0);
+        int btype = (int) block_type[0];
+        if (btype == SET_PIDS) {
+            wbitoolbox::PidMap *pids = (wbitoolbox::PidMap*)ssGetPWork(S)[2];
+            if (pids && pids->size() > 1) {
+                wbitoolbox::setCurrentGains(*pids, wbitoolbox::TorquePIDInitialKey, *((yarpWbi::yarpWholeBodyInterface*)robot->wbInterface));
+            }
+        }
+
         if (robot->decreaseCounter() == 0) {
             int ROBOT_DOF = robotStatus::getRobotDOF();
             yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[1];
