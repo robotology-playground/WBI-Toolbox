@@ -6,6 +6,17 @@
 #include <sstream>
 
 namespace wbitoolbox {
+static std::string stringFromInt(int num)
+{
+    std::stringstream numStream;
+    numStream << num;
+    return numStream.str();
+}
+}
+
+
+
+namespace wbitoolbox {
     using namespace codyco;
 
     const std::string TorquePIDInitialKey = "__ORIGINAL_PIDs__";
@@ -16,7 +27,6 @@ namespace wbitoolbox {
                                         yarpWbi::yarpWholeBodyInterface& interface,
                                         PIDList &loadedPIDs);
     static bool fillPIDWithBottleDescription(const yarp::os::Bottle &bottle, yarp::dev::Pid &pid);
-
 
     bool loadGainsFromValue(const yarp::os::Value &gains,
                                PidMap &pidMap,
@@ -48,9 +58,7 @@ namespace wbitoolbox {
                 result = loadTorqueGainsFromFile(filename, originalGains, interface, pids);
 
                 if (result) {
-                    std::ostringstream num;
-                    num << (i + 1);
-                    pidMap.insert(PidMap::value_type(num.str(), pids));
+                    pidMap.insert(PidMap::value_type(stringFromInt(i + 1), pids));
                 }
             }
         }
@@ -60,9 +68,7 @@ namespace wbitoolbox {
 
     bool setCurrentGains(const PidMap &pidMap, int map, yarpWbi::yarpWholeBodyInterface& interface)
     {
-        std::stringstream num;
-        num << map;
-        return setCurrentGains(pidMap, num.str(), interface);
+        return setCurrentGains(pidMap, stringFromInt(map), interface);
     }
 
     bool setCurrentGains(const PidMap &pidMap, std::string key, yarpWbi::yarpWholeBodyInterface& interface)
