@@ -51,9 +51,9 @@ The WBI-Toolbox must be compiled through the CoDyCo project (https://github.com/
 
 ```bash
    cd $CODYCO_SUPERBUILD_DIR
-   cmake ../ -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES -DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=NO
+   cmake ../ -DCODYCO_USES_MATLAB=YES -DCODYCO_USES_WBI_TOOLBOX:BOOL=YES -DCODYCO_USES_URDFDOM:BOOL=YES
 ```
-When using the real robot set the flag `-DICUBWBI_USE_EXTERNAL_TORQUE_CONTROL:BOOL=YES`. Then as usual type `c` to configure until no stars (*) show up and `g` to generate. Finally, to compile type `make`.
+Then as usual type `c` to configure until no stars (*) show up and `g` to generate. Finally, to compile type `make`.
 After this step all the subprojects will be installed inside the `$CODYCO_SUPERBUILD_DIR/install` directory. In order to use use it you will have to adjust some environment variables in your `~/.bashrc`
 
 ```bash
