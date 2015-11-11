@@ -428,7 +428,7 @@ Vector robotStatus::forwardKinematics(int &linkId, double *qrad_input) {
     Vector qrad_base (16);
     qrad_base.resize (16, 0.0);
     for (unsigned int i = 0; i < qrad_base.size(); i++) {
-        qrad_base[i] = * (qrad_input + i);
+        qrad_base[i] = qrad_input[i];
     }
     wbi::Frame world2baseFrame;
     wbi::frameFromSerialization(qrad_base.data(), world2baseFrame);
@@ -468,6 +468,33 @@ Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian
     return jacobianMatrix;
 }
 //=========================================================================================================================
+//=========================================================================================================================
+Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian (int& lid, double* qrad_in) {
+    // Retrieve base roto-translation
+    Vector qrad_base (16);
+    qrad_base.resize (16, 0.0);
+    for (unsigned int i = 0; i < qrad_base.size(); i++) {
+        qrad_base[i] = qrad_in[i];
+    }
+    // Deserialize
+    wbi::Frame world2baseFrame;
+    wbi::frameFromSerialization(qrad_base.data(), world2baseFrame);
+    
+    // Retrieve robot configuration
+    double* qrad_robot = &qrad_in[16];
+
+    bool ans = wbInterface->computeJacobian (qrad_robot, world2baseFrame, lid, jacobianMatrix.data());
+    if (ans) {
+#ifdef DEBUG
+        yDebug("[robotStatus::jacobian] Base pos: %s\n", xBase.toString().c_str());
+#endif
+        return jacobianMatrix;
+    }
+    jacobianMatrix.setZero();
+    return jacobianMatrix;
+}
+//=========================================================================================================================
+
 Vector robotStatus::getEncoders() {
     return qRad;
 }
@@ -724,7 +751,7 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     return true;
 }
 //=========================================================================================================================
-bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input) {
+bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input, bool isparam) {
     bool ans = false;
         if (updateWorld2BaseRotoTranslation()) {
                 footLinkId = linkId;
@@ -746,21 +773,17 @@ bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_inpu
                 double* dq_robot   = &dq_input[6];
 
                 for (unsigned int i = 0; i < qrad_base.size(); i++) {
-                    qrad_base[i] = * (qrad_input + i);
+                    qrad_base[i] = qrad_input[i];
                 }
 
                 for (unsigned int i = 0; i < dq_base.size(); i++)
-                    dq_base[i] = * (dq_input + i);
+                    dq_base[i] = dq_input[i];
 
-#ifdef WORLD2BASE_EXTERNAL
-                wbi::Frame qBaseFrame = wbi::Frame (qrad_base.data());
-#ifdef DEBUG
-                yDebug("[robotStatus::dynamicsGenBiasForces] This is the rototranslation matrix for the base that has been read: \n%s\n", qBaseFrame.toString().c_str());
-#endif
-                ans = wbInterface->computeDJdq (qrad_robot, qBaseFrame, dq_robot, dq_base.data(), footLinkId, dJdq.data());
-#else
-                ans = wbInterface->computeDJdq (qrad_robot, xBase, dq_robot, dxB.data(), footLinkId, dJdq.data());
-#endif
+                if (isparam) {
+                    ans = wbInterface->computeDJdq (qrad_robot, qrad_base.data(), dq_robot, dq_base.data(), footLinkId, dJdq.data());
+                } else {
+                    ans = wbInterface->computeDJdq (qrad_robot, xBase, dq_robot, dxB.data(), footLinkId, dJdq.data());
+                }
             }
     return ans;
 }
@@ -1511,6 +1534,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // This block will compute dJdq from the dynamics equation for the specified link
     if (btype == DJ_DQ_BLOCK) {
+        bool isparam = false;
 #ifdef DEBUG
         yDebug("[mdlOutputs] About to compute dJdq\n");
 #endif
@@ -1557,7 +1581,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         }
 
         robot->getLinkId (linkName, lid);
-        if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
+        if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data(), isparam)) {
             ssSetErrorStatus(S, "dynamicsDJdq did not finish successfully")
             yError("[mdlOutputs] dynamicsDJdq did not finish successfully\n");
             return;
@@ -1835,9 +1859,18 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 #endif
         robot->getLinkId (linkName, lid);
 
+        // READ INPUT ANGLES
+        InputRealPtrsType  uPtrs2 = ssGetInputPortRealSignalPtrs(S, 2);
+        int nu = ssGetInputPortWidth(S, 2);
+        Vector qrad_in;
+        qrad_in.resize(nu, 0.0);
+        for (int j = 0; j < nu; j++) {
+            qrad_in (j) = (*uPtrs2[j]);
+        }
+
         real_T* pY4 = ssGetOutputPortRealSignal(S, 3);
         Eigen::Map<Eigen::Matrix<real_T, 6, Eigen::Dynamic, Eigen::ColMajor> > outputSignal(pY4, 6, ROBOT_DOF + 6);
-        outputSignal = robot->jacobian(lid);
+        outputSignal = robot->jacobian(lid, qrad_in.data());
 
 #ifdef DEBUG
         yDebug("[mdlOutputs] Jacobians Computed Succesfully. Jacobian is: \n");
@@ -1846,6 +1879,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // Parametric dJdq
     if (btype == PARAM_DJ_DQ_BLOCK) {
+        bool isparam = true;
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
 #ifdef DEBUG
@@ -1872,7 +1906,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             dqrad_in (j) = (*uPtrs3[j]);
         }
 
-        if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data())) {
+        if (!robot->dynamicsDJdq (lid, qrad_in.data(), dqrad_in.data(), isparam)) {
             yError("[mdlOutputs] dynamicsDJdq did not finish successfully\n");
             ssSetErrorStatus(S, "dynamicsDjdq did not finish Succesfully");
             return;

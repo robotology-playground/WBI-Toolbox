@@ -222,6 +222,7 @@ public:
     yarp::sig::Vector   forwardKinematics (int& linkId);
     yarp::sig::Vector   forwardKinematics (int& linkId, double* qrad_input);
     Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>&      jacobian (int& lid, double* qrad_in);
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd&     getJntVelocities();
     yarp::sig::Vector   getJntTorques();
@@ -232,7 +233,7 @@ public:
     bool                dynamicsMassMatrix (double* qrad_input);
     yarp::sig::Vector   dynamicsGenBiasForces (double* qrad_input, double* dq_input);
     bool                robotBaseVelocity(real_T *baseVelocity = NULL);
-    bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input);
+    bool                dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input, bool isparam);
     Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>& getMassMatrix();
     yarp::sig::Vector   getDJdq();
     yarp::sig::Vector   getJntAccelerations();
