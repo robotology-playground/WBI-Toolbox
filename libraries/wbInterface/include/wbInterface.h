@@ -220,6 +220,7 @@ public:
     bool                robotJntAccelerations (bool blockingRead);
     bool                robotJntTorques (bool blockingRead);
     yarp::sig::Vector   forwardKinematics (int& linkId);
+    yarp::sig::Vector   forwardKinematics (int& linkId, double* qrad_input);
     Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>&      jacobian (int& lid);
     yarp::sig::Vector   getEncoders();
     Eigen::VectorXd&     getJntVelocities();

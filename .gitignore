@@ -1,3 +1,4 @@
+startup_wbitoolbox.m
 *.mexa64
 *.mexmaci64
 *.kdev4

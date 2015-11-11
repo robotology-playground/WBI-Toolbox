@@ -420,6 +420,33 @@ Vector robotStatus::forwardKinematics (int& linkId) {
     return x_pose;
 }
 //=========================================================================================================================
+Vector robotStatus::forwardKinematics(int &linkId, double *qrad_input) {
+    Vector pose;
+    pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);;
+    
+    // Retrieve base part
+    Vector qrad_base (16);
+    qrad_base.resize (16, 0.0);
+    for (unsigned int i = 0; i < qrad_base.size(); i++) {
+        qrad_base[i] = * (qrad_input + i);
+    }
+    wbi::Frame world2baseFrame;
+    wbi::frameFromSerialization(qrad_base.data(), world2baseFrame);
+    
+    // Retrieve robot configuration
+    double* qrad_robot = &qrad_input[16];
+
+    if (!wbInterface->forwardKinematics(qrad_robot, world2baseFrame, linkId, pose.data())) {
+        yError("[robotStatus::forwardKinematics] Parametric Forward Kinematics computation failed. Returning a zero vector");
+        pose.zero();
+    } else {
+#ifdef DEBUG
+        yDebug("[robotStatus::forwardKinematics] Parametric Forward Kinematics computation successful.");
+#endif
+    }
+    return pose;
+}
+//=========================================================================================================================
 Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian (int& lid) {
     if (robotJntAngles (false)) {
 //         if (world2baseRototranslation (qRad.data())) {
@@ -699,16 +726,7 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
 //=========================================================================================================================
 bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_input) {
     bool ans = false;
-    if (robotJntAngles (false)) {
-#ifdef DEBUG
-        yDebug("[robotStatus::dynamicsDJdq] robotJntAngles computed for dynamicsDJdq\n");
-#endif
-        if (robotJntVelocities (false)) {
-#ifdef DEBUG
-            yDebug("[robotStatus::dynamicsDJd] robotJntVelocities computed for dynamicsDJdq\n");
-#endif
-//             if (world2baseRototranslation (qRad.data())) {
-            if (updateWorld2BaseRotoTranslation()) {
+        if (updateWorld2BaseRotoTranslation()) {
                 footLinkId = linkId;
                 if (!robotBaseVelocity()) {
                     yError("[robotStatus::dynamicsDJdq] robotBaseVelocity failed in robotStatus::dynamicsDJd\n");
@@ -744,8 +762,6 @@ bool robotStatus::dynamicsDJdq (int& linkId, double* qrad_input, double* dq_inpu
                 ans = wbInterface->computeDJdq (qrad_robot, xBase, dq_robot, dxB.data(), footLinkId, dJdq.data());
 #endif
             }
-        }
-    }
     return ans;
 }
 //=========================================================================================================================
@@ -1097,79 +1113,82 @@ static void mdlStart (SimStruct* S) {
     flag[0]     = 1;
 
     switch (static_cast<int> (block_type)) {
-    case 0:
-        yInfo("[mdlOutputs] This block will retrieve joints angles\n");
-        break;
-    case 1:
-        yInfo("[mdlOutputs] This block will retrieve joints velocities\n");
-        break;
-    case 2:
-        yInfo("[mdlOutputs] This block will retrieve parametric forward kinematics\n");
-        break;
-    case 3:
-        yInfo("[mdlOutputs] This block will retrieve parametric Jacobians\n");
-        break;
-    case 4:
-        yInfo("[mdlOutputs] This block will set velocities\n");
-        break;
-    case 5:
-        yInfo("[mdlOutputs] This block will set positions\n");
-        break;
-    case 6:
-        yInfo("[mdlOutputs] This block will set torques\n");
-        break;
-    case 7:
-        yInfo("[mdlOutputs] This block will compute generalized bias forces from dynamics\n");
-        break;
-    case 8:
-        yInfo("[mdlOutputs] This block will compute mass matrix from dynamics\n");
-        break;
-    case 9:
-        yInfo("[mdlOutputs] This block will compute dJdq\n");
-        break;
-    case 10:
-        yInfo("[mdlOutputs] This block will retrieve joint accelerations\n");
-        break;
-    case 11:
-        yInfo("[mdlOutputs] This block will retrieve joint torques\n");
-        break;
-    case 12:
-        yInfo("[mdlOutputs] This block will compute inverse dynamics\n");
-        break;
-    case 13:
-        yInfo("[mdlOutputs] This block will retrieve joint limits\n");
-        break;
-    case 14:
-        yInfo("[mdlOutputs] This block will retrieve the centroidal momentum\n");
-        break;
-    case 15:
-        yInfo("[mdlOutputs] This block will retrieve end-effector wrenches for legs or arms\n");
-        break;
-    case 16:
-        yInfo("[mdlOutputs] This block will attach the world reference frame to the specified link\n");
-        break;
-    case 17:
-        yInfo("[mdlOutputs] This block will compute forward kinematics for the specified link\n");
-        break;
-    case 18:
-        yInfo("[mdlOutputs] This block will compute the Jacobian matrix for the specified link\n");
-        break;
-    case 19:
-        yInfo("[mdlOutputs] This block will compute the product dJdq for the specified link\n");
-        break;
-    case 20:
-        yInfo("[mdlOutputs] This block will set joint angles with the Position Direct control mode\n");
-        break;
+    case JOINT_ANGLES_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve joints angles\n");
+            break;
+    case JOINT_VELOCITIES_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve joints velocities\n");
+            break;
+    case FORWARD_KINEMATICS_OF_LINK_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve parametric forward kinematics\n");
+            break;
+    case JACOBIANS_OF_LINK_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve parametric Jacobians\n");
+            break;
+    case VELOCITY_CONTROL_REF_BLOCK:
+            yInfo("[mdlOutputs] This block will set velocities\n");
+            break;
+    case POSITION_CONTROL_REF_BLOCK:
+            yInfo("[mdlOutputs] This block will set positions\n");
+            break;
+    case TORQUE_CONTROL_REF_BLOCK:
+            yInfo("[mdlOutputs] This block will set torques\n");
+            break;
+    case GENERALIZED_BIAS_FORCES_BLOCK:
+            yInfo("[mdlOutputs] This block will compute generalized bias forces from dynamics\n");
+            break;
+    case MASS_MATRIX_BLOCK:
+            yInfo("[mdlOutputs] This block will compute mass matrix from dynamics\n");
+            break;
+    case DJ_DQ_BLOCK:
+            yInfo("[mdlOutputs] This block will compute dJdq\n");
+            break;
+    case JOINT_ACCELERATIONS_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve joint accelerations\n");
+            break;
+    case JOINT_TORQUES_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve joint torques\n");
+            break;
+    case INVERSE_DYNAMICS_BLOCK:
+            yInfo("[mdlOutputs] This block will compute inverse dynamics\n");
+            break;
+    case JOINT_LIMITS_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve joint limits\n");
+            break;
+    case CENTROIDAL_MOMENTUM_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve the centroidal momentum\n");
+            break;
+    case FORCE_TORQUE_ESTIMATE_BLOCK:
+            yInfo("[mdlOutputs] This block will retrieve end-effector wrenches for legs or arms\n");
+            break;
+    case SET_WORLD_REF_FRAME_BLOCK:
+            yInfo("[mdlOutputs] This block will attach the world reference frame to the specified link\n");
+            break;
+    case PARAM_FORWARD_KINEMATICS_BLOCK:
+            yInfo("[mdlOutputs] This block will compute forward kinematics for the specified link\n");
+            break;
+    case PARAM_JACOBIANS_BLOCK:
+            yInfo("[mdlOutputs] This block will compute the Jacobian matrix for the specified link\n");
+            break;
+    case PARAM_DJ_DQ_BLOCK:
+            yInfo("[mdlOutputs] This block will compute the product dJdq for the specified link\n");
+            break;
+    case POSITION_DIRECT_CONTROL_REF_BLOCK:
+            yInfo("[mdlOutputs] This block will set joint angles with the Position Direct control mode\n");
+            break;
     case BASE_VELOCITY_ESTIMATION:
+            yInfo("[mdlOutputs] This block will provide the base velocity estimate\n");
             break;
     case SET_WORLD_TO_BASE_ROTO_TRANSLATION:
+            yInfo("[mdlStart] This block sets world to base roto translation");
             robotStatus::setExternalBasePoseComputation(true);
             break;
     case SET_WORLD_TO_BASE_VEL:
+            yInfo("[mdlStart] This block will set world to base velocity");
             robotStatus::setExternalBaseVelComputation(true);
             break;
     case GET_WORLD_TO_BASE_ROTO_TRANSLATION:
-        yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
+            yInfo("[mdlOutputs] This block will retrieve the world-to-base rototranslation\n");
             break;
     default:
         yError("[mdlOutputs] This type of block has not been defined yet\n");
@@ -1778,14 +1797,26 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
 
     // Parametric forward kinematics
     if (btype == PARAM_FORWARD_KINEMATICS_BLOCK) {
+        // Output vector
         Vector xpose;
+        xpose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);
+        // Link name
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
         robot->getLinkId (linkName, lid);
+        
+        // READ INPUT ANGLES
+        InputRealPtrsType  uPtrs2 = ssGetInputPortRealSignalPtrs(S, 2);
+        int nu = ssGetInputPortWidth(S, 2);
+        Vector qrad_in;
+        qrad_in.resize(nu, 0.0);
+        for (int j = 0; j < nu; j++) {
+            qrad_in (j) = (*uPtrs2[j]);
+        }
 #ifdef DEBUG
        yDebug("[mdlOutputs] RIGHT BEFORE CALLING FORWARDKINEMATICS\n");
 #endif
-        xpose = robot->forwardKinematics (lid);
+        xpose = robot->forwardKinematics (lid, qrad_in.data());
 #ifdef DEBUG
        yDebug("[mdlOutputs] RIGHT AFTER CALLING FORWARDKINEMATICS\n");
 #endif
@@ -1828,7 +1859,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         nu = ssGetInputPortWidth (S, 2);                                //Getting the amount of elements of the input vector/matrix
         Vector qrad_in;
         qrad_in.resize (nu, 0.0);
-        for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
+        for (int j = 0; j < nu; j++) {                                  //Reading input reference
             qrad_in (j) = (*uPtrs2[j]);
         }
 
@@ -1837,7 +1868,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         nu = ssGetInputPortWidth (S, 3);                                //Getting the amount of elements of the input vector/matrix
         Vector dqrad_in;
         dqrad_in.resize (nu, 0.0);
-        for (int j = 0; j < nu; j++) {                                  //Reading inpute reference
+        for (int j = 0; j < nu; j++) {                                  //Reading input reference
             dqrad_in (j) = (*uPtrs3[j]);
         }
 
