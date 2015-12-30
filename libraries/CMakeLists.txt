@@ -51,6 +51,9 @@ add_install_rpath_support(BIN_DIRS ${CMAKE_INSTALL_PREFIX}/bin
                           DEPENDS WBITOOLBOX_ENABLE_RPATH
                           USE_LINK_PATH)
 
+# import math symbols from standard cmath
+add_definitions(-D_USE_MATH_DEFINES)
+
 add_subdirectory(wbInterface)
 add_subdirectory(minJerkGenerator)
 add_subdirectory(yRead)

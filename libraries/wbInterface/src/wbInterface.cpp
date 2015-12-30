@@ -298,7 +298,7 @@ bool robotStatus::robotInit (int btype, int link) {
 
     EEWrench.resize (6, 0);
     sixDimBuffer.resize(6, 0.0);
-    
+
     massMatrix.resize(ROBOT_DOF + 6, ROBOT_DOF + 6);
 
     yInfo("[robotStatus::robotInit] Finished robotInit\n");
@@ -423,7 +423,7 @@ Vector robotStatus::forwardKinematics (int& linkId) {
 Vector robotStatus::forwardKinematics(int &linkId, double *qrad_input) {
     Vector pose;
     pose.resize(DEFAULT_X_LINK_SIZE.size(), 0.0);;
-    
+
     // Retrieve base part
     Vector qrad_base (16);
     qrad_base.resize (16, 0.0);
@@ -432,7 +432,7 @@ Vector robotStatus::forwardKinematics(int &linkId, double *qrad_input) {
     }
     wbi::Frame world2baseFrame;
     wbi::frameFromSerialization(qrad_base.data(), world2baseFrame);
-    
+
     // Retrieve robot configuration
     double* qrad_robot = &qrad_input[16];
 
@@ -479,7 +479,7 @@ Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor>& robotStatus::jacobian
     // Deserialize
     wbi::Frame world2baseFrame;
     wbi::frameFromSerialization(qrad_base.data(), world2baseFrame);
-    
+
     // Retrieve robot configuration
     double* qrad_robot = &qrad_in[16];
 
@@ -722,7 +722,7 @@ Vector robotStatus::dynamicsGenBiasForces (double* qrad_input, double* dq_input)
 //=========================================================================================================================
 bool robotStatus::robotBaseVelocity(real_T *baseVelocity) {
     bool status = true;
-    if (!externalBaseVelComputation) {     
+    if (!externalBaseVelComputation) {
         status = wbInterface->getEstimates(wbi::ESTIMATE_BASE_VEL, dxB.data());
     }
     if (status && baseVelocity) {
@@ -740,9 +740,9 @@ bool robotStatus::updateWorld2BaseRotoTranslation() {
     if (externalBasePoseComputation) {
         return true;
     }
-    
+
 //     std::cerr << "-----------> Internal \n";
-    
+
     if (!wbInterface->getEstimates(wbi::ESTIMATE_BASE_POS, basePositionSerialization.data(), -1, false)) {
         yError("[robotStatus::world2BaseRotoTranslation] Estimate could not be retrieved\n");
         return false;
@@ -855,7 +855,7 @@ bool robotStatus::addEstimate(wbi::ID LID) {
 void robotStatus::setExternalBasePoseComputation(bool externalBasePoseComputation)
 {
     robotStatus::externalBasePoseComputation = externalBasePoseComputation;
-}                
+}
 
 void robotStatus::setExternalBaseVelComputation(bool externalBaseVelComputation)
 {
@@ -1461,7 +1461,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             }
         }
         if (btype == POSITION_CONTROL_REF_BLOCK) {
-            if(!robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD*10.0)) {
+            if(!robot->setCtrlMode (wbi::CTRL_MODE_POS, ROBOT_DOF, (M_PI/180.0)*10.0)) {
                 yError("[mdlOutputs] Error setting position control mode\n");
                 ssSetErrorStatus(S, "[mdlOutputs] Error setting position control mode");
                 return;
@@ -1828,7 +1828,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         std::string tmpStr (robot->getParamLink());
         linkName = tmpStr.c_str();
         robot->getLinkId (linkName, lid);
-        
+
         // READ INPUT ANGLES
         InputRealPtrsType  uPtrs2 = ssGetInputPortRealSignalPtrs(S, 2);
         int nu = ssGetInputPortWidth(S, 2);
@@ -1922,7 +1922,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
             pY7[j] = dJdq (j);
         }
     }
-    
+
     // Exposing world to base rototranslation
     if (btype == SET_WORLD_TO_BASE_ROTO_TRANSLATION){
         InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 2);
@@ -1936,7 +1936,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->setWorld2BaseHomogenousTransformation(frame);
 //         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
-    
+
     if (btype == SET_WORLD_TO_BASE_VEL){
         InputRealPtrsType inputSignal = ssGetInputPortRealSignalPtrs (S, 3);
         for (int i = 0; i < 6; i++) {
@@ -1946,7 +1946,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         robot->setBaseVelocity(robot->sixDimBuffer);
 //         std::cerr << "Transformed to: \n" << robot->getWorld2BaseRotoTranslation().toString() << "\n";
     }
-    
+
     if (btype == GET_WORLD_TO_BASE_ROTO_TRANSLATION){
         wbi::Frame frame;
         frame = robot->getWorld2BaseRotoTranslation();
@@ -1954,7 +1954,7 @@ static void mdlOutputs (SimStruct* S, int_T tid) {
         real_T* pY13 = (real_T*) ssGetOutputPortSignal (S, 13);
         serializationFromFrame(frame, pY13);
     }
-    
+
 
     if (btype == BASE_VELOCITY_ESTIMATION) {
         real_T* port12 = ssGetOutputPortRealSignal(S, 12);
@@ -1988,7 +1988,7 @@ static void mdlTerminate (SimStruct* S) {
             int ROBOT_DOF = robotStatus::getRobotDOF();
             yarp::os::Property* yarpWbiOptions = (yarp::os::Property*)ssGetPWork(S)[1];
 
-            robot->setCtrlMode(wbi::CTRL_MODE_POS, ROBOT_DOF, CTRL_DEG2RAD * 0.0);
+            robot->setCtrlMode(wbi::CTRL_MODE_POS, ROBOT_DOF, 0.0);
             yInfo("[mdlTerminate] ctrl mode set\n");
             delete robot;
             yInfo("[mdlTerminate] robot deleted\n");
