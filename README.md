@@ -1,0 +1,1 @@
+**This repo contained an old and unmantained version of the software now known as [WB-Toolbox](https://github.com/robotology/wb-toolbox). Please go to [WB-Toolbox repo](https://github.com/robotology/wb-toolbox) if you want to use it or for updated documentation. for any . If you really want to access it, you can find the old README at [README_old.md](README_old.md).**
